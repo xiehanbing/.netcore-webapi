@@ -7,7 +7,7 @@ namespace General.Core.Dapper
     /// <summary>
     /// dapper client 
     /// </summary>
-    public interface IDapperClient
+    public interface IDapperClient<T> where T : class
     {
         /// <summary>
         /// dbconnection 
@@ -19,7 +19,7 @@ namespace General.Core.Dapper
         /// <typeparam name="T">数据列表</typeparam>
         /// <param name="strSql"></param>
         /// <returns></returns>
-        List<T> Query<T>(string strSql);
+        List<T> Query(string strSql);
         /// <summary>
         /// 查询
         /// </summary>
@@ -27,21 +27,21 @@ namespace General.Core.Dapper
         /// <param name="strSql"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        List<T> Query<T>(string strSql, object param);
+        List<T> Query(string strSql, object param);
         /// <summary>
         /// 查询第一个
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="strSql"></param>
         /// <returns></returns>
-        T QueryFirst<T>(string strSql);
+        T QueryFirst(string strSql);
         /// <summary>
         /// 查询第一个 异步
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="strSql"></param>
         /// <returns></returns>
-        Task<T> QueryFirstAsync<T>(string strSql);
+        Task<T> QueryFirstAsync(string strSql);
         /// <summary>
         /// 查询第一个
         /// </summary>
@@ -49,7 +49,7 @@ namespace General.Core.Dapper
         /// <param name="strSql"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        T QueryFirst<T>(string strSql, object param);
+        T QueryFirst(string strSql, object param);
         /// <summary>
         /// 执行
         /// </summary>

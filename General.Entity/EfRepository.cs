@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using General.Core.Data;
 using Microsoft.EntityFrameworkCore;
@@ -138,5 +139,6 @@ namespace General.EntityFrameworkCore
             Entities.Remove(entity);
             return await _dbContext.SaveChangesAsync();
         }
+
     }
 }

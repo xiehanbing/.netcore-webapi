@@ -36,7 +36,7 @@ namespace General.Api.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"),Authorize(policy:"General")]
         public async Task<ApiResult<List<UserDto>>> Get(int id)
         {
             var data = await _userService.GetList();
@@ -60,7 +60,7 @@ namespace General.Api.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"),Authorize(policy: "ageRequire")]
         public void Delete(int id)
         {
             _log.Error("这是一个测试信息Error");

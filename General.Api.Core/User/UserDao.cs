@@ -12,8 +12,8 @@ namespace General.Api.Core.User
     public class UserDao : IUserDao
     {
         private readonly IRepository<General.EntityFrameworkCore.User.User> _userRepository;
-        private readonly IDapperClient _dapperClient;
-        public UserDao(IRepository<General.EntityFrameworkCore.User.User> userRepository, IDapperClient dapperClient)
+        private readonly IDapperClient<General.EntityFrameworkCore.User.User> _dapperClient;
+        public UserDao(IRepository<General.EntityFrameworkCore.User.User> userRepository, IDapperClient<General.EntityFrameworkCore.User.User> dapperClient)
         {
             _userRepository = userRepository;
             _dapperClient = dapperClient;
@@ -23,6 +23,8 @@ namespace General.Api.Core.User
         /// </summary>
         public async Task<List<General.EntityFrameworkCore.User.User>> GetList()
         {
+            var data = _dapperClient.Query("SELECT * FROM  dbo.[User]");
+            return data;
             //var data = _dapperClient.Query<EntityFrameworkCore.User.User>("SELECT * FROM  dbo.[User]");
             //return data;
             return await _userRepository.Table.ToListAsync();

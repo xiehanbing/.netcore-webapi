@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using General.Api.Application;
 using General.Api.Core;
 using General.Api.Engine;
+using General.Api.Framework;
 using General.Api.Framework.Filters;
+using General.Api.Framework.Token;
 using General.Core;
 using General.Core.Dapper;
 using General.Core.Data;
 using General.Core.Extension;
+using General.Core.Token;
 using General.EntityFrameworkCore;
 using General.EntityFrameworkCore.Dapper;
 using General.Log;
 using log4net.Config;
 using log4net.Core;
 using log4net.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +34,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace General.Api
@@ -67,6 +75,55 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new UserContext());
+            //add 自定义验证策略
+            services.AddInnerAuthorize(Configuration);
+            //添加jwt验证：
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = true,//是否验证Issuer
+            //            ValidateAudience = true,//是否验证Audience
+            //            ValidateLifetime = true,//是否验证失效时间
+            //            ValidateIssuerSigningKey = true,//是否验证SecurityKey
+            //            ValidAudience = Configuration["Jwt:Audience"],//Audience
+            //            ValidIssuer = Configuration["Jwt:Issuer"],//Issuer，这两项和前面签发jwt的设置一致
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"]))//拿到SecurityKey
+            //        };
+            //        options.Events = new JwtBearerEvents()
+            //        {
+            //            OnChallenge = context =>
+            //            {
+            //                context.HandleResponse();
+            //                var payload = new ApiResult
+            //                {
+            //                    Success = false,
+            //                    Code = 401,
+            //                    Message =
+            //                        "很抱歉，您无权访问该接口"
+            //                }.GetSerializeObject();
+            //                //自定义返回的数据类型
+            //                context.Response.ContentType = "application/json";
+            //                //自定义返回状态码，默认为401 我这里改成 200
+            //                context.Response.StatusCode = StatusCodes.Status200OK;
+            //                //context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            //                //输出Json数据结果
+            //                context.Response.WriteAsync(payload);
+            //                return Task.FromResult(0);
+            //            }
+            //        };
+            //    });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .Build());
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // add handel exception
             services.AddMvc(options => { options.Filters.Add<ExceptionFilter>(); });
@@ -109,7 +166,11 @@ namespace General.Api
                 }
             });
             //add dapper         
-            services.AddSingleton<IDapperClient, DapperClient>();
+            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));
+
+
+
+
         }
         /// <summary>
         /// add use middleware
@@ -119,6 +180,7 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();//注意添加这一句，启用验证
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -128,6 +190,9 @@ namespace General.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors("CorsPolicy");
+            //app.UseMiddleware<JwtCustomerAuthorizeMiddleware>(Configuration["Jwt:SecurityKey"], new List<string>() { "/api/values/getjwt", "/" });
+
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();

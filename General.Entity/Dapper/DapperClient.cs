@@ -9,14 +9,12 @@ using Microsoft.Extensions.Options;
 
 namespace General.EntityFrameworkCore.Dapper
 {
-    public class DapperClient : IDapperClient
+    public class DapperClient<T> : IDapperClient<T> where T : class
     {
         public DapperDbContext ConnectionConfig;
-        public ConnectionConfig CurrentConnectionConfig;
         public DapperClient(DapperDbContext config)
         {
             ConnectionConfig = config;
-            CurrentConnectionConfig = config.ConnectionConfig;
         }
 
         IDbConnection _connection = null;
@@ -24,7 +22,7 @@ namespace General.EntityFrameworkCore.Dapper
         {
             get
             {
-                switch (CurrentConnectionConfig.DbType)
+                switch (ConnectionConfig.ConnectionConfig.DbType)
                 {
                     //case DbStoreType.MySql:
                     //    _connection = new MySql.Data.MySqlClient.MySqlConnection(CurrentConnectionConfig.ConnectionString);
@@ -33,7 +31,7 @@ namespace General.EntityFrameworkCore.Dapper
                     //    _connection = new SQLiteConnection(CurrentConnectionConfig.ConnectionString);
                     //    break;
                     case DbStoreType.SqlServer:
-                        _connection = new System.Data.SqlClient.SqlConnection(CurrentConnectionConfig.ConnectionString);
+                        _connection = new System.Data.SqlClient.SqlConnection(ConnectionConfig.ConnectionConfig.ConnectionString);
                         break;
                     case DbStoreType.Oracle:
                         //_connection = new Oracle.ManagedDataAccess.Client.OracleConnection(CurrentConnectionConfig.ConnectionString);
@@ -50,7 +48,7 @@ namespace General.EntityFrameworkCore.Dapper
         /// </summary>
         /// <param name="strSql">sql语句</param>
         /// <returns></returns>
-        public List<T> Query<T>(string strSql)
+        public List<T> Query(string strSql)
         {
             using (IDbConnection conn = Connection)
             {
@@ -62,9 +60,9 @@ namespace General.EntityFrameworkCore.Dapper
         /// 执行SQL返回集合
         /// </summary>
         /// <param name="strSql">SQL语句</param>
-        /// <param name="obj">参数model</param>
+        /// <param name="param">参数model</param>
         /// <returns></returns>
-        public List<T> Query<T>(string strSql, object param)
+        public List<T> Query(string strSql, object param)
         {
             using (IDbConnection conn = Connection)
             {
@@ -77,11 +75,11 @@ namespace General.EntityFrameworkCore.Dapper
         /// </summary>
         /// <param name="strSql">SQL语句</param>
         /// <returns></returns>
-        public T QueryFirst<T>(string strSql)
+        public T QueryFirst(string strSql)
         {
             using (IDbConnection conn = Connection)
             {
-                return conn.Query<T>(strSql).FirstOrDefault<T>();
+                return conn.Query<T>(strSql).FirstOrDefault();
             }
         }
 
@@ -90,12 +88,12 @@ namespace General.EntityFrameworkCore.Dapper
         /// </summary>
         /// <param name="strSql">SQL语句</param>
         /// <returns></returns>
-        public async Task<T> QueryFirstAsync<T>(string strSql)
+        public async Task<T> QueryFirstAsync(string strSql)
         {
             using (IDbConnection conn = Connection)
             {
                 var res = await conn.QueryAsync<T>(strSql);
-                return res.FirstOrDefault<T>();
+                return res.FirstOrDefault();
             }
         }
 
@@ -103,13 +101,13 @@ namespace General.EntityFrameworkCore.Dapper
         /// 执行SQL返回一个对象
         /// </summary>
         /// <param name="strSql">SQL语句</param>
-        /// <param name="obj">参数model</param>
+        /// <param name="param">参数model</param>
         /// <returns></returns>
-        public T QueryFirst<T>(string strSql, object param)
+        public T QueryFirst(string strSql, object param)
         {
             using (IDbConnection conn = Connection)
             {
-                return conn.Query<T>(strSql, param).FirstOrDefault<T>();
+                return conn.Query<T>(strSql, param).FirstOrDefault();
             }
         }
 
