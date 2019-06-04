@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using General.Core.HttpClient.Extension;
 
 namespace General.Api.Application.User
 {
@@ -16,6 +17,8 @@ namespace General.Api.Application.User
 
         public async Task<List<Dto.UserDto>> GetList()
         {
+            var url = "http://192.168.1.102:2013/general.api";
+            var data = url.AppendFormat("/api/Values/1").Get().GetJsonResult();
             return _mapper.Map<List<Dto.UserDto>>(await _userDao.GetList());
         }
     }

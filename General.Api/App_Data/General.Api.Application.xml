@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Api.Application</name>
+    </assembly>
+    <members>
+        <member name="T:General.Api.Application.MapperConfig">
+            <summary>
+            automapper 配置
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.MapperConfig.Init">
+            <summary>
+            automapper 加载 配置类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Token.ITokenService">
+            <summary>
+            token 接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.Get(System.String,System.String)">
+            <summary>
+            验证
+            </summary>
+            <param name="account">账号</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Token.TokenService">
+            <summary>
+            token 接口
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.UserDto">
+            <summary>
+            用户dto 
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.No">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.PhotoNo">
+            <summary>
+            照片id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.UserAccount">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.JobNumber">
+            <summary>
+            工作电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Gender">
+            <summary>
+            gender
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Post">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

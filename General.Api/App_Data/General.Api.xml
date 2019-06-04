@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Api</name>
+    </assembly>
+    <members>
+        <member name="T:General.Api.Controllers.AuthController">
+            <summary>
+            权限获取
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,General.Api.Application.Token.ITokenService)">
+            <summary>
+            权限构造函数
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.RequestToken(General.Core.TokenRequest)">
+            <summary>
+            获取token
+            </summary>
+            <param name="request">请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Get">
+            <summary>
+            这是一个注释
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Engine.GeneralEngine">
+            <summary>
+            引擎实现 (不从构造函数中也可获取实例)
+            </summary>
+        </member>
+        <member name="M:General.Api.Engine.GeneralEngine.#ctor(System.IServiceProvider)">
+            <summary>
+            构造
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:General.Api.Engine.GeneralEngine.Resolve``1">
+            <summary>
+            构建实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.ConfigServiceExtension">
+            <summary>
+            jwt token customer handle  jwt 自定义
+            </summary>
+        </member>
+        <member name="M:General.Api.ConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加自定义的 jwt token 验证
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:General.Api.Startup">
+            <summary>
+            启动类
+            </summary>
+        </member>
+        <member name="M:General.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            启动构造函数
+            </summary>
+            <param name="configuration"></param>
+            <param name="env">环境</param>
+        </member>
+        <member name="P:General.Api.Startup.Configuration">
+            <summary>
+            配置类
+            </summary>
+        </member>
+        <member name="P:General.Api.Startup.LaunchConfiguration">
+            <summary>
+            launch config
+            </summary>
+        </member>
+        <member name="P:General.Api.Startup.Environment">
+            <summary>
+            Environment
+            </summary>
+        </member>
+        <member name="M:General.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            add service
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            add use middleware
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

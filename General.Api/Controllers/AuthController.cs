@@ -29,7 +29,6 @@ namespace General.Api.Controllers
         /// <summary>
         /// 权限构造函数
         /// </summary>
-        /// <param name="configuration"></param>
         public AuthController(IConfiguration configuration, ITokenService tokenService)
         {
             _configuration = configuration;

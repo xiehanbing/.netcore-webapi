@@ -36,7 +36,7 @@ namespace General.Api.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}"),Authorize(policy:"General")]
+        [HttpGet("{id}")]
         public async Task<ApiResult<List<UserDto>>> Get(int id)
         {
             var data = await _userService.GetList();

@@ -58,8 +58,17 @@ namespace General.Api
                 .AddJsonFile($"appsettings{(env.IsDevelopment() ? $".{env.EnvironmentName}" : "")}.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();
+            if (env.IsDevelopment())
+            {
+                var launchUrl = env.ContentRootPath + "/Properties/";
+                var lanuchBuilder = new ConfigurationBuilder()
+                    .SetBasePath(launchUrl)
+                    .AddJsonFile($"launchSettings.json", optional: true, reloadOnChange: true);
+                LaunchConfiguration = lanuchBuilder.Build();
+            }
 
 
+            Environment = env;
             //Configuration = configuration;
             Log.LogContext.Initialize();
             MapperConfiguration = MapperConfig.Init();
@@ -68,6 +77,14 @@ namespace General.Api
         /// 配置类
         /// </summary>
         public IConfiguration Configuration { get; }
+        /// <summary>
+        /// launch config
+        /// </summary>
+        public IConfiguration LaunchConfiguration { get; }
+        /// <summary>
+        /// Environment
+        /// </summary>
+        public IHostingEnvironment Environment { get; }
         /// <summary>
         /// add service
         /// </summary>
@@ -134,13 +151,18 @@ namespace General.Api
             //add swagger
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info() { Title = "General Api ", Version = "v1" });
+                options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info() { Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version });
                 options.DocInclusionPredicate((docName, description) => true);
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-                var xmlPath = Path.Combine(basePath, "General.Api.xml");
-                options.IncludeXmlComments(xmlPath);
+                var xmlBasePath = Path.Combine(basePath, @"App_Data");
+                DirectoryInfo directoryInfo = new DirectoryInfo(xmlBasePath);
+                foreach (var info in directoryInfo.GetFiles())
+                {
+                    options.IncludeXmlComments(info.FullName);
+                }
                 options.OperationFilter<HttpHeaderOperation>();
             });
+
             //注入接口
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
@@ -180,6 +202,7 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles();
             app.UseAuthentication();//注意添加这一句，启用验证
             if (env.IsDevelopment())
             {
@@ -194,8 +217,8 @@ namespace General.Api
             //app.UseMiddleware<JwtCustomerAuthorizeMiddleware>(Configuration["Jwt:SecurityKey"], new List<string>() { "/api/values/getjwt", "/" });
 
 
-            app.UseStaticFiles();
-            app.UseHttpsRedirection();
+
+            //app.UseHttpsRedirection();
             app.UseMvc(options =>
             {
                 options.MapRoute(
@@ -205,14 +228,23 @@ namespace General.Api
                 options.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                options.MapRoute(
+                    name: "swagger",
+                        template: "swagger/ui/index.html"
+                    );
             });
             //启用中间件服务生成swagger作为json终结点
             app.UseSwagger();
             //启用中间件服务队swagger-ui 指定swagger json 终结点
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "General Api V1");
-                options.RoutePrefix = string.Empty;
+                options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
+                options.RoutePrefix = "swagger/ui";
+                //if (Environment.IsDevelopment())
+                //{
+                //    //SwaggerHelper.DownSwaggerJson(LaunchConfiguration.GetSection("iisSettings:iisExpress:applicationUrl").Value, ApiConsts.Version);
+                //}
+
             });
         }
     }

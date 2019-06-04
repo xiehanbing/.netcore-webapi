@@ -6,10 +6,20 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\General.Api.xml</DocumentationFile>
+    <DocumentationFile>App_Data\General.Api.xml</DocumentationFile>
     <OutputPath>bin\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App_Data\General.Api.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\General.Api.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.0" />
@@ -19,6 +29,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +40,21 @@
     <ProjectReference Include="..\General.Core\General.Core.csproj" />
     <ProjectReference Include="..\General.Entity\General.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\General.Log\General.Log.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="swagger\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="swagger\swagger-ui-bundle.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="swagger\swagger-ui-standalone-preset.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="swagger\swagger-ui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
