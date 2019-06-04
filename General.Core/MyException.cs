@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace General.Api.Framework
+namespace General.Core
 {
     /// <summary>
     /// 自定义异常

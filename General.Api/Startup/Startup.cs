@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using General.Api.Application;
 using General.Api.Core;
 using General.Api.Engine;
@@ -15,6 +16,7 @@ using General.Core;
 using General.Core.Dapper;
 using General.Core.Data;
 using General.Core.Extension;
+using General.Core.Libs;
 using General.Core.Token;
 using General.EntityFrameworkCore;
 using General.EntityFrameworkCore.Dapper;
@@ -95,43 +97,7 @@ namespace General.Api
             services.AddSingleton(new UserContext());
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
-            //添加jwt验证：
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddJwtBearer(options =>
-            //    {
-            //        options.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateIssuer = true,//是否验证Issuer
-            //            ValidateAudience = true,//是否验证Audience
-            //            ValidateLifetime = true,//是否验证失效时间
-            //            ValidateIssuerSigningKey = true,//是否验证SecurityKey
-            //            ValidAudience = Configuration["Jwt:Audience"],//Audience
-            //            ValidIssuer = Configuration["Jwt:Issuer"],//Issuer，这两项和前面签发jwt的设置一致
-            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"]))//拿到SecurityKey
-            //        };
-            //        options.Events = new JwtBearerEvents()
-            //        {
-            //            OnChallenge = context =>
-            //            {
-            //                context.HandleResponse();
-            //                var payload = new ApiResult
-            //                {
-            //                    Success = false,
-            //                    Code = 401,
-            //                    Message =
-            //                        "很抱歉，您无权访问该接口"
-            //                }.GetSerializeObject();
-            //                //自定义返回的数据类型
-            //                context.Response.ContentType = "application/json";
-            //                //自定义返回状态码，默认为401 我这里改成 200
-            //                context.Response.StatusCode = StatusCodes.Status200OK;
-            //                //context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            //                //输出Json数据结果
-            //                context.Response.WriteAsync(payload);
-            //                return Task.FromResult(0);
-            //            }
-            //        };
-            //    });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -141,7 +107,38 @@ namespace General.Api
                         .AllowCredentials()
                         .Build());
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(options =>
+                    {
+                        //add validator
+                        options.RegisterValidatorsFromAssembly(
+                            RuntimeHelper.GetAssemblyByName("General.Api.Application"));
+                        options.RegisterValidatorsFromAssembly(
+                            RuntimeHelper.GetAssemblyByName("General.Core"));
+                    });
+            // override modelstate
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var errors = context.ModelState
+                        .Values
+                        .SelectMany(x => x.Errors
+                            .Select(p => p.ErrorMessage))
+                        .ToList();
+
+                    var result = new ValidatorResult()
+                    {
+                        Code = 10009,
+                        Success = false,
+                        Message = "Validation errors",
+                        Errors = errors
+                    };
+
+                    return new BadRequestObjectResult(result);
+                };
+            });
+
             // add handel exception
             services.AddMvc(options => { options.Filters.Add<ExceptionFilter>(); });
             //添加对AutoMapper的支持
@@ -161,6 +158,7 @@ namespace General.Api
                     options.IncludeXmlComments(info.FullName);
                 }
                 options.OperationFilter<HttpHeaderOperation>();
+                options.AddFluentValidationRules();
             });
 
             //注入接口

@@ -21,11 +21,100 @@
             <param name="request">请求</param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Controllers.DoorControlController">
+            <summary>
+            门禁点api
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.#ctor(General.Api.Application.Door.IDoorControlService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            获取门禁点列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="doorIndexCode">门禁点唯一标识符集</param>
+            <param name="doorName">门禁点名称</param>
+            <param name="acsDevIndexCode">门禁设备唯一标识</param>
+            <param name="regionIndexCode">所属区域唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetTaskProgress(System.String)">
+            <summary>
+            获取门禁点权限的更新进度
+            </summary>
+            <param name="taskId">任务id</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.UpdateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            创建更新 门禁点权限
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            门禁点反控
+            </summary>
+            <param name="doorIndexCodeList">门禁点唯一标识集合</param>
+            <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取区域列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.ValuesController">
+            <summary>
+            ValuesController
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.#ctor(General.Log.ILogManager,General.Api.Application.User.IUserService)">
+            <summary>
+            ValuesController
+            </summary>
+        </member>
         <member name="M:General.Api.Controllers.ValuesController.Get">
             <summary>
             这是一个注释
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            Get(int)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            Post(string)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            Put
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
         </member>
         <member name="T:General.Api.Engine.GeneralEngine">
             <summary>
@@ -45,17 +134,35 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:General.Api.ConfigServiceExtension">
+        <member name="T:General.Api.JwtConfigServiceExtension">
             <summary>
             jwt token customer handle  jwt 自定义
             </summary>
         </member>
-        <member name="M:General.Api.ConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.JwtConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加自定义的 jwt token 验证
             </summary>
             <param name="services"></param>
             <param name="config"></param>
+        </member>
+        <member name="T:General.Api.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:General.Api.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:General.Api.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            CreateWebHostBuilder
+            </summary>
+            <param name="args">args</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Startup">
             <summary>

@@ -1,4 +1,6 @@
-﻿using General.Core;
+﻿using System;
+using System.Collections.Generic;
+using General.Core;
 using General.Log;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,40 +24,66 @@ namespace General.Api.Framework.Filters
             //如果异常没有被处理
             if (context.ExceptionHandled == false)
             {
-                //如果是自定义异常
-                if (context.Exception is MyException myException)
+                var myException = GetMyException(context.Exception);
+
+                if (myException != null)
                 {
                     context.Result = new JsonResult(new ApiResult()
                     {
                         Success = false,
                         Message = myException.Message,
-                        Code = myException.Code,
-
+                        Code = myException.Code
                     });
                 }
-                else if (context.Exception.InnerException != null && context.Exception is MyException myInnerException)
-                {
-                    context.Result = new JsonResult(new ApiResult()
-                    {
-                        Success = false,
-                        Message = myInnerException.Message,
-                        Code = myInnerException.Code
-                    });
-                }
-                //如果是系统异常
                 else
                 {
-                    _logManager.Error(context.Exception);
-                    context.Result = new JsonResult(new ApiResult()
+                    var validaException = GetValidatorException(context.Exception);
+                    if (validaException != null)
+                        context.Result = new JsonResult(new ValidatorResult()
+                        {
+                            Success = false,
+                            Message = validaException.Message,
+                            Code = validaException.Code,
+                            Errors = validaException.Errors
+                        });
+                    else
                     {
-                        Success = false,
-                        Message = "系统异常",
-                        Code = StatusCodes.Status500InternalServerError
-                    });
+                        //如果是系统异常
+                        _logManager.Error(context.Exception);
+                        context.Result = new JsonResult(new ApiResult()
+                        {
+                            Success = false,
+                            Message = "系统异常",
+                            Code = StatusCodes.Status500InternalServerError
+                        });
+                    }
                 }
-
             }
             context.ExceptionHandled = true;//异常已经处理了
+        }
+        /// <summary>
+        /// 获取是自定义异常类
+        /// </summary>
+        /// <param name="exception">异常类</param>
+        /// <returns></returns>
+        private MyException GetMyException(Exception exception)
+        {
+            if (exception is MyException myException)
+                return myException;
+            if (exception.InnerException == null) return null;
+            return GetMyException(exception.InnerException);
+        }
+        /// <summary>
+        /// 获取验证异常类
+        /// </summary>
+        /// <param name="exception">异常类</param>
+        /// <returns></returns>
+        private ValidatorException GetValidatorException(Exception exception)
+        {
+            if (exception is ValidatorException myException)
+                return myException;
+            if (exception.InnerException == null) return null;
+            return GetValidatorException(exception.InnerException);
         }
     }
 }

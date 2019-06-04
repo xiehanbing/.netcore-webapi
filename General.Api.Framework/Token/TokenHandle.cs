@@ -36,7 +36,7 @@ namespace General.Api.Framework.Token
                 audience: configuration["Jwt:Audience"],
                 claims: claims,              
                 notBefore:DateTime.Now,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

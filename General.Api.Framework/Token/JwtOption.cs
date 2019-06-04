@@ -2,12 +2,30 @@
 
 namespace General.Api.Framework.Token
 {
+    /// <summary>
+    /// JwtOption
+    /// </summary>
     public class JwtOption
     {
-        public  string Issuer { get; set; } = "general";
-        public  string Audience { get; set; } = "general";
-        public  TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(50);
-        public  string SecurityKey { get; set; }
-        public  string Name { get; set; }
+        /// <summary>
+        /// Issuer
+        /// </summary>
+        public string Issuer { get; set; } = "general";
+        /// <summary>
+        /// Audience
+        /// </summary>
+        public string Audience { get; set; } = "general";
+        /// <summary>
+        /// Expiration
+        /// </summary>
+        public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(50);
+        /// <summary>
+        /// SecurityKey
+        /// </summary>
+        public string SecurityKey { get; set; }
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string Name { get; set; }
     }
 }

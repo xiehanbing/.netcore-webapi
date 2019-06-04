@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using General.Api.Core.Log;
+using General.Core.Extension;
+using General.EntityFrameworkCore.Log;
 using Newtonsoft.Json;
 
 namespace General.Core.HttpClient.Extension
@@ -27,21 +30,40 @@ namespace General.Core.HttpClient.Extension
                                                .Value.FirstOrDefault() ?? "";
                 if (!string.IsNullOrEmpty(clientDefaultHeaders))
                 {
-                    httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(clientDefaultHeaders); ;
+                    httpContent.Headers.ContentType =
+                        new System.Net.Http.Headers.MediaTypeHeaderValue(clientDefaultHeaders);
+                    ;
 
                 }
                 else
                 {
-                    httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType); ;
+                    httpContent.Headers.ContentType =
+                        new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType);
+                    ;
                 }
 
-                var response = await client.PostAsync(client.BaseAddress, httpContent);
+                if (client.DefaultRequestHeaders.Any())
+                {
+                    foreach (var item in client.DefaultRequestHeaders)
+                    {
+                        httpContent.Headers.Add(item.Key, item.Value);
+                    }
+                }
 
+
+                var response = await client.PostAsync(client.BaseAddress, httpContent);
+                LogManage.ApiLog(new ApiLog()
+                {
+                    ConfirmNo = client.BaseAddress.AbsoluteUri,
+                    ModelName = client.BaseAddress.AbsoluteUri,
+                    RequestContext = httpContent.GetSerializeObject(),
+                    ResponseContext = response.Content.ReadAsStringAsync().Result
+                });
                 client.Dispose();
                 return response;
             }
-
         }
+
         /// <summary>
         /// HttpPost
         /// </summary>
@@ -66,8 +88,21 @@ namespace General.Core.HttpClient.Extension
                 {
                     httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType); ;
                 }
+                if (client.DefaultRequestHeaders.Any())
+                {
+                    foreach (var item in client.DefaultRequestHeaders)
+                    {
+                        httpContent.Headers.Add(item.Key, item.Value);
+                    }
+                }
                 var response = client.PostAsync(client.BaseAddress, httpContent).Result;
-
+                LogManage.ApiLog(new ApiLog()
+                {
+                    ConfirmNo = client.BaseAddress.AbsoluteUri,
+                    ModelName = client.BaseAddress.AbsoluteUri,
+                    RequestContext = httpContent.GetSerializeObject(),
+                    ResponseContext = response.Content.ReadAsStringAsync().Result
+                });
                 client.Dispose();
                 return response;
             }
@@ -136,6 +171,14 @@ namespace General.Core.HttpClient.Extension
         public static HttpContent Get(this System.Net.Http.HttpClient client)
         {
             var response = client.GetAsync(client.BaseAddress).Result;
+          
+            LogManage.ApiLog(new ApiLog()
+            {
+                ConfirmNo = client.BaseAddress.AbsoluteUri,
+                ModelName = client.BaseAddress.AbsoluteUri,
+                RequestContext = client.DefaultRequestHeaders.GetSerializeObject(),
+                ResponseContext = response.Content.ReadAsStringAsync().Result
+            });
             client.Dispose();
             return response.Content;
         }
@@ -147,6 +190,14 @@ namespace General.Core.HttpClient.Extension
         public static async Task<HttpContent> GetAsync(this System.Net.Http.HttpClient client)
         {
             var response = await client.GetAsync(client.BaseAddress);
+           
+            LogManage.ApiLog(new ApiLog()
+            {
+                ConfirmNo = client.BaseAddress.AbsoluteUri,
+                ModelName = client.BaseAddress.AbsoluteUri,
+                RequestContext = client.DefaultRequestHeaders.GetSerializeObject(),
+                ResponseContext = response.Content.ReadAsStringAsync().Result
+            });
             client.Dispose();
             return response.Content;
         }

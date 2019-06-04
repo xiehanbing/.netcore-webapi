@@ -15,6 +15,558 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Application.Door.DoorControlService">
+            <summary>
+            门禁点控制服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetRegionList(System.Int32,System.Int32,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.CreateDoorAuthTask(System.Int32)">
+            <summary>
+            创建门禁点权限任务
+            </summary>
+            <param name="taskType">任务类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetAuthProgress(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetAuthProgress(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthAddDto">
+            <summary>
+            门禁权限更新model
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.TaskId">
+            <summary>
+            下载任务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.ResourceInfos">
+            <summary>
+            资源对象
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.PersonInfos">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.TaskType">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskType">
+            <summary>
+            门禁点权限任务类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Card">
+            <summary>
+            卡片
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Finger">
+            <summary>
+            指纹
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Face">
+            <summary>
+            人脸
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse">
+            <summary>
+            门禁权限进度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TagId">
+            <summary>
+            标签 用于区分不同业务组件，建议使用组件标识。只支持1-32个数字和小写字母
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskType">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskTypeDesc">
+            <summary>
+            任务类型描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TotalPercent">
+            <summary>
+            当前进度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.LeftTime">
+            <summary>
+            下载剩余时间 下载剩余时间，单位秒
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.ConsimeTime">
+            <summary>
+            下载总用时 单位秒
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.IsDownloadFinished">
+            <summary>
+            是否下载完成
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskResponse">
+            <summary>
+            创建权限任务返回
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskResponse.TaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorControlResponse">
+            <summary>
+            门禁反控返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.DoorIndexCode">
+            <summary>
+            门禁点唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.ControlResultCode">
+            <summary>
+            门禁点反控结果码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.ControlResultDesc">
+            <summary>
+            门禁点反控结果描述
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HANNEL_CAMERA_NUM">
+            <summary>
+            监控点通道数
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_TALK_NUM">
+            <summary>
+            对讲通道数
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_ACCESS">
+            <summary>
+            门禁通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HANNEL_READER">
+            <summary>
+            读卡器通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CAMERA">
+            <summary>
+            监控点通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_TALK">
+            <summary>
+            对讲通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CHILDREN_DIG_TYPE">
+            <summary>
+            子通道-数字通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CHILDREN_ANL_TYPE">
+            <summary>
+            子通道-模拟通道
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorInfoResponse">
+            <summary>
+            门禁信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorIndexCode">
+            <summary>
+            门禁点唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorNo">
+            <summary>
+            门禁点序号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.AcsDevIndexCode">
+            <summary>
+            所属门禁设备唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.RegionIndexCode">
+            <summary>
+            所属区域唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.ChannelType">
+            <summary>
+            通道类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.ChannelNo">
+            <summary>
+            通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.InstallLocation">
+            <summary>
+            安装位置
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.InstallLocationDesc">
+            <summary>
+            安装位置描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.InstallLocationType">
+            <summary>
+            安装位置类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.CommunityPerimeter">
+            <summary>
+            小区周界
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.CommunityEntrance">
+            <summary>
+            小区出入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.FireChannel">
+            <summary>
+            消防通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.LandscapePool">
+            <summary>
+            景观池
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.OutsideBuilding">
+            <summary>
+            住宅楼外
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.ParkEntrance">
+            <summary>
+            停车场（库）出入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.ParkArea">
+            <summary>
+            停车场区
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.EquipmentRoom">
+            <summary>
+            设备房（机房、配电房、泵房）
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.MonitorCenter">
+            <summary>
+            监控中心
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.StopArea">
+            <summary>
+            禁停区
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.Vault">
+            <summary>
+            金库
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.PersonInfo">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.PersonInfo.PersonId">
+            <summary>
+            人员编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.PersonInfo.OperatorType">
+            <summary>
+            操作类型 1添加/修改 2删除
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.PersonOperatorType">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.PersonOperatorType.Update">
+            <summary>
+            添加/修改
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.PersonOperatorType.Remove">
+            <summary>
+            2删除
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.RegionInfoResponse">
+            <summary>
+            区域信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.IndexCode">
+            <summary>
+            区域唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.Name">
+            <summary>
+            区域名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.ParentIndexCode">
+            <summary>
+            父区域唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.TreeCode">
+            <summary>
+            树编号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.ResourceInfo">
+            <summary>
+            资源信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ResourceIndexCode">
+            <summary>
+            资源的唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ResourceType">
+            <summary>
+            资源类型 acsDevice:门禁设备；ecsDevice:梯控设备；visDevice:可视对讲设备
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ChannelNos">
+            <summary>
+            最多支持128个通道下载；表示此次数据需要下载到设备的哪些通道上；可以通过【获取资源列表】返回参数获取到相应资源的通道号；门禁设备通道指门禁点；梯控设备通道指楼层；可视对讲设备无通道
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.ResourceType">
+            <summary>
+            资源类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.AcsDevice">
+            <summary>
+            门禁设备
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.EcsDevice">
+            <summary>
+            梯控设备
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.VisDevice">
+            <summary>
+            可视对讲设备
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.IDoorControlService">
+            <summary>
+            门禁控制服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            门禁反控操作
+            </summary>
+            <param name="doorIndexCodeList">门禁点唯一标识集合</param>
+            <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            获取门禁点列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="doorIndexCode">门禁点唯一标识符集</param>
+            <param name="doorName">门禁点名称</param>
+            <param name="acsDevIndexCode">门禁设备唯一标识</param>
+            <param name="regionIndexCode">所属区域唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取区域列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            更新门禁点 门禁权限
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetAuthProgress(System.String)">
+            <summary>
+            获取 下载任务进度
+            </summary>
+            <param name="taskId">任务id</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.HikVisionContext">
+            <summary>
+            海康威视 上下文
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisHost">
+            <summary>
+            artemis网关服务器ip端口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisAppKey">
+            <summary>
+            秘钥appkey
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisAppSecret">
+            <summary>
+            秘钥appSecret
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.ListBaseResponse`1">
+            <summary>
+            列表
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.PageNo">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.PageSize">
+            <summary>
+            页容量
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.HikVisionResponse">
+            <summary>
+            海康威视返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Code">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Msg">
+            <summary>
+            返回描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.HikVisionResponse`1">
+            <summary>
+            海康威视返回结果 扩展
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Token.ITokenService">
             <summary>
             token 接口

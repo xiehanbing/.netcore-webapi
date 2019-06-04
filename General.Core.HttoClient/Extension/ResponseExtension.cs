@@ -28,9 +28,10 @@ namespace General.Core.HttpClient.Extension
         /// <typeparam name="T">泛型</typeparam>
         /// <param name="response">response</param>
         /// <returns></returns>
-        public static async Task<T> GetJsonResultAsync<T>(this HttpContent response)
+        public static async Task<T> GetJsonResultAsync<T>(this Task<HttpContent> response)
         {
-            var data = await response.ReadAsStringAsync();
+            var resp = await response;
+            var data = await resp.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(data);
         }
         /// <summary>
@@ -47,9 +48,10 @@ namespace General.Core.HttpClient.Extension
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static async Task<string> GetJsonResultAsync(this HttpContent response)
+        public static async Task<string> GetJsonResultAsync(this Task<HttpContent> response)
         {
-            return await response.ReadAsStringAsync();
+            var resp = await response;
+            return await resp.ReadAsStringAsync();
         }
 
         #endregion
@@ -75,9 +77,10 @@ namespace General.Core.HttpClient.Extension
         /// <typeparam name="T">泛型</typeparam>
         /// <param name="response">response</param>
         /// <returns></returns>
-        public static async Task<T> ReciveJsonResultAsync<T>(this HttpResponseMessage response)
+        public static async Task<T> ReciveJsonResultAsync<T>(this Task<HttpResponseMessage> response)
         {
-            var data = await response.Content.ReadAsStringAsync();
+            var resp = await response;
+            var data = await resp.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(data);
         }
         /// <summary>
@@ -87,16 +90,17 @@ namespace General.Core.HttpClient.Extension
         /// <returns></returns>
         public static string ReciveJsonResult(this HttpResponseMessage response)
         {
-            return  response.Content.ReadAsStringAsync().Result;
+            return response.Content.ReadAsStringAsync().Result;
         }
         /// <summary>
         /// 获取默认的response
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static async Task<string> ReciveJsonResultAsync(this HttpResponseMessage response)
+        public static async Task<string> ReciveJsonResultAsync(this Task<HttpResponseMessage> response)
         {
-            return await response.Content.ReadAsStringAsync();
+            var resp = await response;
+            return await resp.Content.ReadAsStringAsync();
         }
 
         #endregion

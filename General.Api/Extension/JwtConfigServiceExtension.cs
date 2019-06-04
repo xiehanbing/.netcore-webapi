@@ -18,7 +18,7 @@ namespace General.Api
     /// <summary>
     /// jwt token customer handle  jwt 自定义
     /// </summary>
-    public static class ConfigServiceExtension
+    public static class JwtConfigServiceExtension
     {
         /// <summary>
         /// 添加自定义的 jwt token 验证
