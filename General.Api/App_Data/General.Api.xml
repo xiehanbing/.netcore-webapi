@@ -74,6 +74,23 @@
             <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Controllers.UserController">
+            <summary>
+            UserController
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.#ctor(General.Api.Application.User.IUserService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.GetList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            获取人员列表
+            </summary>
+            <param name="query">参数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.ValuesController">
             <summary>
             ValuesController

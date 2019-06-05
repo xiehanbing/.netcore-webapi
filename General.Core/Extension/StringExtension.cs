@@ -1,4 +1,7 @@
-﻿namespace General.Core.Extension
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace General.Core.Extension
 {
     /// <summary>
     /// string 扩展类
@@ -50,6 +53,20 @@
         public static bool IsNotWhiteSpace(this string input)
         {
             return !string.IsNullOrWhiteSpace(input);
+        }
+        /// <summary>
+        /// StringSplit
+        /// </summary>
+        /// <param name="input">input</param>
+        /// <param name="separator">separator</param>
+        /// <returns></returns>
+        public static List<string> StringSplit(this string input, char separator)
+        {
+            if (input.IsNotNull())
+            {
+                return input.Split(separator).ToList();
+            }
+            return new List<string>();
         }
     }
 }

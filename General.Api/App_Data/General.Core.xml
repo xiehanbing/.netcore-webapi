@@ -224,6 +224,47 @@
             当前引擎单例
             </summary>
         </member>
+        <member name="T:General.Core.Extension.ConfigurationExtension">
+            <summary>
+            ConfigurationExtension
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSettingByKey(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSettingByKey
+            </summary>
+            <param name="configuration">configuration</param>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <returns>app setting value</returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <returns>app setting value</returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,``0)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <param name="defaultValue">default value if not exist</param>
+            <returns>app setting value</returns>
+        </member>
         <member name="T:General.Core.Extension.EncryptorHelper">
             <summary>
             加解密帮助类
@@ -234,6 +275,20 @@
             MD5 加密
             </summary>
             <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.EnumableExtension">
+            <summary>
+            EnumableExtension
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.EnumableExtension.StringJoin``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            StringJoin
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="list">数据</param>
+            <param name="separator">分隔符</param>
             <returns></returns>
         </member>
         <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDescription(System.Type,System.Object)">
@@ -323,6 +378,14 @@
             是否不为空字符串和null
             </summary>
             <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.StringSplit(System.String,System.Char)">
+            <summary>
+            StringSplit
+            </summary>
+            <param name="input">input</param>
+            <param name="separator">separator</param>
             <returns></returns>
         </member>
         <member name="T:General.Core.IEngine">

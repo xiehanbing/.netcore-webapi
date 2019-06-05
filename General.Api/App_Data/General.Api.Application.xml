@@ -567,6 +567,31 @@
             数据
             </summary>
         </member>
+        <member name="T:General.Api.Application.PageRequest">
+            <summary>
+            页面请求实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.PageNo">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.PageSize">
+            <summary>
+            页容量
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.PageValidator">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.PageValidator.#ctor">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Token.ITokenService">
             <summary>
             token 接口
@@ -626,6 +651,41 @@
             <param name="account">账号</param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Application.User.Dto.FingerPrintResponse">
+            <summary>
+            指纹属性
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintIndexCode">
+            <summary>
+            指纹唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintName">
+            <summary>
+            指纹名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintData">
+            <summary>
+            指纹数据
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.PersonPhotoResponse">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.PersonPhotoResponse.PicUri">
+            <summary>
+            图片相对url
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.PersonPhotoResponse.ServerIndexCode">
+            <summary>
+            图片服务器唯一标示
+            </summary>
+        </member>
         <member name="T:General.Api.Application.User.Dto.UserDto">
             <summary>
             用户dto 
@@ -679,6 +739,288 @@
         <member name="P:General.Api.Application.User.Dto.UserDto.Post">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.UserResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonId">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgPath">
+            <summary>
+            所属组织路径
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgIndexCode">
+            <summary>
+            所属组织唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgName">
+            <summary>
+            所属组织名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Certificate">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.CertificateNo">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.FingerPrint">
+            <summary>
+            指纹信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.UpdateTime">
+            <summary>
+            更新日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.BirthDay">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Address">
+            <summary>
+            联系地址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.JobNo">
+            <summary>
+            工号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonPhoto">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Education">
+            <summary>
+            学历
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Nation">
+            <summary>
+            民族
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.GenderType">
+            <summary>
+            性别枚举
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.Man">
+            <summary>
+            男
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.Woman">
+            <summary>
+            女
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.CertificateType">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.IdentityCard">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Passport">
+            <summary>
+            护照
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Booklet">
+            <summary>
+            驾驶证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.DriveLicense">
+            <summary>
+            驾驶证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.WorkCard">
+            <summary>
+            学生证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.StudentCard">
+            <summary>
+            学生证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.EducationType">
+            <summary>
+            学历类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Grade">
+            <summary>
+            小学
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Junior">
+            <summary>
+            初中
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Technical">
+            <summary>
+            中技
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Senior">
+            <summary>
+            高中
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Secondary">
+            <summary>
+            中专
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.College">
+            <summary>
+            大专
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Undergraduate">
+            <summary>
+            本科
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Master">
+            <summary>
+            硕士
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Doctor">
+            <summary>
+            博士
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.NationType">
+            <summary>
+            民族类型
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.IUserService">
+            <summary>
+            人员信息接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            获取人员信息
+            </summary>
+            <param name="query">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.User.Request.UserQuery">
+            <summary>
+            用户查询请求
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.PersonIds">
+            <summary>
+            人员id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.PersonName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.OrgIndexCode">
+            <summary>
+            所属组织唯一标识码集合
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.CertificateType">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.CertificateNo">
+            <summary>
+            证件号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Request.UserQueryValidator">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.Request.UserQueryValidator.#ctor">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.UserServce">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
             </summary>
         </member>
     </members>
