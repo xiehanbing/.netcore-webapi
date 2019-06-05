@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using General.Api.Application;
+using General.Api.Application.Token;
 using General.Api.Core;
 using General.Api.Engine;
+using General.Api.Extension;
 using General.Api.Framework;
 using General.Api.Framework.Filters;
 using General.Api.Framework.Token;
@@ -58,7 +60,6 @@ namespace General.Api
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile($"appsettings{(env.IsDevelopment() ? $".{env.EnvironmentName}" : "")}.json", optional: true, reloadOnChange: true);
-
             Configuration = builder.Build();
             if (env.IsDevelopment())
             {
@@ -68,10 +69,7 @@ namespace General.Api
                     .AddJsonFile($"launchSettings.json", optional: true, reloadOnChange: true);
                 LaunchConfiguration = lanuchBuilder.Build();
             }
-
-
             Environment = env;
-            //Configuration = configuration;
             Log.LogContext.Initialize();
             MapperConfiguration = MapperConfig.Init();
         }
@@ -94,7 +92,16 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add handel exception
+            services.AddMvc(options => { options.Filters.Add<ExceptionFilter>(); });
+            //创建引擎单例
+            EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
+            //services.AddScoped(typeof(ITokenService), typeof(TokenService));
+            //注入接口
+            services.AddAssembly("General.Api.Application");
+            services.AddAssembly("General.Api.Core");
             services.AddSingleton(new UserContext());
+
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
 
@@ -137,10 +144,7 @@ namespace General.Api
 
                     return new BadRequestObjectResult(result);
                 };
-            });
-
-            // add handel exception
-            services.AddMvc(options => { options.Filters.Add<ExceptionFilter>(); });
+            });          
             //添加对AutoMapper的支持
             services.AddScoped<IMapper>(options => MapperConfiguration.CreateMapper());
             //add log4net 
@@ -150,20 +154,26 @@ namespace General.Api
             {
                 options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info() { Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version });
                 options.DocInclusionPredicate((docName, description) => true);
-                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-                var xmlBasePath = Path.Combine(basePath, @"App_Data");
-                DirectoryInfo directoryInfo = new DirectoryInfo(xmlBasePath);
-                foreach (var info in directoryInfo.GetFiles())
+                //var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                string rootdir = AppContext.BaseDirectory;
+                DirectoryInfo dir = Directory.GetParent(rootdir);
+                if (dir?.Parent?.Parent != null)
                 {
-                    options.IncludeXmlComments(info.FullName);
+                    string root = dir.FullName;
+                    if (Environment.IsDevelopment())
+                    {
+                        root = dir.Parent.Parent.FullName;
+                    }
+                    var xmlBasePath = Path.Combine(root, @"App_Data");
+                    DirectoryInfo directoryInfo = new DirectoryInfo(xmlBasePath);
+                    foreach (var info in directoryInfo.GetFiles())
+                    {
+                        options.IncludeXmlComments(info.FullName);
+                    }
                 }
                 options.OperationFilter<HttpHeaderOperation>();
                 options.AddFluentValidationRules();
             });
-
-            //注入接口
-            services.AddAssembly("General.Api.Application");
-            services.AddAssembly("General.Api.Core");
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             //set dbcontext connstring
             //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
@@ -174,8 +184,6 @@ namespace General.Api
                         sqlserverOptions => sqlserverOptions.EnableRetryOnFailure());
 
                 }, poolSize: 90);
-            //创建引擎单例
-            EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
             //add dapper dbcontext
             services.AddSingleton(new DapperDbContext()
             {
@@ -186,11 +194,7 @@ namespace General.Api
                 }
             });
             //add dapper         
-            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));
-
-
-
-
+            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));          
         }
         /// <summary>
         /// add use middleware
@@ -201,7 +205,10 @@ namespace General.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+
             app.UseAuthentication();//注意添加这一句，启用验证
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -238,12 +245,8 @@ namespace General.Api
             {
                 options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
                 options.RoutePrefix = "swagger/ui";
-                //if (Environment.IsDevelopment())
-                //{
-                //    //SwaggerHelper.DownSwaggerJson(LaunchConfiguration.GetSection("iisSettings:iisExpress:applicationUrl").Value, ApiConsts.Version);
-                //}
-
             });
+            app.UseErrorHandling();
         }
     }
 }

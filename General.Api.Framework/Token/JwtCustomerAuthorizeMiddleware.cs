@@ -8,7 +8,7 @@ using Microsoft.Extensions.Primitives;
 namespace General.Api.Framework.Token
 {
     /// <summary>
-    /// 自定义授权中间件
+    /// 自定义授权中间件 (暂不使用)
     /// </summary>
     public class JwtCustomerAuthorizeMiddleware
     {
@@ -43,9 +43,12 @@ namespace General.Api.Framework.Token
             {
                 throw new UnauthorizedAccessException("未授权");
             }
-            result = TokenContext.Validate(authStr.ToString().Substring("Bearer ".Length).Trim(), payLoad =>
+
+            string user = "";
+            result = TokenContext.Validate(authStr.ToString().Substring("Bearer ".Length).Trim(),  payLoad =>
             {
                 var success = true;
+                user = payLoad["aud"]?.ToString();
                 //可以添加一些自定义验证，用法参照测试用例
                 //验证是否包含aud 并等于 roberAudience
                 success =payLoad["aud"]?.ToString() == option.Audience;
@@ -64,7 +67,8 @@ namespace General.Api.Framework.Token
 
             #endregion
             #region 权限验证
-            if (!userContext.Authorize(context.Request.Path))
+            var permissionVali = userContext.Authorize(user, context.Request.Path);
+            if (!permissionVali)
             {
                 throw new UnauthorizedAccessException("未授权");
             }

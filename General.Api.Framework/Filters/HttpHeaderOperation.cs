@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -8,6 +10,12 @@ namespace General.Api.Framework.Filters
 {
     public class HttpHeaderOperation : IOperationFilter
     {
+        private readonly IConfiguration _configuration;
+
+        public HttpHeaderOperation(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public void Apply(Operation operation, OperationFilterContext context)
         {
             if (operation.Parameters == null)
@@ -38,5 +46,7 @@ namespace General.Api.Framework.Filters
                 });
             }
         }
+
+
     }
 }

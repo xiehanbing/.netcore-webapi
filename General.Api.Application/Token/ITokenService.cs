@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 
 namespace General.Api.Application.Token
@@ -15,5 +16,18 @@ namespace General.Api.Application.Token
         /// <param name="password">密码</param>
         /// <returns></returns>
         Task<bool> Get(string account, string password);
+        /// <summary>
+        /// 验证是否有权限
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <param name="permission">权限</param>
+        /// <returns></returns>
+        Task<bool> ValidatePermission(string account, string permission);
+        /// <summary>
+        /// 获取权限
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <returns></returns>
+        Task<List<string>> GetPermission(string account);
     }
 }

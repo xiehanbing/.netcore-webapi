@@ -13,7 +13,10 @@ namespace General.Api.Framework.Filters
     /// </summary>
     public class ExceptionFilter : IExceptionFilter, IFilterMetadata
     {
-        private ILogManager _logManager = EngineContext.CurrentEngin.Resolve<ILogManager>();
+        /// <summary>
+        /// _logManager
+        /// </summary>
+        private readonly ILogManager _logManager = EngineContext.CurrentEngin.Resolve<ILogManager>();
         /// <summary>
         /// 发生异常时的处理
         /// </summary>

@@ -80,7 +80,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         // DELETE api/values/5
-        [HttpDelete("{id}"),Authorize(policy: "ageRequire")]
+        [HttpDelete("{id}"),Authorize(policy: "General")]
         public void Delete(int id)
         {
             _log.Error("这是一个测试信息Error");

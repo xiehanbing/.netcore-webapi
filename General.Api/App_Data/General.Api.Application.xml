@@ -580,10 +580,40 @@
             <param name="password">密码</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Token.ITokenService.ValidatePermission(System.String,System.String)">
+            <summary>
+            验证是否有权限
+            </summary>
+            <param name="account">账号</param>
+            <param name="permission">权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.GetPermission(System.String)">
+            <summary>
+            获取权限
+            </summary>
+            <param name="account">账号</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Token.TokenService">
             <summary>
             token 接口
             </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.ValidatePermission(System.String,System.String)">
+            <summary>
+            验证是否有权限
+            </summary>
+            <param name="account">账号</param>
+            <param name="permission">权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.GetPermission(System.String)">
+            <summary>
+            获取权限
+            </summary>
+            <param name="account">账号</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Application.User.Dto.UserDto">
             <summary>

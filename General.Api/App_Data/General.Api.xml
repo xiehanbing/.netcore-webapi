@@ -125,7 +125,6 @@
             <summary>
             构造
             </summary>
-            <param name="serviceProvider"></param>
         </member>
         <member name="M:General.Api.Engine.GeneralEngine.Resolve``1">
             <summary>
@@ -134,12 +133,29 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:General.Api.JwtConfigServiceExtension">
+        <member name="M:General.Api.Engine.GeneralEngine.ResolveByRequireService``1">
+            <summary>
+            <see cref="M:General.Core.IEngine.ResolveByRequireService``1"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Extension.ErrorHandlingExtensions">
+            <summary>
+            ErrorHandlingExtensions
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ErrorHandlingExtensions.UseErrorHandling(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseErrorHandling
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Extension.JwtConfigServiceExtension">
             <summary>
             jwt token customer handle  jwt 自定义
             </summary>
         </member>
-        <member name="M:General.Api.JwtConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Extension.JwtConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加自定义的 jwt token 验证
             </summary>

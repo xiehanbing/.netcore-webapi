@@ -1,5 +1,6 @@
 ﻿using System;
 using General.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace General.Api.Engine
@@ -10,11 +11,9 @@ namespace General.Api.Engine
     public class GeneralEngine : IEngine
     {
         private readonly IServiceProvider _serviceProvider;
-
         /// <summary>
         /// 构造
         /// </summary>
-        /// <param name="serviceProvider"></param>
         public GeneralEngine(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -27,6 +26,13 @@ namespace General.Api.Engine
         public T Resolve<T>() where T : class
         {
             return _serviceProvider.GetService<T>();
+        }
+        /// <summary>
+        /// <see cref="IEngine.ResolveByRequireService{T}()"/>
+        /// </summary>
+        public T ResolveByRequireService<T>() where T : class
+        {
+            return _serviceProvider.GetRequiredService<T>();
         }
     }
 }
