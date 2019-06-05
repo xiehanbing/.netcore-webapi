@@ -8,7 +8,12 @@ namespace General.Api.Framework.Token
 {
     public class UserContext
     {
-        private readonly ITokenService _tokenService = EngineContext.CurrentEngin.Resolve<ITokenService>();
+        private readonly ITokenService _tokenService;
+
+        public UserContext(ITokenService tokenService)
+        {
+            _tokenService = tokenService;
+        } 
         /// <summary>
         /// 允许所有人访问的接口地址
         /// </summary>
@@ -52,6 +57,7 @@ namespace General.Api.Framework.Token
         /// <returns></returns>
         public bool Authorize(string user, string path)
         {
+            //return true;
             if (UserAuthList == null) TryInit(user);
             if (UserAuthList?.Exists(o => o.Equals("All")) ?? false) return true;
 

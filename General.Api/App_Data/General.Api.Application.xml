@@ -600,6 +600,17 @@
             token 接口
             </summary>
         </member>
+        <member name="M:General.Api.Application.Token.TokenService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.Get(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.Get(System.String,System.String)"/>
+            </summary>
+        </member>
         <member name="M:General.Api.Application.Token.TokenService.ValidatePermission(System.String,System.String)">
             <summary>
             验证是否有权限

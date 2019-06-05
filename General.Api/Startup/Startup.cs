@@ -100,7 +100,7 @@ namespace General.Api
             //注入接口
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
-            services.AddSingleton(new UserContext());
+            services.AddScoped(typeof(UserContext));
 
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
