@@ -16,7 +16,12 @@ namespace General.Api.Framework.Filters
         /// <summary>
         /// _logManager
         /// </summary>
-        private readonly ILogManager _logManager = EngineContext.CurrentEngin.Resolve<ILogManager>();
+        private readonly ILogManager _logManager;
+        public ExceptionFilter(ILogManager logManager)
+        {
+            _logManager = logManager;
+        }
+
         /// <summary>
         /// 发生异常时的处理
         /// </summary>

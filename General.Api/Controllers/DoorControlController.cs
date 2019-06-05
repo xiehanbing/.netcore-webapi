@@ -41,7 +41,7 @@ namespace General.Api.Controllers
         /// <returns></returns>
         [Route("door/list")]
         [HttpGet]
-        public async Task<ApiResult<ListBaseResponse<DoorInfoResponse>>> GetDoorList(int pageNo, int pageSize, [FromBody]List<string> doorIndexCode,
+        public async Task<ApiResult<ListBaseResponse<DoorInfoResponse>>> GetDoorList(int pageNo, int pageSize, [FromQuery]List<string> doorIndexCode,
             string doorName, string acsDevIndexCode, string regionIndexCode)
         {
             return new ApiResult<ListBaseResponse<DoorInfoResponse>>()
