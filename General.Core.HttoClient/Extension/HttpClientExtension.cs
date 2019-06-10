@@ -315,7 +315,7 @@ namespace General.Core.HttpClient.Extension
             var count = headers.Count() - 1;
             for (int i = 0; i < headers.Count(); i++)
             {
-                strToSign.Append()
+               // strToSign.Append()
                 if (i != count)
                 {
 

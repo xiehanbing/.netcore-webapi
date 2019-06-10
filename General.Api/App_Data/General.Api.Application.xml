@@ -62,6 +62,11 @@
             <see cref="M:General.Api.Application.Door.IDoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)"/>
             </summary>
         </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetEventPictures(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetEventPictures(System.String,System.String)"/>
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Door.Dto.DoorAuthAddDto">
             <summary>
             门禁权限更新model
@@ -602,6 +607,14 @@
             <param name="request">请求</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetEventPictures(System.String,System.String)">
+            <summary>
+            获取门禁事件的图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片的相对地址</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Door.Request.DoorEventQueryRequest">
             <summary>
             查询门禁点事件
@@ -657,6 +670,82 @@
             construct
             </summary>
         </member>
+        <member name="T:General.Api.Application.Event.Dto.SubscriptionInfoResponse">
+            <summary>
+            事件订阅信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfoResponse.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.Dto.SubscriptionInfo">
+            <summary>
+            事件订阅信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfo.EventTypes">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfo.EventDest">
+            <summary>
+            事件接收地址
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.EventService">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.Cancel(System.Collections.Generic.List{System.Int32})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.GetSubscrList">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.GetSubscrList"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.IEventService">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            按事件类型订阅事件
+            </summary>
+            <param name="eventTypes">事件类型</param>
+            <param name="eventDest">指定事件接收的地址，采用restful回调模式，支持http和https，样式如下：http://ip:port/eventRcv或者 https://ip:port/eventRcv</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            取消订阅事件
+            </summary>
+            <param name="eventTypes">事件类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.GetSubscrList">
+            <summary>
+            获取所有的订阅
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Hikvision.HikVisionContext">
             <summary>
             海康威视 上下文
@@ -687,9 +776,19 @@
             DoorControlBaseApiName
             </summary>
         </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.UserBaseApiName">
+            <summary>
+            UserBaseApiName
+            </summary>
+        </member>
         <member name="F:General.Api.Application.Hikvision.HikVisionContext.HikVisionBaseApiName">
             <summary>
             HikVisionBaseApiName
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.HikVisionBaseUrl">
+            <summary>
+            HikVisionBaseUrl
             </summary>
         </member>
         <member name="T:General.Api.Application.Hikvision.ListBaseResponse`1">
@@ -1238,6 +1337,394 @@
         <member name="M:General.Api.Application.User.UserServce.GetUserList(General.Api.Application.User.Request.UserQuery)">
             <summary>
             <see cref="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.AppointmentRecordResponse">
+            <summary>
+            访客信息记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.AppointRecordId">
+            <summary>
+            预约记录ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistName">
+            <summary>
+            被访人姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistCode">
+            <summary>
+            被访人所属组织编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitStartTime">
+            <summary>
+            预计来访时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitEndTime">
+            <summary>
+            预计离开时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitPurpose">
+            <summary>
+            来访事由
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.QrCode">
+            <summary>
+            访客二维码内容
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.Gender">
+            <summary>
+            性别 1-男, 2-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.CertificateType">
+            <summary>
+            证件类型 111：身份证
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.CertificateNo">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitorStatus">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PicUri">
+            <summary>
+            访客头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.SvrIndexCode">
+            <summary>
+            图片存储服务的唯一标识
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.VisitorStatusType">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.After">
+            <summary>
+            迟到
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.UnActive">
+            <summary>
+            失效
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.AutoQianLi">
+            <summary>
+            超期自动签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.QianLi">
+            <summary>
+            已签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.AutoUnQianLi">
+            <summary>
+            超期未签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.Arrive">
+            <summary>
+            已到达
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.VisitorAddResponse">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.VisitorAddResponse.AppointRecordId">
+            <summary>
+            预约记录ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.VisitorAddResponse.AppointmentInfoList">
+            <summary>
+            预约信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.AppointmentInfo">
+            <summary>
+            预约信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.ReceptionistName">
+            <summary>
+            被访人姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.QrCode">
+            <summary>
+            访客二维码内容 如需要使用，可将访客二维码内容转成二维码图片即可，可通过第三方工具类将二维码内容转化为二维码图片，长度10位
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.IVisitorService">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            修改访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            查询访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.Cancel(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消访客预约
+            </summary>
+            <param name="appointRecordIds">预约记录ID的数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            获取来访记录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            获取来访记录图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片存储服务器唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorAddRequest">
+            <summary>
+            访客预约类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.AppointRecordId">
+            <summary>
+            预约记录ID 只针对修改
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitStartTime">
+            <summary>
+            预计来访时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitEndTime">
+            <summary>
+            预计离开时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitPurpose">
+            <summary>
+            来访事由
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitorInfoList">
+            <summary>
+            访客信息列表
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorInfo">
+            <summary>
+            访客信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.Gender">
+            <summary>
+            访客性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.CertificateType">
+            <summary>
+            证件类型 111：身份证，只支持身份证
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.CertificateNo">
+            <summary>
+            身份证号 1~20个数字、字母组成； 证件号码非空时，证件类型必填；
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorQueryRequest">
+            <summary>
+            查询访客预约记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.PhoneNo">
+            <summary>
+            访客联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitorStatus">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitStartTimeBegin">
+            <summary>
+            预计来访时间查询时间段条件的开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitStartTimeEnd">
+            <summary>
+            预计来访时间查询时间段条件的结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitEndTimeBegin">
+            <summary>
+            预计离开时间查询时间段条件的开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitEndTimeEnd">
+            <summary>
+            预计离开时间查询时间段条件的结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.VisitorService">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.Cancel(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.Cancel(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitingPicture(System.String,System.String)"/>
             </summary>
         </member>
     </members>

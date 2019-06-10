@@ -31,12 +31,17 @@ namespace General.Api.Application.Hikvision
         /// DoorControlBaseApiName
         /// </summary>
         public const string DoorControlBaseApiName = "hikvisionUrl:doorControl";
-
+        /// <summary>
+        /// UserBaseApiName
+        /// </summary>
         public const string UserBaseApiName = "";
         /// <summary>
         /// HikVisionBaseApiName
         /// </summary>
         public const string HikVisionBaseApiName = "hikvisionUrl:baseUrl";
+        /// <summary>
+        /// HikVisionBaseUrl
+        /// </summary>
 
         public static string HikVisionBaseUrl = EngineContext.CurrentEngin.Resolve<IConfiguration>()[HikVisionBaseApiName];
     }

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Linq;
 using General.EntityFrameworkCore.Dapper;
+using General.EntityFrameworkCore.Log;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 
@@ -21,5 +22,9 @@ namespace General.EntityFrameworkCore
         public DbSet<Example.Example> Examples { get; set; }
 
         public DbSet<User.User> Users { get; set; }
+
+        public DbSet<ApiLog> ApiLogs { get; set; }
+
+        //public DbSet<TableLog> TableLogs { get; set; }
     }
 }

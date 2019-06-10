@@ -23,6 +23,7 @@ using General.Core.Libs;
 using General.Core.Token;
 using General.EntityFrameworkCore;
 using General.EntityFrameworkCore.Dapper;
+using General.EntityFrameworkCore.Log;
 using General.Log;
 using log4net.Config;
 using log4net.Core;
@@ -103,6 +104,7 @@ namespace General.Api
             services.AddAssembly("General.Api.Core");
             services.AddScoped(typeof(UserContext));
             services.AddSingleton(typeof(HikVisionContext));
+
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
 
@@ -176,6 +178,11 @@ namespace General.Api
                 options.AddFluentValidationRules();
             });
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+                //services.AddScoped(typeof(IRepository<ApiLog>), typeof(EfRepository<ApiLog>));
+
+          
+
+            //services.AddSingleton(typeof(General.Api.Core.Log.LogContext));
             //set dbcontext connstring
             //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
             services.AddDbContextPool<GeneralDbContext>(
@@ -196,6 +203,16 @@ namespace General.Api
             });
             //add dapper         
             services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));
+
+            #region log
+
+            var serviceProvider = services.BuildServiceProvider();
+            var apilogRepo = serviceProvider.GetService<IRepository<ApiLog>>();
+
+            General.Api.Core.Log.LogContext.ApiLogRepository = apilogRepo;
+
+            #endregion
+
         }
         /// <summary>
         /// add use middleware
