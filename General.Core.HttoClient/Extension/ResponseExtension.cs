@@ -1,5 +1,11 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace General.Core.HttpClient.Extension
@@ -82,6 +88,48 @@ namespace General.Core.HttpClient.Extension
             var resp = await response;
             var data = await resp.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(data);
+        }
+        /// <summary>
+        /// 获取相应头
+        /// </summary>
+        /// <param name="response">HttpResponseMessage </param>
+        /// <param name="key">key</param>
+        /// <returns></returns>
+        public static async Task<List<string>> ReciveResponseHeadersByKey(this Task<HttpResponseMessage> response, string key)
+        {
+            var resp = await response;
+            return resp.Headers.FirstOrDefault(o => o.Key.Equals(key)).Value?.ToList();
+        }
+        /// <summary>
+        /// 获取所有响应头
+        /// </summary>
+        /// <param name="response">HttpResponseMessage</param>
+        /// <returns></returns>
+        public static async Task<HttpResponseHeaders> ReciveResponseHeaders(this Task<HttpResponseMessage> response)
+        {
+            var resp = await response;
+            return resp.Headers;
+        }
+        /// <summary>
+        /// 获取相应头
+        /// </summary>
+        /// <param name="response">HttpContent </param>
+        /// <param name="key">key</param>
+        /// <returns></returns>
+        public static async Task<List<string>> GetResponseHeaders(this Task<HttpContent> response, string key)
+        {
+            var resp = await response;
+            return resp.Headers.FirstOrDefault(o => o.Key.Equals(key)).Value?.ToList();
+        }
+        /// <summary>
+        /// 获取所有响应头
+        /// </summary>
+        /// <param name="response">HttpContent</param>
+        /// <returns></returns>
+        public static async Task<HttpContentHeaders> GetResponseHeaders(this Task<HttpContent> response)
+        {
+            var resp = await response;
+            return resp.Headers;
         }
         /// <summary>
         /// 获取默认的response

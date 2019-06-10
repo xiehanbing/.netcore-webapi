@@ -25,7 +25,7 @@ namespace General.Api.Application.Door
         public DoorControlService(IConfiguration configuration)
         {
             _configuration = configuration;
-            _doorControlApi = configuration["hikvisionUrl:doorControl"];
+            _doorControlApi = configuration[HikVisionContext.HikVisionBaseApiName];
             if (string.IsNullOrEmpty(_doorControlApi))
             {
                 throw new MyException("doorControlApiUrl is null");
@@ -36,7 +36,7 @@ namespace General.Api.Application.Door
         /// </summary>
         public async Task<List<Dto.DoorControlResponse>> DoControl(List<string> doorIndexCodeList, int controlType)
         {
-            var data = await _doorControlApi.AppendFormat("/api/acs/v1/door/doControl")
+            var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/door/doControl")
                  .PostAsync(new { doorIndexCodes = doorIndexCodeList, controlType })
                  .ReciveJsonResultAsync<HikVisionResponse<List<Dto.DoorControlResponse>>>();
             return data?.Data;
@@ -47,7 +47,7 @@ namespace General.Api.Application.Door
         public async Task<ListBaseResponse<DoorInfoResponse>> GetDoorList(int pageNo, int pageSize, List<string> doorIndexCode, string doorName, string acsDevIndexCode,
             string regionIndexCode)
         {
-            var data = await _doorControlApi.AppendFormat("/api/resource/v1/acsDoor/advance/acsDoorList")
+            var data = await _doorControlApi.AppendFormatToHik("/api/resource/v1/acsDoor/advance/acsDoorList")
                 .PostAsync(new
                 {
                     pageNo,
@@ -65,7 +65,7 @@ namespace General.Api.Application.Door
         /// </summary>
         public async Task<ListBaseResponse<RegionInfoResponse>> GetRegionList(int pageNo, int pageSize, string treeCode)
         {
-            var data = await _doorControlApi.AppendFormat("/api/resource/v1/regions")
+            var data = await _doorControlApi.AppendFormatToHik("/api/resource/v1/regions")
                 .PostAsync(new
                 {
                     pageNo,
@@ -89,7 +89,7 @@ namespace General.Api.Application.Door
             }
             model.TaskId = taskId;
 
-            var data = await _doorControlApi.AppendFormat("/api/acps/v1/authDownload/data/addition")
+            var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/data/addition")
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse>();
             if (data.Success)
@@ -106,7 +106,7 @@ namespace General.Api.Application.Door
         /// <returns></returns>
         private async Task<string> CreateDoorAuthTask(int taskType)
         {
-            var data = await _doorControlApi.AppendFormat("/api/acps/v1/authDownload/task/addition")
+            var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/task/addition")
                 .PostAsync(new { taskType })
                 .ReciveJsonResultAsync<HikVisionResponse<DoorAuthTaskResponse>>();
             return data?.Data?.TaskId;
@@ -116,10 +116,35 @@ namespace General.Api.Application.Door
         /// </summary>
         public async Task<Dto.DoorAuthTaskProgressResponse> GetAuthProgress(string taskId)
         {
-            var data = await _doorControlApi.AppendFormat("/api/acps/v1/authDownload/task/progress")
+            var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/task/progress")
                 .PostAsync(new { taskId })
                 .ReciveJsonResultAsync<HikVisionResponse<DoorAuthTaskProgressResponse>>();
             return data?.Data;
+        }
+        /// <summary>
+        /// <see cref="IDoorControlService.GetEventList(Request.DoorEventQueryRequest)"/>
+        /// </summary>
+        public async Task<ListBaseResponse<Dto.DoorEventQueryResponse>> GetEventList(
+            Request.DoorEventQueryRequest request)
+        {
+            var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/door/events")
+                .PostAsync(request)
+                .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<DoorEventQueryResponse>>>();
+            return data?.Data;
+        }
+        /// <summary>
+        /// <see cref="IDoorControlService.GetEventPictures(string,string)"/>
+        /// </summary>
+        public async Task<string> GetEventPictures(string svrIndexCode, string picUri)
+        {
+            var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/event/pictures")
+                .PostAsync(new
+                {
+                    svrIndexCode,
+                    picUri
+                })
+                .ReciveResponseHeadersByKey("Location");
+            return data?.FirstOrDefault();
         }
     }
 }

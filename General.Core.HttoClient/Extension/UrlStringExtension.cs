@@ -30,5 +30,19 @@ namespace General.Core.HttpClient.Extension
             client.BaseAddress = urlAddress;
             return client;
         }
+        /// <summary>
+        /// 海康 client baseurl
+        /// </summary>
+        /// <param name="url">url地址</param>
+        /// <param name="subUrl">子地址</param>
+        /// <returns></returns>
+        public static System.Net.Http.HttpClient AppendFormatToHik(this string url, string subUrl)
+        {
+            var client = new System.Net.Http.HttpClient();
+            url += "/artemis";
+            var urlAddress = url.AppendFormatUrl(subUrl);
+            client.BaseAddress = urlAddress;
+            return client;
+        }
     }
 }

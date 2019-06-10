@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using General.Api.Application;
+using General.Api.Application.Hikvision;
 using General.Api.Application.Token;
 using General.Api.Core;
 using General.Api.Engine;
@@ -101,7 +102,7 @@ namespace General.Api
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
             services.AddScoped(typeof(UserContext));
-
+            services.AddSingleton(typeof(HikVisionContext));
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
 
@@ -144,7 +145,7 @@ namespace General.Api
 
                     return new BadRequestObjectResult(result);
                 };
-            });          
+            });
             //添加对AutoMapper的支持
             services.AddScoped<IMapper>(options => MapperConfiguration.CreateMapper());
             //add log4net 
@@ -194,7 +195,7 @@ namespace General.Api
                 }
             });
             //add dapper         
-            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));          
+            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));
         }
         /// <summary>
         /// add use middleware

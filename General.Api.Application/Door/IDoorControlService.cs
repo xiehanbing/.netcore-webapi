@@ -48,5 +48,18 @@ namespace General.Api.Application.Door
         /// <param name="taskId">任务id</param>
         /// <returns></returns>
         Task<Dto.DoorAuthTaskProgressResponse> GetAuthProgress(string taskId);
+        /// <summary>
+        /// 查询门禁事件
+        /// </summary>
+        /// <param name="request">请求</param>
+        /// <returns></returns>
+        Task<ListBaseResponse<Dto.DoorEventQueryResponse>> GetEventList(Request.DoorEventQueryRequest request);
+        /// <summary>
+        /// 获取门禁事件的图片
+        /// </summary>
+        /// <param name="svrIndexCode">图片存储服务器唯一标识</param>
+        /// <param name="picUri">图片的相对地址</param>
+        /// <returns></returns>
+        Task<string> GetEventPictures(string svrIndexCode, string picUri);
     }
 }

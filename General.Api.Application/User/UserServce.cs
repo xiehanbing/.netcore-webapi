@@ -20,16 +20,14 @@ namespace General.Api.Application.User
         private readonly General.Api.Core.User.IUserDao _userDao;
         private readonly IMapper _mapper;
         private readonly string _doorControlApi;
-        private readonly IConfiguration _configuration;
         /// <summary>
         /// construct
         /// </summary>
-        public UserServce(General.Api.Core.User.IUserDao userDao, IMapper mapper, IConfiguration configuration)
+        public UserServce(General.Api.Core.User.IUserDao userDao, IMapper mapper)
         {
             _userDao = userDao;
             _mapper = mapper;
-            _configuration = configuration;
-            _doorControlApi = _configuration.GetAppSettingByKey("hikvisionUrl:doorControl");
+            _doorControlApi =HikVisionContext.HikVisionBaseUrl;
             if (string.IsNullOrEmpty(_doorControlApi))
             {
                 throw new MyException("doorControlApiUrl is null");
@@ -39,10 +37,15 @@ namespace General.Api.Application.User
         public async Task<List<Dto.UserDto>> GetList()
         {
             var url = "http://192.168.1.102:2013/general.api";
+
+            var geturl = url.AppendFormat("/api/Values/1")
+                .SetParam("key", "123");
             var data = url.AppendFormat("/api/Values/1").Get().GetJsonResult();
             return _mapper.Map<List<Dto.UserDto>>(await _userDao.GetList());
         }
-
+        /// <summary>
+        /// <see cref="IUserService.GetUserList(UserQuery)"/>
+        /// </summary>
         public async Task<ListBaseResponse<UserResponse>> GetUserList(UserQuery query)
         {
 

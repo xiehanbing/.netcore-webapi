@@ -16,6 +16,33 @@ namespace General.Api.Application
         /// 页容量
         /// </summary>
         public int  PageSize { get; set; }
+        /// <summary>
+        /// 排序字段
+        /// </summary>
+        public string  Sort { get; set; }
+        /// <summary>
+        /// 升降序
+        /// </summary>
+        public OrderType? OrderType { get; set; }
+        /// <summary>
+        /// 升降序 文本
+        /// </summary>
+        public string Order => OrderType != null ? OrderType.ToString() : "";
+
+    }
+    /// <summary>
+    /// 升/降 类型
+    /// </summary>
+    public enum OrderType
+    {
+        /// <summary>
+        /// 升序
+        /// </summary>
+        Asc=1,
+        /// <summary>
+        /// 降序
+        /// </summary>
+        Desc=2
     }
     /// <summary>
     /// TokenRequestValidator

@@ -57,6 +57,11 @@
             <see cref="M:General.Api.Application.Door.IDoorControlService.GetAuthProgress(System.String)"/>
             </summary>
         </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)"/>
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Door.Dto.DoorAuthAddDto">
             <summary>
             门禁权限更新model
@@ -220,6 +225,106 @@
         <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CHILDREN_ANL_TYPE">
             <summary>
             子通道-模拟通道
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorEventQueryResponse">
+            <summary>
+            门禁事件响应结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventId">
+            <summary>
+            事件唯一编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventName">
+            <summary>
+            事件名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventTime">
+            <summary>
+            事件产生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonId">
+            <summary>
+            事件产生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonName">
+            <summary>
+            人员名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.OrgIndexCode">
+            <summary>
+            组织编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorIndexCode">
+            <summary>
+            门禁点编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorRegionIndexCode">
+            <summary>
+            门禁点所在区域编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.InAndOutType">
+            <summary>
+            进出类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.InAndOutTypeDesc">
+            <summary>
+            进出类型描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PicUri">
+            <summary>
+            抓拍图片地址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.SvrIndexCode">
+            <summary>
+            图片存储服务的唯一标识
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.InAndOutType">
+            <summary>
+            进出类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.In">
+            <summary>
+            进
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.Out">
+            <summary>
+            出
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.UnKnow">
+            <summary>
+            未知
             </summary>
         </member>
         <member name="T:General.Api.Application.Door.Dto.DoorInfoResponse">
@@ -490,9 +595,76 @@
             <param name="taskId">任务id</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            查询门禁事件
+            </summary>
+            <param name="request">请求</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Door.Request.DoorEventQueryRequest">
+            <summary>
+            查询门禁点事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.PersonName">
+            <summary>
+            人员姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.PersonIds">
+            <summary>
+            人员Id数组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorIndexCodes">
+            <summary>
+            门禁点唯一标识数组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorRegionIndexCode">
+            <summary>
+            门禁点所在的区域唯一编号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Request.DoorEventQueryRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.Request.DoorEventQueryRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Hikvision.HikVisionContext">
             <summary>
             海康威视 上下文
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Hikvision.HikVisionContext.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
             </summary>
         </member>
         <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisHost">
@@ -508,6 +680,16 @@
         <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisAppSecret">
             <summary>
             秘钥appSecret
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.DoorControlBaseApiName">
+            <summary>
+            DoorControlBaseApiName
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.HikVisionBaseApiName">
+            <summary>
+            HikVisionBaseApiName
             </summary>
         </member>
         <member name="T:General.Api.Application.Hikvision.ListBaseResponse`1">
@@ -580,6 +762,36 @@
         <member name="P:General.Api.Application.PageRequest.PageSize">
             <summary>
             页容量
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.Sort">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.OrderType">
+            <summary>
+            升降序
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.Order">
+            <summary>
+            升降序 文本
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.OrderType">
+            <summary>
+            升/降 类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.OrderType.Asc">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.OrderType.Desc">
+            <summary>
+            降序
             </summary>
         </member>
         <member name="T:General.Api.Application.PageValidator">
@@ -1018,9 +1230,14 @@
             人员信息
             </summary>
         </member>
-        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper)">
             <summary>
             construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetUserList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            <see cref="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)"/>
             </summary>
         </member>
     </members>
