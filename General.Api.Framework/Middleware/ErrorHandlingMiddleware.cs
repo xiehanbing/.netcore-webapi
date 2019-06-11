@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using General.Api.Core.Log;
 using General.Core;
 using General.Core.Extension;
+using General.EntityFrameworkCore.Log;
 using General.Log;
 using Microsoft.AspNetCore.Http;
 
@@ -73,8 +75,30 @@ namespace General.Api.Framework.Middleware
                 Message = msg
             };
             var result = data.GetSerializeObject();
+            //LogException(context, result).Wait();
             context.Response.ContentType = "application/json;charset=utf-8";
             return context.Response.WriteAsync(result);
+        }
+
+        /// <summary>
+        /// LogException 记录日志
+        /// </summary>
+        private static async Task LogException(HttpContext context, string response)
+        {
+            var path = context.Request.Path.Value;
+            if (path.ToLower().Contains("swagger"))
+            {
+                return;
+            }
+            var request = await context.Request.ReadRequestAsync();
+            LogManage.ApiLog(new ApiLog()
+            {
+                ConfirmNo = context.Request.Path.Value,
+                ModelName = context.Request.Method,
+                RequestContext = request,
+                ResponseContext = response
+            });
+            return;
         }
     }
     /// <summary>

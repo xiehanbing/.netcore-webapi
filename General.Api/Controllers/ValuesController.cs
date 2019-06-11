@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using General.Api.Application.User;
 using General.Api.Application.User.Dto;
 using General.Api.Framework;
+using General.Core;
 using General.Log;
 using General.Log.Entity;
 using log4net;
@@ -49,6 +50,7 @@ namespace General.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ApiResult<List<UserDto>>> Get(int id)
         {
+            throw new MyException(100030, "这是一个测试");
             var data = await _userService.GetList();
             //throw new MyException(100030,"这是一个测试");
             return new ApiResult<List<UserDto>>(data);

@@ -13,6 +13,7 @@ namespace General.EntityFrameworkCore
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly GeneralDbContext _dbContext;
+
         /// <summary>
         /// 构造函数
         /// </summary>

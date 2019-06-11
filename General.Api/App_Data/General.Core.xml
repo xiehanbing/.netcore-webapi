@@ -299,6 +299,41 @@
             <param name="value">枚举项/枚举值</param>
             <returns>描述</returns>
         </member>
+        <member name="T:General.Core.Extension.HttpException">
+            <summary>
+            http 扩展
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadRequestAsync(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            处理request
+            </summary>
+            <param name="request">request</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadBodyAsync(Microsoft.AspNetCore.Http.HttpResponse)">
+            <summary>
+            读取 response 相关信息
+            </summary>
+            <param name="response">response</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.GetEncoding(System.String)">
+            <summary>
+            获取Encoding
+            </summary>
+            <param name="contentType">Encodingtype</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadStreamAsync(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+            <summary>
+            读取文本
+            </summary>
+            <param name="stream"></param>
+            <param name="encoding"></param>
+            <param name="forceSeekBeginZero"></param>
+            <returns></returns>
+        </member>
         <member name="T:General.Core.Extension.JsonConvertExtension">
             <summary>
             jsonconvert 扩展类 

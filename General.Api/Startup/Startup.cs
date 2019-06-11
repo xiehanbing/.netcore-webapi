@@ -240,7 +240,7 @@ namespace General.Api
             //app.UseMiddleware<JwtCustomerAuthorizeMiddleware>(Configuration["Jwt:SecurityKey"], new List<string>() { "/api/values/getjwt", "/" });
 
 
-
+            //app.UseErrorHandling();
             //app.UseHttpsRedirection();
             app.UseMvc(options =>
             {
@@ -264,7 +264,9 @@ namespace General.Api
                 options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
                 options.RoutePrefix = "swagger/ui";
             });
-            app.UseErrorHandling();
+        
+
+           
         }
     }
 }
