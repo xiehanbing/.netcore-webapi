@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using General.Api.Core.ApiAuthUser;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -14,26 +15,21 @@ namespace General.Api.Application.Token
     /// </summary>
     public class TokenService : ITokenService
     {
-        private readonly IConfiguration _configuration;
+        private readonly IApiAuthUserDao _apiAuthUserDao;
+
         /// <summary>
         /// construct
         /// </summary>
-        /// <param name="configuration"></param>
-        public TokenService(IConfiguration configuration)
+        public TokenService(IApiAuthUserDao apiAuthUserDao)
         {
-            _configuration = configuration;
+            _apiAuthUserDao = apiAuthUserDao;
         }
         /// <summary>
         /// <see cref="ITokenService.Get(string,string)"/>
         /// </summary>
         public async Task<bool> Get(string account, string password)
         {
-            if (account.Equals("xiehanbing") && password.Equals("xiehanbing"))
-            {
-                return true;
-            }
-
-            return false;
+            return await _apiAuthUserDao.VerifyUser(account, password);
         }
         /// <summary>
         /// 验证是否有权限
@@ -52,7 +48,7 @@ namespace General.Api.Application.Token
         /// <returns></returns>
         public async Task<List<string>> GetPermission(string account)
         {
-            return new List<string>(){ "All" }; 
+            return new List<string>() { "All" };
         }
     }
 }

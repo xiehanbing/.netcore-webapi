@@ -25,6 +25,8 @@ namespace General.EntityFrameworkCore
 
         public DbSet<ApiLog> ApiLogs { get; set; }
 
+
+        public DbSet<ApiAuthUser.ApiAuthUser> ApiAuthUsers { get; set; }
         //public DbSet<TableLog> TableLogs { get; set; }
     }
 }

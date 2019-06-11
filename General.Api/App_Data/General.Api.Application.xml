@@ -1131,11 +1131,10 @@
             token 接口
             </summary>
         </member>
-        <member name="M:General.Api.Application.Token.TokenService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Application.Token.TokenService.#ctor(General.Api.Core.ApiAuthUser.IApiAuthUserDao)">
             <summary>
             construct
             </summary>
-            <param name="configuration"></param>
         </member>
         <member name="M:General.Api.Application.Token.TokenService.Get(System.String,System.String)">
             <summary>
