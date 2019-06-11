@@ -36,11 +36,11 @@ namespace General.Api.Application.User
 
         public async Task<List<Dto.UserDto>> GetList()
         {
-            var url = "http://192.168.1.102:2013/general.api";
+            //var url = "http://192.168.1.102:2013/general.api";
 
-            var geturl = url.AppendFormat("/api/Values/1")
-                .SetParam("key", "123");
-            var data = url.AppendFormat("/api/Values/1").Get().GetJsonResult();
+            //var geturl = url.AppendFormat("/api/Values/1")
+            //    .SetParam("key", "123");
+            //var data = url.AppendFormat("/api/Values/1").Get().GetJsonResult();
             return _mapper.Map<List<Dto.UserDto>>(await _userDao.GetList());
         }
         /// <summary>

@@ -51,7 +51,7 @@
     /// 自定义返回接口类型 （结果）
     /// </summary>
     /// <typeparam name="T">数据类型</typeparam>
-    public class ApiResult<T> : ApiResult where T : class
+    public class ApiResult<T> : ApiResult 
     {
         /// <summary>
         /// 数据

@@ -74,6 +74,42 @@
             <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Controllers.EventController">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.#ctor(General.Api.Application.Event.IEventService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.GetSubscrList">
+            <summary>
+            获取订阅事件列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.Subscr(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            订阅事件
+            </summary>
+            <param name="eventTypes">事件</param>
+            <param name="eventDest">地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="eventTypes">事件</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.EventReciveController">
+            <summary>
+            事件接收服务
+            </summary>
+        </member>
         <member name="T:General.Api.Controllers.UserController">
             <summary>
             UserController

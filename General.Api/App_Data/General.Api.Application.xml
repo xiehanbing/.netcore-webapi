@@ -670,6 +670,201 @@
             construct
             </summary>
         </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReciveDto`1">
+            <summary>
+            事件接收服务 统一接收类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto`1.Method">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto`1.Params">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReviceParam`1">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.SendTime">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Ability">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Uids">
+            <summary>
+            指定的事件接收用户列表，用于事件源发起组件指定接收用户，如指定用户接收手动事件、在部分应用中可以设置事件到指定用户接收
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Events">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventInfo`1">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventId">
+            <summary>
+            事件Id，唯一标识事件的一次发生，同一事件发送多次需要ID相同
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcIndex">
+            <summary>
+            事件源编号，物理设备是资源编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcName">
+            <summary>
+            事件源名称，utf8
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.Status">
+            <summary>
+            事件状态, 0-瞬时 1-开始 2-停止 3-事件脉冲 4-事件联动结果更新 5-异步图片上传
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventLvl">
+            <summary>
+            事件等级：0-未配置 1-低 2-中 3-高，注意，此处事件等级是指在事件联动中配置的等级
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.TimeOut">
+            <summary>
+            脉冲超时时间，一个持续性的事件，上报的间隔
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.HappenTime">
+            <summary>
+            事件发生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcParentIndex">
+            <summary>
+            事件发生的事件源父设备，无-空字符串
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.Data">
+            <summary>
+            事件其它扩展信息 不同类型的事件，扩展信息不同，具体信息可查看具体事件的报文
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReciveDto">
+            <summary>
+            事件接收服务 统一接收类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto.Method">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto.Params">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReviceParam">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.SendTime">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Ability">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Uids">
+            <summary>
+            指定的事件接收用户列表，用于事件源发起组件指定接收用户，如指定用户接收手动事件、在部分应用中可以设置事件到指定用户接收
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Events">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventInfo">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventId">
+            <summary>
+            事件Id，唯一标识事件的一次发生，同一事件发送多次需要ID相同
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcIndex">
+            <summary>
+            事件源编号，物理设备是资源编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcName">
+            <summary>
+            事件源名称，utf8
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.Status">
+            <summary>
+            事件状态, 0-瞬时 1-开始 2-停止 3-事件脉冲 4-事件联动结果更新 5-异步图片上传
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventLvl">
+            <summary>
+            事件等级：0-未配置 1-低 2-中 3-高，注意，此处事件等级是指在事件联动中配置的等级
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.TimeOut">
+            <summary>
+            脉冲超时时间，一个持续性的事件，上报的间隔
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.HappenTime">
+            <summary>
+            事件发生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcParentIndex">
+            <summary>
+            事件发生的事件源父设备，无-空字符串
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Event.Dto.SubscriptionInfoResponse">
             <summary>
             事件订阅信息
