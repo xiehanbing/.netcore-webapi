@@ -21,60 +21,14 @@ namespace General.Api.Framework.Filters
         /// _logManager
         /// </summary>
         private readonly ILogManager _logManager;
+        /// <summary>
+        /// construct
+        /// </summary>
         public ExceptionFilter(ILogManager logManager)
         {
             _logManager = logManager;
         }
-
-        ///// <summary>
-        ///// 发生异常时的处理
-        ///// </summary>
-        ///// <param name="context"></param>
-        //public void OnException(ExceptionContext context)
-        //{
-        //    var requstUrl = context.HttpContext.Request.Path;
-        //    //如果异常没有被处理
-        //    if (context.ExceptionHandled == false)
-        //    {
-        //        var myException = GetMyException(context.Exception);
-
-        //        if (myException != null)
-        //        {
-        //            context.Result = new JsonResult(new ApiResult()
-        //            {
-        //                Success = false,
-        //                Message = myException.Message,
-        //                Code = myException.Code
-        //            });
-        //        }
-        //        else
-        //        {
-        //            var validaException = GetValidatorException(context.Exception);
-        //            if (validaException != null)
-        //                context.Result = new JsonResult(new ValidatorResult()
-        //                {
-        //                    Success = false,
-        //                    Message = validaException.Message,
-        //                    Code = validaException.Code,
-        //                    Errors = validaException.Errors
-        //                });
-        //            else
-        //            {
-        //                //如果是系统异常
-        //                _logManager.Error(context.Exception);
-        //                context.Result = new JsonResult(new ApiResult()
-        //                {
-        //                    Success = false,
-        //                    Message = "系统异常",
-        //                    Code = StatusCodes.Status500InternalServerError
-        //                });
-        //            }
-        //        }
-        //    }
-
-        //    LogException(context);
-        //    context.ExceptionHandled = true;//异常已经处理了
-        //}
+     
         /// <summary>
         /// 获取是自定义异常类
         /// </summary>
@@ -108,7 +62,7 @@ namespace General.Api.Framework.Filters
 
             var httpRequest = exContext.HttpContext;
             var request = await httpRequest.Request.ReadRequestAsync();
-            var response = exContext.Result.GetSerializeObject();
+            var response = exContext.Exception.GetSerializeObject();
             LogManage.ApiLog(new ApiLog()
             {
                 ConfirmNo = httpRequest.Request.Path.Value,

@@ -94,8 +94,14 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // add handel exception
-            services.AddMvc(options => { options.Filters.Add<ExceptionFilter>(); });
+            // add handel exception   services.AddMvc(o => o.InputFormatters.Insert(0, new HandleRequestBodyFormatter()));
+            services.AddMvc(options =>
+            {
+                //options.InputFormatters.Insert(0, new HandleRequestBodyFormatter());
+                options.Filters.Add<ExceptionFilter>(); 
+
+               
+            });
             //创建引擎单例
             EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
             //services.AddScoped(typeof(ITokenService), typeof(TokenService));
@@ -212,7 +218,7 @@ namespace General.Api
             General.Api.Core.Log.LogContext.ApiLogRepository = apilogRepo;
 
             #endregion
-
+           
         }
         /// <summary>
         /// add use middleware

@@ -26,9 +26,9 @@ namespace General.Core.HttpClient.Extension
 
             using (HttpContent httpContent = new StringContent(postData, Encoding.UTF8))
             {
-                var clientDefaultHeaders = client.DefaultRequestHeaders
+                var clientDefaultHeaders = client.DefaultRequestHeaders?
                                                .FirstOrDefault(o => o.Key.ToLower().Equals("content-type"))
-                                               .Value.FirstOrDefault() ?? "";
+                                               .Value?.FirstOrDefault() ?? "";
                 if (!string.IsNullOrEmpty(clientDefaultHeaders))
                 {
                     httpContent.Headers.ContentType =
@@ -40,10 +40,10 @@ namespace General.Core.HttpClient.Extension
                 {
                     httpContent.Headers.ContentType =
                         new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType);
-                    ;
+                    
                 }
 
-                if (client.DefaultRequestHeaders.Any())
+                if (client.DefaultRequestHeaders?.Any()??false)
                 {
                     foreach (var item in client.DefaultRequestHeaders)
                     {
