@@ -1103,6 +1103,130 @@
             TokenRequestValidator
             </summary>
         </member>
+        <member name="T:General.Api.Application.Spcms.Dto.DefenceStatusResponse">
+            <summary>
+            防区状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.DefenceStatusResponse.DefenceIndexCode">
+            <summary>
+            防区编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.DefenceStatusResponse.Status">
+            <summary>
+            防区状态
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.DefenceStatusType">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Leave">
+            <summary>
+            离线
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.GuZhang">
+            <summary>
+            故障
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Warning">
+            <summary>
+            报警
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.PangLu">
+            <summary>
+            旁路
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.SubSysStatusResponse">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.SubSystemIndexCode">
+            <summary>
+            子系统编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.StatusDesc">
+            <summary>
+            状态描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.SubSysStatusType">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.Che">
+            <summary>
+            撤防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.Bu">
+            <summary>
+            布放
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.ISpcmsService">
+            <summary>
+            入侵报警服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取子系统状态
+            </summary>
+            <param name="subSysIndexCodes">子系统编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取防区状态
+            </summary>
+            <param name="defenceIndexCodes">防区编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Spcms.SpcmsService">
+            <summary>
+            入侵报警服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Token.ITokenService">
             <summary>
             token 接口

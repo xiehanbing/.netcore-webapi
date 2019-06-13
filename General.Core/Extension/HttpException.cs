@@ -28,9 +28,21 @@ namespace General.Core.Extension
 
             if (request.Body != null)
             {
+                request.Body.Position = 0;
                 var encoding = GetEncoding(request.ContentType);
-                var body = await ReadStreamAsync(request.Body, encoding);
-                cotent += ";Body:" + body;
+                using (var requestBody = new MemoryStream())
+                {
+                    request.Body.CopyTo(requestBody);
+                    requestBody.Position = 0;
+                    var body = await ReadStreamAsync(requestBody, encoding);
+                    if (body.IsNotWhiteSpace())
+                        cotent += ";Body:" + body;
+                    requestBody.Position = 0;
+                    request.Body = requestBody;
+                }
+                //var encoding = GetEncoding(request.ContentType);
+                //var body = await ReadStreamAsync(request.Body, encoding);
+                //cotent += ";Body:" + body;
             }
 
             return cotent;
@@ -47,10 +59,18 @@ namespace General.Core.Extension
 
             if (request.Body != null)
             {
+                request.Body.Position = 0;
                 var encoding = GetEncoding(request.ContentType);
-                var body = ReadStream(request.Body, encoding);
-                if (body.IsNotWhiteSpace())
-                    cotent += ";Body:" + body;
+                using (var requestBody = new MemoryStream())
+                {
+                    request.Body.CopyTo(requestBody);
+                    requestBody.Position = 0;
+                    var body = ReadStream(requestBody, encoding);
+                    if (body.IsNotWhiteSpace())
+                        cotent += ";Body:" + body;
+                    requestBody.Position = 0;
+                    //request.Body = requestBody;
+                }
             }
 
             return cotent;

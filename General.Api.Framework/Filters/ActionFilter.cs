@@ -6,6 +6,7 @@ using General.Core;
 using General.Core.Extension;
 using General.EntityFrameworkCore.Log;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -22,11 +23,16 @@ namespace General.Api.Framework.Filters
         /// <param name="context"></param>
         public override void OnResultExecuting(ResultExecutingContext context)
         {
+            context.HttpContext.Request.EnableRewind();
             var requestStr = context.HttpContext.Request.ReadRequest();
             var path = context.HttpContext.Request.Path.Value;
-            if (context.Result is ObjectResult objectResult)
+            if (context.Result is BadRequestObjectResult jsonResult)
             {
-                context.Result = objectResult.Value == null ? new ObjectResult(new ApiResult { Code = 404, Message = "未找到资源" }) : new ObjectResult(new ApiResult<object> { Code = 200, Message = "", Result = objectResult.Value,Success = true});
+                //不做处理
+            }
+            else if (context.Result is ObjectResult objectResult)
+            {
+                context.Result = objectResult.Value == null ? new ObjectResult(new ApiResult { Code = 404, Message = "未找到资源" }) : new ObjectResult(new ApiResult<object> { Code = 200, Message = "", Result = objectResult.Value, Success = true });
             }
             else if (context.Result is ContentResult contentResult)
             {
@@ -64,9 +70,8 @@ namespace General.Api.Framework.Filters
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
-            //var requestbody = filterContext.HttpContext.Request?.Body;
-            ////处理body
+            var requestbody = filterContext.HttpContext.Request?.Body;
+            //处理body
             //if (requestbody != null)
             //{
             //    using (StreamReader sr = new StreamReader(requestbody, Encoding.UTF8, true, 1024, true)
@@ -80,15 +85,30 @@ namespace General.Api.Framework.Filters
             //            requestbody.Seek(0, SeekOrigin.Begin); //内容读取完成后需要将当前位置初始化，否则后面的InputFormatter会无法读取
             //        }
 
-            //        filterContext.HttpContext.Request.Body.Write(bytes);
+            //        filterContext.HttpContext.Request.Body=;
             //    }
             //}
-            // filterContext.HttpContext.Request.Form
             //string test = "123";
             //byte[] bytes = System.Text.Encoding.Default.GetBytes(test);
+            //filterContext.HttpContext.Request.Body.Position = 0;
+            //var memery = new MemoryStream();
 
-            //var requestBodyStram=new MemoryStream();
-            //filterContext.HttpContext.Request.Body.CopyToAsync(requestBodyStram);
+
+            //filterContext.HttpContext.Request.Body.CopyToAsync(memery);
+            //memery.Position = 0;
+            //using (StreamReader reader = new StreamReader(memery, Encoding.UTF8, true, 1024, true))
+            //{
+            //    var sss = reader.ReadToEnd();
+            //    memery.Seek(0, SeekOrigin.Begin);
+               
+            //}
+        
+            //MemoryStream stream = new MemoryStream(bytes);
+            //memery= stream;
+            //memery.Position = 0;
+            //// memery.
+            //filterContext.HttpContext.Request.Body = memery;
+
             //using (StreamReader reader = new StreamReader(requestBodyStram, Encoding.UTF8, true, 1024, true))
             //{
             //    var sss = reader.ReadToEnd();

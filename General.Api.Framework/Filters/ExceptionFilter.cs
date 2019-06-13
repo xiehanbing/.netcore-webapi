@@ -63,13 +63,15 @@ namespace General.Api.Framework.Filters
             var httpRequest = exContext.HttpContext;
             var request = await httpRequest.Request.ReadRequestAsync();
             var response = exContext.Exception.GetSerializeObject();
-            LogManage.ApiLog(new ApiLog()
+            var log = new ApiLog()
             {
                 ConfirmNo = httpRequest.Request.Path.Value,
                 ModelName = httpRequest.Request.Method,
                 RequestContext = request,
                 ResponseContext = response
-            });
+            };
+            _logManager.Info(log.GetSerializeObject());
+            LogManage.ApiLog(log);
             return;
         }
         /// <summary>
@@ -121,6 +123,7 @@ namespace General.Api.Framework.Filters
             }
 
             await LogException(context);
+        
             context.ExceptionHandled = true;//异常已经处理了
         }
     }
