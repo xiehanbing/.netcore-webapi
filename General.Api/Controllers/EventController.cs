@@ -30,9 +30,9 @@ namespace General.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("list")]
-        public async Task<ApiResult<Application.Event.Dto.SubscriptionInfoResponse>> GetSubscrList()
+        public async Task<Application.Event.Dto.SubscriptionInfoResponse> GetSubscrList()
         {
-            return new ApiResult<Application.Event.Dto.SubscriptionInfoResponse>(await _eventService.GetSubscrList());
+            return await _eventService.GetSubscrList();
         }
         /// <summary>
         /// 订阅事件
@@ -41,9 +41,9 @@ namespace General.Api.Controllers
         /// <param name="eventDest">地址</param>
         /// <returns></returns>
         [HttpGet, Route("subscr")]
-        public async Task<ApiResult<bool>> Subscr([FromBody]List<int> eventTypes, string eventDest)
+        public async Task<bool> Subscr([FromBody]List<int> eventTypes, string eventDest)
         {
-            return new ApiResult<bool>(await _eventService.SubscrEvent(eventTypes, eventDest));
+            return await _eventService.SubscrEvent(eventTypes, eventDest);
         }
         /// <summary>
         /// 取消订阅
@@ -51,9 +51,9 @@ namespace General.Api.Controllers
         /// <param name="eventTypes">事件</param>
         /// <returns></returns>
         [HttpGet, Route("cancel")]
-        public async Task<ApiResult<bool>> Cancel([FromBody]List<int> eventTypes)
+        public async Task<bool> Cancel([FromBody]List<int> eventTypes)
         {
-            return new ApiResult<bool>(await _eventService.Cancel(eventTypes));
+            return await _eventService.Cancel(eventTypes);
         }
     }
 }

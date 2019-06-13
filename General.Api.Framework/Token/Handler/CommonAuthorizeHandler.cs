@@ -89,6 +89,9 @@ namespace General.Core.Token
             return Task.CompletedTask;
         }
     }
+    /// <summary>
+    /// CommonAuthorize
+    /// </summary>
     public class CommonAuthorize : IAuthorizationRequirement
     {
 

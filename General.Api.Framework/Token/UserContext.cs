@@ -6,10 +6,16 @@ using General.Core;
 
 namespace General.Api.Framework.Token
 {
+    /// <summary>
+    /// UserContext
+    /// </summary>
     public class UserContext
     {
         private readonly ITokenService _tokenService;
-
+        /// <summary>
+        /// UserContext
+        /// </summary>
+        /// <param name="tokenService"></param>
         public UserContext(ITokenService tokenService)
         {
             _tokenService = tokenService;

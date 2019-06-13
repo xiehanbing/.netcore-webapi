@@ -33,9 +33,9 @@ namespace General.Api.Controllers
         /// <param name="query">参数</param>
         /// <returns></returns>
         [HttpPost, Route("list")]
-        public async Task<ApiResult<ListBaseResponse<UserResponse>>> GetList(UserQuery query)
+        public async Task<ListBaseResponse<UserResponse>> GetList(UserQuery query)
         {
-            return new ApiResult<ListBaseResponse<UserResponse>>(await _userService.GetUserList(query));
+            return await _userService.GetUserList(query);
         }
     }
 }

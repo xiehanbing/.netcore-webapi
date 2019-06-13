@@ -21,5 +21,9 @@
         /// swagger title
         /// </summary>
         public const string SwaggerTitle = "General Api";
+        /// <summary>
+        /// ProjectName
+        /// </summary>
+        public const string ProjectName = "General.Api";
     }
 }

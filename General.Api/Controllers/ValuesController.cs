@@ -36,8 +36,8 @@ namespace General.Api.Controllers
         /// 这是一个注释
         /// </summary>
         /// <returns></returns>
-        [HttpGet, Authorize]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get(string value)
         {
             return new string[] { "value1", "value2" };
         }
@@ -48,12 +48,12 @@ namespace General.Api.Controllers
         /// <returns></returns>
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ApiResult<List<UserDto>>> Get(int id)
+        public async Task<List<UserDto>> Get(int id)
         {
-            throw new MyException(100030, "这是一个测试");
+            //throw new MyException(100030, "这是一个测试");
             var data = await _userService.GetList();
             //throw new MyException(100030,"这是一个测试");
-            return new ApiResult<List<UserDto>>(data);
+            return data;
             //return new ApiResult<string>("value");
         }
         /// <summary>

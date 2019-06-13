@@ -11,6 +11,10 @@ namespace General.Api.Application.User
     /// </summary>
     public interface IUserService
     {
+        /// <summary>
+        /// GetList
+        /// </summary>
+        /// <returns></returns>
         Task<List<Dto.UserDto>> GetList();
         /// <summary>
         /// 获取人员信息

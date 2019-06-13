@@ -192,42 +192,47 @@
             门禁点反控结果描述
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HANNEL_CAMERA_NUM">
+        <member name="T:General.Api.Application.Door.Dto.DoorDeviceChannelType">
+            <summary>
+            DoorDeviceChannelType
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HannelCameraNum">
             <summary>
             监控点通道数
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_TALK_NUM">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelTalkNum">
             <summary>
             对讲通道数
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_ACCESS">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelAccess">
             <summary>
             门禁通道
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HANNEL_READER">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HannelReader">
             <summary>
             读卡器通道
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CAMERA">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelCamera">
             <summary>
             监控点通道
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_TALK">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelTalk">
             <summary>
             对讲通道
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CHILDREN_DIG_TYPE">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelChildrenDigType">
             <summary>
             子通道-数字通道
             </summary>
         </member>
-        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.CHANNEL_CHILDREN_ANL_TYPE">
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelChildrenAnlType">
             <summary>
             子通道-模拟通道
             </summary>
@@ -1461,10 +1466,291 @@
             民族类型
             </summary>
         </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Han">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Meng">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Hui">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Zang">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Wei">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Miao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Yi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Zhuang">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Bu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Chao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Man">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Tong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Yao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Bai">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TuJia">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Ha">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.HaSa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Dai">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Li">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Su">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Wa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.She">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Gao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.La">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Dong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Na">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Jing">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Ke">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Tu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Da">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MuLao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Qiang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BuLang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.SaLa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MaoNan">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.QiLao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.XiBo">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.AChang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.PuMi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TaJie">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Nu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.WuZi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.ELuoSi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.EWen">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BengLong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BaoAn">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.YuGu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.JingZu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TaTa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.DuLong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.ELun">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.HeZhe">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MenBa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.LuoBa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.JiNuo">
+            <summary>  
+               
+            </summary>
+        </member>
         <member name="T:General.Api.Application.User.IUserService">
             <summary>
             人员信息接口
             </summary>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetList">
+            <summary>
+            GetList
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)">
             <summary>

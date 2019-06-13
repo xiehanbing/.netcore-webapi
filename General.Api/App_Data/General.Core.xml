@@ -29,6 +29,11 @@
             swagger title
             </summary>
         </member>
+        <member name="F:General.Core.ApiConsts.ProjectName">
+            <summary>
+            ProjectName
+            </summary>
+        </member>
         <member name="T:General.Core.Dapper.ConnectionConfig">
             <summary>
             dapper config 

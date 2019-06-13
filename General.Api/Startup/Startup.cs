@@ -13,7 +13,9 @@ using General.Api.Core;
 using General.Api.Engine;
 using General.Api.Extension;
 using General.Api.Framework;
+using General.Api.Framework.Delegate;
 using General.Api.Framework.Filters;
+using General.Api.Framework.Middleware;
 using General.Api.Framework.Token;
 using General.Core;
 using General.Core.Dapper;
@@ -94,17 +96,15 @@ namespace General.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // add handel exception   services.AddMvc(o => o.InputFormatters.Insert(0, new HandleRequestBodyFormatter()));
+            // add handel exception  
             services.AddMvc(options =>
             {
-                //options.InputFormatters.Insert(0, new HandleRequestBodyFormatter());
-                options.Filters.Add<ExceptionFilter>(); 
-
-               
+                options.Filters.Add<ExceptionFilter>();
+                options.Filters.Add<ResourceFilter>();
+                options.Filters.Add<ActionFilter>();
             });
             //创建引擎单例
             EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
-            //services.AddScoped(typeof(ITokenService), typeof(TokenService));
             //注入接口
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
@@ -113,7 +113,6 @@ namespace General.Api
 
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
-
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -163,7 +162,6 @@ namespace General.Api
             {
                 options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info() { Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version });
                 options.DocInclusionPredicate((docName, description) => true);
-                //var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
                 string rootdir = AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
                 if (dir?.Parent?.Parent != null)
@@ -184,11 +182,7 @@ namespace General.Api
                 options.AddFluentValidationRules();
             });
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-                //services.AddScoped(typeof(IRepository<ApiLog>), typeof(EfRepository<ApiLog>));
 
-          
-
-            //services.AddSingleton(typeof(General.Api.Core.Log.LogContext));
             //set dbcontext connstring
             //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
             services.AddDbContextPool<GeneralDbContext>(
@@ -218,7 +212,7 @@ namespace General.Api
             General.Api.Core.Log.LogContext.ApiLogRepository = apilogRepo;
 
             #endregion
-           
+
         }
         /// <summary>
         /// add use middleware
@@ -262,6 +256,8 @@ namespace General.Api
                         template: "swagger/ui/index.html"
                     );
             });
+            //app.UseMiddleware<HttpHandleMiddleware>();
+
             //启用中间件服务生成swagger作为json终结点
             app.UseSwagger();
             //启用中间件服务队swagger-ui 指定swagger json 终结点
@@ -270,9 +266,6 @@ namespace General.Api
                 options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
                 options.RoutePrefix = "swagger/ui";
             });
-        
-
-           
         }
     }
 }

@@ -8,14 +8,24 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace General.Api.Framework.Filters
 {
+    /// <summary>
+    /// HttpHeaderOperation
+    /// </summary>
     public class HttpHeaderOperation : IOperationFilter
     {
         private readonly IConfiguration _configuration;
-
+        /// <summary>
+        /// construct
+        /// </summary>
         public HttpHeaderOperation(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+        /// <summary>
+        /// Apply
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="context"></param>
         public void Apply(Operation operation, OperationFilterContext context)
         {
             if (operation.Parameters == null)

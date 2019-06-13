@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,26 @@ namespace General.Core.Extension
                 var encoding = GetEncoding(request.ContentType);
                 var body = await ReadStreamAsync(request.Body, encoding);
                 cotent += ";Body:" + body;
+            }
+
+            return cotent;
+        }
+
+        public static string ReadRequest(this HttpRequest request)
+        {
+            var cotent = string.Empty;
+
+            if (request.Path.Value != null)
+            {
+                cotent = "Uri:" + request.Path.Value + ((request.Query?.Any() ?? false) ? ("?" + string.Join("&", request.Query?.Select(o => o.Key + "=" + o.Value))) : "");
+            }
+
+            if (request.Body != null)
+            {
+                var encoding = GetEncoding(request.ContentType);
+                var body = ReadStream(request.Body, encoding);
+                if (body.IsNotWhiteSpace())
+                    cotent += ";Body:" + body;
             }
 
             return cotent;
@@ -78,7 +99,20 @@ namespace General.Core.Extension
             using (StreamReader sr = new StreamReader(stream, encoding, true, 1024, true))//这里注意Body部分不能随StreamReader一起释放
             {
                 var str = await sr.ReadToEndAsync();
-                if (forceSeekBeginZero&&stream.CanSeek)
+                if (forceSeekBeginZero && stream.CanSeek)
+                {
+                    stream.Seek(0, SeekOrigin.Begin);//内容读取完成后需要将当前位置初始化，否则后面的InputFormatter会无法读取
+                }
+                return str;
+            }
+        }
+
+        private static string ReadStream(Stream stream, Encoding encoding, bool forceSeekBeginZero = true)
+        {
+            using (StreamReader sr = new StreamReader(stream, encoding, true, 1024, true))//这里注意Body部分不能随StreamReader一起释放
+            {
+                var str = sr.ReadToEnd();
+                if (forceSeekBeginZero && stream.CanSeek)
                 {
                     stream.Seek(0, SeekOrigin.Begin);//内容读取完成后需要将当前位置初始化，否则后面的InputFormatter会无法读取
                 }

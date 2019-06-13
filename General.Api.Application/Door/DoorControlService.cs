@@ -18,13 +18,11 @@ namespace General.Api.Application.Door
     public class DoorControlService : IDoorControlService
     {
         private readonly string _doorControlApi;
-        private readonly IConfiguration _configuration;
         /// <summary>
         /// construct
         /// </summary>
         public DoorControlService(IConfiguration configuration)
         {
-            _configuration = configuration;
             _doorControlApi = configuration[HikVisionContext.HikVisionBaseApiName];
             if (string.IsNullOrEmpty(_doorControlApi))
             {

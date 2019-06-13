@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Http;
 
 namespace General.Core.HttpClient.Extension
 {

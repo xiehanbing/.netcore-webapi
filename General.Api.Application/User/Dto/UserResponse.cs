@@ -12,11 +12,11 @@ namespace General.Api.Application.User.Dto
         /// <summary>
         /// id
         /// </summary>
-        public string  PersonId { get; set; }
+        public string PersonId { get; set; }
         /// <summary>
         /// 名称
         /// </summary>
-        public string  PersonName { get; set; }
+        public string PersonName { get; set; }
         /// <summary>
         /// 性别
         /// </summary>
@@ -24,15 +24,15 @@ namespace General.Api.Application.User.Dto
         /// <summary>
         /// 所属组织路径
         /// </summary>
-        public string  OrgPath { get; set; }
+        public string OrgPath { get; set; }
         /// <summary>
         /// 所属组织唯一标识码
         /// </summary>
-        public string  OrgIndexCode { get; set; }
+        public string OrgIndexCode { get; set; }
         /// <summary>
         /// 所属组织名称
         /// </summary>
-        public string  OrgName { get; set; }
+        public string OrgName { get; set; }
         /// <summary>
         /// 证件类型
         /// </summary>
@@ -56,19 +56,19 @@ namespace General.Api.Application.User.Dto
         /// <summary>
         /// 联系电话
         /// </summary>
-        public string  PhoneNo { get; set; }
+        public string PhoneNo { get; set; }
         /// <summary>
         /// 联系地址
         /// </summary>
-        public string  Address { get; set; }
+        public string Address { get; set; }
         /// <summary>
         /// 邮箱
         /// </summary>
-        public string  Email { get; set; }
+        public string Email { get; set; }
         /// <summary>
         /// 工号
         /// </summary>
-        public string  JobNo { get; set; }
+        public string JobNo { get; set; }
         /// <summary>
         /// 头像
         /// </summary>
@@ -91,17 +91,17 @@ namespace General.Api.Application.User.Dto
         /// 未知
         /// </summary>
         [Description("未知")]
-        UnKnow=0,
+        UnKnow = 0,
         /// <summary>
         /// 男
         /// </summary>
         [Description("男")]
-        Man=1,
+        Man = 1,
         /// <summary>
         /// 女
         /// </summary>
         [Description("女")]
-        Woman =2
+        Woman = 2
     }
     /// <summary>
     /// 证件类型
@@ -117,32 +117,32 @@ namespace General.Api.Application.User.Dto
         /// 护照
         /// </summary>
         [Description("护照")]
-        Passport =414,
+        Passport = 414,
         /// <summary>
         /// 驾驶证
         /// </summary>
         [Description("驾驶证")]
-        Booklet =113,
+        Booklet = 113,
         /// <summary>
         /// 驾驶证
         /// </summary>
         [Description("驾驶证")]
-        DriveLicense =335,
+        DriveLicense = 335,
         /// <summary>
         /// 学生证
         /// </summary>
         [Description("学生证")]
-        WorkCard =131,
+        WorkCard = 131,
         /// <summary>
         /// 学生证
         /// </summary>
         [Description("学生证")]
-        StudentCard =133,
+        StudentCard = 133,
         /// <summary>
         /// 其他
         /// </summary>
         [Description("其他")]
-        Other =990
+        Other = 990
     }
     /// <summary>
     /// 学历类型
@@ -153,52 +153,52 @@ namespace General.Api.Application.User.Dto
         /// 小学
         /// </summary>
         [Description("小学")]
-        Grade=1,
+        Grade = 1,
         /// <summary>
         /// 初中
         /// </summary>
         [Description("初中")]
-        Junior =2,
+        Junior = 2,
         /// <summary>
         /// 中技
         /// </summary>
         [Description("中技")]
-        Technical =3,
+        Technical = 3,
         /// <summary>
         /// 高中
         /// </summary>
         [Description("高中")]
-        Senior =4,
+        Senior = 4,
         /// <summary>
         /// 中专
         /// </summary>
         [Description("中专")]
-        Secondary =5,
+        Secondary = 5,
         /// <summary>
         /// 大专
         /// </summary>
         [Description("大专")]
-        College =6,
+        College = 6,
         /// <summary>
         /// 本科
         /// </summary>
         [Description("本科")]
-        Undergraduate =7,
+        Undergraduate = 7,
         /// <summary>
         /// 硕士
         /// </summary>
         [Description("硕士")]
-        Master =8,
+        Master = 8,
         /// <summary>
         /// 博士
         /// </summary>
         [Description("博士")]
-        Doctor =9,
+        Doctor = 9,
         /// <summary>
         /// 其他
         /// </summary>
         [Description("其他")]
-        Other =10
+        Other = 10
     }
 
     /// <summary>
@@ -206,61 +206,227 @@ namespace General.Api.Application.User.Dto
     /// </summary>
     public enum NationType
     {
-        Han=1,
-        Meng=2,
-        Hui=3,
-        Zang=4,
-        Wei=5,
-        Miao=6,
-        Yi=7,
-        Zhuang=8,
-        Bu=9,
-        Chao=10,
-        Man=11,
-        Tong=12,
-        Yao=13,
-        Bai=14,
-        TuJia=15,
-        Ha=16,
-        HaSa=17,
-        Dai=18,
-        Li=19,
-        Su=20,
-        Wa=21,
-        She=22,
-        Gao=23,
-        La=24,
-        Dong=25,
-        Na=27,
-        Jing=28,
-        Ke=29,
-        Tu=30,
-        Da=31,
-        MuLao=32,
-        Qiang=33,
-        BuLang=34,
-        SaLa=35,
-        MaoNan=36,
-        QiLao=37,
-        XiBo=38,
-        AChang=39,
-        PuMi=40,
-        TaJie=41,
-        Nu=42,
-        WuZi=43,
-        ELuoSi=44,
-        EWen=45,
-        BengLong=46,
-        BaoAn=47,
-        YuGu=48,
-        JingZu=49,
-        TaTa=50,
-        DuLong=51,
-        ELun=52,
-        HeZhe=53,
-        MenBa=54,
-        LuoBa=55,
-        JiNuo=56
+        /// <summary>
+        /// 
+        /// </summary>
+        Han = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        Meng = 2,
+        /// <summary>
+        /// 
+        /// </summary>
+        Hui = 3,
+        /// <summary>
+        /// 
+        /// </summary>
+        Zang = 4,
+        /// <summary>
+        /// 
+        /// </summary>
+        Wei = 5,
+        /// <summary>
+        /// 
+        /// </summary>
+        Miao = 6,
+        /// <summary>
+        /// 
+        /// </summary>
+        Yi = 7,
+        /// <summary>
+        /// 
+        /// </summary>
+        Zhuang = 8,
+        /// <summary>
+        /// 
+        /// </summary>
+        Bu = 9,
+        /// <summary>
+        /// 
+        /// </summary>
+        Chao = 10,
+        /// <summary>
+        /// 
+        /// </summary>
+        Man = 11,
+        /// <summary>
+        /// 
+        /// </summary>
+        Tong = 12,
+        /// <summary>
+        /// 
+        /// </summary>
+        Yao = 13,
+        /// <summary>
+        /// 
+        /// </summary>
+        Bai = 14,
+        /// <summary>
+        /// 
+        /// </summary>
+        TuJia = 15,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Ha = 16,
+        /// <summary>  
+        ///    
+        /// </summary>
+        HaSa = 17,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Dai = 18,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Li = 19,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Su = 20,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Wa = 21,
+        /// <summary>  
+        ///    
+        /// </summary>
+        She = 22,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Gao = 23,
+        /// <summary>  
+        ///    
+        /// </summary>
+        La = 24,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Dong = 25,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Na = 27,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Jing = 28,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Ke = 29,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Tu = 30,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Da = 31,
+        /// <summary>  
+        ///    
+        /// </summary>
+        MuLao = 32,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Qiang = 33,
+        /// <summary>  
+        ///    
+        /// </summary>
+        BuLang = 34,
+        /// <summary>  
+        ///    
+        /// </summary>
+        SaLa = 35,
+        /// <summary>  
+        ///    
+        /// </summary>
+        MaoNan = 36,
+        /// <summary>  
+        ///    
+        /// </summary>
+        QiLao = 37,
+        /// <summary>  
+        ///    
+        /// </summary>
+        XiBo = 38,
+        /// <summary>  
+        ///    
+        /// </summary>
+        AChang = 39,
+        /// <summary>  
+        ///    
+        /// </summary>
+        PuMi = 40,
+        /// <summary>  
+        ///    
+        /// </summary>
+        TaJie = 41,
+        /// <summary>  
+        ///    
+        /// </summary>
+        Nu = 42,
+        /// <summary>  
+        ///    
+        /// </summary>
+        WuZi = 43,
+        /// <summary>  
+        ///    
+        /// </summary>
+        ELuoSi = 44,
+        /// <summary>  
+        ///    
+        /// </summary>
+        EWen = 45,
+        /// <summary>  
+        ///    
+        /// </summary>
+        BengLong = 46,
+        /// <summary>  
+        ///    
+        /// </summary>
+        BaoAn = 47,
+        /// <summary>  
+        ///    
+        /// </summary>
+        YuGu = 48,
+        /// <summary>  
+        ///    
+        /// </summary>
+        JingZu = 49,
+        /// <summary>  
+        ///    
+        /// </summary>
+        TaTa = 50,
+        /// <summary>  
+        ///    
+        /// </summary>
+        DuLong = 51,
+        /// <summary>  
+        ///    
+        /// </summary>
+        ELun = 52,
+        /// <summary>  
+        ///    
+        /// </summary>
+        HeZhe = 53,
+        /// <summary>  
+        ///    
+        /// </summary>
+        MenBa = 54,
+        /// <summary>  
+        ///    
+        /// </summary>
+        LuoBa = 55,
+        /// <summary>  
+        ///    
+        /// </summary>
+        JiNuo = 56
+
 
     }
 }

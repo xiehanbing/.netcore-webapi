@@ -123,6 +123,11 @@ namespace General.Api.Framework.Token
             var payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
             return payLoad;
         }
+        /// <summary>
+        /// ToUnixEpochDate
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static long ToUnixEpochDate(DateTime date) =>
             (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }

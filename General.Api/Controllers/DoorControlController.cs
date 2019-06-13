@@ -41,13 +41,10 @@ namespace General.Api.Controllers
         /// <returns></returns>
         [Route("door/list")]
         [HttpGet]
-        public async Task<ApiResult<ListBaseResponse<DoorInfoResponse>>> GetDoorList(int pageNo, int pageSize, [FromQuery]List<string> doorIndexCode,
+        public async Task<ListBaseResponse<DoorInfoResponse>> GetDoorList(int pageNo, int pageSize, [FromQuery]List<string> doorIndexCode,
             string doorName, string acsDevIndexCode, string regionIndexCode)
         {
-            return new ApiResult<ListBaseResponse<DoorInfoResponse>>()
-            {
-                Result = await _doorControlService.GetDoorList(pageNo, pageSize, doorIndexCode, doorName, acsDevIndexCode, regionIndexCode)
-            };
+            return  await _doorControlService.GetDoorList(pageNo, pageSize, doorIndexCode, doorName, acsDevIndexCode, regionIndexCode);
         }
         /// <summary>
         /// 获取门禁点权限的更新进度
@@ -55,9 +52,9 @@ namespace General.Api.Controllers
         /// <param name="taskId">任务id</param>
         /// <returns></returns>
         [Route("door/auth/progress"), HttpGet]
-        public async Task<ApiResult<DoorAuthTaskProgressResponse>> GetTaskProgress(string taskId)
+        public async Task<DoorAuthTaskProgressResponse> GetTaskProgress(string taskId)
         {
-            return new ApiResult<DoorAuthTaskProgressResponse>(await _doorControlService.GetAuthProgress(taskId));
+            return await _doorControlService.GetAuthProgress(taskId);
         }
         /// <summary>
         /// 创建更新 门禁点权限
@@ -65,9 +62,9 @@ namespace General.Api.Controllers
         /// <param name="model">参数</param>
         /// <returns></returns>
         [Route("door/auth"), HttpPost]
-        public async Task<ApiResult<string>> UpdateDoorAuth(DoorAuthAddDto model)
+        public async Task<string> UpdateDoorAuth(DoorAuthAddDto model)
         {
-            return new ApiResult<string>(await _doorControlService.CreateDoorAuth(model));
+            return await _doorControlService.CreateDoorAuth(model);
         }
         /// <summary>
         /// 门禁点反控
@@ -76,11 +73,11 @@ namespace General.Api.Controllers
         /// <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
         /// <returns></returns>
         [Route("door/doControl"), HttpGet]
-        public async Task<ApiResult<List<DoorControlResponse>>> DoControl([Required,FromBody]List<string> doorIndexCodeList,
+        public async Task<List<DoorControlResponse>> DoControl([Required,FromBody]List<string> doorIndexCodeList,
             [Required]int controlType)
         {
             if (doorIndexCodeList.Count <= 0) throw new ValidatorException("doorIndexCodeList can't  null");
-            return new ApiResult<List<DoorControlResponse>>(await _doorControlService.DoControl(doorIndexCodeList, controlType));
+            return await _doorControlService.DoControl(doorIndexCodeList, controlType);
         }
         /// <summary>
         /// 获取区域列表
@@ -90,10 +87,10 @@ namespace General.Api.Controllers
         /// <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
         /// <returns></returns>
         [Route("door/region/list"),HttpGet]
-        public async Task<ApiResult<ListBaseResponse<RegionInfoResponse>>> GetRegionList(int pageNo, int pageSize,
+        public async Task<ListBaseResponse<RegionInfoResponse>> GetRegionList(int pageNo, int pageSize,
             string treeCode)
         {
-            return new ApiResult<ListBaseResponse<RegionInfoResponse>>(await _doorControlService.GetRegionList(pageNo, pageSize, treeCode));
+            return await _doorControlService.GetRegionList(pageNo, pageSize, treeCode);
         }
     }
 }

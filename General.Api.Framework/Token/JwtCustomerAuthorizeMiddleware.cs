@@ -13,7 +13,12 @@ namespace General.Api.Framework.Token
     public class JwtCustomerAuthorizeMiddleware
     {
         private readonly RequestDelegate next;
-
+        /// <summary>
+        /// JwtCustomerAuthorizeMiddleware
+        /// </summary>
+        /// <param name="next"></param>
+        /// <param name="secret"></param>
+        /// <param name="anonymousPathList"></param>
         public JwtCustomerAuthorizeMiddleware(RequestDelegate next, string secret, List<string> anonymousPathList)
         {
             #region   设置自定义jwt 的秘钥
@@ -25,7 +30,13 @@ namespace General.Api.Framework.Token
             this.next = next;
             UserContext.AllowAnonymousPathList.AddRange(anonymousPathList);
         }
-
+        /// <summary>
+        /// Invoke
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="userContext"></param>
+        /// <param name="optionContainer"></param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context, UserContext userContext, IOptions<JwtOption> optionContainer)
         {
             if (userContext.IsAllowAnonymous(context.Request.Path))

@@ -14,11 +14,19 @@ namespace General.Api.Framework.Token
     public class AgeRequireHandler : AuthorizationHandler<AgeRequireMent>
     {
         private readonly IConfiguration _configuration;
-
+        /// <summary>
+        /// construct
+        /// </summary>
         public AgeRequireHandler(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+        /// <summary>
+        /// HandleRequirementAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="requirement"></param>
+        /// <returns></returns>
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AgeRequireMent requirement)
         {
 
@@ -43,9 +51,19 @@ namespace General.Api.Framework.Token
             return Task.CompletedTask;
         }
     }
+    /// <summary>
+    /// AgeRequireMent
+    /// </summary>
     public class AgeRequireMent : IAuthorizationRequirement
     {
+        /// <summary>
+        /// Age
+        /// </summary>
         public int Age { get; set; }
+        /// <summary>
+        /// AgeRequireMent
+        /// </summary>
+        /// <param name="age"></param>
         public AgeRequireMent(int age) => this.Age = age;
     }
 }

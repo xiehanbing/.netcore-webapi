@@ -137,7 +137,7 @@
             ValuesController
             </summary>
         </member>
-        <member name="M:General.Api.Controllers.ValuesController.Get">
+        <member name="M:General.Api.Controllers.ValuesController.Get(System.String)">
             <summary>
             这是一个注释
             </summary>
