@@ -266,6 +266,12 @@ namespace General.Api
                 options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
                 options.RoutePrefix = "swagger/ui";
             });
+
+            app.Run(ctx =>
+            {
+                ctx.Response.Redirect($"{Configuration["swaggerJsonUrl"]}/swagger/ui"); //可以支持虚拟路径或者index.html这类起始页.
+                return Task.FromResult(0);
+            });
         }
     }
 }

@@ -316,6 +316,13 @@
             <param name="request">request</param>
             <returns></returns>
         </member>
+        <member name="M:General.Core.Extension.HttpException.ReadRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            ReadRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:General.Core.Extension.HttpException.ReadBodyAsync(Microsoft.AspNetCore.Http.HttpResponse)">
             <summary>
             读取 response 相关信息

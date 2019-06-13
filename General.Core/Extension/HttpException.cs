@@ -21,33 +21,38 @@ namespace General.Core.Extension
         public static async Task<string> ReadRequestAsync(this HttpRequest request)
         {
             var cotent = string.Empty;
-            if (request.Path.Value?.IndexOf("?") >= 0)
+            if (request.Path.Value != null)
             {
-                cotent = "Uri:" + request.Path.Value.Substring(request.Path.Value.IndexOf("?", StringComparison.Ordinal));
+                cotent = "Uri:" + request.Path.Value + ((request.Query?.Any() ?? false) ? ("?" + string.Join("&", request.Query?.Select(o => o.Key + "=" + o.Value))) : "");
             }
 
-            if (request.Body != null)
+            var method = request.Method.ToLower();
+            if (method.Equals("post") || method.Equals("put"))
             {
-                request.Body.Position = 0;
-                var encoding = GetEncoding(request.ContentType);
-                using (var requestBody = new MemoryStream())
+                if (request.Body != null&&request.Body.CanSeek)
                 {
-                    request.Body.CopyTo(requestBody);
-                    requestBody.Position = 0;
-                    var body = await ReadStreamAsync(requestBody, encoding);
-                    if (body.IsNotWhiteSpace())
-                        cotent += ";Body:" + body;
-                    requestBody.Position = 0;
-                    request.Body = requestBody;
+                    request.Body.Position = 0;
+                    var encoding = GetEncoding(request.ContentType);
+                    using (var requestBody = new MemoryStream())
+                    {
+                        request.Body.CopyTo(requestBody);
+                        requestBody.Position = 0;
+                        var body = await ReadStreamAsync(requestBody, encoding);
+                        if (body.IsNotWhiteSpace())
+                            cotent += ";Body:" + body;
+                        requestBody.Position = 0;
+                        request.Body = requestBody;
+                    }
                 }
-                //var encoding = GetEncoding(request.ContentType);
-                //var body = await ReadStreamAsync(request.Body, encoding);
-                //cotent += ";Body:" + body;
             }
 
             return cotent;
         }
-
+        /// <summary>
+        /// ReadRequest
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public static string ReadRequest(this HttpRequest request)
         {
             var cotent = string.Empty;
