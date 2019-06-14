@@ -1012,9 +1012,104 @@
             页容量
             </summary>
         </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.HasNextPage">
+            <summary>
+            是否具有下一页
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.HasPreviousPage">
+            <summary>
+            是否有前一页
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.Rows">
+            <summary>
+            数据数组
+            </summary>
+        </member>
         <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.List">
             <summary>
             列表
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.EventWarningType">
+            <summary>
+            入侵报警服务事件类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.FangQuBaoJing">
+            <summary>
+            防区报警
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.BuFang">
+            <summary>
+            布防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.CheFang">
+            <summary>
+            撤防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.PangLu">
+            <summary>
+            旁路
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.PangLuHuiFu">
+            <summary>
+            旁路恢复
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.XiaoJing">
+            <summary>
+            消警
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.RoadWayType">
+            <summary>
+            车道类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.In">
+            <summary>
+            入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutFree">
+            <summary>
+            出口不收费
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutWithFee">
+            <summary>
+            出口岗亭收费
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutCenterWithFee">
+            <summary>
+            出口中央缴费
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.Region">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.SubSys">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.Defence">
+            <summary>
+            区域
             </summary>
         </member>
         <member name="T:General.Api.Application.HikVisionResponse">
@@ -1103,6 +1198,752 @@
             TokenRequestValidator
             </summary>
         </member>
+        <member name="T:General.Api.Application.Parking.Dto.Device.DeviceControlResponse">
+            <summary>
+            道闸反控响应实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.PrivilegeGroupId">
+            <summary>
+            权限组ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.PrivilegeGroupName">
+            <summary>
+            权限组名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.Remark">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.IsDefault">
+            <summary>
+            是否是默认权限组 0-是，1-否 	
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.IsDefaultDesc">
+            <summary>
+            是否是默认权限组 描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.EntranceInfoResponse">
+            <summary>
+            出入口信息结构体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.EntranceIndexCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.EntranceName">
+            <summary>
+            出入口名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.ParkIndexCode">
+            <summary>
+            停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.RoadNum">
+            <summary>
+            车道数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ParkInfoResponse">
+            <summary>
+            车位信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.SpaceSysCode">
+            <summary>
+            车位编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.ParkSysCode">
+            <summary>
+            车位所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.ParkName">
+            <summary>
+            车位所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.FloorSysCode">
+            <summary>
+            车位所在楼层唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.FloorName">
+            <summary>
+            车位所在楼层名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.Longitude">
+            <summary>
+            车位经度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.Latitude">
+            <summary>
+            车位维度
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ParkInfoListResponse">
+            <summary>
+            停车库列表
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParkIndexCode">
+            <summary>
+            停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParentParkIndexCode">
+            <summary>
+            父停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParkName">
+            <summary>
+            停车场名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.CrossRecordResponse">
+            <summary>
+            过车记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CrossRecordSysCode">
+            <summary>
+            过车记录唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ParkSysCode">
+            <summary>
+            停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ParkSysName">
+            <summary>
+            停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.EntranceSysCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.EntranceName">
+            <summary>
+            出入口名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleOut">
+            <summary>
+            是否出场 0-进场， 1-出场
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ReleaseMode">
+            <summary>
+            放行模式 0-禁止放行，1-固定车包期，2-临时车入场，3-预约车入场，10-离线出场，11-缴费出场，12-预付费出场，13-免费出场，30- 非法卡不放行，31-手动放行，32-特殊车辆放行，33-节假日放行，35-群组放行，36-遥控器开闸
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CardNo">
+            <summary>
+            卡片号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleColor">
+            <summary>
+            车辆颜色 0：其他颜色； 1：白色； 2：银色； 3：灰色； 4：黑色； 5：红色； 6：深蓝色； 7：蓝色； 8：黄色； 9：绿色； 10：棕色； 11：粉色； 12：紫色’
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleType">
+            <summary>
+            车辆类型 0：其他车； 1：小型车； 2：大型车； 3：摩托车
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehiclePicUri">
+            <summary>
+            车辆图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.PlateNoPicUri">
+            <summary>
+            车牌图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.FacePicUri">
+            <summary>
+            人脸图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CrossTime">
+            <summary>
+            通过时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.RecordSysCode">
+            <summary>
+            停车记录编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpaceSysCode">
+            <summary>
+            车位编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpacePicUri">
+            <summary>
+            车位图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkingTime">
+            <summary>
+            停车时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkSysCode">
+            <summary>
+            车辆所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkName">
+            <summary>
+            车辆所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.FloorSysCode">
+            <summary>
+            车辆所在楼层唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.FloorName">
+            <summary>
+            车辆所在楼层名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.PlateNoPicUri">
+            <summary>
+            车牌照片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse">
+            <summary>
+            场内车辆停车信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.InRecordSyscode">
+            <summary>
+            停车信息唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.VehiclePicUri">
+            <summary>
+            车辆图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.InTime">
+            <summary>
+            入场时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkTime">
+            <summary>
+            停车时长
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkSysCode">
+            <summary>
+            车辆所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkName">
+            <summary>
+            车辆所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.PlateNoPicUri">
+            <summary>
+            车牌照片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.RemainSpaceNumResponse">
+            <summary>
+            停车库剩余车位数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParkSysCode">
+            <summary>
+            停车库唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParkName">
+            <summary>
+            停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParentParkSysCode">
+            <summary>
+            父停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalPlace">
+            <summary>
+            停车库车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalPermPlace">
+            <summary>
+            停车库固定车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalReservePlace">
+            <summary>
+            停车库预约车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftPlace">
+            <summary>
+            停车库车位剩余数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftPermPlace">
+            <summary>
+            停车库固定车位剩余数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftReservePlace">
+            <summary>
+            停车库预约车位剩余数
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.RoadwayInfoResponse">
+            <summary>
+            车道信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.EntranceIndexCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadwayIndexCode">
+            <summary>
+            车道唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadWayName">
+            <summary>
+            车道名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadwayType">
+            <summary>
+            车道类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkingDeviceService">
+            <summary>
+            停车场设备服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            道闸反控
+            </summary>
+            <param name="model">请求类</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            根据停车场编码反控道闸 
+            </summary>
+            <param name="parkSyscode">停车场唯一标识码</param>
+            <param name="command">控闸命令</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkingManageService">
+            <summary>
+            停车场管理服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetParkList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取停车库列表
+            </summary>
+            <param name="parkIndexCodes">停车库唯一标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取出入口
+            </summary>
+            <param name="parkIndexCodes">停车场唯一标识集</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})">
+            <summary>
+            根据出入口 获取车道列表
+            </summary>
+            <param name="entranceIndexCodes">出入口唯一标识集 必填</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询车位信息
+            </summary>
+            <param name="parkSysCode">停车场唯一标识码</param>
+            <param name="spaceNo">车位号</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetRemainSpace(System.String)">
+            <summary>
+            查询停车库剩余车位数
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkRecordService">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询场内车辆停车信息
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码</param>
+            <param name="plateNo">车牌号码</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)">
+            <summary>
+            查询车辆在车位上的停车信息
+            </summary>
+            <param name="model">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetCorssVehicleImage(System.String,System.String)">
+            <summary>
+            查询车辆抓拍图片
+            </summary>
+            <param name="aswSysCode">图片服务唯一标识码</param>
+            <param name="picUri">图片uri 根据【查询过车记录】、【查询临时车停车信息】或【查询停车账单】接口获取返回参数vehiclePicUri或plateNoPicUri，最大长度：256</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkingDeviceService">
+            <summary>
+            停车场设备服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkingManageService">
+            <summary>
+            停车场管理服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetParkList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetParkList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetRemainSpace(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetRemainSpace(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkRecordService">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetCorssVehicleImage(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCorssVehicleImage(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceControlRequest">
+            <summary>
+            反控道闸 请求实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Device.DeviceControlRequest.RoadWaySysCode">
+            <summary>
+            车道唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Device.DeviceControlRequest.Command">
+            <summary>
+            控闸命令 0：关闸 1：开闸 3：常开
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceControlRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.Request.Device.DeviceControlRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceCommandType">
+            <summary>
+            控闸命令 类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.Close">
+            <summary>
+            关闸
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.Open">
+            <summary>
+            开闸
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.AwayOpen">
+            <summary>
+            常开
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.ParkRecordQueryType">
+            <summary>
+            停车场 查询标识
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.PlateNo">
+            <summary>
+            车牌查询
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.Truck">
+            <summary>
+            车位查询 
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.ParkTimeSlot">
+            <summary>
+            停车时间段查询 
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.NoPlateNo">
+            <summary>
+            停车时间段查询
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest">
+            <summary>
+            查询车辆在车位上的停车信息 请求
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.QueryType">
+            <summary>
+            查询标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.ParkSysCode">
+            <summary>
+            停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.StartTime">
+            <summary>
+            查询开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.EndTime">
+            <summary>
+            查询结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.QueryParkRecordRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.Request.Record.QueryParkRecordRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Spcms.Dto.DefenceStatusResponse">
             <summary>
             防区状态
@@ -1151,6 +1992,91 @@
         <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.PangLu">
             <summary>
             旁路
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.EventLogResponse">
+            <summary>
+            报警事件日志
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EventId">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcIndex">
+            <summary>
+            事件源indexCode
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcName">
+            <summary>
+            事件源名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcType">
+            <summary>
+            事件源资源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.RegionId">
+            <summary>
+            事件发生区域
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.Status">
+            <summary>
+            事件状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.StatusDesc">
+            <summary>
+            事件状态描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.EventStatusType">
+            <summary>
+            事件状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.ShunShi">
+            <summary>
+            瞬时
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.Start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.MaiChong">
+            <summary>
+            事件脉冲
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.LianDong">
+            <summary>
+            事件联动结果更新
             </summary>
         </member>
         <member name="T:General.Api.Application.Spcms.Dto.SubSysStatusResponse">
@@ -1212,6 +2138,19 @@
             <param name="defenceIndexCodes">防区编码列表</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            报警事件日志查询
+            </summary>
+            <param name="pageNo">当前页码</param>
+            <param name="pageSize">每页数据记录数</param>
+            <param name="srcType">事件源类型</param>
+            <param name="startTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="eventType">事件类型</param>
+            <param name="srcName">事件源名称</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Spcms.SpcmsService">
             <summary>
             入侵报警服务
@@ -1220,6 +2159,16 @@
         <member name="M:General.Api.Application.Spcms.SpcmsService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)"/>
             </summary>
         </member>
         <member name="M:General.Api.Application.Spcms.SpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})">

@@ -70,9 +70,9 @@ namespace General.Api.Application.Parking
             return data?.Data;
         }
         /// <summary>
-        /// <see cref="IParkingManageService.GetParkList(string,string,int,int)"/>
+        /// <see cref="IParkingManageService.GetParkInfoList(string,string,int,int)"/>
         /// </summary>
-        public async Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkList(string parkSysCode, string spaceNo, int pageNo, int pageSize)
+        public async Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkInfoList(string parkSysCode, string spaceNo, int pageNo, int pageSize)
         {
             var data = await _parkingApi.AppendFormatToHik("/api/pms/v1/parkingSpace/spaceNo")
                 .SetHiKSecreity()

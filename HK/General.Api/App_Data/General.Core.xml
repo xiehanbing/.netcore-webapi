@@ -270,6 +270,19 @@
             <param name="defaultValue">default value if not exist</param>
             <returns>app setting value</returns>
         </member>
+        <member name="T:General.Core.Extension.DateTimeExtension">
+            <summary>
+            DateTimeExtension 日期扩展
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.DateTimeExtension.TimeToString(System.DateTime,System.String)">
+            <summary>
+            日期格式化
+            </summary>
+            <param name="time">时间</param>
+            <param name="formatter">格式化字符串</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Core.Extension.EncryptorHelper">
             <summary>
             加解密帮助类
@@ -296,6 +309,11 @@
             <param name="separator">分隔符</param>
             <returns></returns>
         </member>
+        <member name="T:General.Core.Extension.EnumExtendsion">
+            <summary>
+            EnumExtendsion
+            </summary>
+        </member>
         <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDescription(System.Type,System.Object)">
             <summary>
             获取枚举项的描述
@@ -303,6 +321,21 @@
             <param name="typeOfEnum">枚举类型</param>
             <param name="value">枚举项/枚举值</param>
             <returns>描述</returns>
+        </member>
+        <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDescriptionByValue(System.Object,System.Type)">
+            <summary>
+            GetEnumDescriptionByValue
+            </summary>
+            <param name="value">值</param>
+            <param name="typeOfEnum">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDestAndValue(System.Type)">
+            <summary>
+            GetEnumDestAndValue 
+            </summary>
+            <param name="typeOfEnum"></param>
+            <returns></returns>
         </member>
         <member name="T:General.Core.Extension.HttpException">
             <summary>

@@ -17,9 +17,9 @@ namespace General.Api.Application.Parking
         /// <returns></returns>
         Task<List<ParkInfoListResponse>> GetParkList(List<string> parkIndexCodes);
         /// <summary>
-        /// 停车场唯一标识集
+        /// 获取出入口
         /// </summary>
-        /// <param name="parkIndexCodes"></param>
+        /// <param name="parkIndexCodes">停车场唯一标识集</param>
         /// <returns></returns>
         Task<List<EntranceInfoResponse>> GetEntranceList(List<string> parkIndexCodes);
         /// <summary>
@@ -37,7 +37,7 @@ namespace General.Api.Application.Parking
         /// <param name="pageNo">目标页码</param>
         /// <param name="pageSize">每页记录数</param>
         /// <returns></returns>
-        Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkList(string parkSysCode, string spaceNo, int pageNo,
+        Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkInfoList(string parkSysCode, string spaceNo, int pageNo,
             int pageSize);
         /// <summary>
         /// 查询停车库剩余车位数
