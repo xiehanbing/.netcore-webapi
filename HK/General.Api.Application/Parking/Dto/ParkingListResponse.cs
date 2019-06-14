@@ -5,7 +5,7 @@ namespace General.Api.Application.Parking.Dto
     /// <summary>
     /// 停车库列表
     /// </summary>
-    public class ParkInfoResponse
+    public class ParkInfoListResponse
     {
         /// <summary>
         /// 停车场唯一标识

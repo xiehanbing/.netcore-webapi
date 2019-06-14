@@ -30,7 +30,7 @@ namespace General.Api.Application.Parking
         /// <summary>
         /// <see cref="IParkingManageService.GetParkList(List{string})"/>
         /// </summary>
-        public async Task<List<ParkInfoResponse>> GetParkList(List<string> parkIndexCodes)
+        public async Task<List<ParkInfoListResponse>> GetParkList(List<string> parkIndexCodes)
         {
             var data = await _parkingApi.AppendFormatToHik("/api/resource/v1/park/parkList")
                 .SetHiKSecreity()
@@ -38,7 +38,7 @@ namespace General.Api.Application.Parking
                 {
                     parkIndexCodes = (parkIndexCodes?.Any() ?? false) ? (string.Join(",", parkIndexCodes)) : null
                 })
-                .ReciveJsonResultAsync<HikVisionResponse<List<ParkInfoResponse>>>();
+                .ReciveJsonResultAsync<HikVisionResponse<List<ParkInfoListResponse>>>();
             return data?.Data;
         }
         /// <summary>
@@ -67,6 +67,37 @@ namespace General.Api.Application.Parking
                     entranceIndexCodes = entranceIndexCodes.StringJoin(",")
                 })
                 .ReciveJsonResultAsync<HikVisionResponse<List<RoadwayInfoResponse>>>();
+            return data?.Data;
+        }
+        /// <summary>
+        /// <see cref="IParkingManageService.GetParkList(string,string,int,int)"/>
+        /// </summary>
+        public async Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkList(string parkSysCode, string spaceNo, int pageNo, int pageSize)
+        {
+            var data = await _parkingApi.AppendFormatToHik("/api/pms/v1/parkingSpace/spaceNo")
+                .SetHiKSecreity()
+                .PostAsync(new
+                {
+                    parkSyscode = parkSysCode,
+                    spaceNo,
+                    pageNo,
+                    pageSize
+                })
+                .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<ParkInfoResponse>>>();
+            return data?.Data;
+        }
+        /// <summary>
+        /// <see cref="IParkingManageService.GetRemainSpace(string)"/>
+        /// </summary>
+        public async Task<List<RemainSpaceNumResponse>> GetRemainSpace(string parkSysCode)
+        {
+            var data = await _parkingApi.AppendFormatToHik("/api/pms/v1/parkingSpace/spaceNo")
+                .SetHiKSecreity()
+                .PostAsync(new
+                {
+                    parkSyscode = parkSysCode
+                })
+                .ReciveJsonResultAsync<HikVisionResponse<List<RemainSpaceNumResponse>>>();
             return data?.Data;
         }
     }

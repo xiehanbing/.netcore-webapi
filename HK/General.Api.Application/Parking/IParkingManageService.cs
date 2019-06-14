@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using General.Api.Application.Hikvision;
 using General.Api.Application.Parking.Dto;
 
 namespace General.Api.Application.Parking
@@ -14,7 +15,7 @@ namespace General.Api.Application.Parking
         /// </summary>
         /// <param name="parkIndexCodes">停车库唯一标识集合</param>
         /// <returns></returns>
-        Task<List<ParkInfoResponse>> GetParkList(List<string> parkIndexCodes);
+        Task<List<ParkInfoListResponse>> GetParkList(List<string> parkIndexCodes);
         /// <summary>
         /// 停车场唯一标识集
         /// </summary>
@@ -27,5 +28,22 @@ namespace General.Api.Application.Parking
         /// <param name="entranceIndexCodes">出入口唯一标识集 必填</param>
         /// <returns></returns>
         Task<List<RoadwayInfoResponse>> GetRoadWayList(List<string> entranceIndexCodes);
+
+        /// <summary>
+        /// 查询车位信息
+        /// </summary>
+        /// <param name="parkSysCode">停车场唯一标识码</param>
+        /// <param name="spaceNo">车位号</param>
+        /// <param name="pageNo">目标页码</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
+        Task<ListBaseResponse<Dto.ParkInfoResponse>> GetParkList(string parkSysCode, string spaceNo, int pageNo,
+            int pageSize);
+        /// <summary>
+        /// 查询停车库剩余车位数
+        /// </summary>
+        /// <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
+        /// <returns></returns>
+        Task<List<RemainSpaceNumResponse>> GetRemainSpace(string parkSysCode);
     }
 }
