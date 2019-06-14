@@ -15,12 +15,12 @@ namespace General.Api.Extension
         /// <returns></returns>
         public static List<string> GetAreaName(this ApiDescription description)
         {
-            string actionName = description.ActionDescriptor.RouteValues["action"];
+            string areaName = description.ActionDescriptor.RouteValues["area"];
             string controlName = description.ActionDescriptor.RouteValues["controller"];
             List<string> areaList = new List<string> {controlName};
-            if (string.IsNullOrEmpty(actionName))
+            if (!string.IsNullOrEmpty(areaName))
             {
-                description.RelativePath = $"{controlName}/{description.RelativePath}";
+                description.RelativePath = $"{areaName}/{controlName}/{description.RelativePath}";
             }
             //description.RelativePath = $"{controlName}/{description.RelativePath}";
             return areaList;

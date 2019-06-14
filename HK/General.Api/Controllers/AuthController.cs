@@ -19,6 +19,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 权限获取
     /// </summary>
+    [Area("Auth")]
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]

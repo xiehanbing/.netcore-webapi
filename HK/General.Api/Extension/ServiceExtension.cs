@@ -50,10 +50,16 @@ namespace General.Api.Extension
                 {
                     Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version,
                     TermsOfService = "http://www.sihongit.com/",
-                    Description="接口"
+                    Description="思弘接口",
+                    Contact = new Contact()
+                    {
+                        Name = "谢汉冰",
+                        Email = "xiehanbing@sihongit.com"
+                        
+                    }
                 });
                 options.DocInclusionPredicate((docName, description) => true);
-                options.TagActionsBy(apiDesc => apiDesc.GetAreaName());
+                //options.TagActionsBy(apiDesc => apiDesc.GetAreaName());
                 string rootdir = rootDir ?? AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
                 if (dir?.Parent?.Parent != null)
