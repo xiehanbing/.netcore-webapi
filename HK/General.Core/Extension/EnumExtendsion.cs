@@ -4,6 +4,9 @@ using General.Core.Libs;
 
 namespace General.Core.Extension
 {
+    /// <summary>
+    /// EnumExtendsion
+    /// </summary>
     public static class EnumExtendsion
     {
         /// <summary>
@@ -24,7 +27,12 @@ namespace General.Core.Extension
             }
             return "";
         }
-
+        /// <summary>
+        /// GetEnumDescriptionByValue
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="typeOfEnum">类型</param>
+        /// <returns></returns>
         public static string GetEnumDescriptionByValue(this object value, Type typeOfEnum)
         {
             if (value is int)
@@ -38,7 +46,11 @@ namespace General.Core.Extension
             return "";
 
         }
-
+        /// <summary>
+        /// GetEnumDestAndValue 
+        /// </summary>
+        /// <param name="typeOfEnum"></param>
+        /// <returns></returns>
         public static Dictionary<string, string> GetEnumDestAndValue(this Type typeOfEnum)
         {
             return EnumHelper.GetEnumDescriptionAndValue(typeOfEnum);

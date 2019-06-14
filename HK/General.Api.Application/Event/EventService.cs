@@ -29,6 +29,7 @@ namespace General.Api.Application.Event
         public async Task<bool> SubscrEvent(List<int> eventTypes, string eventDest)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/eventService/v1/eventSubscriptionByEventTypes")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     eventTypes,
@@ -43,6 +44,7 @@ namespace General.Api.Application.Event
         public async Task<bool> Cancel(List<int> eventTypes)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/eventService/v1/eventUnSubscriptionByEventTypes")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     eventTypes
@@ -56,6 +58,7 @@ namespace General.Api.Application.Event
         public async Task<Dto.SubscriptionInfoResponse> GetSubscrList()
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/eventService/v1/eventUnSubscriptionByEventTypes")
+                .SetHiKSecreity()
                 .PostAsync(new { })
                 .ReciveJsonResultAsync<HikVisionResponse<Dto.SubscriptionInfoResponse>>();
             return data?.Data;

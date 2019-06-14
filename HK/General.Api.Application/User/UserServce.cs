@@ -50,6 +50,7 @@ namespace General.Api.Application.User
         {
 
             var data = await _doorControlApi.AppendFormat("/api/resource/v1/person/advance/personList")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     personIds = query.PersonIds.StringJoin(","),

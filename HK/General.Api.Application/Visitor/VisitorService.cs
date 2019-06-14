@@ -30,6 +30,7 @@ namespace General.Api.Application.Visitor
         public async Task<Dto.VisitorAddResponse> AddVisitor(Request.VisitorAddRequest model)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/visitor/v1/appointment")
+                .SetHiKSecreity()
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse<Dto.VisitorAddResponse>>();
             //todo 验证码处理
@@ -41,6 +42,7 @@ namespace General.Api.Application.Visitor
         public async Task<Dto.VisitorAddResponse> UpdateVisitor(Request.VisitorAddRequest model)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/visitor/v1/appointment/update")
+                .SetHiKSecreity()
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse<Dto.VisitorAddResponse>>();
             //todo 验证码处理
@@ -53,6 +55,7 @@ namespace General.Api.Application.Visitor
             Request.VisitorQueryRequest model)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/visitor/v1/appointment/records")
+                .SetHiKSecreity()
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<Dto.AppointmentRecordResponse>>>();
             return data?.Data;
@@ -63,6 +66,7 @@ namespace General.Api.Application.Visitor
         public async Task<bool> Cancel(List<string> appointRecordIds)
         {
             var data = await _doorControlApi.AppendFormatToHik("")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     appointRecordIds
@@ -77,6 +81,7 @@ namespace General.Api.Application.Visitor
             Request.VisitorQueryRequest model)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/visitor/v1/visiting/records")
+                .SetHiKSecreity()
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<Dto.AppointmentRecordResponse>>>();
             return data?.Data;
@@ -87,6 +92,7 @@ namespace General.Api.Application.Visitor
         public async Task<string> GetVisitingPicture(string svrIndexCode, string picUri)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/visitor/v1/record/pictures")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     svrIndexCode,

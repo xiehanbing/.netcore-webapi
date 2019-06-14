@@ -35,6 +35,7 @@ namespace General.Api.Application.Door
         public async Task<List<Dto.DoorControlResponse>> DoControl(List<string> doorIndexCodeList, int controlType)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/door/doControl")
+                .SetHiKSecreity()
                  .PostAsync(new { doorIndexCodes = doorIndexCodeList, controlType })
                  .ReciveJsonResultAsync<HikVisionResponse<List<Dto.DoorControlResponse>>>();
             return data?.Data;
@@ -46,6 +47,7 @@ namespace General.Api.Application.Door
             string regionIndexCode)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/resource/v1/acsDoor/advance/acsDoorList")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     pageNo,
@@ -64,6 +66,7 @@ namespace General.Api.Application.Door
         public async Task<ListBaseResponse<RegionInfoResponse>> GetRegionList(int pageNo, int pageSize, string treeCode)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/resource/v1/regions")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     pageNo,
@@ -88,6 +91,7 @@ namespace General.Api.Application.Door
             model.TaskId = taskId;
 
             var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/data/addition")
+                .SetHiKSecreity()
                 .PostAsync(model)
                 .ReciveJsonResultAsync<HikVisionResponse>();
             if (data.Success)
@@ -105,6 +109,7 @@ namespace General.Api.Application.Door
         private async Task<string> CreateDoorAuthTask(int taskType)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/task/addition")
+                .SetHiKSecreity()
                 .PostAsync(new { taskType })
                 .ReciveJsonResultAsync<HikVisionResponse<DoorAuthTaskResponse>>();
             return data?.Data?.TaskId;
@@ -115,6 +120,7 @@ namespace General.Api.Application.Door
         public async Task<Dto.DoorAuthTaskProgressResponse> GetAuthProgress(string taskId)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/acps/v1/authDownload/task/progress")
+                .SetHiKSecreity()
                 .PostAsync(new { taskId })
                 .ReciveJsonResultAsync<HikVisionResponse<DoorAuthTaskProgressResponse>>();
             return data?.Data;
@@ -126,6 +132,7 @@ namespace General.Api.Application.Door
             Request.DoorEventQueryRequest request)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/door/events")
+                .SetHiKSecreity()
                 .PostAsync(request)
                 .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<DoorEventQueryResponse>>>();
             return data?.Data;
@@ -136,6 +143,7 @@ namespace General.Api.Application.Door
         public async Task<string> GetEventPictures(string svrIndexCode, string picUri)
         {
             var data = await _doorControlApi.AppendFormatToHik("/api/acs/v1/event/pictures")
+                .SetHiKSecreity()
                 .PostAsync(new
                 {
                     svrIndexCode,

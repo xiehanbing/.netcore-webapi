@@ -285,7 +285,15 @@ namespace General.Core.HttpClient.Extension
                 return response;
             }
         }
-
+        /// <summary>
+        /// 设置海康秘钥等相关信息
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        public static System.Net.Http.HttpClient SetHiKSecreity(this System.Net.Http.HttpClient client)
+        {
+            return client;
+        }  
         /// <summary>
         /// 获取自1970年1月1日以来的毫秒数
         /// </summary>
