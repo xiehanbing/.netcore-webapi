@@ -32,14 +32,14 @@ namespace General.Api.Framework.Filters
             }
             else if (context.Result is ObjectResult objectResult)
             {
-                context.Result = objectResult.Value == null ? new ObjectResult(new ApiResult { Code = 404, Message = "未找到资源" }) : new ObjectResult(new ApiResult<object> { Code = 200, Message = "", Result = objectResult.Value, Success = true });
+                context.Result = objectResult.Value == null ? new ObjectResult(new ApiResult { Code = 404, Message = "未找到资源" }) : new ObjectResult(new ApiResult<object> { Code = objectResult.StatusCode??0, Message = "", Result = objectResult.Value, Success = true });
             }
             else if (context.Result is ContentResult contentResult)
             {
                 context.Result = new ObjectResult(
                     new ApiResult<object>()
                     {
-                        Code = 200,
+                        Code = contentResult.StatusCode??0,
                         Message = "",
                         Result = contentResult.Content,
                         Success = true
