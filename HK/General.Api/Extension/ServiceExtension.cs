@@ -46,8 +46,14 @@ namespace General.Api.Extension
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info() { Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version });
+                options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info()
+                {
+                    Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version,
+                    TermsOfService = "http://www.sihongit.com/",
+                    Description="接口"
+                });
                 options.DocInclusionPredicate((docName, description) => true);
+                options.TagActionsBy(apiDesc => apiDesc.GetAreaName());
                 string rootdir = rootDir ?? AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
                 if (dir?.Parent?.Parent != null)

@@ -242,6 +242,18 @@
             <see cref="M:General.Core.IEngine.ResolveByRequireService``1"/>
             </summary>
         </member>
+        <member name="T:General.Api.Extension.ApiDescriptionExtension">
+            <summary>
+            ApiDescriptionExtension 域接口描述 扩展类
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ApiDescriptionExtension.GetAreaName(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
+            <summary>
+            获取区域名称
+            </summary>
+            <param name="description">域接口描述</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Extension.ErrorHandlingExtensions">
             <summary>
             ErrorHandlingExtensions
