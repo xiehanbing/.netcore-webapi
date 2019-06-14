@@ -215,6 +215,30 @@
             <param name="services"></param>
             <param name="config"></param>
         </member>
+        <member name="T:General.Api.Extension.ServiceCollectionExtension">
+            <summary>
+            ServiceCollectionExtension
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitLogContext(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            InitLogContext  初始化 logcontext
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)">
+            <summary>
+            InitSwaggerGen
+            </summary>
+            <param name="services">services</param>
+            <param name="environment">environment</param>
+            <param name="rootDir">app rootDir</param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.AddScopedExtension(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            AddScopedExtension
+            </summary>
+        </member>
         <member name="T:General.Api.Program">
             <summary>
             Program

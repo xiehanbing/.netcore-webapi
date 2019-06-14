@@ -108,9 +108,6 @@ namespace General.Api
             //注入接口
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
-            services.AddScoped(typeof(UserContext));
-            services.AddSingleton(typeof(HikVisionContext));
-
             //add 自定义验证策略
             services.AddInnerAuthorize(Configuration);
             services.AddCors(options =>
@@ -155,63 +152,12 @@ namespace General.Api
             });
             //添加对AutoMapper的支持
             services.AddScoped<IMapper>(options => MapperConfiguration.CreateMapper());
-            //add log4net 
-            services.AddSingleton<Log.ILogManager, Log.LogManager>();
             //add swagger
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info() { Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version });
-                options.DocInclusionPredicate((docName, description) => true);
-                string rootdir = AppContext.BaseDirectory;
-                DirectoryInfo dir = Directory.GetParent(rootdir);
-                if (dir?.Parent?.Parent != null)
-                {
-                    string root = dir.FullName;
-                    if (Environment.IsDevelopment())
-                    {
-                        root = dir.Parent.Parent.FullName;
-                    }
-                    var xmlBasePath = Path.Combine(root, @"App_Data");
-                    DirectoryInfo directoryInfo = new DirectoryInfo(xmlBasePath);
-                    foreach (var info in directoryInfo.GetFiles())
-                    {
-                        options.IncludeXmlComments(info.FullName);
-                    }
-                }
-                options.OperationFilter<HttpHeaderOperation>();
-                options.AddFluentValidationRules();
-            });
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-
-            //set dbcontext connstring
-            //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
-            services.AddDbContextPool<GeneralDbContext>(
-                options =>
-                {
-                    options.UseSqlServer(Configuration.GetConnectionString(ApiConsts.ConnectionStringName),
-                        sqlserverOptions => sqlserverOptions.EnableRetryOnFailure());
-
-                }, poolSize: 90);
-            //add dapper dbcontext
-            services.AddSingleton(new DapperDbContext()
-            {
-                ConnectionConfig = new ConnectionConfig()
-                {
-                    ConnectionString = Configuration.GetConnectionString(ApiConsts.ConnectionStringName),
-                    DbType = DbStoreType.SqlServer
-                }
-            });
-            //add dapper         
-            services.AddSingleton(typeof(IDapperClient<>), typeof(DapperClient<>));
-
+            services.InitSwaggerGen(Environment, AppContext.BaseDirectory);
+            services.AddScopedExtension(Configuration);
             #region log
-
-            var serviceProvider = services.BuildServiceProvider();
-            var apilogRepo = serviceProvider.GetService<IRepository<ApiLog>>();
-
-            General.Api.Core.Log.LogContext.ApiLogRepository = apilogRepo;
-            General.Api.Core.Log.LogContext.ExceptionApiLogRepository = serviceProvider.GetService<IRepository<ApiLog>>();
-            General.Api.Core.Log.LogContext.ResourceApiLogRepository = serviceProvider.GetService<IRepository<ApiLog>>();
+            //初始化logcontext
+            services.InitLogContext();
             #endregion
 
         }
