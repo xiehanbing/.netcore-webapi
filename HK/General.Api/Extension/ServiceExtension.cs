@@ -2,6 +2,7 @@
 using System.IO;
 using AutoMapper;
 using General.Api.Application.Hikvision;
+using General.Api.Core.Log;
 using General.Api.Framework.Filters;
 using General.Api.Framework.Token;
 using General.Core;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace General.Api.Extension
@@ -31,11 +33,16 @@ namespace General.Api.Extension
         public static void InitLogContext(this IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
-            General.Api.Core.Log.LogContext.ApiLogRepository = serviceProvider.GetService<IRepository<ApiLog>>();
+            General.Api.Core.Log.LogContext.ApiLogRepository =
+                serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ApiLog>>();
+                //serviceProvider.GetService<IRepository<ApiLog>>();
             General.Api.Core.Log.LogContext.ExceptionApiLogRepository =
-                serviceProvider.GetService<IRepository<ApiLog>>();
+                serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ExceptionApiLog>>();
+            //serviceProvider.GetService<IRepository<ExceptionApiLog>>();
             General.Api.Core.Log.LogContext.ResourceApiLogRepository =
-                serviceProvider.GetService<IRepository<ApiLog>>();
+                serviceProvider.GetService<IRepository<ResourceApiLog>>();
+            LogContext.HttpClientApiLogRepository = serviceProvider.GetService<IRepository<HttpClientApiLog>>();
+           
         }
         /// <summary>
         /// 加载其他的 配置上下文
@@ -50,6 +57,10 @@ namespace General.Api.Extension
             if (serviceProvider == null) serviceProvider = services.BuildServiceProvider();
 
             InitHikSecurityContext(services, configuration);
+
+            LogContext.ConnectionString = configuration.GetConnectionString(ApiConsts.ConnectionStringName);
+         CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
+            services.AddDbContext<CustomLoggerDBContext>();
         }
         /// <summary>
         /// 加载海康加密所需上下文
@@ -136,7 +147,7 @@ namespace General.Api.Extension
                     options.UseSqlServer(configuration.GetConnectionString(ApiConsts.ConnectionStringName),
                         sqlserverOptions => sqlserverOptions.EnableRetryOnFailure());
 
-                }, poolSize: 90);
+                }, poolSize: 120);
         }
     }
 }

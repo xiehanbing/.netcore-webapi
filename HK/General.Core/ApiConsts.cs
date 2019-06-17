@@ -25,5 +25,9 @@
         /// ProjectName
         /// </summary>
         public const string ProjectName = "General.Api";
+        /// <summary>
+        /// 大于0 
+        /// </summary>
+        public const string MoreThanZeroRegex = @"^[1-9][0-9]*$";
     }
 }

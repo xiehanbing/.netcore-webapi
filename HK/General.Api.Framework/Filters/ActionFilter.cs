@@ -56,13 +56,13 @@ namespace General.Api.Framework.Filters
             }
 
             var response = context.Result.GetSerializeObject();
-            LogManage.ApiLog(new ApiLog()
+            LogManage.ResourceLog(new ResourceApiLog()
             {
                 ConfirmNo = path,
                 ModelName = ApiConsts.ProjectName + path,
                 RequestContext = requestStr,
                 ResponseContext = response
-            }, ApiLogRepositoryType.Resource);
+            });
         }
         /// <summary>
         /// OnActionExecuting
@@ -70,6 +70,7 @@ namespace General.Api.Framework.Filters
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            
             //var requestbody = filterContext.HttpContext.Request?.Body;
             //处理body
             //if (requestbody != null)
@@ -139,6 +140,7 @@ namespace General.Api.Framework.Filters
             //todo request 
             //((BaseRequest)filterContext.ActionArguments["req"]).Operator = 99;
             base.OnActionExecuting(filterContext);
+            //if()
         }
     }
 }

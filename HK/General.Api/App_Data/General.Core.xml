@@ -34,6 +34,11 @@
             ProjectName
             </summary>
         </member>
+        <member name="F:General.Core.ApiConsts.MoreThanZeroRegex">
+            <summary>
+            大于0 
+            </summary>
+        </member>
         <member name="T:General.Core.Dapper.ConnectionConfig">
             <summary>
             dapper config 

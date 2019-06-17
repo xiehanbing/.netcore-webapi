@@ -17,6 +17,7 @@ namespace General.Api.Framework.Filters
     /// </summary>
     public class ExceptionFilter : IAsyncExceptionFilter  //IExceptionFilter, IFilterMetadata,
     {
+
         /// <summary>
         /// _logManager
         /// </summary>
@@ -63,7 +64,7 @@ namespace General.Api.Framework.Filters
             var httpRequest = exContext.HttpContext;
             var request = await httpRequest.Request.ReadRequestAsync();
             var response = exContext.Exception.GetSerializeObject();
-            var log = new ApiLog()
+            var log = new ExceptionApiLog()
             {
                 ConfirmNo = httpRequest.Request.Path.Value,
                 ModelName = httpRequest.Request.Method,
@@ -71,7 +72,7 @@ namespace General.Api.Framework.Filters
                 ResponseContext = response
             };
             _logManager.Info(log.GetSerializeObject());
-            LogManage.ApiLog(log,ApiLogRepositoryType.Exception);
+            LogManage.ExceptionLog(log);
             return;
         }
         /// <summary>

@@ -161,6 +161,31 @@
             <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.ParkController.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            道闸反控
+            </summary>
+            <param name="model">请求类</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            根据停车场编码反控道闸
+            </summary>
+            <param name="parkSyscode">停车场唯一标识码</param>
+            <param name="command">控闸命令 0关闸 1开闸 3常开</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询场内车辆停车信息
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码</param>
+            <param name="plateNo">车牌号码</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.UserController">
             <summary>
             UserController
@@ -369,7 +394,7 @@
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             add use middleware
             </summary>

@@ -1,50 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using General.Api.Application;
-using General.Api.Application.Hikvision;
-using General.Api.Application.Token;
-using General.Api.Core;
 using General.Api.Engine;
 using General.Api.Extension;
-using General.Api.Framework;
-using General.Api.Framework.Delegate;
 using General.Api.Framework.Filters;
-using General.Api.Framework.Middleware;
-using General.Api.Framework.Token;
 using General.Core;
-using General.Core.Dapper;
-using General.Core.Data;
 using General.Core.Extension;
 using General.Core.Libs;
-using General.Core.Token;
-using General.EntityFrameworkCore;
-using General.EntityFrameworkCore.Dapper;
-using General.EntityFrameworkCore.Log;
-using General.Log;
-using log4net.Config;
-using log4net.Core;
-using log4net.Repository;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace General.Api
 {
@@ -160,6 +131,7 @@ namespace General.Api
             services.InitLogContext();
             #endregion
 
+            services.InitOtherContxt(Configuration,Environment, services.BuildServiceProvider());
         }
         /// <summary>
         /// add use middleware
@@ -167,8 +139,11 @@ namespace General.Api
         /// <param name="app"></param>
         /// <param name="env"></param>
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
+            //loggerFactory.AddContext(LogLevel.Information, Configuration.GetConnectionString("LoggerDatabase"));
             app.UseStaticFiles();
 
             app.UseAuthentication();//注意添加这一句，启用验证

@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using General.Api.Application.Hikvision;
 using General.Api.Application.Parking;
 using General.Api.Application.Parking.Dto;
+using General.Api.Application.Parking.Dto.Device;
+using General.Api.Application.Parking.Dto.Record;
+using General.Api.Application.Parking.Request.Device;
+using General.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlMatches;
 
 namespace General.Api.Controllers
 {
     /// <summary>
     /// 停车管理
     /// </summary>
-    [Route("api/[controller]"),Authorize("General")]
+    [Route("api/[controller]"), Authorize("General")]
     [ApiController]
     public class ParkController : ControllerBase
     {
@@ -86,7 +93,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
         /// <returns></returns>
-        [Route("remainSpace"),HttpGet]
+        [Route("remainSpace"), HttpGet]
         public async Task<List<RemainSpaceNumResponse>> GetRemainSpace(string parkSysCode)
         {
             return await _parkingManageService.GetRemainSpace(parkSysCode);
@@ -95,5 +102,55 @@ namespace General.Api.Controllers
 
         #endregion
 
+
+        #region park device
+        /// <summary>
+        /// 道闸反控
+        /// </summary>
+        /// <param name="model">请求类</param>
+        /// <returns></returns>
+        [HttpPost,Route("device/control")]
+        public async Task<ListBaseResponse<DeviceControlResponse>> DoControl(DeviceControlRequest model)
+        {
+            return await _deviceService.DoControl(model);
+        }
+        /// <summary>
+        /// 根据停车场编码反控道闸
+        /// </summary>
+        /// <param name="parkSyscode">停车场唯一标识码</param>
+        /// <param name="command">控闸命令 0关闸 1开闸 3常开</param>
+        /// <returns></returns>
+        [HttpGet,Route("device/control/byParkCode")]
+        public async Task<bool> DoControlBatch([Required]string parkSyscode, DeviceCommandType command)
+        {
+            return await _deviceService.DoControlBatch(parkSyscode, command);
+        }
+
+
+        #endregion
+
+
+        #region park record
+        /// <summary>
+        /// 查询场内车辆停车信息
+        /// </summary>
+        /// <param name="parkSysCode">停车库唯一标识码</param>
+        /// <param name="plateNo">车牌号码</param>
+        /// <param name="pageNo">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns></returns>
+        [HttpGet,Route("record/temp")]
+        public async Task<ListBaseResponse<TempCarInRecordResponse>> GetTempRecordList(string parkSysCode,
+            string plateNo,
+            [RegularExpression(ApiConsts.MoreThanZeroRegex,ErrorMessage = "pageNo more than zero")]int pageNo, [RegularExpression(ApiConsts.MoreThanZeroRegex, ErrorMessage = "pageSize more than zero")]int pageSize)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    throw new ValidatorException("pageno or pagesize is not null");
+            //}
+            return await _parkRecordService.GetTempRecordList(parkSysCode, plateNo, pageNo, pageSize);
+        }
+
+        #endregion
     }
 }

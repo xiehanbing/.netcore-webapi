@@ -48,33 +48,56 @@ namespace General.Core.HttpClient.Extension
 
                 }
 
-                if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
-                {
-                    var formData = await httpContent.ReadAsStringAsync();
-                    client.DefaultRequestHeaders.SetHikSecurityHeaders(formData, client.BaseAddress.AbsoluteUri, data,
-                        "post");
-                }
+                SetHiSecuritySignHeader(client, httpContent, data, "post");
 
-                if (client.DefaultRequestHeaders?.Any() ?? false)
-                {
-                    foreach (var item in client.DefaultRequestHeaders)
-                    {
-                        httpContent.Headers.Add(item.Key, item.Value);
-                    }
-                }
+                //if (client.DefaultRequestHeaders?.Any() ?? false)
+                //{
+                //    foreach (var item in client.DefaultRequestHeaders)
+                //    {
+                //        httpContent.Headers.Add(item.Key, item.Value);
+                //    }
+                //}
                 var response = await client.PostAsync(client.BaseAddress, httpContent);
-                LogManage.ApiLog(new ApiLog()
+                LogManage.HttpClientLog(new HttpClientApiLog()
                 {
                     ConfirmNo = client.BaseAddress.AbsoluteUri,
                     ModelName = "Post:" + client.BaseAddress.AbsoluteUri,
-                    RequestContext = httpContent.GetSerializeObject(),
+                    RequestContext = client.DefaultRequestHeaders.GetSerializeObject() + ";httocintent:" + httpContent.GetSerializeObject(),
                     ResponseContext = response.Content.ReadAsStringAsync().Result
                 });
                 client.Dispose();
                 return response;
             }
         }
-
+        /// <summary>
+        /// 设置最终访问的 header 数据
+        /// </summary>
+        /// <param name="client">client</param>
+        /// <param name="httpContent">httpContent</param>
+        /// <param name="data">data</param>
+        /// <param name="method">method</param>
+        private static void SetHiSecuritySignHeader(System.Net.Http.HttpClient client, HttpContent httpContent, object data, string method)
+        {
+            if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
+            {
+                var formData = data.GetSerializeObject();
+                client.DefaultRequestHeaders.SetHikSecurityHeaders(formData, client.BaseAddress.AbsoluteUri, data,
+                    method);
+                httpContent.Headers.ContentMD5 = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(formData));
+                if (client.DefaultRequestHeaders.Contains("X-Ca-Signature"))
+                {
+                    var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature");
+                    httpContent.Headers.Add("X-Ca-Signature", value);
+                    client.DefaultRequestHeaders.Remove("X-Ca-Signature");
+                }
+                if (client.DefaultRequestHeaders.Contains("X-Ca-Signature-Headers"))
+                {
+                    var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature-Headers");
+                    httpContent.Headers.Add("X-Ca-Signature-Headers", value);
+                    client.DefaultRequestHeaders.Remove("X-Ca-Signature-Headers");
+                }
+            }
+        }
         /// <summary>
         /// HttpPost
         /// </summary>
@@ -99,21 +122,9 @@ namespace General.Core.HttpClient.Extension
                 {
                     httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType); ;
                 }
-                if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
-                {
-                    var formData = httpContent.ReadAsStringAsync().Result;
-                    client.DefaultRequestHeaders.SetHikSecurityHeaders(formData, client.BaseAddress.AbsoluteUri, data,
-                        "post");
-                }
-                if (client.DefaultRequestHeaders.Any())
-                {
-                    foreach (var item in client.DefaultRequestHeaders)
-                    {
-                        httpContent.Headers.Add(item.Key, item.Value);
-                    }
-                }
+                SetHiSecuritySignHeader(client, httpContent, data, "post");
                 var response = client.PostAsync(client.BaseAddress, httpContent).Result;
-                LogManage.ApiLog(new ApiLog()
+                LogManage.HttpClientLog(new HttpClientApiLog()
                 {
                     ConfirmNo = client.BaseAddress.AbsoluteUri,
                     ModelName = "Post:" + client.BaseAddress.AbsoluteUri,
@@ -214,7 +225,7 @@ namespace General.Core.HttpClient.Extension
             }
             var response = client.GetAsync(client.BaseAddress).Result;
 
-            LogManage.ApiLog(new ApiLog()
+            LogManage.HttpClientLog(new HttpClientApiLog()
             {
                 ConfirmNo = client.BaseAddress.AbsoluteUri,
                 ModelName = "Get:" + client.BaseAddress.AbsoluteUri,
@@ -238,7 +249,7 @@ namespace General.Core.HttpClient.Extension
             }
             var response = await client.GetAsync(client.BaseAddress);
 
-            LogManage.ApiLog(new ApiLog()
+            LogManage.HttpClientLog(new HttpClientApiLog()
             {
                 ConfirmNo = client.BaseAddress.AbsoluteUri,
                 ModelName = "Get:" + client.BaseAddress.AbsoluteUri,
@@ -261,7 +272,7 @@ namespace General.Core.HttpClient.Extension
                     "delete");
             }
             var response = await client.DeleteAsync(client.BaseAddress);
-            LogManage.ApiLog(new ApiLog()
+            LogManage.HttpClientLog(new HttpClientApiLog()
             {
                 ConfirmNo = client.BaseAddress.AbsoluteUri,
                 ModelName = "Delete:" + client.BaseAddress.AbsoluteUri,
@@ -294,24 +305,9 @@ namespace General.Core.HttpClient.Extension
                         new System.Net.Http.Headers.MediaTypeHeaderValue(HttpClientContext.DefaultContentType);
                     ;
                 }
-
-                var body = await httpContent.ReadAsStringAsync();
-                if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
-                {
-                    client.DefaultRequestHeaders.SetHikSecurityHeaders(body, client.BaseAddress.AbsoluteUri, data,
-                        "put");
-                }
-                if (client.DefaultRequestHeaders.Any())
-                {
-                    foreach (var item in client.DefaultRequestHeaders)
-                    {
-                        httpContent.Headers.Add(item.Key, item.Value);
-                    }
-                }
-
-
+                SetHiSecuritySignHeader(client, httpContent, data, "put");
                 var response = await client.PutAsync(client.BaseAddress, httpContent);
-                LogManage.ApiLog(new ApiLog()
+                LogManage.HttpClientLog(new HttpClientApiLog()
                 {
                     ConfirmNo = client.BaseAddress.AbsoluteUri,
                     ModelName = "Put:" + client.BaseAddress.AbsoluteUri,
@@ -353,7 +349,7 @@ namespace General.Core.HttpClient.Extension
 
         private static string BuildStringToSign(Dictionary<string, string> headers, Dictionary<string, string> securityHeaders)
         {
-            string signStr = $"";
+            StringBuilder signStr = new StringBuilder(100);
             //todo BuildStringToSign
             foreach (var header in headers)
             {
@@ -361,20 +357,20 @@ namespace General.Core.HttpClient.Extension
                 {
                     continue;
                 }
-                signStr += $@"{header.Value} \n";
+                signStr.Append($@"{header.Value} \n ");
             }
 
             foreach (var securityHeader in securityHeaders)
             {
-                signStr += $@"{securityHeader.Key}:{securityHeader.Value} \n";
+                signStr.Append($@"{securityHeader.Key}:{securityHeader.Value} \n ");
             }
 
             if (headers.TryGetValue("url", out string urlPath))
             {
-                signStr += $@"{urlPath}";
+                signStr.Append($@"{urlPath} \n ");
             }
-
-            return signStr;
+            Console.WriteLine("sigStr:" + signStr.ToString());
+            return signStr.ToString();
         }
         /// <summary>
         /// BuildResource
@@ -408,25 +404,39 @@ namespace General.Core.HttpClient.Extension
 
                 sb.Append(path);
             }
+
+            var formParamMapOrder = formParamMap.OrderBy(o => o.Key).ToList();
             //request body
-            if (formParamMap.Count > 0)
+            if (formParamMapOrder.Any())
             {
+                if (!sb.ToString().Trim().IsNotWhiteSpace())
+                {
+                    if (url.Contains("artemis"))
+                    {
+                        var value = url.Substring(url.IndexOf("artemis", StringComparison.Ordinal));
+                        sb.Append("/" + value);
+                    }
+
+                }
                 sb.Append("?");
                 int flag = 0;
-                foreach (var item in formParamMap)
+                var count = formParamMap.Count;
+                foreach (var item in formParamMapOrder)
                 {
+                    //if(flag>count)break;
                     if (flag != 0)
                     {
                         sb.Append("&");
                     }
 
                     flag++;
-                    if (item.Key.IsNotNull() && item.Value.IsNotNull())
+                    if (item.Key.IsNotNull())
                     {
                         sb.Append($"{item.Key}={item.Value}");
                     }
                 }
             }
+            Console.WriteLine("BuildResource:"+sb.ToString());
             //todo BuildResource
             return sb.ToString();
         }
@@ -505,7 +515,7 @@ namespace General.Core.HttpClient.Extension
         /// <param name="headers"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        private static Dictionary<string, string> GetHikSecurityHeaders(HttpHeaders headers, string method)
+        private static Dictionary<string, string> GetHikSecurityHeaders(HttpRequestHeaders headers, string method, string url, Dictionary<string, string> formData)
         {
             method = method.ToUpperInvariant();
             Dictionary<string, string> dic = new Dictionary<string, string> { { "method", method } };
@@ -513,12 +523,6 @@ namespace General.Core.HttpClient.Extension
             {
                 dic.Add("accept", headers.GetValues("accept-header")?.FirstOrDefault()?.Trim() ?? "");
             }
-
-            if (headers.Any(o => o.Key.ToLower().Equals("content-md5")))
-            {
-                dic.Add("content-md5", headers.GetValues("content-md5")?.FirstOrDefault()?.Trim() ?? "");
-            }
-
             if (headers.Any(o => o.Key.ToLower().Equals("content-type")))
             {
                 dic.Add("content-type", headers.GetValues("content-type")?.FirstOrDefault()?.Trim() ?? "");
@@ -531,10 +535,7 @@ namespace General.Core.HttpClient.Extension
             {
                 dic.Add("headers", headers.GetValues("headers")?.FirstOrDefault()?.Trim() ?? "");
             }
-            if (headers.Any(o => o.Key.ToLower().Equals("url")))
-            {
-                dic.Add("url", headers.GetValues("url")?.FirstOrDefault()?.Trim() ?? "");
-            }
+            dic.Add("url", BuildResource(url, headers, formData));
 
             return dic;
         }
@@ -567,12 +568,22 @@ namespace General.Core.HttpClient.Extension
                     }
                 }
             }
-            headers.Add("content-md5", new List<string>() { GetContentMd5(body) });
             headers.Date = DateTimeOffset.Now;
-            headers.Add("accept", new List<string>() { GetAccept() });
-            headers.Add("method", new List<string>() { GetHttpMethod(method) });
-            headers.Add("url", new List<string>() { BuildResource(url, headers, formData) });
-            var securityHeaders = GetHikSecurityHeaders(headers, method);
+            var securityHeaders = GetHikSecurityHeaders(headers, method, url, formData);
+            var allHeaders = new Dictionary<string, string>();
+            foreach (var header in headers)
+            {
+                if (header.Value?.Count() > 0)
+                {
+                    if (header.Key.Equals("url"))
+                    {
+                        continue;
+                    }
+                    allHeaders.Add(header.Key, header.Value?.FirstOrDefault() ?? "");
+                }
+            }
+            var sign = BuildStringToSign(securityHeaders, allHeaders);
+            headers.Add("X-Ca-Signature", HmacSHA256(sign));
             if (securityHeaders.Count > 0)
             {
                 string secheaders = "";
@@ -584,17 +595,6 @@ namespace General.Core.HttpClient.Extension
             }
             headers.Add("appKey", new List<string>() { HikSecurityContext.ArtemisAppKey });
             headers.Add("appSecret", new List<string>() { HikSecurityContext.ArtemisAppSecret });
-            var allHeaders = new Dictionary<string, string>();
-            foreach (var header in headers)
-            {
-                if (header.Value?.Count() > 0)
-                {
-                    allHeaders.Add(header.Key, string.Join(";", header.Value));
-                }
-            }
-
-            var sign = BuildStringToSign(GetHikSecurityHeaders(headers, method), allHeaders);
-            headers.Add("X-Ca-Signature", HmacSHA256(sign));
             return headers;
         }
 

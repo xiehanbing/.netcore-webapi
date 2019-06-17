@@ -1183,6 +1183,91 @@
             TokenRequestValidator
             </summary>
         </member>
+        <member name="T:General.Api.Application.Parking.AlarmCarService">
+            <summary>
+            布控管理
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.Deletion(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.Deletion(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.GetList(System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.GetList(System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse">
+            <summary>
+            车辆布控返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.AlarmSysCode">
+            <summary>
+            布控车辆唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse">
+            <summary>
+            布控车辆列表
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.AlarmSysCode">
+            <summary>
+            布控唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.PlateNo">
+            <summary>
+             	车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.DriverName">
+            <summary>
+            驾驶员名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.DriverPhone">
+            <summary>
+            驾驶员电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.EndTime">
+            <summary>
+            布控结束时间
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Parking.Dto.Device.DeviceControlResponse">
             <summary>
             道闸反控响应实体
@@ -1622,6 +1707,39 @@
             <summary>
             更新时间
             </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.IAlarmCarService">
+            <summary>
+            车辆布控管理
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            车辆布控
+            </summary>
+            <param name="plateNo">车牌号码</param>
+            <param name="cardNo">卡号</param>
+            <param name="driver">驾驶员名称</param>
+            <param name="droberPhone">驾驶员电话</param>
+            <param name="remark">备注信息</param>
+            <param name="endTime">布控结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.Deletion(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消布控
+            </summary>
+            <param name="alarmSyscodes">布控车辆唯一标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.GetList(System.String,System.Int32,System.Int32)">
+            <summary>
+            查询布控车辆
+            </summary>
+            <param name="keyNo">车牌号/卡号</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">记录数</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Application.Parking.IParkingDeviceService">
             <summary>
