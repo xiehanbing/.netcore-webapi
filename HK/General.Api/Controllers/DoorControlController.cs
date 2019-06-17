@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using General.Api.Application.Door;
 using General.Api.Application.Door.Dto;
 using General.Api.Application.Hikvision;
 using General.Api.Framework;
 using General.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +20,7 @@ namespace General.Api.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("application/json")]
+    [Produces("application/json"), Authorize("General")]
     public class DoorControlController : ControllerBase
     {
         private readonly IDoorControlService _doorControlService;

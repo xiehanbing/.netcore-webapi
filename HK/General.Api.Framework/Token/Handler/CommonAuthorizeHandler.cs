@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using General.Api.Framework.Token;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -16,12 +17,14 @@ namespace General.Core.Token
     public class CommonAuthorizeHandler : AuthorizationHandler<CommonAuthorize>
     {
         private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _environment;
         /// <summary>
         /// CommonAuthorizeHandler
         /// </summary>
-        public CommonAuthorizeHandler(IConfiguration configuration)
+        public CommonAuthorizeHandler(IConfiguration configuration,IHostingEnvironment environment)
         {
             _configuration = configuration;
+            _environment = environment;
         }
         /// <summary>
         /// 常用自定义验证策略，模仿自定义中间件JwtCustomerauthorizeMiddleware的验证范围
@@ -31,7 +34,22 @@ namespace General.Core.Token
         /// <returns></returns>
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CommonAuthorize requirement)
         {
-
+            //如果是开发环境 忽略
+            if (_environment.IsDevelopment())
+            {
+                context.Succeed(requirement);
+                return Task.CompletedTask;
+            }
+            //如果不存在此配置或此配置 为false 忽略
+            bool needAuth = false;
+            if(_configuration["needAuth"]==null||(bool.TryParse(_configuration["needAuth"],out  needAuth) ))
+            {
+                if (!needAuth)
+                {
+                    context.Succeed(requirement);
+                    return Task.CompletedTask;
+                }
+            }
             var httpContext = (context.Resource as AuthorizationFilterContext)?.HttpContext;
             if (httpContext == null) throw new Exception("AuthHttpContext is null");
             var userContext = httpContext.RequestServices.GetService(typeof(UserContext)) as UserContext;

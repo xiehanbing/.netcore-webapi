@@ -7,6 +7,7 @@ using General.Api.Application.User;
 using General.Api.Application.User.Dto;
 using General.Api.Application.User.Request;
 using General.Api.Framework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// UserController
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize("General")]
     [ApiController]
     public class UserController : ControllerBase
     {

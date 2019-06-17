@@ -19,7 +19,6 @@ namespace General.Api.Controllers
     /// <summary>
     /// 权限获取
     /// </summary>
-    [Area("Auth")]
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
@@ -41,7 +40,7 @@ namespace General.Api.Controllers
         /// <param name="request">请求</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost,Route("token")]
         public async Task<ActionResult> RequestToken([FromBody] TokenRequest request)
         {
             var data = await _tokenService.Get(request.Account, request.Password);

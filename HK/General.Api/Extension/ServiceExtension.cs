@@ -51,11 +51,13 @@ namespace General.Api.Extension
                     Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version,
                     TermsOfService = "http://www.sihongit.com/",
                     Description="思弘接口",
-                    Contact = new Contact()
+                    Contact = new Contact
+                    ()
                     {
                         Name = "谢汉冰",
-                        Email = "xiehanbing@sihongit.com"
-                        
+                        Email = "xiehanbing@sihongit.com",
+                        Url = "http://www.sihongit.com/"
+
                     }
                 });
                 options.DocInclusionPredicate((docName, description) => true);

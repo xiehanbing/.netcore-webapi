@@ -27,8 +27,8 @@ namespace General.Api.Framework.Token
                 new Claim(JwtRegisteredClaimNames.Sub, request.Account),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sid,request.Account),
-                new Claim("ruser",request.Account),
-                new Claim("age",19.ToString()), 
+                new Claim("ruser",request.Account)
+                //new Claim("age",19.ToString()), 
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecurityKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

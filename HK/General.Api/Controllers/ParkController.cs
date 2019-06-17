@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using General.Api.Application.Hikvision;
 using General.Api.Application.Parking;
 using General.Api.Application.Parking.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 停车管理
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize("General")]
     [ApiController]
     public class ParkController : ControllerBase
     {
