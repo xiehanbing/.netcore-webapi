@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace General.Api.Framework.Middleware
 {
+    /// <summary>
+    /// HttpHandleMiddleware
+    /// </summary>
     public class HttpHandleMiddleware
     {
         private readonly RequestDelegate next;

@@ -25,6 +25,7 @@ namespace General.Api.Framework.Token
         /// </summary>
         /// <param name="payLoad"></param>
         /// <param name="header"></param>
+        /// <param name="expiresMinute"></param>
         /// <returns></returns>
         public static string CreateToken(Dictionary<string, object> payLoad, int expiresMinute, Dictionary<string, object> header = null)
         {

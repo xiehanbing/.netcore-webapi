@@ -12,11 +12,22 @@ namespace General.Api.Framework.Token.Handler
         bool ISecurityTokenValidator.CanValidateToken => true;
 
         int ISecurityTokenValidator.MaximumTokenSizeInBytes { get; set; }
+        /// <summary>
+        /// 是否可读token
+        /// </summary>
+        /// <param name="securityToken"></param>
+        /// <returns></returns>
         public bool CanReadToken(string securityToken)
         {
             return true;
         }
-
+        /// <summary>
+        /// 验证token
+        /// </summary>
+        /// <param name="securityToken"></param>
+        /// <param name="validationParameters"></param>
+        /// <param name="validatedToken"></param>
+        /// <returns></returns>
         public ClaimsPrincipal ValidateToken(string securityToken, TokenValidationParameters validationParameters,
             out SecurityToken validatedToken)
         {

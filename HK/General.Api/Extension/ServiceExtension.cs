@@ -7,6 +7,7 @@ using General.Api.Framework.Token;
 using General.Core;
 using General.Core.Dapper;
 using General.Core.Data;
+using General.Core.HttpClient;
 using General.EntityFrameworkCore;
 using General.EntityFrameworkCore.Dapper;
 using General.EntityFrameworkCore.Log;
@@ -37,6 +38,31 @@ namespace General.Api.Extension
                 serviceProvider.GetService<IRepository<ApiLog>>();
         }
         /// <summary>
+        /// 加载其他的 配置上下文
+        /// </summary>
+        /// <param name="services">services</param>
+        /// <param name="configuration">configuration</param>
+        /// <param name="environment">environment</param>
+        /// <param name="serviceProvider">serviceProvider</param>
+        public static void InitOtherContxt(this IServiceCollection services, IConfiguration configuration,
+            IHostingEnvironment environment, ServiceProvider serviceProvider)
+        {
+            if (serviceProvider == null) serviceProvider = services.BuildServiceProvider();
+
+            InitHikSecurityContext(services, configuration);
+        }
+        /// <summary>
+        /// 加载海康加密所需上下文
+        /// </summary>
+        /// <param name="services">services</param>
+        /// <param name="configuration">configuration</param>
+        public static void InitHikSecurityContext(IServiceCollection services, IConfiguration configuration)
+        {
+            HikSecurityContext.ArtemisAppKey = configuration["hikSecurity:host"];
+            HikSecurityContext.ArtemisAppSecret = configuration["hikSecurity:appKey"];
+            HikSecurityContext.ArtemisHost = configuration["hikSecurity:appSecret"];
+        }
+        /// <summary>
         /// InitSwaggerGen
         /// </summary>
         /// <param name="services">services</param>
@@ -48,9 +74,10 @@ namespace General.Api.Extension
             {
                 options.SwaggerDoc(ApiConsts.SwaggerDocName, new Info()
                 {
-                    Title = ApiConsts.SwaggerTitle, Version = ApiConsts.Version,
+                    Title = ApiConsts.SwaggerTitle,
+                    Version = ApiConsts.Version,
                     TermsOfService = "http://www.sihongit.com/",
-                    Description="思弘接口",
+                    Description = "思弘接口",
                     Contact = new Contact
                     ()
                     {

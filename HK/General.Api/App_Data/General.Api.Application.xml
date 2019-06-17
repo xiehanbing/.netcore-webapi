@@ -956,21 +956,6 @@
             construct
             </summary>
         </member>
-        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisHost">
-            <summary>
-            artemis网关服务器ip端口
-            </summary>
-        </member>
-        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisAppKey">
-            <summary>
-            秘钥appkey
-            </summary>
-        </member>
-        <member name="F:General.Api.Application.Hikvision.HikVisionContext.ArtemisAppSecret">
-            <summary>
-            秘钥appSecret
-            </summary>
-        </member>
         <member name="F:General.Api.Application.Hikvision.HikVisionContext.DoorControlBaseApiName">
             <summary>
             DoorControlBaseApiName

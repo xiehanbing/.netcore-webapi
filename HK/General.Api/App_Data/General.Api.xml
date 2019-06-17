@@ -289,6 +289,22 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitOtherContxt(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.DependencyInjection.ServiceProvider)">
+            <summary>
+            加载其他的 配置上下文
+            </summary>
+            <param name="services">services</param>
+            <param name="configuration">configuration</param>
+            <param name="environment">environment</param>
+            <param name="serviceProvider">serviceProvider</param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitHikSecurityContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            加载海康加密所需上下文
+            </summary>
+            <param name="services">services</param>
+            <param name="configuration">configuration</param>
+        </member>
         <member name="M:General.Api.Extension.ServiceCollectionExtension.InitSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)">
             <summary>
             InitSwaggerGen

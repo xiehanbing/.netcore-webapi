@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace General.Api.Framework.Filters
 {
+    /// <summary>
+    /// ResourceFilter
+    /// </summary>
     public class ResourceFilter: IAsyncResourceFilter //IResourceFilter
     {
         //public void OnResourceExecuting(ResourceExecutingContext context)
@@ -17,7 +20,12 @@ namespace General.Api.Framework.Filters
         //{
         //    throw new System.NotImplementedException();
         //}
-
+        /// <summary>
+        /// OnResourceExecutionAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public async Task OnResourceExecutionAsync(ResourceExecutingContext context, ResourceExecutionDelegate next)
         {
             //这是可以实现进行过滤的
