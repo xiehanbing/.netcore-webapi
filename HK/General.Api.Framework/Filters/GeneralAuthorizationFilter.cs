@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using General.Api.Core.ApiAuthUser;
@@ -67,7 +68,17 @@ namespace General.Api.Framework.Filters
                     var token = authValue.ToString().Substring("Bearer ".Length).Trim();
                     var jwtArr = token.Split('.');
                     //var header = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[0]));
-                    var payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
+                    Dictionary<string,object> payLoad;
+                    try
+                    {
+                        payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
+                    }
+                    catch (Exception)
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "Authorization不符合规范" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
                     var account =payLoad["sid"]?.ToString();
                     if (account == null)
                     {
