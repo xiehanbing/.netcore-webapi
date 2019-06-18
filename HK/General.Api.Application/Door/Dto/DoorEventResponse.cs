@@ -91,6 +91,9 @@ namespace General.Api.Application.Door.Dto
         [Description("未知")]
         UnKnow=-1
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum DoorEventCompairType
     {
 

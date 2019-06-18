@@ -22,5 +22,21 @@ namespace General.EntityFrameworkCore.Log
         /// </summary>
         [Description("其他日志")]
         Other = 3,
+        /// <summary>
+        /// 异常日志
+        /// </summary>
+        [Description("异常日志")]
+        Exception =4,
+        /// <summary>
+        /// Client日志
+        /// </summary>
+        [Description("Client日志")]
+        HttpClient =5,
+        /// <summary>
+        /// Resource请求日志
+        /// </summary>
+        [Description("Resource请求日志")]
+        Resource =6
+
     }
 }

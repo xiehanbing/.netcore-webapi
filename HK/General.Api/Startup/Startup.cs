@@ -36,26 +36,22 @@ namespace General.Api
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile($"appsettings{(env.IsDevelopment() ? $".{env.EnvironmentName}" : "")}.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
-            if (env.IsDevelopment())
-            {
-                var launchUrl = env.ContentRootPath + "/Properties/";
-                var lanuchBuilder = new ConfigurationBuilder()
-                    .SetBasePath(launchUrl)
-                    .AddJsonFile($"launchSettings.json", optional: true, reloadOnChange: true);
-                LaunchConfiguration = lanuchBuilder.Build();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    var launchUrl = env.ContentRootPath + "/Properties/";
+            //    var lanuchBuilder = new ConfigurationBuilder()
+            //        .SetBasePath(launchUrl)
+            //        .AddJsonFile($"launchSettings.json", optional: true, reloadOnChange: true);
+            //    LaunchConfiguration = lanuchBuilder.Build();
+            //}
             Environment = env;
-            Log.LogContext.Initialize();
+            Log.Log4NetContext.Initialize();
             MapperConfiguration = MapperConfig.Init();
         }
         /// <summary>
         /// 配置类
         /// </summary>
         public IConfiguration Configuration { get; }
-        /// <summary>
-        /// launch config
-        /// </summary>
-        public IConfiguration LaunchConfiguration { get; }
         /// <summary>
         /// Environment
         /// </summary>
@@ -139,11 +135,8 @@ namespace General.Api
         /// <param name="app"></param>
         /// <param name="env"></param>
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
-            //loggerFactory.AddContext(LogLevel.Information, Configuration.GetConnectionString("LoggerDatabase"));
             app.UseStaticFiles();
 
             app.UseAuthentication();//注意添加这一句，启用验证
@@ -178,8 +171,6 @@ namespace General.Api
                         template: "swagger/ui/index.html"
                     );
             });
-            //app.UseMiddleware<HttpHandleMiddleware>();
-
             //启用中间件服务生成swagger作为json终结点
             app.UseSwagger();
             //启用中间件服务队swagger-ui 指定swagger json 终结点
@@ -189,6 +180,8 @@ namespace General.Api
                 options.RoutePrefix = "swagger/ui";
             });
 
+
+            //must make last 
             app.Run(ctx =>
             {
                 ctx.Response.Redirect($"{Configuration["swaggerJsonUrl"]}/swagger/ui"); //可以支持虚拟路径或者index.html这类起始页.

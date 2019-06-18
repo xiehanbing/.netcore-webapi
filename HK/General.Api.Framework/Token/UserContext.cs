@@ -69,11 +69,11 @@ namespace General.Api.Framework.Token
 
             var data = _tokenService.ValidatePermission(user, path).ConfigureAwait(false).GetAwaiter().GetResult();
             return data;
-            //这里暂就不做校验是否有权限
-            if (UserAuthList.Any(o => o.ToLower().Equals(path.ToLower()))) return true;
-            //获取用户的权限列表进行验证
-            //todo author
-            return false;
+            ////这里暂就不做校验是否有权限
+            //if (UserAuthList.Any(o => o.ToLower().Equals(path.ToLower()))) return true;
+            ////获取用户的权限列表进行验证
+            ////todo author
+            //return false;
         }
     }
 }

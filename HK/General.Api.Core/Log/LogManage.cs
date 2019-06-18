@@ -11,13 +11,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace General.Api.Core.Log
 {
+    /// <summary>
+    /// LogManage
+    /// </summary>
     public class LogManage
     {
-        private readonly string connectionString = "";
-        public LogManage(IConfiguration configuration)
-        {
-            connectionString = configuration.GetConnectionString(ApiConsts.ConnectionStringName);
-        }
         /// <summary>
         /// 记录日志
         /// </summary>
@@ -75,8 +73,8 @@ namespace General.Api.Core.Log
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
-            log.LogType = LogTypeEnum.ApiRequest.GetHashCode().ToString();
-            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.ApiRequest.GetHashCode());
+            log.LogType = LogTypeEnum.Resource.GetHashCode().ToString();
+            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.Resource.GetHashCode());
             Task.Run(() =>
             {
                 using (SqlConnection conn = new SqlConnection(LogContext.ConnectionString))
@@ -127,8 +125,8 @@ namespace General.Api.Core.Log
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
-            log.LogType = LogTypeEnum.ApiRequest.GetHashCode().ToString();
-            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.ApiRequest.GetHashCode());
+            log.LogType = LogTypeEnum.Exception.GetHashCode().ToString();
+            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.Exception.GetHashCode());
             Task.Run(() =>
             {
                 using (SqlConnection conn = new SqlConnection(LogContext.ConnectionString))
@@ -182,8 +180,8 @@ namespace General.Api.Core.Log
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
-            log.LogType = LogTypeEnum.ApiRequest.GetHashCode().ToString();
-            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.ApiRequest.GetHashCode());
+            log.LogType = LogTypeEnum.HttpClient.GetHashCode().ToString();
+            log.LogName = typeof(LogTypeEnum).GetEnumDescription(LogTypeEnum.HttpClient.GetHashCode());
             Task.Run(() =>
             {
                 using (SqlConnection conn = new SqlConnection(LogContext.ConnectionString))

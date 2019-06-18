@@ -11,7 +11,7 @@ namespace General.Log
         /// <summary>
         /// 
         /// </summary>
-        private readonly ILog _log = LogContext.Log;
+        private readonly ILog _log = Log4NetContext.Log;
         /// <summary>
         /// 
         /// </summary>

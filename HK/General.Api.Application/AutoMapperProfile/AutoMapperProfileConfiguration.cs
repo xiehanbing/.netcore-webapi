@@ -2,9 +2,15 @@
 
 namespace General.Api.Application
 {
+    /// <summary>
+    /// automapper 映射配置
+    /// </summary>
     public class AutoMapperProfileConfiguration : Profile
     {
         //添加你的实体映射关系.
+        /// <summary>
+        /// 添加你的实体映射关系
+        /// </summary>
         public AutoMapperProfileConfiguration()
         {
 

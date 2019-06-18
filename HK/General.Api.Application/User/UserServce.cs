@@ -33,7 +33,10 @@ namespace General.Api.Application.User
                 throw new MyException("doorControlApiUrl is null");
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Dto.UserDto>> GetList()
         {
             //var url = "http://localhost:5000";

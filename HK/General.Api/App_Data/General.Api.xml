@@ -110,6 +110,25 @@
             事件接收服务
             </summary>
         </member>
+        <member name="M:General.Api.Controllers.EventReciveController.#ctor(General.Api.Application.EventRevice.IDoorApplicationService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventReciveController.VerifyPersonSuccess(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比成功
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventReciveController.VerifyPersonFail(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比失败接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.ParkController">
             <summary>
             停车管理
@@ -378,11 +397,6 @@
             配置类
             </summary>
         </member>
-        <member name="P:General.Api.Startup.LaunchConfiguration">
-            <summary>
-            launch config
-            </summary>
-        </member>
         <member name="P:General.Api.Startup.Environment">
             <summary>
             Environment
@@ -394,7 +408,7 @@
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
             add use middleware
             </summary>

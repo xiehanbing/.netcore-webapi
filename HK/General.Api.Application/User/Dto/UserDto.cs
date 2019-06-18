@@ -45,8 +45,17 @@
         /// 
         /// </summary>
         public string Post { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string DepartmentId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string EasemobId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string EasemobPassword { get; set; }
     }
 }

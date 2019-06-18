@@ -4,6 +4,16 @@
         <name>General.Api.Application</name>
     </assembly>
     <members>
+        <member name="T:General.Api.Application.AutoMapperProfileConfiguration">
+            <summary>
+            automapper 映射配置
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.AutoMapperProfileConfiguration.#ctor">
+            <summary>
+            添加你的实体映射关系
+            </summary>
+        </member>
         <member name="T:General.Api.Application.MapperConfig">
             <summary>
             automapper 配置
@@ -335,6 +345,11 @@
         <member name="F:General.Api.Application.Door.Dto.InAndOutType.UnKnow">
             <summary>
             未知
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorEventCompairType">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:General.Api.Application.Door.Dto.DoorInfoResponse">
@@ -675,6 +690,11 @@
             construct
             </summary>
         </member>
+        <member name="T:General.Api.Application.EventRevice.DoorApplicationService">
+            <summary>
+            事件订阅接收接口
+            </summary>
+        </member>
         <member name="T:General.Api.Application.EventRevice.Dto.EventReciveDto`1">
             <summary>
             事件接收服务 统一接收类
@@ -869,6 +889,240 @@
             <summary>
             事件发生的事件源父设备，无-空字符串
             </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto">
+            <summary>
+            门禁认证对比成功接收实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtAccessChannel">
+            <summary>
+            人员通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventAlarmId">
+            <summary>
+            报警输入/防区通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventAlarmOutId">
+            <summary>
+            报警输出通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCardNo">
+            <summary>
+            卡号（身份证号）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCaseId">
+            <summary>
+            事件输入通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCode">
+            <summary>
+            事件类型代码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCustomerNumInfo">
+            <summary>
+            通道事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventDoorId">
+            <summary>
+            门编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventIdCardPictureUrl">
+            <summary>
+            身份证照片
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventInOut">
+            <summary>
+            进出方向 1-进、0-出
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventLocalControllerId">
+            <summary>
+            就地控制器id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventMainDevId">
+            <summary>
+            主设备拨码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventPictureUrl">
+            <summary>
+            图片的url
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.SvrIndexCode">
+            <summary>
+            图片服务器唯一编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReaderId">
+            <summary>
+            读卡器id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReaderKind">
+            <summary>
+            读卡器类别  	0-无效，1-IC读卡器，2-身份证读卡器，3-二维码读卡器,4-指纹头
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReportChannel">
+            <summary>
+            报告上传通道 1-布防上传，2-中心组1上传，3-中心组2上传，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventRoleId">
+            <summary>
+            群组编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventSubDevId">
+            <summary>
+            分控制器硬件ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventSwipNum">
+            <summary>
+            刷卡次数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventType">
+            <summary>
+            事件类型  事件类型，如普通门禁事件为0,身份证信息事件为1，客流量统计为2
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventVerifyId">
+            <summary>
+            多重认证序号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtReceiveTime">
+            <summary>
+            事件上报驱动的时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.Seq">
+            <summary>
+            事件流水号 事件流水号，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventWhiteListNo">
+            <summary>
+            白名单单号  	1-8，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventIdentityCardInfo">
+            <summary>
+            人员身份证信息 在设备上刷身份证进行认证时，该属性才会有对应人员的身份证信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto">
+            <summary>
+            通道事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.AccessChannel">
+            <summary>
+            通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.EntryTimes">
+            <summary>
+            进人数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.ExitTimes">
+            <summary>
+            出人数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.TotalTimes">
+            <summary>
+            总通行人数
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto">
+            <summary>
+            人员身份证信息 在设备上刷身份证进行认证时，该属性才会有对应人员的身份证信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Address">
+            <summary>
+            住址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Birth">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.EndDate">
+            <summary>
+            有效日期结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.IdNum">
+            <summary>
+            身份证id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.IssuingAuthority">
+            <summary>
+            签发机关
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Nation">
+            <summary>
+            民族
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Sex">
+            <summary>
+            性别，1-男，2-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.StartDate">
+            <summary>
+            有效日期开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.TermOfValidity">
+            <summary>
+            是否长期有效  0-否（有效截止日期有效），1-是（有效截止日期无效）
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.IDoorApplicationService">
+            <summary>
+            事件订阅接收接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.EventRevice.IDoorApplicationService.VerifyPersonSuccess(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比成功 接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.EventRevice.IDoorApplicationService.VerifyPersonFailed(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+             门禁认证对比失败 接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Application.Event.Dto.SubscriptionInfoResponse">
             <summary>
@@ -2427,6 +2681,21 @@
             
             </summary>
         </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.DepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.EasemobId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.EasemobPassword">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:General.Api.Application.User.Dto.UserResponse">
             <summary>
             用户信息
@@ -2989,6 +3258,12 @@
             <summary>
             construct
             </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetList">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:General.Api.Application.User.UserServce.GetUserList(General.Api.Application.User.Request.UserQuery)">
             <summary>
