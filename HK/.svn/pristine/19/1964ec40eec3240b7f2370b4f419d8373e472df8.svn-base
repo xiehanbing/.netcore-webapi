@@ -1,0 +1,626 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Core</name>
+    </assembly>
+    <members>
+        <member name="T:General.Core.ApiConsts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.ConnectionStringName">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.Version">
+            <summary>
+            版本信息
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.SwaggerDocName">
+            <summary>
+            swagger name 
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.SwaggerTitle">
+            <summary>
+            swagger title
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.ProjectName">
+            <summary>
+            ProjectName
+            </summary>
+        </member>
+        <member name="F:General.Core.ApiConsts.MoreThanZeroRegex">
+            <summary>
+            大于0 
+            </summary>
+        </member>
+        <member name="T:General.Core.Dapper.ConnectionConfig">
+            <summary>
+            dapper config 
+            </summary>
+        </member>
+        <member name="P:General.Core.Dapper.ConnectionConfig.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:General.Core.Dapper.ConnectionConfig.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="T:General.Core.Dapper.DbStoreType">
+            <summary>
+            数据库类型枚举
+            </summary>
+        </member>
+        <member name="T:General.Core.Dapper.IDapperClient`1">
+            <summary>
+            dapper client 
+            </summary>
+        </member>
+        <member name="P:General.Core.Dapper.IDapperClient`1.Connection">
+            <summary>
+            dbconnection 
+            </summary>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.Query(System.String)">
+            <summary>
+            查询
+            </summary>
+            <typeparam name="T">数据列表</typeparam>
+            <param name="strSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.Query(System.String,System.Object)">
+            <summary>
+            查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strSql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.QueryFirst(System.String)">
+            <summary>
+            查询第一个
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.QueryFirstAsync(System.String)">
+            <summary>
+            查询第一个 异步
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.QueryFirst(System.String,System.Object)">
+            <summary>
+            查询第一个
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strSql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.Execute(System.String,System.Object)">
+            <summary>
+            执行
+            </summary>
+            <param name="strSql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.ExecuteStoredProcedure(System.String)">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="strProcedure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Dapper.IDapperClient`1.ExecuteStoredProcedure(System.String,System.Object)">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="strProcedure"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Data.IRepository`1">
+            <summary>
+            仓储接口
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:General.Core.Data.IRepository`1.DbContext">
+            <summary>
+            db 上下文
+            </summary>
+        </member>
+        <member name="P:General.Core.Data.IRepository`1.Entities">
+            <summary>
+            dbset 实体
+            </summary>
+        </member>
+        <member name="P:General.Core.Data.IRepository`1.Table">
+            <summary>
+            表
+            </summary>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.GetById(System.Object)">
+            <summary>
+            获取实体
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.GetByIdAsync(System.Object)">
+            <summary>
+            获取实体
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.Insert(`0,System.Boolean)">
+            <summary>
+            插入实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.InsertAsync(`0,System.Boolean)">
+            <summary>
+            插入实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.Update(`0,System.Boolean)">
+            <summary>
+            更新实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.UpdateAsync(`0,System.Boolean)">
+            <summary>
+            更新实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.Delete(`0,System.Boolean)">
+            <summary>
+            删除实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.DeleteAsync(`0,System.Boolean)">
+            <summary>
+            删除实体
+            </summary>
+            <param name="entity">实体</param>
+            <param name="isSave">是否保存</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.EngineContext">
+            <summary>
+            引擎上下文
+            </summary>
+        </member>
+        <member name="M:General.Core.EngineContext.Initialize(General.Core.IEngine)">
+            <summary>
+            引擎单例 (线程安全)
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="P:General.Core.EngineContext.CurrentEngin">
+            <summary>
+            当前引擎单例
+            </summary>
+        </member>
+        <member name="T:General.Core.Extension.ConfigurationExtension">
+            <summary>
+            ConfigurationExtension
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSettingByKey(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSettingByKey
+            </summary>
+            <param name="configuration">configuration</param>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <returns>app setting value</returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <returns>app setting value</returns>
+        </member>
+        <member name="M:General.Core.Extension.ConfigurationExtension.GetAppSetting``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,``0)">
+            <summary>
+            GetAppSetting
+            Shorthand for GetSection("AppSettings")[key]
+            </summary>
+            <param name="configuration">IConfiguration instance</param>
+            <param name="key">appSettings key</param>
+            <param name="defaultValue">default value if not exist</param>
+            <returns>app setting value</returns>
+        </member>
+        <member name="T:General.Core.Extension.DateTimeExtension">
+            <summary>
+            DateTimeExtension 日期扩展
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.DateTimeExtension.TimeToString(System.DateTime,System.String)">
+            <summary>
+            日期格式化
+            </summary>
+            <param name="time">时间</param>
+            <param name="formatter">格式化字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.EncryptorHelper">
+            <summary>
+            加解密帮助类
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.EncryptorHelper.GetMd5(System.String)">
+            <summary>
+            MD5 加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.EnumableExtension">
+            <summary>
+            EnumableExtension
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.EnumableExtension.StringJoin``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            StringJoin
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="list">数据</param>
+            <param name="separator">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.EnumExtendsion">
+            <summary>
+            EnumExtendsion
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDescription(System.Type,System.Object)">
+            <summary>
+            获取枚举项的描述
+            </summary>
+            <param name="typeOfEnum">枚举类型</param>
+            <param name="value">枚举项/枚举值</param>
+            <returns>描述</returns>
+        </member>
+        <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDescriptionByValue(System.Object,System.Type)">
+            <summary>
+            GetEnumDescriptionByValue
+            </summary>
+            <param name="value">值</param>
+            <param name="typeOfEnum">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.EnumExtendsion.GetEnumDestAndValue(System.Type)">
+            <summary>
+            GetEnumDestAndValue 
+            </summary>
+            <param name="typeOfEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.HttpException">
+            <summary>
+            http 扩展
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadRequestAsync(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            处理request
+            </summary>
+            <param name="request">request</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            ReadRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadBodyAsync(Microsoft.AspNetCore.Http.HttpResponse)">
+            <summary>
+            读取 response 相关信息
+            </summary>
+            <param name="response">response</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.GetEncoding(System.String)">
+            <summary>
+            获取Encoding
+            </summary>
+            <param name="contentType">Encodingtype</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.HttpException.ReadStreamAsync(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+            <summary>
+            读取文本
+            </summary>
+            <param name="stream"></param>
+            <param name="encoding"></param>
+            <param name="forceSeekBeginZero"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.JsonConvertExtension">
+            <summary>
+            jsonconvert 扩展类 
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.JsonConvertExtension.GetSerializeObject(System.Object)">
+            <summary>
+            获取序列化字符串
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.JsonConvertExtension.GetDeserializeObject(System.String)">
+            <summary>
+            获取反序列化
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.JsonConvertExtension.GetDeserializeObject``1(System.String)">
+            <summary>
+            获取反序列化 对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Extension.ServiceCollextionExtension">
+            <summary>
+            IServiceCollection 容器的扩展类
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.ServiceCollextionExtension.AddAssembly(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            程序集注入
+            </summary>
+            <param name="services"></param>
+            <param name="assemblyName">程序集名称</param>
+            <param name="serviceLifetime">生命周期</param>
+        </member>
+        <member name="T:General.Core.Extension.StringExtension">
+            <summary>
+            string 扩展类
+            </summary>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.StringCombine(System.String,System.String)">
+            <summary>
+            字符串拼接
+            </summary>
+            <param name="source">源</param>
+            <param name="input">要拼接的</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.IsNull(System.String)">
+            <summary>
+            判断是否为null或者为空
+            </summary>
+            <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.IsNotNull(System.String)">
+            <summary>
+            判断是否不为空和不为null
+            </summary>
+            <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.IsWhiteSpace(System.String)">
+            <summary>
+            是否为空字符串或null
+            </summary>
+            <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.IsNotWhiteSpace(System.String)">
+            <summary>
+            是否不为空字符串和null
+            </summary>
+            <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Extension.StringExtension.StringSplit(System.String,System.Char)">
+            <summary>
+            StringSplit
+            </summary>
+            <param name="input">input</param>
+            <param name="separator">separator</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.IEngine">
+            <summary>
+            系统引擎接口
+            </summary>
+        </member>
+        <member name="M:General.Core.IEngine.Resolve``1">
+            <summary>
+            构建一个实例
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <returns>接口实例</returns>
+        </member>
+        <member name="M:General.Core.IEngine.ResolveByRequireService``1">
+            <summary>
+            构建一个实例 通过 IApplicationBuilder-》ApplicationServices-》GetRequiredService
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Libs.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="M:General.Core.Libs.EnumHelper.GetEnumDescription(System.Type,System.Object)">
+            <summary>
+            获取枚举项的描述
+            </summary>
+            <param name="typeOfEnum">枚举类型</param>
+            <param name="value">枚举项/枚举值</param>
+            <returns>描述</returns>
+        </member>
+        <member name="M:General.Core.Libs.EnumHelper.GetEnumDescriptionByValue(System.Type,System.Int32)">
+            <summary>
+            获取枚举值的描述
+            </summary>
+            <param name="typeOfEnum">枚举类型</param>
+            <param name="value">枚举值</param>
+            <returns>描述</returns>
+        </member>
+        <member name="M:General.Core.Libs.EnumHelper.GetDescriptionByName(System.Type,System.String)">
+            <summary>
+            根据名称获取描述
+            </summary>
+            <param name="typeOfEnum">枚举类型</param>
+            <param name="value">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Libs.EnumHelper.GetEnumDescriptionAndKey(System.Type)">
+            <summary>
+            获取描述和key
+            </summary>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Libs.EnumHelper.GetEnumDescriptionAndValue(System.Type)">
+            <summary>
+            获取描述和value
+            </summary>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.Libs.RuntimeHelper">
+            <summary>
+            runtime 帮助类
+            </summary>
+        </member>
+        <member name="M:General.Core.Libs.RuntimeHelper.GetAssemblyByName(System.String)">
+            <summary>
+            通过程序集名称获取程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Core.MyException">
+            <summary>
+            自定义异常
+            </summary>
+        </member>
+        <member name="T:General.Core.TokenRequest">
+            <summary>
+            token请求类
+            </summary>
+        </member>
+        <member name="P:General.Core.TokenRequest.Account">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:General.Core.TokenRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:General.Core.TokenRequestValidator">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
+        <member name="M:General.Core.TokenRequestValidator.#ctor">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
+        <member name="T:General.Core.ValidatorException">
+            <summary>
+            验证异常类
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorException.Code">
+            <summary>
+            响应码
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorException.Errors">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="M:General.Core.ValidatorException.#ctor(System.String)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="T:General.Core.ValidatorResult">
+            <summary>
+            参数校验结果
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorResult.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorResult.Code">
+            <summary>
+            响应码
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorResult.Errors">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="P:General.Core.ValidatorResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+    </members>
+</doc>
