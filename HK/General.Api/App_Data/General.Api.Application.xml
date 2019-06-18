@@ -2561,9 +2561,17 @@
             <param name="account">账号</param>
             <returns></returns>
         </member>
-        <member name="M:General.Api.Application.Token.ITokenService.AddTokenRecord(System.String,System.String)">
+        <member name="M:General.Api.Application.Token.ITokenService.AddTokenRecordAsync(System.String,System.String)">
             <summary>
             添加新的token 记录
+            </summary>
+            <param name="account">account</param>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.VerifyTokenAsync(System.String,System.String)">
+            <summary>
+            验证token
             </summary>
             <param name="account">account</param>
             <param name="token">token</param>
@@ -2574,7 +2582,7 @@
             token 接口
             </summary>
         </member>
-        <member name="M:General.Api.Application.Token.TokenService.#ctor(General.Api.Core.ApiAuthUser.IApiAuthUserDao)">
+        <member name="M:General.Api.Application.Token.TokenService.#ctor(General.Api.Core.ApiAuthUser.IApiAuthUserDao,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
             <summary>
             construct
             </summary>
@@ -2597,6 +2605,31 @@
             获取权限
             </summary>
             <param name="account">账号</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.AddTokenRecordAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.AddTokenRecordAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.VerifyTokenAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.VerifyTokenAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.GetTokenMemory(System.String)">
+            <summary>
+            获取token
+            </summary>
+            <param name="account">account</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.SetTokenMemory(System.String,System.String)">
+            <summary>
+            设置token 魂村
+            </summary>
+            <param name="account">account</param>
+            <param name="token">token</param>
             <returns></returns>
         </member>
         <member name="T:General.Api.Application.User.Dto.FingerPrintResponse">

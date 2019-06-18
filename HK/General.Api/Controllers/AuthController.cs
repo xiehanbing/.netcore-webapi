@@ -51,7 +51,7 @@ namespace General.Api.Controllers
             }
 
             var token = GeneralToken.TokenHandle.CreateToken(_configuration, request);
-            if (await _tokenService.AddTokenRecord(request.Account, token))
+            if (await _tokenService.AddTokenRecordAsync(request.Account, token))
             {
                 return Ok(new
                 {

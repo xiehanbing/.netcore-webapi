@@ -35,6 +35,14 @@ namespace General.Api.Application.Token
         /// <param name="account">account</param>
         /// <param name="token">token</param>
         /// <returns></returns>
-        Task<bool> AddTokenRecord(string account, string token);
+        Task<bool> AddTokenRecordAsync(string account, string token);
+
+        /// <summary>
+        /// 验证token
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> VerifyTokenAsync(string account, string token);
     }
 }

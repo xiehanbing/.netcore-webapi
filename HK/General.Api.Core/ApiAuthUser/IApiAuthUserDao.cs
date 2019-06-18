@@ -47,5 +47,11 @@ namespace General.Api.Core.ApiAuthUser
         /// <param name="token">token</param>
         /// <returns></returns>
         Task<bool> RemoveTokenAsync(string account, string token);
+        /// <summary>
+        /// 获取用户的token
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <returns></returns>
+        Task<ApiAuthUserToken> GetTokenAsync(string account);
     }
 }

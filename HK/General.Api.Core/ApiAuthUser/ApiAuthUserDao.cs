@@ -48,15 +48,18 @@ namespace General.Api.Core.ApiAuthUser
         /// </summary>
         public async Task<bool> VerifyTokenAsync(string token, string account)
         {
-            var data =await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted
-                                                                            && (o.ExpressTime == null ||
-                                                                                (o.ExpressTime.Value >
-                                                                                 DateTime.Now)) &&
-                                                                            o.Account.Trim()
-                                                                                .Equals(account.Trim())
-                                                                            && (o.JwtToken.Trim().Equals(token.Trim())));
+            var data = await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted
+                                                                             && (o.ExpressTime == null ||
+                                                                                 (o.ExpressTime.Value >
+                                                                                  DateTime.Now)) &&
+                                                                             o.Account.Trim()
+                                                                                 .Equals(account.Trim())
+                                                                             && (o.JwtToken.Trim().Equals(token.Trim())));
             return data != null;
         }
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.AddTokenAsync(string,string)"/>
+        /// </summary>
         public async Task<bool> AddTokenAsync(string account, string token)
         {
             var removeSuccess = await RemoveTokenAsync(account);
@@ -70,13 +73,17 @@ namespace General.Api.Core.ApiAuthUser
             });
             return data?.ToString().IsNotNull() ?? false;
         }
-
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.UpdateTokenAsync(ApiAuthUserToken)"/>
+        /// </summary>
         public async Task<bool> UpdateTokenAsync(ApiAuthUserToken token)
         {
             var data = await _apiAuthTokenRepository.UpdateAsync(token);
             return data > 0;
         }
-
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.RemoveTokenAsync(string,string)"/>
+        /// </summary>
         public async Task<bool> RemoveTokenAsync(string account, string token)
         {
             var data = await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted &&
@@ -90,7 +97,11 @@ namespace General.Api.Core.ApiAuthUser
             var success = await _apiAuthTokenRepository.DbContext.SaveChangesAsync();
             return success > 0;
         }
-
+        /// <summary>
+        /// 移除 根据企业账号
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <returns></returns>
         private async Task<bool> RemoveTokenAsync(string account)
         {
             var data = await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted &&
@@ -101,6 +112,19 @@ namespace General.Api.Core.ApiAuthUser
             data.ExpressTime = DateTime.Now;
             var success = await _apiAuthTokenRepository.DbContext.SaveChangesAsync();
             return success > 0;
+        }
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.GetTokenAsync(string)"/>
+        /// </summary>
+        public async Task<ApiAuthUserToken> GetTokenAsync(string account)
+        {
+            var data = await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted
+                                                                                       && (o.ExpressTime == null ||
+                                                                                           (o.ExpressTime.Value >
+                                                                                            DateTime.Now)) &&
+                                                                                       o.Account.Trim()
+                                                                                           .Equals(account.Trim()));
+            return data;
         }
     }
 }
