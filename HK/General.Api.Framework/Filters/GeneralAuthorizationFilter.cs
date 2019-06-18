@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using General.Api.Core.ApiAuthUser;
 using General.Api.Framework.Token;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,7 @@ namespace General.Api.Framework.Filters
     /// <summary>
     /// GeneralAuthorizationFilter
     /// </summary>
-    public class GeneralAuthorizationFilter : IAuthorizationFilter
+    public class GeneralAuthorizationFilter : IAsyncAuthorizationFilter
     {
         private readonly IApiAuthUserDao _apiAuthUserDao;
         private readonly IHostingEnvironment _environment;
@@ -68,7 +69,7 @@ namespace General.Api.Framework.Filters
                     var token = authValue.ToString().Substring("Bearer ".Length).Trim();
                     var jwtArr = token.Split('.');
                     //var header = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[0]));
-                    Dictionary<string,object> payLoad;
+                    Dictionary<string, object> payLoad;
                     try
                     {
                         payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
@@ -79,7 +80,7 @@ namespace General.Api.Framework.Filters
                         context.Result = new JsonResult(result);
                         return;
                     }
-                    var account =payLoad["sid"]?.ToString();
+                    var account = payLoad["sid"]?.ToString();
                     if (account == null)
                     {
                         var result = new ApiResult() { Code = 401, Message = "未找到sid" };
@@ -96,9 +97,68 @@ namespace General.Api.Framework.Filters
                 }
             }
         }
+        /// <summary>
+        /// OnAuthorizationAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
+        {
+            var action = context.ActionDescriptor;
+            var haveAuthor = action.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(AuthorizeFilter).ToString());
+            var haveAllowAny = action.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(AllowAnonymousFilter).ToString());
+            bool needAuth = false;
+            if (_configuration["needAuth"] != null && (bool.TryParse(_configuration["needAuth"], out needAuth)) && !haveAllowAny && haveAuthor)
+            {
+                if (needAuth)
+                {
+                    var authSuccess =
+                        context.HttpContext.Request.Headers.TryGetValue("Authorization",
+                            out StringValues authValue);
+                    if (!authSuccess)
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "Authorization不能为空" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
 
+                    if (!authValue.ToString()?.Contains("Bearer") ?? false)
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "未授权验证" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
 
+                    var token = authValue.ToString().Substring("Bearer ".Length).Trim();
+                    var jwtArr = token.Split('.');
+                    //var header = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[0]));
+                    Dictionary<string, object> payLoad;
+                    try
+                    {
+                        payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
+                    }
+                    catch (Exception)
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "Authorization不符合规范" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
+                    var account = payLoad["sid"]?.ToString();
+                    if (account == null)
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "未找到sid" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
+                    if (! await _apiAuthUserDao.VerifyTokenAsync(token, account))
+                    {
+                        var result = new ApiResult() { Code = 401, Message = "授权验证未通过" };
+                        context.Result = new JsonResult(result);
+                        return;
+                    }
 
-
+                }
+            }
+        }
     }
 }

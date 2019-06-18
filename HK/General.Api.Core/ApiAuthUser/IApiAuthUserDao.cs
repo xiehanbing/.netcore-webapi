@@ -20,6 +20,13 @@ namespace General.Api.Core.ApiAuthUser
         /// <returns></returns>
         bool VerifyToken(string token, string account);
         /// <summary>
+        /// 验证 token  异步
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Task<bool> VerifyTokenAsync(string token, string account);
+        /// <summary>
         /// 添加新的token
         /// </summary>
         /// <param name="account">account</param>

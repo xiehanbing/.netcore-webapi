@@ -43,11 +43,24 @@ namespace General.Api.Core.ApiAuthUser
                                                                                        && (o.JwtToken.Trim().Equals(token.Trim())));
             return data != null;
         }
-
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.VerifyTokenAsync(string,string)"/>
+        /// </summary>
+        public async Task<bool> VerifyTokenAsync(string token, string account)
+        {
+            var data =await _apiAuthTokenRepository.Entities.FirstOrDefaultAsync(o => !o.IsDeleted
+                                                                            && (o.ExpressTime == null ||
+                                                                                (o.ExpressTime.Value >
+                                                                                 DateTime.Now)) &&
+                                                                            o.Account.Trim()
+                                                                                .Equals(account.Trim())
+                                                                            && (o.JwtToken.Trim().Equals(token.Trim())));
+            return data != null;
+        }
         public async Task<bool> AddTokenAsync(string account, string token)
         {
             var removeSuccess = await RemoveTokenAsync(account);
-            if (!removeSuccess) throw new MyException(account+"移除历史token 失败");
+            if (!removeSuccess) throw new MyException(account + "移除历史token 失败");
             var data = await _apiAuthTokenRepository.InsertAsync(new ApiAuthUserToken()
             {
                 Account = account,
