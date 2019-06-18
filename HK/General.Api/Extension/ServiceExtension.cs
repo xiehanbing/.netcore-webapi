@@ -32,16 +32,16 @@ namespace General.Api.Extension
         /// <param name="services"></param>
         public static void InitLogContext(this IServiceCollection services)
         {
-            var serviceProvider = services.BuildServiceProvider();
-            General.Api.Core.Log.LogContext.ApiLogRepository =
-                serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ApiLog>>();
-                //serviceProvider.GetService<IRepository<ApiLog>>();
-            General.Api.Core.Log.LogContext.ExceptionApiLogRepository =
-                serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ExceptionApiLog>>();
-            //serviceProvider.GetService<IRepository<ExceptionApiLog>>();
-            General.Api.Core.Log.LogContext.ResourceApiLogRepository =
-                serviceProvider.GetService<IRepository<ResourceApiLog>>();
-            LogContext.HttpClientApiLogRepository = serviceProvider.GetService<IRepository<HttpClientApiLog>>();
+            //var serviceProvider = services.BuildServiceProvider();
+            //General.Api.Core.Log.LogContext.ApiLogRepository =
+            //    serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ApiLog>>();
+            //    //serviceProvider.GetService<IRepository<ApiLog>>();
+            //General.Api.Core.Log.LogContext.ExceptionApiLogRepository =
+            //    serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ExceptionApiLog>>();
+            ////serviceProvider.GetService<IRepository<ExceptionApiLog>>();
+            //General.Api.Core.Log.LogContext.ResourceApiLogRepository =
+            //    serviceProvider.GetService<IRepository<ResourceApiLog>>();
+            //LogContext.HttpClientApiLogRepository = serviceProvider.GetService<IRepository<HttpClientApiLog>>();
            
         }
         /// <summary>
@@ -59,8 +59,8 @@ namespace General.Api.Extension
             InitHikSecurityContext(services, configuration);
 
             LogContext.ConnectionString = configuration.GetConnectionString(ApiConsts.ConnectionStringName);
-         CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
-            services.AddDbContext<CustomLoggerDBContext>();
+         //CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
+         //   services.AddDbContext<CustomLoggerDBContext>();
         }
         /// <summary>
         /// 加载海康加密所需上下文
