@@ -2561,14 +2561,6 @@
             <param name="account">账号</param>
             <returns></returns>
         </member>
-        <member name="M:General.Api.Application.Token.ITokenService.AddTokenRecord(System.String,System.String)">
-            <summary>
-            添加新的token 记录
-            </summary>
-            <param name="account">account</param>
-            <param name="token">token</param>
-            <returns></returns>
-        </member>
         <member name="T:General.Api.Application.Token.TokenService">
             <summary>
             token 接口

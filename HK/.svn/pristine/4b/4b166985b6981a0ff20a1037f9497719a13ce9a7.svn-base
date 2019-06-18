@@ -2,7 +2,6 @@
 using System.IO;
 using AutoMapper;
 using General.Api.Application.Hikvision;
-using General.Api.Core.ApiAuthUser;
 using General.Api.Core.Log;
 using General.Api.Framework.Filters;
 using General.Api.Framework.Token;
@@ -60,11 +59,8 @@ namespace General.Api.Extension
             InitHikSecurityContext(services, configuration);
 
             LogContext.ConnectionString = configuration.GetConnectionString(ApiConsts.ConnectionStringName);
-
-            TokenContext._ApiAuthUserDao = serviceProvider.GetService<IApiAuthUserDao>();
-            TokenContext.SecurityKey = configuration["Jwt:SecurityKey"];
-            //CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
-            //   services.AddDbContext<CustomLoggerDBContext>();
+         //CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
+         //   services.AddDbContext<CustomLoggerDBContext>();
         }
         /// <summary>
         /// 加载海康加密所需上下文

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using General.Core.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Primitives;
 
 namespace General.Api.Framework.Filters
 {
@@ -42,6 +43,11 @@ namespace General.Api.Framework.Filters
             //{
             //    await next();
             //}
+            //var authToken = context.HttpContext.Request.Headers.TryGetValue("Authorization",out StringValues authTokenValue);
+            //if (!authToken)
+            //{
+            //}
+
             await next();
 
 

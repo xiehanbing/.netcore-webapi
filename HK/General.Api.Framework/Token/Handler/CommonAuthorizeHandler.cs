@@ -35,11 +35,11 @@ namespace General.Core.Token
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CommonAuthorize requirement)
         {
             //如果是开发环境 忽略
-            if (_environment.IsDevelopment())
-            {
-                context.Succeed(requirement);
-                return Task.CompletedTask;
-            }
+            //if (_environment.IsDevelopment())
+            //{
+            //    context.Succeed(requirement);
+            //    return Task.CompletedTask;
+            //}
             //如果不存在此配置或此配置 为false 忽略
             bool needAuth = false;
             if(_configuration["needAuth"]==null||(bool.TryParse(_configuration["needAuth"],out  needAuth) ))
@@ -70,7 +70,6 @@ namespace General.Core.Token
                 context.Fail();
                 return Task.FromResult(0);
             }
-
             var user = "";
             result = TokenContext.Validate(authStr.ToString().Substring("Bearer ".Length).Trim(), payLoad =>
             {
@@ -90,7 +89,8 @@ namespace General.Core.Token
             if (!result)
             {
                 context.Fail();
-                return Task.FromResult(0);
+                
+                return Task.CompletedTask;
             }
 
             #endregion

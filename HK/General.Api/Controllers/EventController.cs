@@ -14,7 +14,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 事件服务
     /// </summary>
-    [Route("api/[controller]"), Authorize("General")]
+    [Route("api/[controller]"), Authorize]
     [ApiController]
     public class EventController : ControllerBase
     {

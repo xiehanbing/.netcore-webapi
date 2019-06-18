@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -27,8 +28,8 @@ namespace General.Api.Framework.Token
                 new Claim(JwtRegisteredClaimNames.Sub, request.Account),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sid,request.Account),
-                new Claim("ruser",request.Account)
-                //new Claim("age",19.ToString()), 
+                new Claim("ruser",request.Account),
+                new Claim("time",DateTime.Now.ToString(CultureInfo.InvariantCulture))
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecurityKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -36,7 +37,7 @@ namespace General.Api.Framework.Token
                 audience: configuration["Jwt:Audience"],
                 claims: claims,              
                 notBefore:DateTime.Now,
-                expires: DateTime.Now.AddDays(1),
+                //expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

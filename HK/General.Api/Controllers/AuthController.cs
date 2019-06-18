@@ -40,7 +40,7 @@ namespace General.Api.Controllers
         /// <param name="request">请求</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost,Route("token")]
+        [HttpPost, Route("token")]
         public async Task<ActionResult> RequestToken([FromBody] TokenRequest request)
         {
             var data = await _tokenService.Get(request.Account, request.Password);
@@ -50,10 +50,15 @@ namespace General.Api.Controllers
                 return Unauthorized("Could not verify username and password");
             }
 
-            return Ok(new
+            var token = GeneralToken.TokenHandle.CreateToken(_configuration, request);
+            if (await _tokenService.AddTokenRecord(request.Account, token))
             {
-                token = GeneralToken.TokenHandle.CreateToken(_configuration, request)
-            });
+                return Ok(new
+                {
+                    token = GeneralToken.TokenHandle.CreateToken(_configuration, request)
+                });
+            }
+            throw new MyException("记录token 失败");
         }
     }
 }

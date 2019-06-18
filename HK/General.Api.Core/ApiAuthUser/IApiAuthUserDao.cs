@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using General.EntityFrameworkCore.ApiAuthUser;
 
 namespace General.Api.Core.ApiAuthUser
 {
@@ -11,5 +12,33 @@ namespace General.Api.Core.ApiAuthUser
         /// <param name="password">密码</param>
         /// <returns></returns>
         Task<bool> VerifyUser(string account, string password);
+        /// <summary>
+        /// 验证 token
+        /// </summary>
+        /// <param name="token">token</param>
+        /// <param name="account">account  账号</param>
+        /// <returns></returns>
+        bool VerifyToken(string token, string account);
+        /// <summary>
+        /// 添加新的token
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> AddTokenAsync(string account, string token);
+        /// <summary>
+        /// 更新token
+        /// </summary>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> UpdateTokenAsync(ApiAuthUserToken token);
+
+        /// <summary>
+        /// 移除token
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> RemoveTokenAsync(string account, string token);
     }
 }

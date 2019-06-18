@@ -17,7 +17,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// ValuesController
     /// </summary>
-    [Route("api/[controller]"),Authorize(policy:"General")]
+    [Route("api/[controller]"),Authorize]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -82,7 +82,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         // DELETE api/values/5
-        [HttpDelete("{id}"),Authorize(policy: "General")]
+        [HttpDelete("{id}"),Authorize]
         public void Delete(int id)
         {
             _log.Error("这是一个测试信息Error");

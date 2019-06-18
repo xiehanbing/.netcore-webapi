@@ -50,5 +50,11 @@ namespace General.Api.Application.Token
         {
             return new List<string>() { "All" };
         }
+
+        public async Task<bool> AddTokenRecord(string account, string token)
+        {
+            var data = await _apiAuthUserDao.AddTokenAsync(account, token);
+            return data;
+        }
     }
 }

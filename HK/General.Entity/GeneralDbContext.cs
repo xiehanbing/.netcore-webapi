@@ -27,6 +27,10 @@ namespace General.EntityFrameworkCore
 
 
         public DbSet<ApiAuthUser.ApiAuthUser> ApiAuthUsers { get; set; }
+        /// <summary>
+        /// ApiAuthUserTokens
+        /// </summary>
+        public DbSet<ApiAuthUser.ApiAuthUserToken> ApiAuthUserTokens { get; set; }
         //public DbSet<TableLog> TableLogs { get; set; }
     }
 }

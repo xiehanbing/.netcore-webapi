@@ -73,7 +73,7 @@ namespace General.Api.Framework.Token
             });
             if (!result)
             {
-                throw new UnauthorizedAccessException("未授权");
+                throw new UnauthorizedAccessException("授权验证未通过");
             }
 
             #endregion

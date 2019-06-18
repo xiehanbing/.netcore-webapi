@@ -29,5 +29,12 @@ namespace General.Api.Application.Token
         /// <param name="account">账号</param>
         /// <returns></returns>
         Task<List<string>> GetPermission(string account);
+        /// <summary>
+        /// 添加新的token 记录
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> AddTokenRecord(string account, string token);
     }
 }

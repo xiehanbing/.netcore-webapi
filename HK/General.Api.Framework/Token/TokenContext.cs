@@ -5,6 +5,9 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using General.Api.Core.ApiAuthUser;
+using General.Core;
+using General.Core.Extension;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
@@ -20,6 +23,12 @@ namespace General.Api.Framework.Token
         /// </summary>
         public static string SecurityKey = "";
 
+        public static IApiAuthUserDao _ApiAuthUserDao;
+
+        public TokenContext(IApiAuthUserDao ApiAuthUserDao)
+        {
+            TokenContext._ApiAuthUserDao = ApiAuthUserDao;
+        }
         /// <summary>
         /// 创建jwttoken,源码自定义
         /// </summary>
@@ -76,7 +85,7 @@ namespace General.Api.Framework.Token
                 audience: null,
                 claims: claims,
                 notBefore: now,
-                expires: now.Add(TimeSpan.FromMinutes(expiresMinute)),
+                //expires: now.Add(TimeSpan.FromMinutes(expiresMinute)),
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecurityKey)), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             return encodedJwt;
@@ -102,15 +111,20 @@ namespace General.Api.Framework.Token
             success = string.Equals(jwtArr[2], Base64UrlEncoder.Encode(hs256.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(jwtArr[0], ".", jwtArr[1])))));
             if (!success)
             {
-                return success;//签名不正确直接返回
+                return false;//签名不正确直接返回
             }
             //其次验证是否在有效期内（也应该必须）
             var now = ToUnixEpochDate(DateTime.UtcNow);
-            success = (now >= long.Parse(payLoad["nbf"].ToString()) && now < long.Parse(payLoad["exp"].ToString()));
+            //success = (string.IsNullOrEmpty(payLoad["nbf"]?.ToString())|| string.IsNullOrEmpty(payLoad["exp"]?.ToString())) || (now >= long.Parse(payLoad["nbf"].ToString()) && now < long.Parse(payLoad["exp"].ToString()));
+            var user = payLoad["ruser"]?.ToString() ?? "";
+            if (!user.IsNotWhiteSpace()) return false;
 
             //再其次 进行自定义的验证
             success = success && validatePayLoad(payLoad);
-
+            if (!_ApiAuthUserDao.VerifyToken(encodeJwt, user))
+            {
+                return false;
+            }
             return success;
         }
         /// <summary>
