@@ -17,7 +17,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// UserController
     /// </summary>
-    [Route("api/[controller]"), Authorize]
+    [Route("api/[controller]"), GeneralAuthorize]
     [ApiController]
     public class UserController : ControllerBase
     {

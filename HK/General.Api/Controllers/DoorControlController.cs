@@ -21,7 +21,7 @@ namespace General.Api.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("application/json"), Authorize]
+    [Produces("application/json"), GeneralAuthorize]
     public class DoorControlController : ControllerBase
     {
         private readonly IDoorControlService _doorControlService;

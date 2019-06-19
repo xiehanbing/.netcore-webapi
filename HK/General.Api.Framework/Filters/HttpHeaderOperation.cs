@@ -46,7 +46,7 @@ namespace General.Api.Framework.Filters
                     if (methodInfo.ReflectedType != null)
                         isAuthorized =
                             methodInfo.ReflectedType.CustomAttributes.Any(t =>
-                                t.AttributeType == typeof(AuthorizeAttribute));
+                                t.AttributeType == typeof(GeneralAuthorizeAttribute));
                 }
             }
 

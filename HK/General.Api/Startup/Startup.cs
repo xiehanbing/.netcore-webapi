@@ -79,7 +79,7 @@ namespace General.Api
             services.AddAssembly("General.Api.Application");
             services.AddAssembly("General.Api.Core");
             //add 自定义验证策略
-            services.AddInnerAuthorize(Configuration);
+            //services.AddInnerAuthorize(Configuration);
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

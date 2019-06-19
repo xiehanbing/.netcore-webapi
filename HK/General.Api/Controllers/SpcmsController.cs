@@ -16,7 +16,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 入侵报警
     /// </summary>
-    [Route("api/[controller]"), Authorize]
+    [Route("api/[controller]"), GeneralAuthorize]
     [ApiController]
     public class SpcmsController : ControllerBase
     {

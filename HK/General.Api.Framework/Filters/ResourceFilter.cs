@@ -52,7 +52,7 @@ namespace General.Api.Framework.Filters
         {
             var action = context.ActionDescriptor;
            //var sss=action.GetProperty<endpoint>()
-            var haveAuthor = action.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(ResourceFilter).ToString());
+            var haveAuthor = action.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(GeneralAuthorizeAttribute).ToString());
             var haveAllowAny = action.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(AllowAnonymousFilter).ToString());
             bool needAuth = false;
             if (_configuration["needAuth"] != null && (bool.TryParse(_configuration["needAuth"], out needAuth)) && !haveAllowAny && haveAuthor)

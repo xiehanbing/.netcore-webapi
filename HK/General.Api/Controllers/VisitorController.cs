@@ -16,7 +16,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 访客记录
     /// </summary>
-    [Route("api/[controller]"), Authorize]
+    [Route("api/[controller]"), GeneralAuthorize]
     [ApiController]
     public class VisitorController : ControllerBase
     {
