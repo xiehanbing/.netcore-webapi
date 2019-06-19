@@ -217,6 +217,74 @@
             <param name="isSave">是否保存</param>
             <returns></returns>
         </member>
+        <member name="T:General.Core.Encrypt.EncryptContext">
+            <summary>
+            加解密上下文
+            </summary>
+        </member>
+        <member name="F:General.Core.Encrypt.EncryptContext.AesKey">
+            <summary>
+            AesKey
+            </summary>
+        </member>
+        <member name="F:General.Core.Encrypt.EncryptContext.AesIv">
+            <summary>
+            AesIv
+            </summary>
+        </member>
+        <member name="T:General.Core.Encrypt.EncryptExtension">
+            <summary>
+            加解密帮助类 扩展
+            </summary>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.Sha256Encry(System.String)">
+            <summary>
+            sha256 加密
+            </summary>
+            <param name="input">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.Sha256Base64Encry(System.String)">
+            <summary>
+            sha256 加密  base64 编码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.AesEncry(System.String,System.String)">
+            <summary>
+            aes加密
+            </summary>
+            <param name="input">字符串</param>
+            <param name="key">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.AesEncry(System.String,System.String,System.String)">
+            <summary>
+            AesEncry 加密 带偏移量
+            </summary>
+            <param name="input">字符串</param>
+            <param name="key">秘钥</param>
+            <param name="iv">偏移量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.AesDescry(System.String,System.String)">
+            <summary>
+            aes加密
+            </summary>
+            <param name="input">字符串</param>
+            <param name="key">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Encrypt.EncryptExtension.AesDescry(System.String,System.String,System.String)">
+            <summary>
+            AesEncry 加密 带偏移量
+            </summary>
+            <param name="input">字符串</param>
+            <param name="key">秘钥</param>
+            <param name="iv">偏移量</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Core.EngineContext">
             <summary>
             引擎上下文

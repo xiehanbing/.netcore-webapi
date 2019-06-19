@@ -21,6 +21,24 @@
             <param name="request">请求</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.AuthController.ClearMemoryCatch(System.String)">
+            <summary>
+            清楚token魂村
+            </summary>
+            <param name="key">key</param>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.AddApiAuthUser(General.Api.Application.Token.ApiAuthUserDto)">
+            <summary>
+            添加apiauth 账号
+            </summary>
+            <param name="user">参数</param>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.AddAdminApiAuthUser(General.Api.Application.Token.ApiAuthUserDto)">
+            <summary>
+            添加admin账号
+            </summary>
+            <param name="user">参数</param>
+        </member>
         <member name="T:General.Api.Controllers.DoorControlController">
             <summary>
             门禁点api

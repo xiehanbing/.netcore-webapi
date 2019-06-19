@@ -126,5 +126,38 @@ namespace General.Api.Core.ApiAuthUser
                                                                                            .Equals(account.Trim()));
             return data;
         }
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.VerifyAdmin(string,string)"/>
+        /// </summary>
+        public async Task<bool> VerifyAdmin(string account, string passwordEncry)
+        {
+            var data = await _apiUseRepository.Entities.FirstOrDefaultAsync(o => o.IsAdmin &&
+                o.Account.Trim().Equals(account.Trim()) && o.Password.Trim().Equals(passwordEncry.Trim()) && !o.IsDeleted);
+            if (data != null) return true;
+            return false;
+        }
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.AddUserAsync(string,string,bool)"/>
+        /// </summary>
+        public async Task<bool> AddUserAsync(string account, string password, bool isAdmin = false)
+        {
+            var data = await _apiUseRepository.InsertAsync(new EntityFrameworkCore.ApiAuthUser.ApiAuthUser()
+            {
+                Account = account,
+                CreationTime = DateTime.Now,
+                Password = password,
+                IsAdmin = isAdmin
+            });
+
+            return data!=null;
+        }
+        /// <summary>
+        /// <see cref="IApiAuthUserDao.GetAuthUserAsync(string)"/>
+        /// </summary>
+        public async Task<EntityFrameworkCore.ApiAuthUser.ApiAuthUser> GetAuthUserAsync(string account)
+        {
+            var data = await _apiUseRepository.Entities.FirstOrDefaultAsync(o => o.Account.Trim().Equals(account.Trim()) && !o.IsDeleted);
+            return data;
+        }
     }
 }

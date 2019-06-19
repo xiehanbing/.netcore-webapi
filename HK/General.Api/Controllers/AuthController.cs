@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -7,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using General.Api.Application.Token;
 using General.Api.Framework;
+using General.Api.Framework.Filters;
 using General.Core;
+using General.Core.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +62,35 @@ namespace General.Api.Controllers
                 });
             }
             throw new MyException("记录token 失败");
+        }
+        /// <summary>
+        /// 清楚token魂村
+        /// </summary>
+        /// <param name="key">key</param>
+        [HttpGet, Route("cache/remove"),GeneralAdminAuthorize]
+        public bool ClearMemoryCatch(string key)
+        {
+            if (!key.IsNotWhiteSpace()) throw new MyException("key 不允许为空");
+           return _tokenService.ClearMemaryCache(key);
+        }
+        /// <summary>
+        /// 添加apiauth 账号
+        /// </summary>
+        /// <param name="user">参数</param>
+        [HttpPost, Route("user"), GeneralAdminAuthorize]
+        public async Task<bool> AddApiAuthUser(ApiAuthUserDto user)
+        {
+            return await _tokenService.AddApiAuthUserAsync(user.Account, user.Password);
+        }
+
+        /// <summary>
+        /// 添加admin账号
+        /// </summary>
+        /// <param name="user">参数</param>
+        [HttpPost, Route("user/admin"), GeneralAdminAuthorize]
+        public async Task<bool> AddAdminApiAuthUser(ApiAuthUserDto user)
+        {
+            return await _tokenService.AddApiAuthUserAsync(user.Account, user.Password, true);
         }
     }
 }

@@ -53,5 +53,27 @@ namespace General.Api.Core.ApiAuthUser
         /// <param name="account">account</param>
         /// <returns></returns>
         Task<ApiAuthUserToken> GetTokenAsync(string account);
+        /// <summary>
+        /// 验证是否为管理员
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="passwordEncry">password 加密版</param>
+        /// <returns></returns>
+        Task<bool> VerifyAdmin(string account, string passwordEncry);
+
+        /// <summary>
+        /// 添加apiauther 用户
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="password">password</param>
+        /// <param name="isAdmin">isAdmin</param>
+        /// <returns></returns>
+        Task<bool> AddUserAsync(string account, string password, bool isAdmin = false);
+        /// <summary>
+        /// 获取用户
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <returns></returns>
+        Task<EntityFrameworkCore.ApiAuthUser.ApiAuthUser> GetAuthUserAsync(string account);
     }
 }

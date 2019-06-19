@@ -10,4 +10,12 @@ namespace General.Api.Framework.Filters
     {
         
     }
+
+    /// <summary>
+    /// GeneralAdminAuthorizeAttribute
+    /// </summary>
+    public class GeneralAdminAuthorizeAttribute : Attribute, IFilterMetadata
+    {
+
+    }
 }

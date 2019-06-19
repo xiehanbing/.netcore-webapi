@@ -71,7 +71,7 @@ namespace General.Api
                 options.Filters.Add<ExceptionFilter>();
                 options.Filters.Add<ResourceFilter>();
                 options.Filters.Add<ActionFilter>();
-                options.Filters.Add<GeneralAuthorizationFilter>();
+                options.Filters.Add<ResourceFilter>();
             });
             //创建引擎单例
             EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));

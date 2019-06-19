@@ -44,12 +44,13 @@ namespace General.Api.Framework.Filters
                 else
                 {
                     if (methodInfo.ReflectedType != null)
-                        isAuthorized =
+                        isAuthorized = (
                             methodInfo.ReflectedType.CustomAttributes.Any(t =>
-                                t.AttributeType == typeof(GeneralAuthorizeAttribute));
+                                t.AttributeType == typeof(GeneralAuthorizeAttribute) || t.AttributeType == typeof(GeneralAdminAuthorizeAttribute)))
+                            || (context.ApiDescription.ActionDescriptor.FilterDescriptors.Any(o => o.Filter.ToString() == typeof(GeneralAdminAuthorizeAttribute).ToString() || o.Filter.ToString() == typeof(GeneralAuthorizeAttribute).ToString()));
                 }
             }
-
+            //if(context.ApiDescription.ActionDescriptor.)
             if (isAuthorized)
             {
                 operation.Parameters.Add(new NonBodyParameter()

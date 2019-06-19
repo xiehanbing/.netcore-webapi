@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using General.Api.Core.ApiAuthUser;
 using General.Api.Core.Log;
+using General.Core;
+using General.Core.Encrypt;
 using General.Core.Extension;
 using General.EntityFrameworkCore.Log;
 using Microsoft.Extensions.Caching.Memory;
@@ -34,7 +36,7 @@ namespace General.Api.Application.Token
         /// </summary>
         public async Task<bool> Get(string account, string password)
         {
-            return await _apiAuthUserDao.VerifyUser(account, password);
+            return await _apiAuthUserDao.VerifyUser(account, password.Sha256Base64Encry());
         }
         /// <summary>
         /// 验证是否有权限
@@ -60,10 +62,11 @@ namespace General.Api.Application.Token
         /// </summary>
         public async Task<bool> AddTokenRecordAsync(string account, string token)
         {
+            Console.WriteLine("password encry:"+("123456").Sha256Base64Encry());
             var data = await _apiAuthUserDao.AddTokenAsync(account, token);
             if (data)
             {
-                _memoryCache.Set(account + "token", token, TimeSpan.FromHours(3));
+               SetTokenMemory(account,token);
             }
             return data;
         }
@@ -88,10 +91,15 @@ namespace General.Api.Application.Token
         {
             var memory = _memoryCache.TryGetValue(account + "token", out string tokenValue);
             if (memory && tokenValue.IsNotWhiteSpace())
+            {
+                Console.WriteLine("cache is exist");
                 return tokenValue;
+            }
+
             var data = await _apiAuthUserDao.GetTokenAsync(account);
             if (data != null)
             {
+                Console.WriteLine("cache is not exist");
                 SetTokenMemory(account, data.JwtToken);
             }
             else
@@ -115,7 +123,33 @@ namespace General.Api.Application.Token
         private void SetTokenMemory(string account, string token)
         {
             _memoryCache.Set(account + "token", token, TimeSpan.FromHours(3));
+            Console.WriteLine(account+"cache is set");
         }
-
+        /// <summary>
+        /// <see cref="ITokenService.ClearMemaryCache(string)"/>
+        /// </summary>
+        public bool ClearMemaryCache(string key)
+        {
+            _memoryCache.Remove(key);
+            Console.WriteLine($"{key} cache is clear");
+            return true;
+        }
+        /// <summary>
+        /// <see cref="ITokenService.VerifyAdminAsync(string,string)"/>
+        /// </summary>
+        public async Task<bool> VerifyAdminAsync(string account, string password)
+        {
+            var passwordEncry = password.Sha256Base64Encry();
+            return await _apiAuthUserDao.VerifyAdmin(account, passwordEncry);
+        }
+        /// <summary>
+        /// <see cref="ITokenService.AddApiAuthUserAsync(string,string,bool)"/>
+        /// </summary>
+        public async Task<bool> AddApiAuthUserAsync(string account, string password,bool isAdmin=false)
+        {
+            var isExist = await _apiAuthUserDao.GetAuthUserAsync(account);
+            if(isExist!=null)throw new MyException("用户已存在");
+            return await _apiAuthUserDao.AddUserAsync(account, password.Sha256Base64Encry(), isAdmin);
+        }
     }
 }

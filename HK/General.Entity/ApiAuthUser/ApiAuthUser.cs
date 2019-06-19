@@ -31,6 +31,10 @@ namespace General.EntityFrameworkCore.ApiAuthUser
         /// 是否删除
         /// </summary>		
         public bool IsDeleted { get; set; }
+        /// <summary>
+        /// 是否为管理员
+        /// </summary>
+        public bool IsAdmin { get; set; }
     }
 
 

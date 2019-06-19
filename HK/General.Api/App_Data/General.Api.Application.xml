@@ -2533,6 +2533,31 @@
             <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})"/>
             </summary>
         </member>
+        <member name="T:General.Api.Application.Token.ApiAuthUserDto">
+            <summary>
+            ApiAuthUserDto
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Token.ApiAuthUserDto.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Token.ApiAuthUserDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Token.ApiAuthUserDtoValidator">
+            <summary>
+            ApiAuthUserDtoValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.ApiAuthUserDtoValidator.#ctor">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Token.ITokenService">
             <summary>
             token 接口
@@ -2575,6 +2600,30 @@
             </summary>
             <param name="account">account</param>
             <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.ClearMemaryCache(System.String)">
+            <summary>
+            清楚缓存
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.VerifyAdminAsync(System.String,System.String)">
+            <summary>
+            验证是否为管理员
+            </summary>
+            <param name="account"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            添加 apiauther 用户
+            </summary>
+            <param name="account">account</param>
+            <param name="password">password</param>
+            <param name="isAdmin">password</param>
             <returns></returns>
         </member>
         <member name="T:General.Api.Application.Token.TokenService">
@@ -2631,6 +2680,21 @@
             <param name="account">account</param>
             <param name="token">token</param>
             <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.ClearMemaryCache(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.ClearMemaryCache(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.VerifyAdminAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.VerifyAdminAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)"/>
+            </summary>
         </member>
         <member name="T:General.Api.Application.User.Dto.FingerPrintResponse">
             <summary>
