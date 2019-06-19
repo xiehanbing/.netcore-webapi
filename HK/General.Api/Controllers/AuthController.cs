@@ -55,7 +55,7 @@ namespace General.Api.Controllers
             {
                 return Ok(new
                 {
-                    token = GeneralToken.TokenHandle.CreateToken(_configuration, request)
+                    token = token
                 });
             }
             throw new MyException("记录token 失败");

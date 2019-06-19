@@ -32,17 +32,17 @@ namespace General.Api.Extension
 
                 #region 键值对对比的一些验证策略
 
-                option.AddPolicy("onlyRober", policy => policy.RequireClaim("name", "general"));
-                //角色校验
-                option.AddPolicy("onlyAdminOrSuperUser",
-                    policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "SuperUser"));
-                //多申明共同,申明中包含aud：general 或者申明中值有等于general的都可以通过
-                option.AddPolicy("multiClaim",
-                    policy => policy.RequireAssertion(context =>
-                    {
-                        return context.User.HasClaim("aud", config["Jwt:Audience"]) ||
-                               context.User.HasClaim(c => c.Value == config["Jwt:Name"]);
-                    }));
+                //option.AddPolicy("onlyRober", policy => policy.RequireClaim("name", "general"));
+                ////角色校验
+                //option.AddPolicy("onlyAdminOrSuperUser",
+                //    policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "SuperUser"));
+                ////多申明共同,申明中包含aud：general 或者申明中值有等于general的都可以通过
+                //option.AddPolicy("multiClaim",
+                //    policy => policy.RequireAssertion(context =>
+                //    {
+                //        return context.User.HasClaim("aud", config["Jwt:Audience"]) ||
+                //               context.User.HasClaim(c => c.Value == config["Jwt:Name"]);
+                //    }));
 
                 #endregion
 
@@ -55,19 +55,24 @@ namespace General.Api.Extension
 
 
             }).AddAuthentication(option => { option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; })
+
                 .AddJwtBearer(option =>
             {
                 if (!string.IsNullOrEmpty(config["Jwt:SecurityKey"]))
                 {
                     TokenContext.SecurityKey = config["Jwt:SecurityKey"];
                 }
+
+                bool needAuth = false;
+                var needAuthSuccess =
+                    config["needAuth"] != null && (bool.TryParse(config["needAuth"], out needAuth));
                 //设置需要验证的项目
                 option.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false,//是否验证Issuer
                     ValidateAudience = false,//是否验证Audience
                     ValidateLifetime = false,//是否验证失效时间
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    ValidateIssuerSigningKey = needAuth,//是否验证SecurityKey
                     //ValidAudience = config["Jwt:Audience"],//Audience
                     //ValidIssuer = config["Jwt:Issuer"],//Issuer，这两项和前面签发jwt的设置一致
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenContext.SecurityKey))//拿到SecurityKey
@@ -76,16 +81,15 @@ namespace General.Api.Extension
                 #region 如果要自定义验证的话
                 //option.SecurityTokenValidators.Clear();//将SecurityTokenValidators清除掉，否则它会在里面拿验证
                 //option.SecurityTokenValidators.Add(new MyDefaultTokenValidatorHandle());
-
                 #endregion
-
-
                 option.Events = new JwtBearerEvents()
                 {
                     //OnMessageReceived = context =>
                     //{
                     //    var token = context.Request.Headers["Authorization"];
                     //    context.Token = token;
+                    //    if (!needAuth)
+                    //        context.Success();
                     //    return Task.CompletedTask;
                     //},
                     //OnAuthenticationFailed = context =>
@@ -127,8 +131,7 @@ namespace General.Api.Extension
                         return Task.FromResult(0);
                     }
                 };
-            })
-                ;
+            });
             //自定义策略IOC添加
             services.AddSingleton<IAuthorizationHandler, AgeRequireHandler>();
             services.AddSingleton<IAuthorizationHandler, CommonAuthorizeHandler>();

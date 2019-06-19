@@ -7,6 +7,7 @@ using General.Api.Application.User;
 using General.Api.Application.User.Dto;
 using General.Api.Application.User.Request;
 using General.Api.Framework;
+using General.Api.Framework.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

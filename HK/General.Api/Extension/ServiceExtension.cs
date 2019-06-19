@@ -32,18 +32,7 @@ namespace General.Api.Extension
         /// </summary>
         /// <param name="services"></param>
         public static void InitLogContext(this IServiceCollection services)
-        {
-            //var serviceProvider = services.BuildServiceProvider();
-            //General.Api.Core.Log.LogContext.ApiLogRepository =
-            //    serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ApiLog>>();
-            //    //serviceProvider.GetService<IRepository<ApiLog>>();
-            //General.Api.Core.Log.LogContext.ExceptionApiLogRepository =
-            //    serviceProvider.CreateScope().ServiceProvider.GetService<IRepository<ExceptionApiLog>>();
-            ////serviceProvider.GetService<IRepository<ExceptionApiLog>>();
-            //General.Api.Core.Log.LogContext.ResourceApiLogRepository =
-            //    serviceProvider.GetService<IRepository<ResourceApiLog>>();
-            //LogContext.HttpClientApiLogRepository = serviceProvider.GetService<IRepository<HttpClientApiLog>>();
-           
+        {         
         }
         /// <summary>
         /// 加载其他的 配置上下文
@@ -63,8 +52,7 @@ namespace General.Api.Extension
 
             TokenContext._ApiAuthUserDao = serviceProvider.GetService<IApiAuthUserDao>();
             TokenContext.SecurityKey = configuration["Jwt:SecurityKey"];
-            //CustomLoggerDBContext.ConnectionString = configuration.GetConnectionString("LoggerDatabase");
-            //   services.AddDbContext<CustomLoggerDBContext>();
+
         }
         /// <summary>
         /// 加载海康加密所需上下文
@@ -94,7 +82,6 @@ namespace General.Api.Extension
                     TermsOfService = "http://www.sihongit.com/",
                     Description = "思弘接口",
                     Contact = new Contact
-                    ()
                     {
                         Name = "谢汉冰",
                         Email = "xiehanbing@sihongit.com",
@@ -103,7 +90,6 @@ namespace General.Api.Extension
                     }
                 });
                 options.DocInclusionPredicate((docName, description) => true);
-                //options.TagActionsBy(apiDesc => apiDesc.GetAreaName());
                 string rootdir = rootDir ?? AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
                 if (dir?.Parent?.Parent != null)

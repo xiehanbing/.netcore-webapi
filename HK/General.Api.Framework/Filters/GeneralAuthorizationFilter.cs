@@ -61,7 +61,7 @@ namespace General.Api.Framework.Filters
 
                     if (!authValue.ToString()?.Contains("Bearer") ?? false)
                     {
-                        var result = new ApiResult() { Code = 401, Message = "未授权验证" };
+                        var result = new ApiResult() { Code = 401, Message = "Authorization不符合规范" };
                         context.Result = new JsonResult(result);
                         return;
                     }
@@ -124,7 +124,7 @@ namespace General.Api.Framework.Filters
 
                     if (!authValue.ToString()?.Contains("Bearer") ?? false)
                     {
-                        var result = new ApiResult() { Code = 401, Message = "未授权验证" };
+                        var result = new ApiResult() { Code = 401, Message = "Authorization不符合规范" };
                         context.Result = new JsonResult(result);
                         return;
                     }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using General.Api.Application.Event;
 using General.Api.Application.Event.Dto;
 using General.Api.Framework;
+using General.Api.Framework.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

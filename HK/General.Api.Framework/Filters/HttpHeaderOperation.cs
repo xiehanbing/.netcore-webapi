@@ -49,6 +49,7 @@ namespace General.Api.Framework.Filters
                                 t.AttributeType == typeof(AuthorizeAttribute));
                 }
             }
+
             if (isAuthorized)
             {
                 operation.Parameters.Add(new NonBodyParameter()
@@ -59,6 +60,7 @@ namespace General.Api.Framework.Filters
                     Required = false,
                     Description = "权限验证"
                 });
+
             }
         }
 

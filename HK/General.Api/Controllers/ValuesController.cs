@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using General.Api.Application.User;
 using General.Api.Application.User.Dto;
 using General.Api.Framework;
+using General.Api.Framework.Filters;
 using General.Core;
 using General.Log;
 using General.Log.Entity;
@@ -17,7 +18,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// ValuesController
     /// </summary>
-    [Route("api/[controller]"),Authorize]
+    [Route("api/[controller]"), Authorize]
     [ApiController]
     public class ValuesController : ControllerBase
     {

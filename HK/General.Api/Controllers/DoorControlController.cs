@@ -8,6 +8,7 @@ using General.Api.Application.Door;
 using General.Api.Application.Door.Dto;
 using General.Api.Application.Hikvision;
 using General.Api.Framework;
+using General.Api.Framework.Filters;
 using General.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

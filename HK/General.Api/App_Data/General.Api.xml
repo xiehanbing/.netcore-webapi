@@ -205,6 +205,43 @@
             <param name="pageSize">页容量</param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Controllers.SpcmsController">
+            <summary>
+            入侵报警
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.#ctor(General.Api.Application.Spcms.ISpcmsService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取子系统状态
+            </summary>
+            <param name="subSysIndexCodes">子系统编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取防区状态
+            </summary>
+            <param name="defenceIndexCodes">防区编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            报警事件日志查询
+            </summary>
+            <param name="pageNo">当前页码</param>
+            <param name="pageSize">每页数据记录数</param>
+            <param name="srcType">事件源类型</param>
+            <param name="startTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="eventType">事件类型</param>
+            <param name="srcName">事件源名称</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.UserController">
             <summary>
             UserController
@@ -263,6 +300,59 @@
             Delete
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="T:General.Api.Controllers.VisitorController">
+            <summary>
+            访客记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.#ctor(General.Api.Application.Visitor.IVisitorService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            更新访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            查询访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.CancelVisitor(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消访客预约
+            </summary>
+            <param name="appointRecordIds">预约记录ID的数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            获取来访记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            获取来访记录图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片存储服务器唯一标识</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Engine.GeneralEngine">
             <summary>
