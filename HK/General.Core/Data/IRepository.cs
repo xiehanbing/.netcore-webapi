@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace General.Core.Data
@@ -76,5 +79,24 @@ namespace General.Core.Data
         /// <param name="isSave">是否保存</param>
         /// <returns></returns>
         Task<int> DeleteAsync(TEntity entity, bool isSave = true);
+
+        /// <summary>
+        /// 根据表达式查询结果
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        Task<List<TEntity>> GetListByWhereAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 根据条件查找第一个
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        Task<TEntity> FindByWhereAsync(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// 根据表达式查询结果
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        Task<List<TEntity>> ToListAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

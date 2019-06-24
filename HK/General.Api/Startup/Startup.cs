@@ -123,7 +123,7 @@ namespace General.Api
             //添加对AutoMapper的支持
             services.AddScoped<IMapper>(options => MapperConfiguration.CreateMapper());
             //add swagger
-            services.InitSwaggerGen(Environment, AppContext.BaseDirectory);
+            services.InitSwaggerGen(Configuration,Environment, AppContext.BaseDirectory);
             services.AddScopedExtension(Configuration);
             #region log
             //初始化logcontext

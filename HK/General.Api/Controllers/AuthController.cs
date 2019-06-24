@@ -64,10 +64,10 @@ namespace General.Api.Controllers
             throw new MyException("记录token 失败");
         }
         /// <summary>
-        /// 清楚token魂村
+        /// 清楚token缓存
         /// </summary>
         /// <param name="key">key</param>
-        [HttpGet, Route("cache/remove"),GeneralAdminAuthorize]
+        [HttpGet, Route("cache/remove"),GeneralAdminAuthorize, SwaggerIgnore(true)]
         public bool ClearMemoryCatch(string key)
         {
             if (!key.IsNotWhiteSpace()) throw new MyException("key 不允许为空");
@@ -77,7 +77,7 @@ namespace General.Api.Controllers
         /// 添加apiauth 账号
         /// </summary>
         /// <param name="user">参数</param>
-        [HttpPost, Route("user"), GeneralAdminAuthorize]
+        [HttpPost, Route("user"), GeneralAdminAuthorize, SwaggerIgnore(true)]
         public async Task<bool> AddApiAuthUser(ApiAuthUserDto user)
         {
             return await _tokenService.AddApiAuthUserAsync(user.Account, user.Password);
@@ -87,7 +87,7 @@ namespace General.Api.Controllers
         /// 添加admin账号
         /// </summary>
         /// <param name="user">参数</param>
-        [HttpPost, Route("user/admin"), GeneralAdminAuthorize]
+        [HttpPost, Route("user/admin"), GeneralAdminAuthorize, SwaggerIgnore(true)]
         public async Task<bool> AddAdminApiAuthUser(ApiAuthUserDto user)
         {
             return await _tokenService.AddApiAuthUserAsync(user.Account, user.Password, true);

@@ -18,7 +18,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// ValuesController
     /// </summary>
-    [Route("api/[controller]"), GeneralAuthorize]
+    [Route("api/[controller]"), GeneralAuthorize,SwaggerIgnore(false)]
     [ApiController]
     public class ValuesController : ControllerBase
     {

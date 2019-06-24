@@ -19,7 +19,7 @@ namespace General.Api.Core.Log
         /// <summary>
         /// 记录日志
         /// </summary>
-        public static void ApiLog(ApiLog log, ApiLogRepositoryType type = ApiLogRepositoryType.ApiLog)
+        public static void ApiLog(ApiLog log)
         {
 
             log.CreationTime = DateTime.Now;
@@ -69,7 +69,7 @@ namespace General.Api.Core.Log
         /// ResourceLog
         /// </summary>
         /// <param name="log"></param>
-        public static void ResourceLog(ResourceApiLog log)
+        public static void ResourceLog(ApiLog log)
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
@@ -121,7 +121,7 @@ namespace General.Api.Core.Log
         /// ExceptionLog
         /// </summary>
         /// <param name="log"></param>
-        public static void ExceptionLog(ExceptionApiLog log)
+        public static void ExceptionLog(ApiLog log)
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
@@ -167,8 +167,6 @@ namespace General.Api.Core.Log
                     });
 
                 }
-
-                ;
             });
 
         }
@@ -176,7 +174,7 @@ namespace General.Api.Core.Log
         /// HttpClientLog
         /// </summary>
         /// <param name="log"></param>
-        public static void HttpClientLog(HttpClientApiLog log)
+        public static void HttpClientLog(ApiLog log)
         {
             log.CreationTime = DateTime.Now;
             log.OprNo = log.OprNo ?? "";
@@ -222,9 +220,6 @@ namespace General.Api.Core.Log
                     });
                 }
             });
-
-
-
         }
 
     }

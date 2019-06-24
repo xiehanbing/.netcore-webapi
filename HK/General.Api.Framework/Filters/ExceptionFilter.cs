@@ -64,7 +64,7 @@ namespace General.Api.Framework.Filters
             var httpRequest = exContext.HttpContext;
             var request = await httpRequest.Request.ReadRequestAsync();
             var response = exContext.Exception.GetSerializeObject();
-            var log = new ExceptionApiLog()
+            var log = new ApiLog()
             {
                 ConfirmNo = httpRequest.Request.Path.Value,
                 ModelName = httpRequest.Request.Method,

@@ -20,17 +20,21 @@ namespace General.EntityFrameworkCore
 
         //如果这里 examples 的名字 和 数据库的表明是一样的  那么example 中不需要加table 
         public DbSet<Example.Example> Examples { get; set; }
-
+        /// <summary>
+        /// Users
+        /// </summary>
         public DbSet<User.User> Users { get; set; }
-
+        /// <summary>
+        /// ApiLogs
+        /// </summary>
         public DbSet<ApiLog> ApiLogs { get; set; }
-
-
+        /// <summary>
+        /// ApiAuthUsers
+        /// </summary>
         public DbSet<ApiAuthUser.ApiAuthUser> ApiAuthUsers { get; set; }
         /// <summary>
         /// ApiAuthUserTokens
         /// </summary>
         public DbSet<ApiAuthUser.ApiAuthUserToken> ApiAuthUserTokens { get; set; }
-        //public DbSet<TableLog> TableLogs { get; set; }
     }
 }

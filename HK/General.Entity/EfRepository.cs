@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using General.Core.Data;
 using Microsoft.EntityFrameworkCore;
@@ -140,6 +142,34 @@ namespace General.EntityFrameworkCore
             Entities.Remove(entity);
             return await _dbContext.SaveChangesAsync();
         }
+        /// <summary>
+        /// 根据条件查询结果
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        public async Task<List<TEntity>> GetListByWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await Table.Where(predicate).ToListAsync();
+        }
+        /// <summary>
+        /// 根据表达式查找第一个
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        public async Task<TEntity> FindByWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            var data = await Table.Where(predicate).FirstOrDefaultAsync();
+            return data;
+        }
 
+        /// <summary>
+        /// 根据条件查询结果
+        /// </summary>
+        /// <param name="predicate">表达式</param>
+        /// <returns></returns>
+        public async Task<List<TEntity>> ToListAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await Table.Where(predicate).ToListAsync();
+        }
     }
 }

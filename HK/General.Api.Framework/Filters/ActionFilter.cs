@@ -57,7 +57,7 @@ namespace General.Api.Framework.Filters
             }
 
             var response = context.Result.GetSerializeObject();
-            LogManage.ResourceLog(new ResourceApiLog()
+            LogManage.ResourceLog(new ApiLog()
             {
                 ConfirmNo = path,
                 ModelName = ApiConsts.ProjectName + path,

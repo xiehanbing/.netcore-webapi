@@ -58,13 +58,9 @@ namespace General.Core.HttpClient.Extension
                 //    }
                 //}
                 var response = await client.PostAsync(client.BaseAddress, httpContent);
-                LogManage.HttpClientLog(new HttpClientApiLog()
-                {
-                    ConfirmNo = client.BaseAddress.AbsoluteUri,
-                    ModelName = "Post:" + client.BaseAddress.AbsoluteUri,
-                    RequestContext = client.DefaultRequestHeaders.GetSerializeObject() + ";httocintent:" + httpContent.GetSerializeObject(),
-                    ResponseContext = response.Content.ReadAsStringAsync().Result
-                });
+                WriteClientLog(client.BaseAddress.AbsoluteUri, "Post:" + client.BaseAddress.AbsoluteUri,
+                    client.DefaultRequestHeaders.GetSerializeObject() + ";httocintent:" +
+                    httpContent.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
                 client.Dispose();
                 return response;
             }
@@ -124,13 +120,10 @@ namespace General.Core.HttpClient.Extension
                 }
                 SetHiSecuritySignHeader(client, httpContent, data, "post");
                 var response = client.PostAsync(client.BaseAddress, httpContent).Result;
-                LogManage.HttpClientLog(new HttpClientApiLog()
-                {
-                    ConfirmNo = client.BaseAddress.AbsoluteUri,
-                    ModelName = "Post:" + client.BaseAddress.AbsoluteUri,
-                    RequestContext = httpContent.GetSerializeObject(),
-                    ResponseContext = response.Content.ReadAsStringAsync().Result
-                });
+
+                WriteClientLog(client.BaseAddress.AbsoluteUri, "Post:" + client.BaseAddress.AbsoluteUri,
+                    client.DefaultRequestHeaders.GetSerializeObject() + ";httocintent:" +
+                    httpContent.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
                 client.Dispose();
                 return response;
             }
@@ -224,14 +217,8 @@ namespace General.Core.HttpClient.Extension
                     "get");
             }
             var response = client.GetAsync(client.BaseAddress).Result;
-
-            LogManage.HttpClientLog(new HttpClientApiLog()
-            {
-                ConfirmNo = client.BaseAddress.AbsoluteUri,
-                ModelName = "Get:" + client.BaseAddress.AbsoluteUri,
-                RequestContext = client.DefaultRequestHeaders.GetSerializeObject(),
-                ResponseContext = response.Content.ReadAsStringAsync().Result
-            });
+            WriteClientLog(client.BaseAddress.AbsoluteUri, "Get:" + client.BaseAddress.AbsoluteUri,
+                client.DefaultRequestHeaders.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
             client.Dispose();
             return response.Content;
         }
@@ -248,14 +235,8 @@ namespace General.Core.HttpClient.Extension
                     "get");
             }
             var response = await client.GetAsync(client.BaseAddress);
-
-            LogManage.HttpClientLog(new HttpClientApiLog()
-            {
-                ConfirmNo = client.BaseAddress.AbsoluteUri,
-                ModelName = "Get:" + client.BaseAddress.AbsoluteUri,
-                RequestContext = client.DefaultRequestHeaders.GetSerializeObject(),
-                ResponseContext = response.Content.ReadAsStringAsync().Result
-            });
+            WriteClientLog(client.BaseAddress.AbsoluteUri, "Get:" + client.BaseAddress.AbsoluteUri,
+                client.DefaultRequestHeaders.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
             client.Dispose();
             return response.Content;
         }
@@ -272,13 +253,8 @@ namespace General.Core.HttpClient.Extension
                     "delete");
             }
             var response = await client.DeleteAsync(client.BaseAddress);
-            LogManage.HttpClientLog(new HttpClientApiLog()
-            {
-                ConfirmNo = client.BaseAddress.AbsoluteUri,
-                ModelName = "Delete:" + client.BaseAddress.AbsoluteUri,
-                RequestContext = client.DefaultRequestHeaders.GetSerializeObject(),
-                ResponseContext = response.Content.ReadAsStringAsync().Result
-            });
+            WriteClientLog(client.BaseAddress.AbsoluteUri, "Delete:" + client.BaseAddress.AbsoluteUri,
+                client.DefaultRequestHeaders.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
             client.Dispose();
             return response.Content;
         }
@@ -307,13 +283,9 @@ namespace General.Core.HttpClient.Extension
                 }
                 SetHiSecuritySignHeader(client, httpContent, data, "put");
                 var response = await client.PutAsync(client.BaseAddress, httpContent);
-                LogManage.HttpClientLog(new HttpClientApiLog()
-                {
-                    ConfirmNo = client.BaseAddress.AbsoluteUri,
-                    ModelName = "Put:" + client.BaseAddress.AbsoluteUri,
-                    RequestContext = httpContent.GetSerializeObject(),
-                    ResponseContext = response.Content.ReadAsStringAsync().Result
-                });
+                WriteClientLog(client.BaseAddress.AbsoluteUri, "Put:" + client.BaseAddress.AbsoluteUri,
+                    httpContent.GetSerializeObject(), response.Content.ReadAsStringAsync().Result);
+              
                 client.Dispose();
                 return response;
             }
@@ -583,7 +555,7 @@ namespace General.Core.HttpClient.Extension
                 }
             }
             var sign = BuildStringToSign(securityHeaders, allHeaders);
-            headers.Add("X-Ca-Signature", HmacSHA256(sign));
+            headers.Add("X-Ca-Signature", HmacSha256(sign));
             if (securityHeaders.Count > 0)
             {
                 string secheaders = "";
@@ -597,8 +569,12 @@ namespace General.Core.HttpClient.Extension
             headers.Add("appSecret", new List<string>() { HikSecurityContext.ArtemisAppSecret });
             return headers;
         }
-
-        private static string HmacSHA256(string message)
+        /// <summary>
+        /// HmacSHA256
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        private static string HmacSha256(string message)
         {
             var secret = HikSecurityContext.ArtemisAppSecret ?? "";
             var encoding = new System.Text.UTF8Encoding();
@@ -609,6 +585,23 @@ namespace General.Core.HttpClient.Extension
                 byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
                 return Convert.ToBase64String(hashmessage);
             }
+        }
+        /// <summary>
+        /// 记录日志
+        /// </summary>
+        /// <param name="keyNo">标示</param>
+        /// <param name="modelName">模块名称</param>
+        /// <param name="request">请求日志</param>
+        /// <param name="response">响应日志</param>
+        private static void WriteClientLog(string keyNo, string modelName, string request, string response)
+        {
+            LogManage.HttpClientLog(new ApiLog()
+            {
+                ConfirmNo = keyNo,
+                ModelName = modelName,
+                RequestContext = request,
+                ResponseContext = response
+            });
         }
     }
 }

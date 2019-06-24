@@ -32,7 +32,7 @@ namespace General.Api.Extension
         /// </summary>
         /// <param name="services"></param>
         public static void InitLogContext(this IServiceCollection services)
-        {         
+        {
         }
         /// <summary>
         /// 加载其他的 配置上下文
@@ -70,8 +70,9 @@ namespace General.Api.Extension
         /// </summary>
         /// <param name="services">services</param>
         /// <param name="environment">environment</param>
+        /// <param name="configuration">configuration</param>
         /// <param name="rootDir">app rootDir</param>
-        public static void InitSwaggerGen(this IServiceCollection services, IHostingEnvironment environment, string rootDir = null)
+        public static void InitSwaggerGen(this IServiceCollection services,IConfiguration configuration, IHostingEnvironment environment, string rootDir = null)
         {
             services.AddSwaggerGen(options =>
             {
@@ -89,7 +90,10 @@ namespace General.Api.Extension
 
                     }
                 });
-                options.DocInclusionPredicate((docName, description) => true);
+                options.DocumentFilter<SwaggerIgnoreFilter>();
+                //环境名称
+                var envir = configuration["Environment"]?.ToUpper()??"";
+                options.DocInclusionPredicate((docName, description) => !envir.Equals("PROC"));
                 string rootdir = rootDir ?? AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
                 if (dir?.Parent?.Parent != null)
@@ -108,6 +112,7 @@ namespace General.Api.Extension
                 }
                 options.OperationFilter<HttpHeaderOperation>();
                 options.AddFluentValidationRules();
+
             });
         }
         /// <summary>

@@ -217,6 +217,27 @@
             <param name="isSave">是否保存</param>
             <returns></returns>
         </member>
+        <member name="M:General.Core.Data.IRepository`1.GetListByWhereAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询结果
+            </summary>
+            <param name="predicate">表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.FindByWhereAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据条件查找第一个
+            </summary>
+            <param name="predicate">表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Core.Data.IRepository`1.ToListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询结果
+            </summary>
+            <param name="predicate">表达式</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Core.Encrypt.EncryptContext">
             <summary>
             加解密上下文

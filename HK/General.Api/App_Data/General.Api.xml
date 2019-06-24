@@ -23,7 +23,7 @@
         </member>
         <member name="M:General.Api.Controllers.AuthController.ClearMemoryCatch(System.String)">
             <summary>
-            清楚token魂村
+            清楚token缓存
             </summary>
             <param name="key">key</param>
         </member>
@@ -457,12 +457,13 @@
             <param name="services">services</param>
             <param name="configuration">configuration</param>
         </member>
-        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)">
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)">
             <summary>
             InitSwaggerGen
             </summary>
             <param name="services">services</param>
             <param name="environment">environment</param>
+            <param name="configuration">configuration</param>
             <param name="rootDir">app rootDir</param>
         </member>
         <member name="M:General.Api.Extension.ServiceCollectionExtension.AddScopedExtension(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
