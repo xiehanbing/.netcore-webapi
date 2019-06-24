@@ -58,7 +58,7 @@ namespace General.Api.Framework.Filters
                     Name = "Authorization",
                     In = "header",
                     Type = "string",
-                    Required = false,
+                    Required = true,
                     Description = "权限验证"
                 });
 
