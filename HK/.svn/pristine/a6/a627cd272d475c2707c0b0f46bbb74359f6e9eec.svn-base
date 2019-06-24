@@ -1,0 +1,149 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using General.Api.Core.ApiAuthUser;
+using General.Core;
+using General.Core.Extension;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+
+namespace General.Api.Framework.Token
+{
+    /// <summary>
+    /// Token上下文，负责token的创建和验证
+    /// </summary>
+    public class TokenContext
+    {
+        /// <summary>
+        /// 秘钥，可以从配置文件中获取
+        /// </summary>
+        public static string SecurityKey = "";
+
+        public static IApiAuthUserDao _ApiAuthUserDao;
+
+        public TokenContext(IApiAuthUserDao ApiAuthUserDao)
+        {
+            TokenContext._ApiAuthUserDao = ApiAuthUserDao;
+        }
+        /// <summary>
+        /// 创建jwttoken,源码自定义
+        /// </summary>
+        /// <param name="payLoad"></param>
+        /// <param name="header"></param>
+        /// <param name="expiresMinute"></param>
+        /// <returns></returns>
+        public static string CreateToken(Dictionary<string, object> payLoad, int expiresMinute, Dictionary<string, object> header = null)
+        {
+            if (header == null)
+            {
+                header = new Dictionary<string, object>(new List<KeyValuePair<string, object>>() {
+                    new KeyValuePair<string, object>("alg", "HS256"),
+                    new KeyValuePair<string, object>("typ", "JWT")
+                });
+            }
+            //添加jwt可用时间（应该必须要的）
+            var now = DateTime.UtcNow;
+            payLoad["nbf"] = ToUnixEpochDate(now);//可用时间起始
+            payLoad["exp"] = ToUnixEpochDate(now.Add(TimeSpan.FromMinutes(expiresMinute)));//可用时间结束
+
+            var encodedHeader = Base64UrlEncoder.Encode(JsonConvert.SerializeObject(header));
+            var encodedPayload = Base64UrlEncoder.Encode(JsonConvert.SerializeObject(payLoad));
+
+            var hs256 = new HMACSHA256(Encoding.ASCII.GetBytes(SecurityKey));
+            var encodedSignature = Base64UrlEncoder.Encode(hs256.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(encodedHeader, ".", encodedPayload))));
+
+            var encodedJwt = string.Concat(encodedHeader, ".", encodedPayload, ".", encodedSignature);
+            return encodedJwt;
+        }
+        /// <summary>
+        /// 创建jwtToken,采用微软内部方法，默认使用HS256加密，如果需要其他加密方式，请更改源码
+        /// 返回的结果和CreateToken一样
+        /// </summary>
+        /// <param name="payLoad"></param>
+        /// <param name="expiresMinute">有效分钟</param>
+        /// <returns></returns>
+        public static string CreateTokenByHandler(Dictionary<string, object> payLoad, int expiresMinute = 30)
+        {
+
+            var now = DateTime.UtcNow;
+
+            // Specifically add the jti (random nonce), iat (issued timestamp), and sub (subject/user) claims.
+            // You can add other claims here, if you want:
+            var claims = new List<Claim>();
+            foreach (var key in payLoad.Keys)
+            {
+                var tempClaim = new Claim(key, payLoad[key]?.ToString());
+                claims.Add(tempClaim);
+            }
+            // Create the JWT and write it to a string
+            var jwt = new JwtSecurityToken(
+                issuer: null,
+                audience: null,
+                claims: claims,
+                notBefore: now,
+                //expires: now.Add(TimeSpan.FromMinutes(expiresMinute)),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecurityKey)), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return encodedJwt;
+        }
+
+        /// <summary>
+        /// 验证身份 验证签名的有效性,
+        /// </summary>
+        /// <param name="encodeJwt"></param>
+        /// <param name="validatePayLoad">自定义各类验证； 是否包含那种申明，或者申明的值， </param>
+        /// 例如：payLoad["aud"]?.ToString() == "roberAuddience";
+        /// 例如：验证是否过期 等
+        /// <returns></returns>
+        public static bool Validate(string encodeJwt, Func<Dictionary<string, object>, bool> validatePayLoad)
+        {
+            var success = true;
+            var jwtArr = encodeJwt.Split('.');
+            var header = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[0]));
+            var payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
+
+            var hs256 = new HMACSHA256(Encoding.UTF8.GetBytes(SecurityKey));
+            //首先验证签名是否正确（必须的）
+            success = string.Equals(jwtArr[2], Base64UrlEncoder.Encode(hs256.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(jwtArr[0], ".", jwtArr[1])))));
+            if (!success)
+            {
+                return false;//签名不正确直接返回
+            }
+            //其次验证是否在有效期内（也应该必须）
+            var now = ToUnixEpochDate(DateTime.UtcNow);
+            //success = (string.IsNullOrEmpty(payLoad["nbf"]?.ToString())|| string.IsNullOrEmpty(payLoad["exp"]?.ToString())) || (now >= long.Parse(payLoad["nbf"].ToString()) && now < long.Parse(payLoad["exp"].ToString()));
+            var user = payLoad["ruser"]?.ToString() ?? "";
+            if (!user.IsNotWhiteSpace()) return false;
+
+            //再其次 进行自定义的验证
+            success = success && validatePayLoad(payLoad);
+            if (!_ApiAuthUserDao.VerifyToken(encodeJwt, user))
+            {
+                return false;
+            }
+            return success;
+        }
+        /// <summary>
+        /// 获取jwt中的payLoad
+        /// </summary>
+        /// <param name="encodeJwt"></param>
+        /// <returns></returns>
+        public static Dictionary<string, object> GetPayLoad(string encodeJwt)
+        {
+            var jwtArr = encodeJwt.Split('.');
+            var payLoad = JsonConvert.DeserializeObject<Dictionary<string, object>>(Base64UrlEncoder.Decode(jwtArr[1]));
+            return payLoad;
+        }
+        /// <summary>
+        /// ToUnixEpochDate
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static long ToUnixEpochDate(DateTime date) =>
+            (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
+    }
+}

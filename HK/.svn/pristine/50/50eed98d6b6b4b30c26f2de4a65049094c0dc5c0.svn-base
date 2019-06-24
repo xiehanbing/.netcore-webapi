@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>ftp://139.155.123.174:21122/general.api</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWSNFkmWLbU+nRsowvkeU+gAAAAACAAAAAAAQZgAAAAEAACAAAAB2zHYxWakuofAgi3MKN0frXwZeAxo8mYmSL0VM67ruiwAAAAAOgAAAAAIAACAAAAC7iZ0cLRw07tOdy+3GPoUK/vpHqpiZTS2N9p3ePXFUfRAAAADgpScqWGZoOMjpz82qCGpnQAAAAE+H19FVpvMYmsUPiAVffKOQxApl6PVxnbT0O4O4+eaimPsJNzRqPE+CLenq7Go2kKDCY8TCtsomCdGK/hmN6GY=</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>06/19/2019 14:17:03</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>06/19/2019 11:36:04</publishTime>
+    </File>
+    <File Include="App_Data/General.Api.Application.xml">
+      <publishTime>06/19/2019 15:38:44</publishTime>
+    </File>
+    <File Include="App_Data/General.Api.Framework.xml">
+      <publishTime>06/04/2019 18:45:19</publishTime>
+    </File>
+    <File Include="App_Data/General.Api.xml">
+      <publishTime>06/19/2019 15:38:45</publishTime>
+    </File>
+    <File Include="App_Data/General.Core.xml">
+      <publishTime>06/19/2019 15:37:03</publishTime>
+    </File>
+    <File Include="AutoMapper.dll">
+      <publishTime>04/25/2019 21:00:34</publishTime>
+    </File>
+    <File Include="AutoMapper.Extensions.Microsoft.DependencyInjection.dll">
+      <publishTime>04/29/2019 20:31:02</publishTime>
+    </File>
+    <File Include="Configs/log4net.config">
+      <publishTime>06/03/2019 13:32:17</publishTime>
+    </File>
+    <File Include="Dapper.dll">
+      <publishTime>03/30/2019 17:21:52</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>03/02/2019 19:52:30</publishTime>
+    </File>
+    <File Include="FluentValidation.AspNetCore.dll">
+      <publishTime>05/10/2019 10:53:20</publishTime>
+    </File>
+    <File Include="FluentValidation.DependencyInjectionExtensions.dll">
+      <publishTime>05/10/2019 10:53:18</publishTime>
+    </File>
+    <File Include="FluentValidation.dll">
+      <publishTime>05/10/2019 10:53:18</publishTime>
+    </File>
+    <File Include="General.Api.Application.dll">
+      <publishTime>06/19/2019 15:43:49</publishTime>
+    </File>
+    <File Include="General.Api.Application.pdb">
+      <publishTime>06/19/2019 15:43:49</publishTime>
+    </File>
+    <File Include="General.Api.Core.dll">
+      <publishTime>06/19/2019 15:43:48</publishTime>
+    </File>
+    <File Include="General.Api.Core.pdb">
+      <publishTime>06/19/2019 15:43:48</publishTime>
+    </File>
+    <File Include="General.Api.deps.json">
+      <publishTime>06/19/2019 15:43:54</publishTime>
+    </File>
+    <File Include="General.Api.dll">
+      <publishTime>06/19/2019 15:43:51</publishTime>
+    </File>
+    <File Include="General.Api.Framework.dll">
+      <publishTime>06/19/2019 15:43:50</publishTime>
+    </File>
+    <File Include="General.Api.Framework.pdb">
+      <publishTime>06/19/2019 15:43:50</publishTime>
+    </File>
+    <File Include="General.Api.pdb">
+      <publishTime>06/19/2019 15:43:51</publishTime>
+    </File>
+    <File Include="General.Api.runtimeconfig.json">
+      <publishTime>06/19/2019 15:43:54</publishTime>
+    </File>
+    <File Include="General.Core.dll">
+      <publishTime>06/19/2019 15:43:46</publishTime>
+    </File>
+    <File Include="General.Core.HttpClient.dll">
+      <publishTime>06/19/2019 15:43:48</publishTime>
+    </File>
+    <File Include="General.Core.HttpClient.pdb">
+      <publishTime>06/19/2019 15:43:48</publishTime>
+    </File>
+    <File Include="General.Core.pdb">
+      <publishTime>06/19/2019 15:43:46</publishTime>
+    </File>
+    <File Include="General.EntityFrameworkCore.dll">
+      <publishTime>06/19/2019 15:43:47</publishTime>
+    </File>
+    <File Include="General.EntityFrameworkCore.pdb">
+      <publishTime>06/19/2019 15:43:47</publishTime>
+    </File>
+    <File Include="General.Log.dll">
+      <publishTime>06/18/2019 14:00:06</publishTime>
+    </File>
+    <File Include="General.Log.pdb">
+      <publishTime>06/18/2019 14:00:06</publishTime>
+    </File>
+    <File Include="log4net.dll">
+      <publishTime>03/08/2017 19:26:22</publishTime>
+    </File>
+    <File Include="MicroElements.Swashbuckle.FluentValidation.dll">
+      <publishTime>04/25/2019 21:47:38</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>04/28/2019 10:21:47</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>04/28/2019 10:22:03</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>03/02/2019 19:51:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>03/02/2019 19:52:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>03/02/2019 19:52:04</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>03/02/2019 19:52:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>03/02/2019 19:51:58</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>03/02/2019 19:51:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>03/02/2019 19:52:04</publishTime>
+    </File>
+    <File Include="NETCore.Encrypt.dll">
+      <publishTime>06/05/2018 04:30:30</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>04/22/2019 01:06:16</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>04/28/2019 10:22:03</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.dll">
+      <publishTime>11/07/2018 10:25:10</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.Swagger.dll">
+      <publishTime>11/07/2018 10:25:06</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
+      <publishTime>11/07/2018 10:25:08</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
+      <publishTime>11/07/2018 10:25:06</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>04/28/2019 10:22:15</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>04/28/2019 10:22:15</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>04/28/2019 10:22:15</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>04/28/2019 10:22:16</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>04/28/2019 10:22:16</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>06/19/2019 15:43:54</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/favicon-16x16.png">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/favicon-32x32.png">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/index.html">
+      <publishTime>06/03/2019 17:56:37</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/oauth2-redirect.html">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui-bundle.js">
+      <publishTime>06/03/2019 16:31:24</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui-bundle.js.map">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui-standalone-preset.js">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui-standalone-preset.js.map">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui.css">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui.css.map">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui.js">
+      <publishTime>06/03/2019 17:10:43</publishTime>
+    </File>
+    <File Include="wwwroot/swagger/ui/dist/swagger-ui.js.map">
+      <publishTime>05/21/2019 18:36:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
