@@ -27,7 +27,7 @@ namespace General.Api.Application.EventRevice.Dto
     public class EventReviceParam<T>
     {
         /// <summary>
-        /// 事件类别，如视频事件、门禁事件
+        /// 发送时间
         /// </summary>
         public DateTime SendTime { get; set; }
         /// <summary>

@@ -38,6 +38,14 @@ namespace General.Api
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile($"appsettings{(env.IsDevelopment() ? $".{env.EnvironmentName}" : "")}.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
+            //if (env.IsDevelopment())
+            //{
+            //    var launchUrl = env.ContentRootPath + "/Properties/";
+            //    var lanuchBuilder = new ConfigurationBuilder()
+            //        .SetBasePath(launchUrl)
+            //        .AddJsonFile($"launchSettings.json", optional: true, reloadOnChange: true);
+            //    LaunchConfiguration = lanuchBuilder.Build();
+            //}
             Environment = env;
             Log.Log4NetContext.Initialize();
             MapperConfiguration = MapperConfig.Init();
@@ -60,7 +68,8 @@ namespace General.Api
             // add handel exception  
             services.AddMvc(options =>
             {
-                options.Filters.Add<ExceptionFilter>();                
+                options.Filters.Add<ExceptionFilter>();
+                options.Filters.Add<ResourceFilter>();
                 options.Filters.Add<ActionFilter>();
                 options.Filters.Add<ResourceFilter>();
             });
