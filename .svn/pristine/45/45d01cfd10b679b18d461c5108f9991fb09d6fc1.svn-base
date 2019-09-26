@@ -1,0 +1,26 @@
+﻿namespace General.Log
+{
+    /// <summary>
+    /// log4net 相关常量
+    /// </summary>
+    public class LogConsts
+    {
+        /// <summary>
+        /// Log4netRepositoryName
+        /// </summary>
+        public const string Log4NetRepositoryName = "NETCoreRepository";
+
+        /// <summary>
+        /// log4net 配置文件路径
+        /// </summary>
+        public const string Log4NetConfigPath = "Configs/log4net.config";
+        /// <summary>
+        /// log4net file logger 名称
+        /// </summary>
+        public const string Log4NetLoggerName = "LogInfoText";
+        /// <summary>
+        /// log4net db logger name
+        /// </summary>
+        public const string Log4NetDbLoggerName = "LogInfoDB";
+    }
+}

@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Api</name>
+    </assembly>
+    <members>
+        <member name="T:General.Api.Controllers.AuthController">
+            <summary>
+            权限获取
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,General.Api.Application.Token.ITokenService)">
+            <summary>
+            权限构造函数
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.RequestToken(General.Core.TokenRequest)">
+            <summary>
+            获取token
+            </summary>
+            <param name="request">请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.ClearMemoryCatch(System.String)">
+            <summary>
+            清楚token缓存
+            </summary>
+            <param name="key">key</param>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.AddApiAuthUser(General.Api.Application.Token.ApiAuthUserDto)">
+            <summary>
+            添加apiauth 账号
+            </summary>
+            <param name="user">参数</param>
+        </member>
+        <member name="M:General.Api.Controllers.AuthController.AddAdminApiAuthUser(General.Api.Application.Token.ApiAuthUserDto)">
+            <summary>
+            添加admin账号
+            </summary>
+            <param name="user">参数</param>
+        </member>
+        <member name="T:General.Api.Controllers.DoorControlController">
+            <summary>
+            门禁点api
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.#ctor(General.Api.Application.Door.IDoorControlService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            获取门禁点列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="doorIndexCode">门禁点唯一标识符集</param>
+            <param name="doorName">门禁点名称</param>
+            <param name="acsDevIndexCode">门禁设备唯一标识</param>
+            <param name="regionIndexCode">所属区域唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetTaskProgress(System.String)">
+            <summary>
+            获取门禁点权限的更新进度
+            </summary>
+            <param name="taskId">任务id</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.UpdateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            创建更新 门禁点权限
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            门禁点反控
+            </summary>
+            <param name="doorIndexCodeList">门禁点唯一标识集合</param>
+            <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取区域列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.EventController">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.#ctor(General.Api.Application.Event.IEventService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.GetSubscrList">
+            <summary>
+            获取订阅事件列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.Subscr(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            订阅事件
+            </summary>
+            <param name="eventTypes">事件</param>
+            <param name="eventDest">地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventController.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="eventTypes">事件</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.EventReciveController">
+            <summary>
+            事件接收服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventReciveController.#ctor(General.Api.Application.EventRevice.IDoorApplicationService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.EventReciveController.VerifyPersonSuccess(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比成功
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.EventReciveController.VerifyPersonFail(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比失败接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.ParkController">
+            <summary>
+            停车管理
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.#ctor(General.Api.Application.Parking.IParkingManageService,General.Api.Application.Parking.IParkRecordService,General.Api.Application.Parking.IParkingDeviceService)">
+            <summary>
+            construct
+            </summary>
+            <param name="parkingManageService"></param>
+            <param name="parkRecordService"></param>
+            <param name="deviceService"></param>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetParkList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取停车库列表
+            </summary>
+            <param name="parkIndexCodes">停车库唯一标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetEntranceList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取出入口
+            </summary>
+            <param name="parkIndexCodes">停车场唯一标识集</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetRoadWayList(System.Collections.Generic.List{System.String})">
+            <summary>
+            根据出入口 获取车道列表
+            </summary>
+            <param name="entranceIndexCodes">出入口唯一标识集 必填</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询车位信息
+            </summary>
+            <param name="parkSysCode">停车场唯一标识码</param>
+            <param name="spaceNo">车位号</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetRemainSpace(System.String)">
+            <summary>
+            查询停车库剩余车位数
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            道闸反控
+            </summary>
+            <param name="model">请求类</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            根据停车场编码反控道闸
+            </summary>
+            <param name="parkSyscode">停车场唯一标识码</param>
+            <param name="command">控闸命令 0关闸 1开闸 3常开</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询场内车辆停车信息
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码</param>
+            <param name="plateNo">车牌号码</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.SpcmsController">
+            <summary>
+            入侵报警
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.#ctor(General.Api.Application.Spcms.ISpcmsService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取子系统状态
+            </summary>
+            <param name="subSysIndexCodes">子系统编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取防区状态
+            </summary>
+            <param name="defenceIndexCodes">防区编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.SpcmsController.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            报警事件日志查询
+            </summary>
+            <param name="pageNo">当前页码</param>
+            <param name="pageSize">每页数据记录数</param>
+            <param name="srcType">事件源类型</param>
+            <param name="startTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="eventType">事件类型</param>
+            <param name="srcName">事件源名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.UserController">
+            <summary>
+            UserController
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.#ctor(General.Api.Application.User.IUserService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.GetList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            获取人员列表
+            </summary>
+            <param name="query">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.ValuesController">
+            <summary>
+            ValuesController
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.#ctor(General.Log.ILogManager,General.Api.Application.User.IUserService)">
+            <summary>
+            ValuesController
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Get(System.String)">
+            <summary>
+            这是一个注释
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            Get(int)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            Post(string)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            Put
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:General.Api.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:General.Api.Controllers.VisitorController">
+            <summary>
+            访客记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.#ctor(General.Api.Application.Visitor.IVisitorService)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            更新访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            查询访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.CancelVisitor(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消访客预约
+            </summary>
+            <param name="appointRecordIds">预约记录ID的数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            获取来访记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.VisitorController.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            获取来访记录图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片存储服务器唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Engine.GeneralEngine">
+            <summary>
+            引擎实现 (不从构造函数中也可获取实例)
+            </summary>
+        </member>
+        <member name="M:General.Api.Engine.GeneralEngine.#ctor(System.IServiceProvider)">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:General.Api.Engine.GeneralEngine.Resolve``1">
+            <summary>
+            构建实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Engine.GeneralEngine.ResolveByRequireService``1">
+            <summary>
+            <see cref="M:General.Core.IEngine.ResolveByRequireService``1"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Extension.ApiDescriptionExtension">
+            <summary>
+            ApiDescriptionExtension 域接口描述 扩展类
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ApiDescriptionExtension.GetAreaName(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
+            <summary>
+            获取区域名称
+            </summary>
+            <param name="description">域接口描述</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Extension.ErrorHandlingExtensions">
+            <summary>
+            ErrorHandlingExtensions
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ErrorHandlingExtensions.UseErrorHandling(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseErrorHandling
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Extension.JwtConfigServiceExtension">
+            <summary>
+            jwt token customer handle  jwt 自定义
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.JwtConfigServiceExtension.AddInnerAuthorize(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加自定义的 jwt token 验证
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:General.Api.Extension.ServiceCollectionExtension">
+            <summary>
+            ServiceCollectionExtension
+            </summary>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitLogContext(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            InitLogContext  初始化 logcontext
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitOtherContxt(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.DependencyInjection.ServiceProvider)">
+            <summary>
+            加载其他的 配置上下文
+            </summary>
+            <param name="services">services</param>
+            <param name="configuration">configuration</param>
+            <param name="environment">environment</param>
+            <param name="serviceProvider">serviceProvider</param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitHikSecurityContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            加载海康加密所需上下文
+            </summary>
+            <param name="services">services</param>
+            <param name="configuration">configuration</param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.InitSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)">
+            <summary>
+            InitSwaggerGen
+            </summary>
+            <param name="services">services</param>
+            <param name="environment">environment</param>
+            <param name="configuration">configuration</param>
+            <param name="rootDir">app rootDir</param>
+        </member>
+        <member name="M:General.Api.Extension.ServiceCollectionExtension.AddScopedExtension(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            AddScopedExtension
+            </summary>
+        </member>
+        <member name="T:General.Api.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:General.Api.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:General.Api.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            CreateWebHostBuilder
+            </summary>
+            <param name="args">args</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Startup">
+            <summary>
+            启动类
+            </summary>
+        </member>
+        <member name="M:General.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            启动构造函数
+            </summary>
+            <param name="configuration"></param>
+            <param name="env">环境</param>
+        </member>
+        <member name="P:General.Api.Startup.Configuration">
+            <summary>
+            配置类
+            </summary>
+        </member>
+        <member name="P:General.Api.Startup.Environment">
+            <summary>
+            Environment
+            </summary>
+        </member>
+        <member name="M:General.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            add service
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:General.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            add use middleware
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

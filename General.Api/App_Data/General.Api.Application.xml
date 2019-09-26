@@ -1,0 +1,3890 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Api.Application</name>
+    </assembly>
+    <members>
+        <member name="T:General.Api.Application.AutoMapperProfileConfiguration">
+            <summary>
+            automapper 映射配置
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.AutoMapperProfileConfiguration.#ctor">
+            <summary>
+            添加你的实体映射关系
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.MapperConfig">
+            <summary>
+            automapper 配置
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.MapperConfig.Init">
+            <summary>
+            automapper 加载 配置类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Door.DoorControlService">
+            <summary>
+            门禁点控制服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetRegionList(System.Int32,System.Int32,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.CreateDoorAuthTask(System.Int32)">
+            <summary>
+            创建门禁点权限任务
+            </summary>
+            <param name="taskType">任务类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetAuthProgress(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetAuthProgress(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetEventPictures(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetEventPictures(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthAddDto">
+            <summary>
+            门禁权限更新model
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.TaskId">
+            <summary>
+            下载任务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.ResourceInfos">
+            <summary>
+            资源对象
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.PersonInfos">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthAddDto.TaskType">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskType">
+            <summary>
+            门禁点权限任务类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Card">
+            <summary>
+            卡片
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Finger">
+            <summary>
+            指纹
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorAuthTaskType.Face">
+            <summary>
+            人脸
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse">
+            <summary>
+            门禁权限进度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TagId">
+            <summary>
+            标签 用于区分不同业务组件，建议使用组件标识。只支持1-32个数字和小写字母
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskType">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TaskTypeDesc">
+            <summary>
+            任务类型描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.TotalPercent">
+            <summary>
+            当前进度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.LeftTime">
+            <summary>
+            下载剩余时间 下载剩余时间，单位秒
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.ConsimeTime">
+            <summary>
+            下载总用时 单位秒
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskProgressResponse.IsDownloadFinished">
+            <summary>
+            是否下载完成
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorAuthTaskResponse">
+            <summary>
+            创建权限任务返回
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorAuthTaskResponse.TaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorControlResponse">
+            <summary>
+            门禁反控返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.DoorIndexCode">
+            <summary>
+            门禁点唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.ControlResultCode">
+            <summary>
+            门禁点反控结果码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorControlResponse.ControlResultDesc">
+            <summary>
+            门禁点反控结果描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorDeviceChannelType">
+            <summary>
+            DoorDeviceChannelType
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HannelCameraNum">
+            <summary>
+            监控点通道数
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelTalkNum">
+            <summary>
+            对讲通道数
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelAccess">
+            <summary>
+            门禁通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.HannelReader">
+            <summary>
+            读卡器通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelCamera">
+            <summary>
+            监控点通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelTalk">
+            <summary>
+            对讲通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelChildrenDigType">
+            <summary>
+            子通道-数字通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.DoorDeviceChannelType.ChannelChildrenAnlType">
+            <summary>
+            子通道-模拟通道
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorEventQueryResponse">
+            <summary>
+            门禁事件响应结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventId">
+            <summary>
+            事件唯一编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventName">
+            <summary>
+            事件名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.EventTime">
+            <summary>
+            事件产生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonId">
+            <summary>
+            事件产生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonName">
+            <summary>
+            人员名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.OrgIndexCode">
+            <summary>
+            组织编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorIndexCode">
+            <summary>
+            门禁点编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.DoorRegionIndexCode">
+            <summary>
+            门禁点所在区域编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.InAndOutType">
+            <summary>
+            进出类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.InAndOutTypeDesc">
+            <summary>
+            进出类型描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PicUri">
+            <summary>
+            抓拍图片地址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.SvrIndexCode">
+            <summary>
+            图片存储服务的唯一标识
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.InAndOutType">
+            <summary>
+            进出类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.In">
+            <summary>
+            进
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.Out">
+            <summary>
+            出
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InAndOutType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorEventCompairType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.DoorInfoResponse">
+            <summary>
+            门禁信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorIndexCode">
+            <summary>
+            门禁点唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.DoorNo">
+            <summary>
+            门禁点序号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.AcsDevIndexCode">
+            <summary>
+            所属门禁设备唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.RegionIndexCode">
+            <summary>
+            所属区域唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.ChannelType">
+            <summary>
+            通道类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.ChannelNo">
+            <summary>
+            通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.InstallLocation">
+            <summary>
+            安装位置
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.InstallLocationDesc">
+            <summary>
+            安装位置描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.InstallLocationType">
+            <summary>
+            安装位置类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.CommunityPerimeter">
+            <summary>
+            小区周界
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.CommunityEntrance">
+            <summary>
+            小区出入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.FireChannel">
+            <summary>
+            消防通道
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.LandscapePool">
+            <summary>
+            景观池
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.OutsideBuilding">
+            <summary>
+            住宅楼外
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.ParkEntrance">
+            <summary>
+            停车场（库）出入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.ParkArea">
+            <summary>
+            停车场区
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.EquipmentRoom">
+            <summary>
+            设备房（机房、配电房、泵房）
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.MonitorCenter">
+            <summary>
+            监控中心
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.StopArea">
+            <summary>
+            禁停区
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.InstallLocationType.Vault">
+            <summary>
+            金库
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.PersonInfo">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.PersonInfo.PersonId">
+            <summary>
+            人员编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.PersonInfo.OperatorType">
+            <summary>
+            操作类型 1添加/修改 2删除
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.PersonOperatorType">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.PersonOperatorType.Update">
+            <summary>
+            添加/修改
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.PersonOperatorType.Remove">
+            <summary>
+            2删除
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.RegionInfoResponse">
+            <summary>
+            区域信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.IndexCode">
+            <summary>
+            区域唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.Name">
+            <summary>
+            区域名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.ParentIndexCode">
+            <summary>
+            父区域唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.RegionInfoResponse.TreeCode">
+            <summary>
+            树编号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.ResourceInfo">
+            <summary>
+            资源信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ResourceIndexCode">
+            <summary>
+            资源的唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ResourceType">
+            <summary>
+            资源类型 acsDevice:门禁设备；ecsDevice:梯控设备；visDevice:可视对讲设备
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.ResourceInfo.ChannelNos">
+            <summary>
+            最多支持128个通道下载；表示此次数据需要下载到设备的哪些通道上；可以通过【获取资源列表】返回参数获取到相应资源的通道号；门禁设备通道指门禁点；梯控设备通道指楼层；可视对讲设备无通道
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Dto.ResourceType">
+            <summary>
+            资源类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.AcsDevice">
+            <summary>
+            门禁设备
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.EcsDevice">
+            <summary>
+            梯控设备
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Door.Dto.ResourceType.VisDevice">
+            <summary>
+            可视对讲设备
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.IDoorControlService">
+            <summary>
+            门禁控制服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.DoControl(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            门禁反控操作
+            </summary>
+            <param name="doorIndexCodeList">门禁点唯一标识集合</param>
+            <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            获取门禁点列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="doorIndexCode">门禁点唯一标识符集</param>
+            <param name="doorName">门禁点名称</param>
+            <param name="acsDevIndexCode">门禁设备唯一标识</param>
+            <param name="regionIndexCode">所属区域唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取区域列表
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.CreateDoorAuth(General.Api.Application.Door.Dto.DoorAuthAddDto)">
+            <summary>
+            更新门禁点 门禁权限
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetAuthProgress(System.String)">
+            <summary>
+            获取 下载任务进度
+            </summary>
+            <param name="taskId">任务id</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            查询门禁事件
+            </summary>
+            <param name="request">请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetEventPictures(System.String,System.String)">
+            <summary>
+            获取门禁事件的图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片的相对地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Door.Request.DoorEventQueryRequest">
+            <summary>
+            查询门禁点事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.PersonName">
+            <summary>
+            人员姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.PersonIds">
+            <summary>
+            人员Id数组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorName">
+            <summary>
+            门禁点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorIndexCodes">
+            <summary>
+            门禁点唯一标识数组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.DoorRegionIndexCode">
+            <summary>
+            门禁点所在的区域唯一编号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Door.Request.DoorEventQueryRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.Request.DoorEventQueryRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.DoorApplicationService">
+            <summary>
+            事件订阅接收接口
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReciveDto`1">
+            <summary>
+            事件接收服务 统一接收类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto`1.Method">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto`1.Params">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReviceParam`1">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.SendTime">
+            <summary>
+            发送时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Ability">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Uids">
+            <summary>
+            指定的事件接收用户列表，用于事件源发起组件指定接收用户，如指定用户接收手动事件、在部分应用中可以设置事件到指定用户接收
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam`1.Events">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventInfo`1">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventId">
+            <summary>
+            事件Id，唯一标识事件的一次发生，同一事件发送多次需要ID相同
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcIndex">
+            <summary>
+            事件源编号，物理设备是资源编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcName">
+            <summary>
+            事件源名称，utf8
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.Status">
+            <summary>
+            事件状态, 0-瞬时 1-开始 2-停止 3-事件脉冲 4-事件联动结果更新 5-异步图片上传
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.EventLvl">
+            <summary>
+            事件等级：0-未配置 1-低 2-中 3-高，注意，此处事件等级是指在事件联动中配置的等级
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.TimeOut">
+            <summary>
+            脉冲超时时间，一个持续性的事件，上报的间隔
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.HappenTime">
+            <summary>
+            事件发生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.SrcParentIndex">
+            <summary>
+            事件发生的事件源父设备，无-空字符串
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo`1.Data">
+            <summary>
+            事件其它扩展信息 不同类型的事件，扩展信息不同，具体信息可查看具体事件的报文
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReciveDto">
+            <summary>
+            事件接收服务 统一接收类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto.Method">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReciveDto.Params">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventReviceParam">
+            <summary>
+            事件参数信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.SendTime">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Ability">
+            <summary>
+            事件类别，如视频事件、门禁事件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Uids">
+            <summary>
+            指定的事件接收用户列表，用于事件源发起组件指定接收用户，如指定用户接收手动事件、在部分应用中可以设置事件到指定用户接收
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventReviceParam.Events">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.EventInfo">
+            <summary>
+            事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventId">
+            <summary>
+            事件Id，唯一标识事件的一次发生，同一事件发送多次需要ID相同
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcIndex">
+            <summary>
+            事件源编号，物理设备是资源编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcName">
+            <summary>
+            事件源名称，utf8
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.Status">
+            <summary>
+            事件状态, 0-瞬时 1-开始 2-停止 3-事件脉冲 4-事件联动结果更新 5-异步图片上传
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.EventLvl">
+            <summary>
+            事件等级：0-未配置 1-低 2-中 3-高，注意，此处事件等级是指在事件联动中配置的等级
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.TimeOut">
+            <summary>
+            脉冲超时时间，一个持续性的事件，上报的间隔
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.HappenTime">
+            <summary>
+            事件发生时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.EventInfo.SrcParentIndex">
+            <summary>
+            事件发生的事件源父设备，无-空字符串
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto">
+            <summary>
+            门禁认证对比成功接收实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtAccessChannel">
+            <summary>
+            人员通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventAlarmId">
+            <summary>
+            报警输入/防区通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventAlarmOutId">
+            <summary>
+            报警输出通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCardNo">
+            <summary>
+            卡号（身份证号）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCaseId">
+            <summary>
+            事件输入通道
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCode">
+            <summary>
+            事件类型代码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventCustomerNumInfo">
+            <summary>
+            通道事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventDoorId">
+            <summary>
+            门编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventIdCardPictureUrl">
+            <summary>
+            身份证照片
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventInOut">
+            <summary>
+            进出方向 1-进、0-出
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventLocalControllerId">
+            <summary>
+            就地控制器id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventMainDevId">
+            <summary>
+            主设备拨码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventPictureUrl">
+            <summary>
+            图片的url
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.SvrIndexCode">
+            <summary>
+            图片服务器唯一编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReaderId">
+            <summary>
+            读卡器id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReaderKind">
+            <summary>
+            读卡器类别  	0-无效，1-IC读卡器，2-身份证读卡器，3-二维码读卡器,4-指纹头
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventReportChannel">
+            <summary>
+            报告上传通道 1-布防上传，2-中心组1上传，3-中心组2上传，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventRoleId">
+            <summary>
+            群组编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventSubDevId">
+            <summary>
+            分控制器硬件ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventSwipNum">
+            <summary>
+            刷卡次数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventType">
+            <summary>
+            事件类型  事件类型，如普通门禁事件为0,身份证信息事件为1，客流量统计为2
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventVerifyId">
+            <summary>
+            多重认证序号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtReceiveTime">
+            <summary>
+            事件上报驱动的时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.Seq">
+            <summary>
+            事件流水号 事件流水号，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventWhiteListNo">
+            <summary>
+            白名单单号  	1-8，为0无效
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto.ExtEventIdentityCardInfo">
+            <summary>
+            人员身份证信息 在设备上刷身份证进行认证时，该属性才会有对应人员的身份证信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto">
+            <summary>
+            通道事件信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.AccessChannel">
+            <summary>
+            通道号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.EntryTimes">
+            <summary>
+            进人数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.ExitTimes">
+            <summary>
+            出人数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventCustomerNumInfoDto.TotalTimes">
+            <summary>
+            总通行人数
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto">
+            <summary>
+            人员身份证信息 在设备上刷身份证进行认证时，该属性才会有对应人员的身份证信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Address">
+            <summary>
+            住址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Birth">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.EndDate">
+            <summary>
+            有效日期结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.IdNum">
+            <summary>
+            身份证id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.IssuingAuthority">
+            <summary>
+            签发机关
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Nation">
+            <summary>
+            民族
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.Sex">
+            <summary>
+            性别，1-男，2-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.StartDate">
+            <summary>
+            有效日期开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.EventRevice.Dto.VerifyPerson.ExtEventIdentityCardInfoDto.TermOfValidity">
+            <summary>
+            是否长期有效  0-否（有效截止日期有效），1-是（有效截止日期无效）
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.EventRevice.IDoorApplicationService">
+            <summary>
+            事件订阅接收接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.EventRevice.IDoorApplicationService.VerifyPersonSuccess(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+            门禁认证对比成功 接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.EventRevice.IDoorApplicationService.VerifyPersonFailed(General.Api.Application.EventRevice.Dto.EventReciveDto{General.Api.Application.EventRevice.Dto.VerifyPerson.VerifyPersonDto})">
+            <summary>
+             门禁认证对比失败 接收
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Event.Dto.SubscriptionInfoResponse">
+            <summary>
+            事件订阅信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfoResponse.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.Dto.SubscriptionInfo">
+            <summary>
+            事件订阅信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfo.EventTypes">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Event.Dto.SubscriptionInfo.EventDest">
+            <summary>
+            事件接收地址
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.EventService">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.Cancel(System.Collections.Generic.List{System.Int32})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.EventService.GetSubscrList">
+            <summary>
+            <see cref="M:General.Api.Application.Event.IEventService.GetSubscrList"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Event.IEventService">
+            <summary>
+            事件服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.SubscrEvent(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            按事件类型订阅事件
+            </summary>
+            <param name="eventTypes">事件类型</param>
+            <param name="eventDest">指定事件接收的地址，采用restful回调模式，支持http和https，样式如下：http://ip:port/eventRcv或者 https://ip:port/eventRcv</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.Cancel(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            取消订阅事件
+            </summary>
+            <param name="eventTypes">事件类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Event.IEventService.GetSubscrList">
+            <summary>
+            获取所有的订阅
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.HikVisionContext">
+            <summary>
+            海康威视 上下文
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Hikvision.HikVisionContext.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.DoorControlBaseApiName">
+            <summary>
+            DoorControlBaseApiName
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.UserBaseApiName">
+            <summary>
+            UserBaseApiName
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.HikVisionBaseApiName">
+            <summary>
+            HikVisionBaseApiName
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.HikVisionContext.HikVisionBaseUrl">
+            <summary>
+            HikVisionBaseUrl
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.ListBaseResponse`1">
+            <summary>
+            列表
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.PageNo">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.PageSize">
+            <summary>
+            页容量
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.HasNextPage">
+            <summary>
+            是否具有下一页
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.HasPreviousPage">
+            <summary>
+            是否有前一页
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.Rows">
+            <summary>
+            数据数组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Hikvision.ListBaseResponse`1.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.EventWarningType">
+            <summary>
+            入侵报警服务事件类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.FangQuBaoJing">
+            <summary>
+            防区报警
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.BuFang">
+            <summary>
+            布防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.CheFang">
+            <summary>
+            撤防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.PangLu">
+            <summary>
+            旁路
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.PangLuHuiFu">
+            <summary>
+            旁路恢复
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.EventWarningType.XiaoJing">
+            <summary>
+            消警
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.RoadWayType">
+            <summary>
+            车道类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.In">
+            <summary>
+            入口
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutFree">
+            <summary>
+            出口不收费
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutWithFee">
+            <summary>
+            出口岗亭收费
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.RoadWayType.OutCenterWithFee">
+            <summary>
+            出口中央缴费
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.Resource.SrcType">
+            <summary>
+            事件源类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.Region">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.SubSys">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Hikvision.Resource.SrcType.Defence">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.HikVisionResponse">
+            <summary>
+            海康威视返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Code">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse.Msg">
+            <summary>
+            返回描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.HikVisionResponse`1">
+            <summary>
+            海康威视返回结果 扩展
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:General.Api.Application.HikVisionResponse`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.PageRequest">
+            <summary>
+            页面请求实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.PageNo">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.PageSize">
+            <summary>
+            页容量
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.Sort">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.OrderType">
+            <summary>
+            升降序
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.PageRequest.Order">
+            <summary>
+            升降序 文本
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.OrderType">
+            <summary>
+            升/降 类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.OrderType.Asc">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.OrderType.Desc">
+            <summary>
+            降序
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.PageValidator">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.PageValidator.#ctor">
+            <summary>
+            TokenRequestValidator
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.AlarmCarService">
+            <summary>
+            布控管理
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.Deletion(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.Deletion(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.AlarmCarService.GetList(System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IAlarmCarService.GetList(System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse">
+            <summary>
+            车辆布控返回结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.AlarmSysCode">
+            <summary>
+            布控车辆唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarAdditionResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse">
+            <summary>
+            布控车辆列表
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.AlarmSysCode">
+            <summary>
+            布控唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.PlateNo">
+            <summary>
+             	车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.DriverName">
+            <summary>
+            驾驶员名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.DriverPhone">
+            <summary>
+            驾驶员电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.EndTime">
+            <summary>
+            布控结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Device.DeviceControlResponse">
+            <summary>
+            道闸反控响应实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.PrivilegeGroupId">
+            <summary>
+            权限组ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.PrivilegeGroupName">
+            <summary>
+            权限组名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.Remark">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.IsDefault">
+            <summary>
+            是否是默认权限组 0-是，1-否 	
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.IsDefaultDesc">
+            <summary>
+            是否是默认权限组 描述
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Device.DeviceControlResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.EntranceInfoResponse">
+            <summary>
+            出入口信息结构体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.EntranceIndexCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.EntranceName">
+            <summary>
+            出入口名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.ParkIndexCode">
+            <summary>
+            停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.RoadNum">
+            <summary>
+            车道数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.EntranceInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ParkInfoResponse">
+            <summary>
+            车位信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.SpaceSysCode">
+            <summary>
+            车位编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.ParkSysCode">
+            <summary>
+            车位所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.ParkName">
+            <summary>
+            车位所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.FloorSysCode">
+            <summary>
+            车位所在楼层唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.FloorName">
+            <summary>
+            车位所在楼层名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.Longitude">
+            <summary>
+            车位经度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoResponse.Latitude">
+            <summary>
+            车位维度
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ParkInfoListResponse">
+            <summary>
+            停车库列表
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParkIndexCode">
+            <summary>
+            停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParentParkIndexCode">
+            <summary>
+            父停车场唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.ParkName">
+            <summary>
+            停车场名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ParkInfoListResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.CrossRecordResponse">
+            <summary>
+            过车记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CrossRecordSysCode">
+            <summary>
+            过车记录唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ParkSysCode">
+            <summary>
+            停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ParkSysName">
+            <summary>
+            停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.EntranceSysCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.EntranceName">
+            <summary>
+            出入口名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleOut">
+            <summary>
+            是否出场 0-进场， 1-出场
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.ReleaseMode">
+            <summary>
+            放行模式 0-禁止放行，1-固定车包期，2-临时车入场，3-预约车入场，10-离线出场，11-缴费出场，12-预付费出场，13-免费出场，30- 非法卡不放行，31-手动放行，32-特殊车辆放行，33-节假日放行，35-群组放行，36-遥控器开闸
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CardNo">
+            <summary>
+            卡片号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleColor">
+            <summary>
+            车辆颜色 0：其他颜色； 1：白色； 2：银色； 3：灰色； 4：黑色； 5：红色； 6：深蓝色； 7：蓝色； 8：黄色； 9：绿色； 10：棕色； 11：粉色； 12：紫色’
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehicleType">
+            <summary>
+            车辆类型 0：其他车； 1：小型车； 2：大型车； 3：摩托车
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.VehiclePicUri">
+            <summary>
+            车辆图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.PlateNoPicUri">
+            <summary>
+            车牌图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.FacePicUri">
+            <summary>
+            人脸图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CrossTime">
+            <summary>
+            通过时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.RecordSysCode">
+            <summary>
+            停车记录编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpaceSysCode">
+            <summary>
+            车位编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.SpacePicUri">
+            <summary>
+            车位图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkingTime">
+            <summary>
+            停车时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkSysCode">
+            <summary>
+            车辆所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.ParkName">
+            <summary>
+            车辆所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.FloorSysCode">
+            <summary>
+            车辆所在楼层唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.FloorName">
+            <summary>
+            车辆所在楼层名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.PlateNoPicUri">
+            <summary>
+            车牌照片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse">
+            <summary>
+            场内车辆停车信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.InRecordSyscode">
+            <summary>
+            停车信息唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.VehiclePicUri">
+            <summary>
+            车辆图片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.InTime">
+            <summary>
+            入场时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkTime">
+            <summary>
+            停车时长
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkSysCode">
+            <summary>
+            车辆所在停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.ParkName">
+            <summary>
+            车辆所在停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.PlateNoPicUri">
+            <summary>
+            车牌照片uri
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.AswSysCode">
+            <summary>
+            图片服务唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.TempCarInRecordResponse.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.RemainSpaceNumResponse">
+            <summary>
+            停车库剩余车位数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParkSysCode">
+            <summary>
+            停车库唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParkName">
+            <summary>
+            停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.ParentParkSysCode">
+            <summary>
+            父停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalPlace">
+            <summary>
+            停车库车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalPermPlace">
+            <summary>
+            停车库固定车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.TotalReservePlace">
+            <summary>
+            停车库预约车位总数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftPlace">
+            <summary>
+            停车库车位剩余数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftPermPlace">
+            <summary>
+            停车库固定车位剩余数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RemainSpaceNumResponse.LeftReservePlace">
+            <summary>
+            停车库预约车位剩余数
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.RoadwayInfoResponse">
+            <summary>
+            车道信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.EntranceIndexCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadwayIndexCode">
+            <summary>
+            车道唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadWayName">
+            <summary>
+            车道名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.RoadwayType">
+            <summary>
+            车道类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.RoadwayInfoResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.IAlarmCarService">
+            <summary>
+            车辆布控管理
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.Addition(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            车辆布控
+            </summary>
+            <param name="plateNo">车牌号码</param>
+            <param name="cardNo">卡号</param>
+            <param name="driver">驾驶员名称</param>
+            <param name="droberPhone">驾驶员电话</param>
+            <param name="remark">备注信息</param>
+            <param name="endTime">布控结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.Deletion(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消布控
+            </summary>
+            <param name="alarmSyscodes">布控车辆唯一标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IAlarmCarService.GetList(System.String,System.Int32,System.Int32)">
+            <summary>
+            查询布控车辆
+            </summary>
+            <param name="keyNo">车牌号/卡号</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">记录数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkingDeviceService">
+            <summary>
+            停车场设备服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            道闸反控
+            </summary>
+            <param name="model">请求类</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            根据停车场编码反控道闸 
+            </summary>
+            <param name="parkSyscode">停车场唯一标识码</param>
+            <param name="command">控闸命令</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkingManageService">
+            <summary>
+            停车场管理服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetParkList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取停车库列表
+            </summary>
+            <param name="parkIndexCodes">停车库唯一标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取出入口
+            </summary>
+            <param name="parkIndexCodes">停车场唯一标识集</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})">
+            <summary>
+            根据出入口 获取车道列表
+            </summary>
+            <param name="entranceIndexCodes">出入口唯一标识集 必填</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询车位信息
+            </summary>
+            <param name="parkSysCode">停车场唯一标识码</param>
+            <param name="spaceNo">车位号</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkingManageService.GetRemainSpace(System.String)">
+            <summary>
+            查询停车库剩余车位数
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码,不传 则查询全部车库车位剩余数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.IParkRecordService">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询场内车辆停车信息
+            </summary>
+            <param name="parkSysCode">停车库唯一标识码</param>
+            <param name="plateNo">车牌号码</param>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)">
+            <summary>
+            查询车辆在车位上的停车信息
+            </summary>
+            <param name="model">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetCorssVehicleImage(System.String,System.String)">
+            <summary>
+            查询车辆抓拍图片
+            </summary>
+            <param name="aswSysCode">图片服务唯一标识码</param>
+            <param name="picUri">图片uri 根据【查询过车记录】、【查询临时车停车信息】或【查询停车账单】接口获取返回参数vehiclePicUri或plateNoPicUri，最大长度：256</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkingDeviceService">
+            <summary>
+            停车场设备服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingDeviceService.DoControl(General.Api.Application.Parking.Request.Device.DeviceControlRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingDeviceService.DoControlBatch(System.String,General.Api.Application.Parking.Request.Device.DeviceCommandType)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkingManageService">
+            <summary>
+            停车场管理服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetParkList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetParkList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetEntranceList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetRoadWayList(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetParkInfoList(System.String,System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkingManageService.GetRemainSpace(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkingManageService.GetRemainSpace(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.ParkRecordService">
+            <summary>
+            停车场记录
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetTempRecordList(System.String,System.String,System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetRecordList(General.Api.Application.Parking.Request.Record.QueryParkRecordRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetCorssVehicleImage(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCorssVehicleImage(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceControlRequest">
+            <summary>
+            反控道闸 请求实体
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Device.DeviceControlRequest.RoadWaySysCode">
+            <summary>
+            车道唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Device.DeviceControlRequest.Command">
+            <summary>
+            控闸命令 0：关闸 1：开闸 3：常开
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceControlRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.Request.Device.DeviceControlRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Device.DeviceCommandType">
+            <summary>
+            控闸命令 类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.Close">
+            <summary>
+            关闸
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.Open">
+            <summary>
+            开闸
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Device.DeviceCommandType.AwayOpen">
+            <summary>
+            常开
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.ParkRecordQueryType">
+            <summary>
+            停车场 查询标识
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.PlateNo">
+            <summary>
+            车牌查询
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.Truck">
+            <summary>
+            车位查询 
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.ParkTimeSlot">
+            <summary>
+            停车时间段查询 
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Request.Record.ParkRecordQueryType.NoPlateNo">
+            <summary>
+            停车时间段查询
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest">
+            <summary>
+            查询车辆在车位上的停车信息 请求
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.QueryType">
+            <summary>
+            查询标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.ParkSysCode">
+            <summary>
+            停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.SpaceNo">
+            <summary>
+            车位号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.StartTime">
+            <summary>
+            查询开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Request.Record.QueryParkRecordRequest.EndTime">
+            <summary>
+            查询结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Request.Record.QueryParkRecordRequestValidator">
+            <summary>
+            validator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.Request.Record.QueryParkRecordRequestValidator.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.DefenceStatusResponse">
+            <summary>
+            防区状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.DefenceStatusResponse.DefenceIndexCode">
+            <summary>
+            防区编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.DefenceStatusResponse.Status">
+            <summary>
+            防区状态
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.DefenceStatusType">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Leave">
+            <summary>
+            离线
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.GuZhang">
+            <summary>
+            故障
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.Warning">
+            <summary>
+            报警
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.DefenceStatusType.PangLu">
+            <summary>
+            旁路
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.EventLogResponse">
+            <summary>
+            报警事件日志
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EventId">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcIndex">
+            <summary>
+            事件源indexCode
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcName">
+            <summary>
+            事件源名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.SrcType">
+            <summary>
+            事件源资源类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.RegionId">
+            <summary>
+            事件发生区域
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.Status">
+            <summary>
+            事件状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.EventLogResponse.StatusDesc">
+            <summary>
+            事件状态描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.EventStatusType">
+            <summary>
+            事件状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.ShunShi">
+            <summary>
+            瞬时
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.Start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.MaiChong">
+            <summary>
+            事件脉冲
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.EventStatusType.LianDong">
+            <summary>
+            事件联动结果更新
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.SubSysStatusResponse">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.SubSystemIndexCode">
+            <summary>
+            子系统编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Spcms.Dto.SubSysStatusResponse.StatusDesc">
+            <summary>
+            状态描述
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.Dto.SubSysStatusType">
+            <summary>
+            子系统状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.Che">
+            <summary>
+            撤防
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Spcms.Dto.SubSysStatusType.Bu">
+            <summary>
+            布放
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Spcms.ISpcmsService">
+            <summary>
+            入侵报警服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取子系统状态
+            </summary>
+            <param name="subSysIndexCodes">子系统编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取防区状态
+            </summary>
+            <param name="defenceIndexCodes">防区编码列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Spcms.ISpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            报警事件日志查询
+            </summary>
+            <param name="pageNo">当前页码</param>
+            <param name="pageSize">每页数据记录数</param>
+            <param name="srcType">事件源类型</param>
+            <param name="startTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="eventType">事件类型</param>
+            <param name="srcName">事件源名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Spcms.SpcmsService">
+            <summary>
+            入侵报警服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetDefenceStatus(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetEventLog(System.Int32,System.Int32,General.Api.Application.Hikvision.Resource.SrcType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},General.Api.Application.Hikvision.Resource.EventWarningType,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Spcms.SpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Spcms.ISpcmsService.GetSubsystemStatus(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Token.ApiAuthUserDto">
+            <summary>
+            ApiAuthUserDto
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Token.ApiAuthUserDto.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Token.ApiAuthUserDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Token.ApiAuthUserDtoValidator">
+            <summary>
+            ApiAuthUserDtoValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.ApiAuthUserDtoValidator.#ctor">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Token.ITokenService">
+            <summary>
+            token 接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.Get(System.String,System.String)">
+            <summary>
+            验证
+            </summary>
+            <param name="account">账号</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.ValidatePermission(System.String,System.String)">
+            <summary>
+            验证是否有权限
+            </summary>
+            <param name="account">账号</param>
+            <param name="permission">权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.GetPermission(System.String)">
+            <summary>
+            获取权限
+            </summary>
+            <param name="account">账号</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.AddTokenRecordAsync(System.String,System.String)">
+            <summary>
+            添加新的token 记录
+            </summary>
+            <param name="account">account</param>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.VerifyTokenAsync(System.String,System.String)">
+            <summary>
+            验证token
+            </summary>
+            <param name="account">account</param>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.ClearMemaryCache(System.String)">
+            <summary>
+            清楚缓存
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.VerifyAdminAsync(System.String,System.String)">
+            <summary>
+            验证是否为管理员
+            </summary>
+            <param name="account"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.ITokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            添加 apiauther 用户
+            </summary>
+            <param name="account">account</param>
+            <param name="password">password</param>
+            <param name="isAdmin">password</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Token.TokenService">
+            <summary>
+            token 接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.#ctor(General.Api.Core.ApiAuthUser.IApiAuthUserDao,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.Get(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.Get(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.ValidatePermission(System.String,System.String)">
+            <summary>
+            验证是否有权限
+            </summary>
+            <param name="account">账号</param>
+            <param name="permission">权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.GetPermission(System.String)">
+            <summary>
+            获取权限
+            </summary>
+            <param name="account">账号</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.AddTokenRecordAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.AddTokenRecordAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.VerifyTokenAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.VerifyTokenAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.GetTokenMemory(System.String)">
+            <summary>
+            获取token
+            </summary>
+            <param name="account">account</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.SetTokenMemory(System.String,System.String)">
+            <summary>
+            设置token 魂村
+            </summary>
+            <param name="account">account</param>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.ClearMemaryCache(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.ClearMemaryCache(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.VerifyAdminAsync(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.VerifyAdminAsync(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Token.TokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            <see cref="M:General.Api.Application.Token.ITokenService.AddApiAuthUserAsync(System.String,System.String,System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.FingerPrintResponse">
+            <summary>
+            指纹属性
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintIndexCode">
+            <summary>
+            指纹唯一标示
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintName">
+            <summary>
+            指纹名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.FingerPrintResponse.FingerPrintData">
+            <summary>
+            指纹数据
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.PersonPhotoResponse">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.PersonPhotoResponse.PicUri">
+            <summary>
+            图片相对url
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.PersonPhotoResponse.ServerIndexCode">
+            <summary>
+            图片服务器唯一标示
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.UserDto">
+            <summary>
+            用户dto 
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.No">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.PhotoNo">
+            <summary>
+            照片id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.UserAccount">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.JobNumber">
+            <summary>
+            工作电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Gender">
+            <summary>
+            gender
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.Post">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.DepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.EasemobId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserDto.EasemobPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.UserResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonId">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgPath">
+            <summary>
+            所属组织路径
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgIndexCode">
+            <summary>
+            所属组织唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.OrgName">
+            <summary>
+            所属组织名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Certificate">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.CertificateNo">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.FingerPrint">
+            <summary>
+            指纹信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.UpdateTime">
+            <summary>
+            更新日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.BirthDay">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Address">
+            <summary>
+            联系地址
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.JobNo">
+            <summary>
+            工号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonPhoto">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Education">
+            <summary>
+            学历
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Dto.UserResponse.Nation">
+            <summary>
+            民族
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.GenderType">
+            <summary>
+            性别枚举
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.UnKnow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.Man">
+            <summary>
+            男
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.GenderType.Woman">
+            <summary>
+            女
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.CertificateType">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.IdentityCard">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Passport">
+            <summary>
+            护照
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Booklet">
+            <summary>
+            驾驶证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.DriveLicense">
+            <summary>
+            驾驶证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.WorkCard">
+            <summary>
+            学生证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.StudentCard">
+            <summary>
+            学生证
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.CertificateType.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.EducationType">
+            <summary>
+            学历类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Grade">
+            <summary>
+            小学
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Junior">
+            <summary>
+            初中
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Technical">
+            <summary>
+            中技
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Senior">
+            <summary>
+            高中
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Secondary">
+            <summary>
+            中专
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.College">
+            <summary>
+            大专
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Undergraduate">
+            <summary>
+            本科
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Master">
+            <summary>
+            硕士
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Doctor">
+            <summary>
+            博士
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.EducationType.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Dto.NationType">
+            <summary>
+            民族类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Han">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Meng">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Hui">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Zang">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Wei">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Miao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Yi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Zhuang">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Bu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Chao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Man">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Tong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Yao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Bai">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TuJia">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Ha">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.HaSa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Dai">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Li">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Su">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Wa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.She">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Gao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.La">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Dong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Na">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Jing">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Ke">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Tu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Da">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MuLao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Qiang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BuLang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.SaLa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MaoNan">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.QiLao">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.XiBo">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.AChang">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.PuMi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TaJie">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.Nu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.WuZi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.ELuoSi">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.EWen">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BengLong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.BaoAn">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.YuGu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.JingZu">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.TaTa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.DuLong">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.ELun">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.HeZhe">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.MenBa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.LuoBa">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.User.Dto.NationType.JiNuo">
+            <summary>  
+               
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.IUserService">
+            <summary>
+            人员信息接口
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetList">
+            <summary>
+            GetList
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            获取人员信息
+            </summary>
+            <param name="query">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.User.Request.UserQuery">
+            <summary>
+            用户查询请求
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.PersonIds">
+            <summary>
+            人员id
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.PersonName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.OrgIndexCode">
+            <summary>
+            所属组织唯一标识码集合
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.CertificateType">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.User.Request.UserQuery.CertificateNo">
+            <summary>
+            证件号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.Request.UserQueryValidator">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.Request.UserQueryValidator.#ctor">
+            <summary>
+            UserQueryValidator
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.User.UserServce">
+            <summary>
+            人员信息
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper)">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetList">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetUserList(General.Api.Application.User.Request.UserQuery)">
+            <summary>
+            <see cref="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.Dto.PlayackUrlResponse">
+            <summary>
+            获取监控点回放取流URL 响应
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.BeginTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Size">
+            <summary>
+            录像片段大小
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Uuid">
+            <summary>
+            标记本次查询的标识符，用于查询分片时的多次查询，查询下一片时的入参
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Url">
+            <summary>
+            取流短url
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.Dto.PreviewUrlResponse">
+            <summary>
+            获取监控点预览取流URL
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PreviewUrlResponse.Url">
+            <summary>
+            取流URL
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.IVideoService">
+            <summary>
+            视频服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.GetPreviewUrl(System.String,System.Int32,System.String,System.Int32,System.String)">
+            <summary>
+            获取监控点预览取流URL
+            </summary>
+            <param name="cameraIndexCode">监控点唯一标识  根据【监控点信息】接口获取返回参数cameraIndexCode。</param>
+            <param name="streamType">码流类型 0:主码流，1:子码流，2:第三码流，参数不填，默认为主码流</param>
+            <param name="protocol">取流协议（应用层协议）  “rtsp”:RTSP协议,“rtmp”:RTMP协议,“hls”:HLS协议（HLS协议只支持海康SDK协议、EHOME协议、GB28181协议、ONVIF协议接入的设备；只支持H264视频编码和AAC音频编码）,参数不填，默认为RTSP协议</param>
+            <param name="transmode">传输协议（传输层协议）  	0:UDP，1:TCP，默认是TCP，注：GB28181 2011版本接入设备的预览只支持UDP传输协议，GB28181 2016版本接入设备的预览支持UDP和TCP传输协议</param>
+            <param name="expand">标识扩展内容，格式：key=value， 调用方根据其播放控件支持的解码格式选择相应的封装类型；</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)">
+            <summary>
+            获取监控点回放取流URL
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Video.Request.PlaybackUrlRequest">
+            <summary>
+            获取监控点回放取流url 请求
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.CameraIndexCode">
+            <summary>
+            监控点唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.RecordLocation">
+            <summary>
+            存储类型 0：中心存储，1：设备存储，默认为中心存储
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.Protocol">
+            <summary>
+            取流协议（应用层协议） “rtsp”:RTSP协议,“rtmp”:RTMP协议,“hls”:HLS协议（HLS协议只支持海康SDK协议、EHOME协议、ONVIF协议接入的设备；只支持H264视频编码和AAC音频编码；云存储版本要求v2.2.4及以上的2.x版本，或v3.0.5及以上的3.x版本；ISC版本要求v1.2.0版本及以上，需在运管中心-视频联网共享中切换成启动平台内置VOD）,参数不填，默认为RTSP协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.Transmode">
+            <summary>
+            传输协议（传输层协议）0:UDP，1:TCP，默认为tcp，在protocol设置为rtsp或者rtmp时有效 注：EHOME协议接入设备的录像回放只支持TCP传输协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.BeginTime">
+            <summary>
+            开始查询时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.EndTime">
+            <summary>
+            结束查询时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.Uuid">
+            <summary>
+            分页查询id 上一次查询返回的uuid，用于继续查询剩余片段，默认为空字符串
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PlaybackUrlRequest.Expand">
+            <summary>
+            扩展内容 格式：key=value， 调用方根据其播放控件支持的解码格式选择相应的封装类型
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.VideoService">
+            <summary>
+            视频服务
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.GetPreviewUrl(System.String,System.Int32,System.String,System.Int32,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.GetPreviewUrl(System.String,System.Int32,System.String,System.Int32,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.AppointmentRecordResponse">
+            <summary>
+            访客信息记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.AppointRecordId">
+            <summary>
+            预约记录ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistName">
+            <summary>
+            被访人姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.ReceptionistCode">
+            <summary>
+            被访人所属组织编码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitStartTime">
+            <summary>
+            预计来访时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitEndTime">
+            <summary>
+            预计离开时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitPurpose">
+            <summary>
+            来访事由
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.QrCode">
+            <summary>
+            访客二维码内容
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.Gender">
+            <summary>
+            性别 1-男, 2-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.CertificateType">
+            <summary>
+            证件类型 111：身份证
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.CertificateNo">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.VisitorStatus">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.PicUri">
+            <summary>
+            访客头像
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentRecordResponse.SvrIndexCode">
+            <summary>
+            图片存储服务的唯一标识
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.VisitorStatusType">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.After">
+            <summary>
+            迟到
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.UnActive">
+            <summary>
+            失效
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.AutoQianLi">
+            <summary>
+            超期自动签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.QianLi">
+            <summary>
+            已签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.AutoUnQianLi">
+            <summary>
+            超期未签离
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Visitor.Dto.VisitorStatusType.Arrive">
+            <summary>
+            已到达
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.VisitorAddResponse">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.VisitorAddResponse.AppointRecordId">
+            <summary>
+            预约记录ID
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.VisitorAddResponse.AppointmentInfoList">
+            <summary>
+            预约信息
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Dto.AppointmentInfo">
+            <summary>
+            预约信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.ReceptionistName">
+            <summary>
+            被访人姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Dto.AppointmentInfo.QrCode">
+            <summary>
+            访客二维码内容 如需要使用，可将访客二维码内容转成二维码图片即可，可通过第三方工具类将二维码内容转化为二维码图片，长度10位
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.IVisitorService">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            访客预约
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            修改访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            查询访客记录
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.Cancel(System.Collections.Generic.List{System.String})">
+            <summary>
+            取消访客预约
+            </summary>
+            <param name="appointRecordIds">预约记录ID的数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            获取来访记录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Visitor.IVisitorService.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            获取来访记录图片
+            </summary>
+            <param name="svrIndexCode">图片存储服务器唯一标识</param>
+            <param name="picUri">图片存储服务器唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorAddRequest">
+            <summary>
+            访客预约类
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.AppointRecordId">
+            <summary>
+            预约记录ID 只针对修改
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitStartTime">
+            <summary>
+            预计来访时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitEndTime">
+            <summary>
+            预计离开时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitPurpose">
+            <summary>
+            来访事由
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorAddRequest.VisitorInfoList">
+            <summary>
+            访客信息列表
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorInfo">
+            <summary>
+            访客信息
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.Gender">
+            <summary>
+            访客性别
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.PhoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.PlateNo">
+            <summary>
+            车牌号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.CertificateType">
+            <summary>
+            证件类型 111：身份证，只支持身份证
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorInfo.CertificateNo">
+            <summary>
+            身份证号 1~20个数字、字母组成； 证件号码非空时，证件类型必填；
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.Request.VisitorQueryRequest">
+            <summary>
+            查询访客预约记录
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.ReceptionistId">
+            <summary>
+            被访人唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitorName">
+            <summary>
+            访客姓名
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.PhoneNo">
+            <summary>
+            访客联系电话
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VerificationCode">
+            <summary>
+            访客验证码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitorStatus">
+            <summary>
+            访客状态
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitStartTimeBegin">
+            <summary>
+            预计来访时间查询时间段条件的开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitStartTimeEnd">
+            <summary>
+            预计来访时间查询时间段条件的结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitEndTimeBegin">
+            <summary>
+            预计离开时间查询时间段条件的开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Visitor.Request.VisitorQueryRequest.VisitEndTimeEnd">
+            <summary>
+            预计离开时间查询时间段条件的结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Visitor.VisitorService">
+            <summary>
+            访客
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.AddVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.UpdateVisitor(General.Api.Application.Visitor.Request.VisitorAddRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitorList(General.Api.Application.Visitor.Request.VisitorQueryRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.Cancel(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.Cancel(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitingList(General.Api.Application.Visitor.Request.VisitorQueryRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Visitor.VisitorService.GetVisitingPicture(System.String,System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Visitor.IVisitorService.GetVisitingPicture(System.String,System.String)"/>
+            </summary>
+        </member>
+    </members>
+</doc>

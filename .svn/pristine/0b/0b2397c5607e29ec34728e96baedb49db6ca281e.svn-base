@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>General.Api.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:General.Api.Framework.ApiResult">
+            <summary>
+            自定义返回接口类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.ApiResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.ApiResult.Code">
+            <summary>
+            响应码
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.ApiResult.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult.#ctor">
+            <summary>
+            默认构造
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult.#ctor(System.Boolean,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="success">是否成功</param>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult.#ctor(System.Boolean,System.String,System.Int32)">
+            <summary>
+            构造
+            </summary>
+            <param name="success">是否成功</param>
+            <param name="message">消息</param>
+            <param name="code">响应码</param>
+        </member>
+        <member name="T:General.Api.Framework.ApiResult`1">
+            <summary>
+            自定义返回接口类型 （结果）
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="P:General.Api.Framework.ApiResult`1.Result">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult`1.#ctor">
+            <summary>
+            默认构造
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult`1.#ctor(`0)">
+            <summary>
+            绑定数据
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult`1.#ctor(System.Boolean)">
+            <summary>
+            是否成功
+            </summary>
+            <param name="success"></param>
+        </member>
+        <member name="M:General.Api.Framework.ApiResult`1.#ctor(System.Boolean,`0)">
+            <summary>
+            成功加数据
+            </summary>
+            <param name="success"></param>
+            <param name="data"></param>
+        </member>
+        <member name="T:General.Api.Framework.Filters.ExceptionFilter">
+            <summary>
+            异常处理 
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.Filters.ExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            发生异常时的处理
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:General.Api.Framework.Filters.ExceptionFilter.GetMyException(System.Exception)">
+            <summary>
+            获取是自定义异常类
+            </summary>
+            <param name="exception">异常类</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Framework.Filters.ExceptionFilter.GetValidatorException(System.Exception)">
+            <summary>
+            获取验证异常类
+            </summary>
+            <param name="exception">异常类</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Framework.Token.AgeRequireHandler">
+            <summary>
+            访问者年龄要求自定义策略
+            </summary>
+        </member>
+        <member name="T:General.Api.Framework.Token.JwtCustomerAuthorizeMiddleware">
+            <summary>
+            自定义授权中间件
+            </summary>
+        </member>
+        <member name="T:General.Api.Framework.Token.JwtOption">
+            <summary>
+            JwtOption
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.JwtOption.Issuer">
+            <summary>
+            Issuer
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.JwtOption.Audience">
+            <summary>
+            Audience
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.JwtOption.Expiration">
+            <summary>
+            Expiration
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.JwtOption.SecurityKey">
+            <summary>
+            SecurityKey
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.JwtOption.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="T:General.Api.Framework.Token.TokenContext">
+            <summary>
+            Token上下文，负责token的创建和验证
+            </summary>
+        </member>
+        <member name="F:General.Api.Framework.Token.TokenContext.SecurityKey">
+            <summary>
+            秘钥，可以从配置文件中获取
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.Token.TokenContext.CreateToken(System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            创建jwttoken,源码自定义
+            </summary>
+            <param name="payLoad"></param>
+            <param name="header"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Framework.Token.TokenContext.CreateTokenByHandler(System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">
+            <summary>
+            创建jwtToken,采用微软内部方法，默认使用HS256加密，如果需要其他加密方式，请更改源码
+            返回的结果和CreateToken一样
+            </summary>
+            <param name="payLoad"></param>
+            <param name="expiresMinute">有效分钟</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Framework.Token.TokenContext.Validate(System.String,System.Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean})">
+            <summary>
+            验证身份 验证签名的有效性,
+            </summary>
+            <param name="encodeJwt"></param>
+            <param name="validatePayLoad">自定义各类验证； 是否包含那种申明，或者申明的值， </param>
+            例如：payLoad["aud"]?.ToString() == "roberAuddience";
+            例如：验证是否过期 等
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Framework.Token.TokenContext.GetPayLoad(System.String)">
+            <summary>
+            获取jwt中的payLoad
+            </summary>
+            <param name="encodeJwt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Framework.Token.TokenHandle">
+            <summary>
+            token 处理
+            </summary>
+        </member>
+        <member name="M:General.Api.Framework.Token.TokenHandle.CreateToken(Microsoft.Extensions.Configuration.IConfiguration,General.Core.TokenRequest)">
+            <summary>
+            生成token
+            </summary>
+            <param name="configuration"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="F:General.Api.Framework.Token.UserContext.AllowAnonymousPathList">
+            <summary>
+            允许所有人访问的接口地址
+            </summary>
+        </member>
+        <member name="P:General.Api.Framework.Token.UserContext.UserAuthList">
+            <summary>
+            用户权限列表
+            </summary>
+        </member>
+        <member name="T:General.Core.Token.CommonAuthorizeHandler">
+            <summary>
+            自定义通用 jwt 验证 自定义策略形式实现自定义jwt验证
+            </summary>
+        </member>
+        <member name="M:General.Core.Token.CommonAuthorizeHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,General.Core.Token.CommonAuthorize)">
+            <summary>
+            常用自定义验证策略，模仿自定义中间件JwtCustomerauthorizeMiddleware的验证范围
+            </summary>
+            <param name="context"></param>
+            <param name="requirement"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

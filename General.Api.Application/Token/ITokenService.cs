@@ -1,0 +1,71 @@
+﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Threading.Tasks;
+
+namespace General.Api.Application.Token
+{
+    /// <summary>
+    /// token 接口
+    /// </summary>
+    public interface ITokenService
+    {
+        /// <summary>
+        /// 验证
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        Task<bool> Get(string account, string password);
+        /// <summary>
+        /// 验证是否有权限
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <param name="permission">权限</param>
+        /// <returns></returns>
+        Task<bool> ValidatePermission(string account, string permission);
+        /// <summary>
+        /// 获取权限
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <returns></returns>
+        Task<List<string>> GetPermission(string account);
+        /// <summary>
+        /// 添加新的token 记录
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> AddTokenRecordAsync(string account, string token);
+
+        /// <summary>
+        /// 验证token
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        Task<bool> VerifyTokenAsync(string account, string token);
+
+        /// <summary>
+        /// 清楚缓存
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <returns></returns>
+        bool ClearMemaryCache(string key);
+        /// <summary>
+        /// 验证是否为管理员
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        Task<bool> VerifyAdminAsync(string account, string password);
+
+        /// <summary>
+        /// 添加 apiauther 用户
+        /// </summary>
+        /// <param name="account">account</param>
+        /// <param name="password">password</param>
+        /// <param name="isAdmin">password</param>
+        /// <returns></returns>
+        Task<bool> AddApiAuthUserAsync(string account, string password, bool isAdmin=false);
+    }
+}
