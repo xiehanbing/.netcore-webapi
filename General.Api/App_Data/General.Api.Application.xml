@@ -1200,6 +1200,284 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Application.Face.CaptureSearchRequest">
+            <summary>
+            以图搜图
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.FacePicBinaryData">
+            <summary>
+            用于搜图的图片的二进制数据经过Base64编码后的字符串，该参数与facePicUrl至少有一个存在，都存在时优先使用facePicBinaryData
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.FacePicUrl">
+            <summary>
+            	用于搜图的图片的URL，要求URL可以通过GET方式直接下载，该参数与facePicBinaryData至少有一个存在，都存在时优先使用facePicBinaryData
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.CameraIndexCodes">
+            <summary>
+            抓拍到人脸的抓拍机的唯一标识，若为空，则搜索全部的抓拍机
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.SearchNum">
+            <summary>
+            指定每个监控点搜索张数的最大值，最大值为100，为空时，等价于100
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.StartTime">
+            <summary>
+            指定搜图的开始时间，要求遵守ISO8601标准
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.EndTime">
+            <summary>
+            指定搜图的结束时间，要求遵守ISO8601标准，且必须在startTime之后
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.MinSimilarity">
+            <summary>
+            指定搜图的最小相似度，最小为1，最大为100
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.MaxSimilarity">
+            <summary>
+            指定搜图的最大相似度，最小为1，最大为100
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.Age">
+            <summary>
+            年龄，不小于 0
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.AgeGroup">
+             <summary>
+             指定查询的年龄段
+             UNKNOWN	未知	
+            CHILD 少年
+            YOUNG 青年
+            MIDDLE 中年
+             OLD 老年
+            INFANT 婴幼儿
+            KID 儿童
+            TEENAGER 青少年
+            PRIME 壮年
+            MIDDLEAGED 中老年
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.Sex">
+            <summary>
+            性别，male-男性，female-女性，UNKNOWN-未知
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.WithGlass">
+             <summary>
+             是否戴眼镜，YES-是，
+            NO-否，UNKNOWN-未知
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.Smile">
+            <summary>
+            是否微笑，YES-是，
+            NO-否，UNKNOWN-未知
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchRequest.IsEthnic">
+             <summary>
+            是否是少数民族，YES-是，
+            NO-否，UNKNOWN-未知
+             </summary>
+        </member>
+        <member name="T:General.Api.Application.Face.CaptureSearchResponse">
+            <summary>
+            以图搜图结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.CameraIndexCode">
+            <summary>
+            抓拍到人脸的通道的唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.CaptureTime">
+            <summary>
+            抓拍到人脸的绝对时标，遵守ISO8601标准
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.Sex">
+            <summary>
+            抓拍到的人脸的性别，1-男性，2-女性，UNKNOWN-未知
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.AgeGroup">
+            <summary>
+            抓拍到的人脸年龄段
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.WithGlass">
+            <summary>
+            抓拍到的人脸是否戴眼镜
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.Similarity">
+            <summary>
+            抓拍到的人脸和上传人脸的相似度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.BkgPicUrl">
+            <summary>
+            抓拍到的人脸的背景图片
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.FacePicUrl">
+            <summary>
+            抓拍到的人脸的人脸图片，注：若是超脑抓拍图，facePicUrl与bkgPicUrl相同，都是背景图片，需要使用rect坐标字段进行人脸抠图
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.Rect">
+            <summary>
+            超脑抓拍图的坐标，rect里面四个数字，依次是height，width，x，y。可用于人脸抠图。
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Face.FaceSearchRequest">
+            <summary>
+            人脸抓拍查询
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.CameraIndexCodes">
+            <summary>
+            监控点唯一标志集合，若不指定，则查询所有的监控点
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.Age">
+             <summary>
+             指定查询的年龄段
+             UNKNOWN	未知	
+            CHILD 少年
+            YOUNG 青年
+            MIDDLE 中年
+            OLD 老年
+            INFANT 婴幼儿
+            KID 儿童
+            TEENAGER 青少年
+            PRIME 壮年
+            MIDDLEAGED 中老年
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.Gender">
+            <summary>
+            性别 male-男，female-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.Glass">
+            <summary>
+            指定查询是否戴眼镜， yes是， no否
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Face.FaceSearchResponse">
+            <summary>
+            人脸抓拍查询响应
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.EventTime">
+            <summary>
+            事件时间,遵守ISO8601标准，yyyy-MM-ddTHH:mm:ss.SSS+当前时区，例如北京时间：2018-07-26T15:00:00.000+08:00
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Gender">
+            <summary>
+            性别，male-男，female-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Age">
+             <summary>
+             年龄段
+             UNKNOWN	未知	
+            CHILD 少年
+            YOUNG 青年
+            MIDDLE 中年
+            OLD 老年
+            INFANT 婴幼儿
+            KID 儿童
+            TEENAGER 青少年
+            PRIME 壮年
+            MIDDLEAGED 中老年
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Glass">
+            <summary>
+            指定查询是否戴眼镜， yes 是， no 否
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.CameraIndexCode">
+            <summary>
+            监控点唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.CameraName">
+            <summary>
+            监控点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.BkgUrl">
+            <summary>
+            抓拍背景图
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.SnapUrl">
+            <summary>
+            抓拍小图
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Face.FaceService">
+            <summary>
+            人脸应用
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Face.FaceService.#ctor(HttpUtil.IHikHttpUtillib)">
+            <summary>
+            构造函数 
+            </summary>
+            <param name="hikHttp"></param>
+        </member>
+        <member name="M:General.Api.Application.Face.FaceService.GetSearchList(General.Api.Application.Face.FaceSearchRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Face.IFaceService.GetSearchList(General.Api.Application.Face.FaceSearchRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Face.FaceService.GetCaptureList(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Face.IFaceService.GetCaptureList(General.Api.Application.Face.CaptureSearchRequest)"/>
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Face.IFaceService">
+            <summary>
+            人脸应用
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Face.IFaceService.GetSearchList(General.Api.Application.Face.FaceSearchRequest)">
+            <summary>
+            获取人脸抓拍查询列表
+            </summary>
+            <param name="request">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Face.IFaceService.GetCaptureList(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            以图搜图
+            </summary>
+            <param name="request">请求参数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Hikvision.HikVisionContext">
             <summary>
             海康威视 上下文
@@ -3375,34 +3653,250 @@
             <see cref="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)"/>
             </summary>
         </member>
+        <member name="T:General.Api.Application.Video.Dto.CameraResponse">
+            <summary>
+            分页获取监控点资源
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Altitude">
+            <summary>
+            海拔
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CameraIndexCode">
+            <summary>
+            监控点唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CameraName">
+            <summary>
+            监控点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CameraType">
+            <summary>
+            监控点类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CameraTypeName">
+            <summary>
+            监控点类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CapabilitySet">
+            <summary>
+            能力集
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CapabilitySetNamea">
+            <summary>
+            能力集说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.IntelligentSet">
+            <summary>
+            智能分析能力集
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.IntelligentSetName">
+            <summary>
+            	智能分析能力集说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.ChannelNo">
+            <summary>
+            通道编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.ChannelType">
+            <summary>
+            通道类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.ChannelTypeName">
+            <summary>
+            通道类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.CreateTime">
+            <summary>
+            创建时间，采用ISO8601标准，如2018-07-26T21:30:08+08:00 表示北京时间2018年7月26日21时30分08秒
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.EncodeDevIndexCode">
+            <summary>
+            所属编码设备唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.EncodeDevResourceType">
+            <summary>
+            所属设备类型
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.EncodeDevResourceTypeName">
+            <summary>
+            所属设备类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.GbIndexCode">
+            <summary>
+            监控点国标编号，即外码编号externalIndexCode
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.InstallLocation">
+             <summary>
+             安装位置：
+            communityPerimeter：小区周界,communityEntrance：小区出入口,fireChannel：消防通道,andscapePool：景观池,outsideBuilding：住宅楼外,parkEntrance：停车场（库）出入口,parkArea：停车场区,equipmentRoom：设备房（机房、配电房、泵房）,monitorCenter：监控中心,stopArea：禁停区,vault：金库
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.KeyBoardCode">
+            <summary>
+            键盘控制码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Latitude">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Longitude">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Pixel">
+            <summary>
+            摄像机像素（1-普通像素，2-130万高清，3-200万高清，4-300万高清）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Ptz">
+            <summary>
+            云镜类型（1-全方位云台（带转动和变焦），2-只有变焦,不带转动，3-只有转动，不带变焦，4-无云台，无变焦
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.PtzName">
+            <summary>
+            云镜类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.PtzController">
+            <summary>
+            云台控制(1-DVR，2-模拟矩阵，3-MU4000，4-NC600)
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.PtzControllerName">
+            <summary>
+            云台控制说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.RecordLocation">
+            <summary>
+            录像存储位置
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.RecordLocationName">
+            <summary>
+            录像存储位置说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.RegionIndexCode">
+            <summary>
+            所属区域唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.Status">
+            <summary>
+            在线状态（0-未知，1-在线，2-离线）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.StatusName">
+            <summary>
+            状态说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.TransType">
+            <summary>
+            	传输协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.TransTypeName">
+            <summary>
+            传输协议类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.TreatyType">
+            <summary>
+            接入协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.TreatyTypeName">
+            <summary>
+            接入协议类型说明
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.CameraResponse.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Video.Dto.PlayackUrlResponse">
             <summary>
             获取监控点回放取流URL 响应
             </summary>
         </member>
-        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.BeginTime">
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Url">
+            <summary>
+            取流短url
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.UuId">
+            <summary>
+            分页标记
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.List">
+            <summary>
+            录像片段信息，按时间从前往后排序
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.Dto.PlayackUrlItems">
+            <summary>
+            录像片段信息，按时间从前往后排序
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlItems.BeginTime">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.EndTime">
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlItems.EndTime">
             <summary>
             结束时间
             </summary>
         </member>
-        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Size">
+        <member name="P:General.Api.Application.Video.Dto.PlayackUrlItems.Size">
             <summary>
             录像片段大小
             </summary>
         </member>
-        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Uuid">
+        <member name="T:General.Api.Application.Video.Dto.PresetsResponse">
             <summary>
-            标记本次查询的标识符，用于查询分片时的多次查询，查询下一片时的入参
+            预置点信息。
             </summary>
         </member>
-        <member name="P:General.Api.Application.Video.Dto.PlayackUrlResponse.Url">
+        <member name="P:General.Api.Application.Video.Dto.PresetsResponse.PresetPointName">
             <summary>
-            取流短url
+            预置点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PresetsResponse.PresetPointIndex">
+            <summary>
+            预置点编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Dto.PresetsResponse.CameraIndexCode">
+            <summary>
+            监控点编号
             </summary>
         </member>
         <member name="T:General.Api.Application.Video.Dto.PreviewUrlResponse">
@@ -3437,6 +3931,104 @@
             </summary>
             <param name="model">参数</param>
             <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.GetPresets(System.String)">
+            <summary>
+            获取预置点列表
+            </summary>
+            <param name="cameraIndexCode">监控点唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.Control(General.Api.Application.Video.Request.ControlModel)">
+            <summary>
+            控制监控点
+            </summary>
+            <param name="control">控制参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.GetCameras(System.Int32,System.Int32)">
+            <summary>
+            获取监控点资源
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页容量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Video.IVideoService.GetCameras(General.Api.Application.Video.Request.CameraRequest)">
+            <summary>
+            获取监控点资源
+            </summary>
+            <param name="request">request 参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Video.Request.CameraRequest">
+            <summary>
+            查询监控点列表 条件
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.CameraRequest.CameraIndexCodes">
+            <summary>
+            监控点唯一标识集
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.CameraRequest.CameraName">
+            <summary>
+            监控点名称（最大长度32）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.CameraRequest.EncodeDevIndexCode">
+            <summary>
+            所属编码设备唯一标识 （最大长度64）
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.CameraRequest.RegionIndexCode">
+            <summary>
+            区域唯一标识；
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.CameraRequest.IsCascade">
+             <summary>
+             0：非级联
+            1：级联
+            2：不限（包括级联和非级联）
+            默认取值：2
+             </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.Request.ControlModel">
+            <summary>
+            控制模板
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.ControlModel.CameraIndexCode">
+            <summary>
+            监控点编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.ControlModel.Action">
+             <summary>
+             0-开始
+            1-停止
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.ControlModel.Command">
+            <summary>
+            控制命令
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.ControlModel.Speed">
+            <summary>
+            云台速度，取值范围为1-100，默认50
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.ControlModel.PresetIndex">
+            <summary>
+            预置点编号
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Video.Request.CommandEnum">
+            <summary>
+            控制命令枚举
+            </summary>
         </member>
         <member name="T:General.Api.Application.Video.Request.PlaybackUrlRequest">
             <summary>
@@ -3483,6 +4075,36 @@
             扩展内容 格式：key=value， 调用方根据其播放控件支持的解码格式选择相应的封装类型
             </summary>
         </member>
+        <member name="T:General.Api.Application.Video.Request.PreviewUrlRequest">
+            <summary>
+            预览流
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PreviewUrlRequest.CameraIndexCode">
+            <summary>
+            监控点唯一标识  根据【监控点信息】接口获取返回参数cameraIndexCode。
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PreviewUrlRequest.StreamType">
+            <summary>
+            码流类型 0:主码流，1:子码流，2:第三码流，参数不填，默认为主码流
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PreviewUrlRequest.Protocol">
+            <summary>
+            取流协议（应用层协议）  “rtsp”:RTSP协议,“rtmp”:RTMP协议,“hls”:HLS协议（HLS协议只支持海康SDK协议、EHOME协议、GB28181协议、ONVIF协议接入的设备；只支持H264视频编码和AAC音频编码）,参数不填，默认为RTSP协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PreviewUrlRequest.Transmode">
+            <summary>
+            传输协议（传输层协议）  	0:UDP，1:TCP，默认是TCP，注：GB28181 2011版本接入设备的预览只支持UDP传输协议，GB28181 2016版本接入设备的预览支持UDP和TCP传输协议
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Video.Request.PreviewUrlRequest.Expand">
+            <summary>
+            标识扩展内容，格式：key=value， 调用方根据其播放控件支持的解码格式选择相应的封装类型；
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Video.VideoService">
             <summary>
             视频服务
@@ -3496,6 +4118,26 @@
         <member name="M:General.Api.Application.Video.VideoService.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)">
             <summary>
             <see cref="M:General.Api.Application.Video.IVideoService.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.GetPresets(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.GetPresets(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.Control(General.Api.Application.Video.Request.ControlModel)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.Control(General.Api.Application.Video.Request.ControlModel)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.GetCameras(System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.GetCameras(System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Video.VideoService.GetCameras(General.Api.Application.Video.Request.CameraRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Video.IVideoService.GetCameras(General.Api.Application.Video.Request.CameraRequest)"/>
             </summary>
         </member>
         <member name="T:General.Api.Application.Visitor.Dto.AppointmentRecordResponse">

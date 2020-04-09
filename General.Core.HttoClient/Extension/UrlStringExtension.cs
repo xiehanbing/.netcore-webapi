@@ -45,6 +45,7 @@ namespace General.Core.HttpClient.Extension
             url += "/artemis";
             var urlAddress = url.AppendFormatUrl(subUrl);
             client.BaseAddress = urlAddress;
+            
             return client;
         }
     }

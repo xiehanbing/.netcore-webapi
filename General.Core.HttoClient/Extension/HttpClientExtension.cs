@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Security;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using General.Api.Core.Log;
@@ -74,26 +77,167 @@ namespace General.Core.HttpClient.Extension
         /// <param name="method">method</param>
         private static void SetHiSecuritySignHeader(System.Net.Http.HttpClient client, HttpContent httpContent, object data, string method)
         {
+            InitRequest(client, httpContent, data, method);
+            //if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
+            //{
+            //    var formData = data.GetSerializeObject();
+            //    client.DefaultRequestHeaders.SetHikSecurityHeaders(formData, client.BaseAddress.AbsoluteUri, data,
+            //        method);
+            //    httpContent.Headers.ContentMD5 = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(formData));
+            //    if (client.DefaultRequestHeaders.Contains("X-Ca-Signature"))
+            //    {
+            //        var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature");
+            //        httpContent.Headers.Add("X-Ca-Signature", value);
+            //        client.DefaultRequestHeaders.Remove("X-Ca-Signature");
+            //    }
+            //    if (client.DefaultRequestHeaders.Contains("X-Ca-Signature-Headers"))
+            //    {
+            //        var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature-Headers");
+            //        httpContent.Headers.Add("X-Ca-Signature-Headers", value);
+            //        client.DefaultRequestHeaders.Remove("X-Ca-Signature-Headers");
+            //    }
+            //}
+        }
+
+        private static void InitRequest(System.Net.Http.HttpClient client, HttpContent httpContent, object data,
+            string method)
+        {
+            var isPost = method.ToLowerInvariant().Equals("post");
+            var url = client.BaseAddress.AbsoluteUri;
+            var isHttps = url.Contains("https");
             if (client.DefaultRequestHeaders?.Contains("isHik") ?? false)
             {
-                var formData = data.GetSerializeObject();
-                client.DefaultRequestHeaders.SetHikSecurityHeaders(formData, client.BaseAddress.AbsoluteUri, data,
-                    method);
-                httpContent.Headers.ContentMD5 = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(formData));
-                if (client.DefaultRequestHeaders.Contains("X-Ca-Signature"))
+                Dictionary<string,string> header=new Dictionary<string, string>();
+                header.Add("Accept", GetAccept());
+                header.Add("Content-Type",GetContentType());
+                if (method.ToLowerInvariant().Equals("post"))
                 {
-                    var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature");
-                    httpContent.Headers.Add("X-Ca-Signature", value);
-                    client.DefaultRequestHeaders.Remove("X-Ca-Signature");
+                    header.Add("content-md5",GetContentMd5(data.GetSerializeObject()));
                 }
-                if (client.DefaultRequestHeaders.Contains("X-Ca-Signature-Headers"))
+                header.Add("x-ca-timestamp",GetMsTime());
+
+                header.Add("x-ca-nonce", Guid.NewGuid().ToString());
+
+                header.Add("x-ca-key", HikSecurityContext.ArtemisAppKey);
+                // build string to sign
+                string strToSign = BuildSignString(isPost ? "POST" : "GET", client.BaseAddress.AbsolutePath, header);
+                string signedStr = ComputeForHmacsha256(strToSign);
+
+                // x-ca-signature
+                header.Add("x-ca-signature", signedStr);
+                if (isHttps)
                 {
-                    var value = client.DefaultRequestHeaders.GetValues("X-Ca-Signature-Headers");
-                    httpContent.Headers.Add("X-Ca-Signature-Headers", value);
-                    client.DefaultRequestHeaders.Remove("X-Ca-Signature-Headers");
+                    ServicePointManager.ServerCertificateValidationCallback=new RemoteCertificateValidationCallback(RemoteCertificateValidate);
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                }
+                httpContent.Headers.ContentType=new MediaTypeHeaderValue(header["Content-Type"]);
+                client.DefaultRequestHeaders.Add("Accept", header["Accept"]);
+                client.DefaultRequestHeaders.Add("method", isPost?"POST":"GET");
+                foreach (string headerKey in header.Keys)
+                {
+                    if (headerKey.Contains("x-ca-"))
+                    {
+                        client.DefaultRequestHeaders.Add(headerKey ,header[headerKey]);
+                    }
                 }
             }
         }
+
+        private static string BuildSignString(string method, string url, Dictionary<string, string> header)
+        {
+            StringBuilder sb=new StringBuilder();
+            sb.Append(method.ToUpper()).Append("\n");
+            if (header != null)
+            {
+                if (header["Accept"] != null)
+                {
+                    sb.Append(header["Accept"]).Append("\n");
+                }
+                if (header.Keys.Contains("Content-MD5") && null != header["Content-MD5"])
+                {
+                    sb.Append((string)header["Content-MD5"]);
+                    sb.Append("\n");
+                }
+
+                if (null != header["Content-Type"])
+                {
+                    sb.Append((string)header["Content-Type"]);
+                    sb.Append("\n");
+                }
+
+                if (header.Keys.Contains("Date") && null != header["Date"])
+                {
+                    sb.Append((string)header["Date"]);
+                    sb.Append("\n");
+                }
+
+            }
+            string signHeader = BuildSignHeader(header);
+            sb.Append(signHeader);
+            sb.Append(url);
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 远程证书验证
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="cert"></param>
+        /// <param name="chain"></param>
+        /// <param name="error"></param>
+        /// <returns>验证是否通过，始终通过</returns>
+        private static bool RemoteCertificateValidate(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
+        {
+            return true;
+        }
+        /// <summary>
+        /// 计算签名头
+        /// </summary>
+        /// <param name="header">请求头</param>
+        /// <returns>签名头</returns>
+        private static string BuildSignHeader(Dictionary<string, string> header)
+        {
+            Dictionary<string, string> sortedDicHeader = new Dictionary<string, string>();
+            sortedDicHeader = header;
+            var dic = from objDic in sortedDicHeader orderby objDic.Key ascending select objDic;
+            StringBuilder sbSignHeader = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
+            foreach (KeyValuePair<string, string> kvp in dic)
+            {
+                if (kvp.Key.Replace(" ", "").Contains("x-ca-"))
+                {
+                    sb.Append(kvp.Key + ":");
+                    if (!string.IsNullOrWhiteSpace(kvp.Value))
+                    {
+                        sb.Append(kvp.Value);
+                    }
+                    sb.Append("\n");
+                    if (sbSignHeader.Length > 0)
+                    {
+                        sbSignHeader.Append(",");
+                    }
+                    sbSignHeader.Append(kvp.Key);
+                }
+            }
+
+            header.Add("x-ca-signature-headers", sbSignHeader.ToString());
+
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 计算HMACSHA265
+        /// </summary>
+        /// <param name="sign">待计算字符串</param>
+        /// <returns>HMAXH265计算结果字符串</returns>
+        private static string ComputeForHmacsha256(string sign)
+        {
+            var encoder = new System.Text.UTF8Encoding();
+            byte[] secretBytes = encoder.GetBytes(HikSecurityContext.ArtemisAppSecret);
+            byte[] strBytes = encoder.GetBytes(sign);
+            var opertor = new HMACSHA256(secretBytes);
+            byte[] hashbytes = opertor.ComputeHash(strBytes);
+            return Convert.ToBase64String(hashbytes);
+        }
+
         /// <summary>
         /// HttpPost
         /// </summary>
@@ -300,13 +444,19 @@ namespace General.Core.HttpClient.Extension
             client.DefaultRequestHeaders.Add("isHik", new List<string>() { "1" });
             return client;
         }
+
+
         /// <summary>
         /// 获取自1970年1月1日以来的毫秒数
         /// </summary>
         /// <returns></returns>
-        private static double GetMsTime()
+        private static string GetMsTime()
         {
-            return DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds;
+            var timestamp = ((DateTime.Now.Ticks -
+                              TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).Ticks) /
+                             1000).ToString();
+            return timestamp;
+            //return DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds;
         }
 
         /// <summary>
@@ -435,7 +585,8 @@ namespace General.Core.HttpClient.Extension
         private static string GetContentMd5(string body)
         {
             if (body == null) return "";
-            byte[] bytes = Encoding.UTF8.GetBytes(body);
+            MD5 md5=new MD5CryptoServiceProvider();
+            byte[] bytes = md5.ComputeHash( Encoding.UTF8.GetBytes(body));
             return Convert.ToBase64String(bytes);
         }
         /// <summary>
@@ -452,7 +603,7 @@ namespace General.Core.HttpClient.Extension
         /// <returns></returns>
         private static string GetAccept()
         {
-            return "*/*";
+            return "application/json";
         }
         /// <summary>
         /// 获取 content-type
@@ -460,7 +611,7 @@ namespace General.Core.HttpClient.Extension
         /// <returns></returns>
         private static string GetContentType()
         {
-            return "text/json";
+            return "application/json";
         }
         /// <summary>
         /// 获取headers
@@ -512,6 +663,7 @@ namespace General.Core.HttpClient.Extension
             return dic;
         }
 
+    
         /// <summary>
         /// SetHikSecurityHeaders
         /// </summary>

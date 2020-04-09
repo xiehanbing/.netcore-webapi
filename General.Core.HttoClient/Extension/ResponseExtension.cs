@@ -90,6 +90,7 @@ namespace General.Core.HttpClient.Extension
         {
             var resp = await response;
             var data = await resp.Content.ReadAsStringAsync();
+            
             response.Dispose();
             return JsonConvert.DeserializeObject<T>(data);
         }

@@ -49,6 +49,60 @@
             </summary>
             <param name="user">参数</param>
         </member>
+        <member name="T:General.Api.Controllers.CameraController">
+            <summary>
+            监控
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.#ctor(General.Api.Application.Video.IVideoService)">
+            <summary>
+            contract
+            </summary>
+            <param name="videoService"></param>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetPreviewUrl(General.Api.Application.Video.Request.PreviewUrlRequest)">
+            <summary>
+            获取监控点预览取流URL
+            </summary>
+            <param name="request">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetPlaybackUrlInfo(General.Api.Application.Video.Request.PlaybackUrlRequest)">
+            <summary>
+            获取监控点回放取流URL
+            </summary>
+            <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetPresets(System.String)">
+            <summary>
+            获取预置点列表
+            </summary>
+            <param name="cameraIndexCode">监控点唯一标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.Control(General.Api.Application.Video.Request.ControlModel)">
+            <summary>
+            控制监控点
+            </summary>
+            <param name="control">控制参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetCameras(System.Int32,System.Int32)">
+            <summary>
+            获取监控点资源
+            </summary>
+            <param name="pageNo">页码</param>
+            <param name="pageSize">页容量</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetCamerasByCondition(General.Api.Application.Video.Request.CameraRequest)">
+            <summary>
+            获取监控点资源
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.DoorControlController">
             <summary>
             门禁点api
@@ -155,6 +209,31 @@
             门禁认证对比失败接收
             </summary>
             <param name="model">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Controllers.FaceController">
+            <summary>
+            人脸应用
+            </summary>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.#ctor(General.Api.Application.Face.IFaceService)">
+            <summary>
+            construct
+            </summary>
+            <param name="faceService"></param>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.Search(General.Api.Application.Face.FaceSearchRequest)">
+            <summary>
+            按条件查询人脸抓拍事件
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.GetCapture(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            以图搜图 搜索抓拍
+            </summary>
+            <param name="request">参数</param>
             <returns></returns>
         </member>
         <member name="T:General.Api.Controllers.ParkController">

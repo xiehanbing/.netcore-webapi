@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace General.Core.Extension
 {
@@ -16,6 +17,16 @@ namespace General.Core.Extension
         public static string TimeToString(this DateTime time,string formatter="yyyy-MM-dd HH:mm:ss")
         {
             return time.ToString(formatter);
+        }
+        /// <summary>
+        /// 开始查询时间（IOS8601格式：yyyy-MM-ddTHH:mm:ss.SSSXXX）
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static string GetTimeIosFormatter(this DateTime time)
+        {
+            //var sss = time.ToString("yyyy-MM-ddTHH:mm:ss.fff+8:00",DateTimeFormatInfo.InvariantInfo);
+            return time.ToString("yyyy-MM-ddTHH:mm:ss.fff+08:00");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using General.Api.Framework.Filters;
 using General.Core.Encrypt;
 using General.Core.Extension;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace General.Api.Controllers
 {
     /// <inheritdoc />
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), SwaggerIgnore(true)]
     [ApiController]
     public class AesTestController : ControllerBase
     {

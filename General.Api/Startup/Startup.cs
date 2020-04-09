@@ -17,10 +17,13 @@ using General.Core.Libs;
 using General.Core.ModelBinder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Resilience;
+using Resilience.Infrastructure;
 
 namespace General.Api
 {
@@ -67,7 +70,8 @@ namespace General.Api
                 options.Filters.Add<ExceptionFilter>();                
                 options.Filters.Add<ActionFilter>();
                 options.Filters.Add<ResourceFilter>();
-              
+                //options.Filters.Add<ModelValidFilter>();
+
             });
             //创建引擎单例
             EngineContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
@@ -128,6 +132,20 @@ namespace General.Api
             #endregion
 
             services.InitOtherContxt(Configuration,Environment, services.BuildServiceProvider());
+
+            //注册全局单例 ResilienceClientFactory
+            services.AddSingleton(typeof(ResilienceClientFactory), sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<ResilientHttpClient>>();
+                var httpcontextAccesser = sp.GetRequiredService<IHttpContextAccessor>();
+                var retryCount = 5;
+                var exceptionCountAllowedBeforeBreaking = 5;
+                var factory = new ResilienceClientFactory(logger, httpcontextAccesser, retryCount,
+                    exceptionCountAllowedBeforeBreaking, "general.api");
+                return factory;
+            });
+            //注册全局单例 httpclient
+            services.AddSingleton<IHttpClient>(sp => sp.GetRequiredService<ResilienceClientFactory>().GetResilientHttpClient());
         }
         /// <summary>
         /// add use middleware
@@ -157,7 +175,7 @@ namespace General.Api
 
             //app.UseErrorHandling();
             //app.UseHttpsRedirection();
-            app.UseHttpContextMiddleware();
+            //app.UseHttpContextMiddleware();
             app.UseMvc(options =>
             {
                 options.MapRoute(

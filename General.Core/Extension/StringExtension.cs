@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace General.Core.Extension
@@ -68,5 +69,6 @@ namespace General.Core.Extension
             }
             return new List<string>();
         }
+      
     }
 }

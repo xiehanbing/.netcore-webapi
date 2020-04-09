@@ -9,16 +9,17 @@ using General.Api.Framework.Token;
 using General.Core;
 using General.Core.Dapper;
 using General.Core.Data;
-using General.Core.HttpClient;
 using General.EntityFrameworkCore;
 using General.EntityFrameworkCore.Dapper;
 using General.EntityFrameworkCore.Log;
+using HttpUtil;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
+using HikSecurityContext = General.Core.HttpClient.HikSecurityContext;
 
 namespace General.Api.Extension
 {
@@ -61,9 +62,20 @@ namespace General.Api.Extension
         /// <param name="configuration">configuration</param>
         public static void InitHikSecurityContext(IServiceCollection services, IConfiguration configuration)
         {
-            HikSecurityContext.ArtemisAppKey = configuration["hikSecurity:host"];
-            HikSecurityContext.ArtemisAppSecret = configuration["hikSecurity:appKey"];
-            HikSecurityContext.ArtemisHost = configuration["hikSecurity:appSecret"];
+            HikSecurityContext.ArtemisAppKey = configuration["hikSecurity:appKey"];
+            HikSecurityContext.ArtemisAppSecret = configuration["hikSecurity:appSecret"];
+            HikSecurityContext.ArtemisHost = configuration["hikSecurity:host"];
+
+
+            HttpUtil.HikSecurityContext.ArtemisAppKey = configuration["hikSecurity:appKey"];
+            HttpUtil.HikSecurityContext.ArtemisAppSecret = configuration["hikSecurity:appSecret"];
+            HttpUtil.HikSecurityContext.ArtemisHost = configuration["hikSecurity:host"];
+
+
+            HttpUtil.HikSecurityContext.Ip = configuration["hikvisionUrl:ip"];
+            HttpUtil.HikSecurityContext.Port =Convert.ToInt32( configuration["hikvisionUrl:port"] ??"80");
+            HttpUtil.HikSecurityContext.IsHttps = configuration["hikvisionUrl:isHttps"].Equals("1");
+            HttpUtil.HikSecurityContext.Address = configuration["hikvisionUrl:address"];
         }
         /// <summary>
         /// InitSwaggerGen
@@ -134,6 +146,8 @@ namespace General.Api.Extension
                 }
             });
             services.AddScoped(typeof(IDapperClient<>), typeof(DapperClient<>));
+
+            services.AddScoped(typeof(HttpUtil.IHikHttpUtillib),typeof(HikHttpUtillib));
             //set dbcontext connstring
             //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
             services.AddDbContextPool<GeneralDbContext>(

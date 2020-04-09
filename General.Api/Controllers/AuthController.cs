@@ -122,7 +122,7 @@ namespace General.Api.Controllers
         }
 
 
-        [HttpPost, Route("alarm"), AllowAnonymous]
+        [HttpPost, Route("alarm"), AllowAnonymous, SwaggerIgnore(true)]
         public async Task<string> TestFrom([FromForm]IFormCollection formCollection)
         {
             if (formCollection.ContainsKey("Key"))
@@ -134,7 +134,7 @@ namespace General.Api.Controllers
             //Console.WriteLine(json.GetSerializeObject());
             //return  json.Key;
         }
-        [HttpPost, Route("alarm/v3")]
+        [HttpPost, Route("alarm/v3"), SwaggerIgnore(true)]
         [AllowAnonymous]
         public async Task<object> RequestTokenV2([FromForm]IFormCollection formCollection)
         {
@@ -150,7 +150,7 @@ namespace General.Api.Controllers
 
             });
         }
-        [HttpPost, Route("alarm/v2"), AllowAnonymous]
+        [HttpPost, Route("alarm/v2"), AllowAnonymous, SwaggerIgnore(true)]
         public async Task<string> TestFromV2([FromBody]TestFormModel json)
         {
             Console.WriteLine(json.GetSerializeObject());

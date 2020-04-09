@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using General.Api.Application.Hikvision;
+using General.Api.Application.Video.Dto;
+using General.Api.Application.Video.Request;
 
 namespace General.Api.Application.Video
 {
@@ -24,6 +27,31 @@ namespace General.Api.Application.Video
         /// </summary>
         /// <param name="model">参数</param>
         /// <returns></returns>
-        Task<ListBaseResponse<Dto.PlayackUrlResponse>> GetPlaybackUrlInfo(Request.PlaybackUrlRequest model);
+        Task<PlayackUrlResponse> GetPlaybackUrlInfo(Request.PlaybackUrlRequest model);
+        /// <summary>
+        /// 获取预置点列表
+        /// </summary>
+        /// <param name="cameraIndexCode">监控点唯一标识</param>
+        /// <returns></returns>
+        Task<ListBaseResponse<PresetsResponse>> GetPresets(string cameraIndexCode);
+        /// <summary>
+        /// 控制监控点
+        /// </summary>
+        /// <param name="control">控制参数</param>
+        /// <returns></returns>
+        Task<bool> Control(ControlModel control);
+        /// <summary>
+        /// 获取监控点资源
+        /// </summary>
+        /// <param name="page">页码</param>
+        /// <param name="size">页容量</param>
+        /// <returns></returns>
+        Task<ListBaseResponse<CameraResponse>> GetCameras(int page, int size);
+        /// <summary>
+        /// 获取监控点资源
+        /// </summary>
+        /// <param name="request">request 参数</param>
+        /// <returns></returns>
+        Task<ListBaseResponse<CameraResponse>> GetCameras(CameraRequest request);
     }
 }

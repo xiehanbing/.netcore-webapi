@@ -361,6 +361,13 @@
             <param name="formatter">格式化字符串</param>
             <returns></returns>
         </member>
+        <member name="M:General.Core.Extension.DateTimeExtension.GetTimeIosFormatter(System.DateTime)">
+            <summary>
+            开始查询时间（IOS8601格式：yyyy-MM-ddTHH:mm:ss.SSSXXX）
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
         <member name="T:General.Core.Extension.EncryptorHelper">
             <summary>
             加解密帮助类

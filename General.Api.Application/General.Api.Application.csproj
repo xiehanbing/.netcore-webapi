@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\General.Api.Core\General.Api.Core.csproj" />
     <ProjectReference Include="..\General.Core.HttoClient\General.Core.HttpClient.csproj" />
+    <ProjectReference Include="..\HttpUtil\HttpUtil.csproj" />
   </ItemGroup>
 
   <ItemGroup>
