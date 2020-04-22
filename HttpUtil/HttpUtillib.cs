@@ -190,7 +190,7 @@ namespace HttpUtil
             // build web request object
             string compluteUrl = (HikSecurityContext.IsHttps ? "https://" : "http://") + (HikSecurityContext.Ip + ":") +
                                  (HikSecurityContext.Port.ToString()) + uri;
-            StringBuilder sbHeader=new StringBuilder();
+            StringBuilder sbHeader = new StringBuilder();
             // 创建POST请求
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(compluteUrl);
             req.KeepAlive = false;
@@ -214,6 +214,14 @@ namespace HttpUtil
             {
                 sbHeader.Append($"{reqHeader.Key}:{reqHeader.Value}  \n  ");
             }
+            //解决远程证书无效
+            if (HikSecurityContext.IsHttps)
+            {
+                //req.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                ServicePointManager.ServerCertificateValidationCallback =
+                    new RemoteCertificateValidationCallback(CheckValidationResult);
+            }
+
             if (!string.IsNullOrWhiteSpace(body))
             {
                 byte[] postBytes = Encoding.UTF8.GetBytes(body);
@@ -236,12 +244,12 @@ namespace HttpUtil
                     long streamLength = strStream.Length;
                     byte[] response = System.Text.Encoding.UTF8.GetBytes(strStream);
                     rsp.Close();
-                    WriteClientLog(uri, "Post" + compluteUrl, sbHeader+ req.GetSerializeObject()+"; body"+body, Encoding.Default.GetString(response));
+                    WriteClientLog(uri, "Post" + compluteUrl, sbHeader + req.GetSerializeObject() + "; body" + body, Encoding.Default.GetString(response));
                     return response;
                 }
                 else if (HttpStatusCode.Found == rsp.StatusCode || HttpStatusCode.Moved == rsp.StatusCode)  // 302/301 redirect
                 {
-                    WriteClientLog(uri, "Post" + compluteUrl, req.GetSerializeObject()+"; header:"+ sbHeader + "; body" + body, rsp.GetSerializeObject());
+                    WriteClientLog(uri, "Post" + compluteUrl, req.GetSerializeObject() + "; header:" + sbHeader + "; body" + body, rsp.GetSerializeObject());
                 }
 
                 rsp.Close();
@@ -249,10 +257,16 @@ namespace HttpUtil
             catch (Exception ex)
             {
                 WriteClientLog(uri, "Post" + compluteUrl, req.GetSerializeObject() + "; header:" + sbHeader + "; body" + body, ex.GetSerializeObject());
+                throw new MyException("请求外部接口异常");
             }
-           
+
 
             return null;
+        }
+        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            //直接确认，否则打不开    
+            return true;
         }
         /// <summary>
         /// 记录日志
@@ -263,6 +277,14 @@ namespace HttpUtil
         /// <param name="response">响应日志</param>
         private void WriteClientLog(string keyNo, string modelName, string request, string response)
         {
+            var log = new ApiLog()
+            {
+                ConfirmNo = keyNo,
+                ModelName = modelName,
+                RequestContext = request,
+                ResponseContext = response
+            };
+            _logger.LogInformation(log.GetSerializeObject());
             LogManage.HttpClientLog(new ApiLog()
             {
                 ConfirmNo = keyNo,

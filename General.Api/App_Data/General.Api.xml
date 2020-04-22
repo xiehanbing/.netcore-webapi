@@ -312,6 +312,19 @@
             <param name="pageSize">页容量</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.ParkController.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.SpcmsController">
             <summary>
             入侵报警

@@ -2439,7 +2439,7 @@
             停车场记录
             </summary>
         </member>
-        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,HttpUtil.IHikHttpUtillib)">
             <summary>
             construct
             </summary>

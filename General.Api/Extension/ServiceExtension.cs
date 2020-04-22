@@ -73,9 +73,10 @@ namespace General.Api.Extension
 
 
             HttpUtil.HikSecurityContext.Ip = configuration["hikvisionUrl:ip"];
-            HttpUtil.HikSecurityContext.Port =Convert.ToInt32( configuration["hikvisionUrl:port"] ??"80");
+            HttpUtil.HikSecurityContext.Port = Convert.ToInt32(configuration["hikvisionUrl:port"] ?? "80");
             HttpUtil.HikSecurityContext.IsHttps = configuration["hikvisionUrl:isHttps"].Equals("1");
             HttpUtil.HikSecurityContext.Address = configuration["hikvisionUrl:address"];
+            HttpUtil.HikSecurityContext.TimeOut = Convert.ToInt32(configuration["hikvisionUrl:timeout"] ?? "15");
         }
         /// <summary>
         /// InitSwaggerGen
@@ -84,7 +85,7 @@ namespace General.Api.Extension
         /// <param name="environment">environment</param>
         /// <param name="configuration">configuration</param>
         /// <param name="rootDir">app rootDir</param>
-        public static void InitSwaggerGen(this IServiceCollection services,IConfiguration configuration, IHostingEnvironment environment, string rootDir = null)
+        public static void InitSwaggerGen(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment environment, string rootDir = null)
         {
             services.AddSwaggerGen(options =>
             {
@@ -104,7 +105,7 @@ namespace General.Api.Extension
                 });
                 options.DocumentFilter<SwaggerIgnoreFilter>();
                 //环境名称
-                var envir = configuration["Environment"]?.ToUpper()??"";
+                var envir = configuration["Environment"]?.ToUpper() ?? "";
                 options.DocInclusionPredicate((docName, description) => !envir.Equals("PROC"));
                 string rootdir = rootDir ?? AppContext.BaseDirectory;
                 DirectoryInfo dir = Directory.GetParent(rootdir);
@@ -147,7 +148,7 @@ namespace General.Api.Extension
             });
             services.AddScoped(typeof(IDapperClient<>), typeof(DapperClient<>));
 
-            services.AddScoped(typeof(HttpUtil.IHikHttpUtillib),typeof(HikHttpUtillib));
+            services.AddScoped(typeof(HttpUtil.IHikHttpUtillib), typeof(HikHttpUtillib));
             //set dbcontext connstring
             //sqlconnection 最大100  dbcontextpool 最大128  要使pool 小于sqlconnection
             services.AddDbContextPool<GeneralDbContext>(

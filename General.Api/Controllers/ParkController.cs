@@ -22,7 +22,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// 停车管理
     /// </summary>
-    [Route("api/[controller]"), GeneralAuthorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class ParkController : ControllerBase
     {
@@ -110,7 +110,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="model">请求类</param>
         /// <returns></returns>
-        [HttpPost,Route("device/control")]
+        [HttpPost, Route("device/control")]
         public async Task<ListBaseResponse<DeviceControlResponse>> DoControl(DeviceControlRequest model)
         {
             return await _deviceService.DoControl(model);
@@ -121,7 +121,7 @@ namespace General.Api.Controllers
         /// <param name="parkSyscode">停车场唯一标识码</param>
         /// <param name="command">控闸命令 0关闸 1开闸 3常开</param>
         /// <returns></returns>
-        [HttpGet,Route("device/control/byParkCode")]
+        [HttpGet, Route("device/control/byParkCode")]
         public async Task<bool> DoControlBatch([Required]string parkSyscode, DeviceCommandType command)
         {
             return await _deviceService.DoControlBatch(parkSyscode, command);
@@ -140,10 +140,10 @@ namespace General.Api.Controllers
         /// <param name="pageNo">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns></returns>
-        [HttpGet,Route("record/temp")]
+        [HttpGet, Route("record/temp")]
         public async Task<ListBaseResponse<TempCarInRecordResponse>> GetTempRecordList(string parkSysCode,
             string plateNo,
-            [RegularExpression(ApiConsts.MoreThanZeroRegex,ErrorMessage = "pageNo more than zero")]int pageNo, [RegularExpression(ApiConsts.MoreThanZeroRegex, ErrorMessage = "pageSize more than zero")]int pageSize)
+            [RegularExpression(ApiConsts.MoreThanZeroRegex, ErrorMessage = "pageNo more than zero")]int pageNo, [RegularExpression(ApiConsts.MoreThanZeroRegex, ErrorMessage = "pageSize more than zero")]int pageSize)
         {
             //if (!ModelState.IsValid)
             //{
@@ -151,7 +151,24 @@ namespace General.Api.Controllers
             //}
             return await _parkRecordService.GetTempRecordList(parkSysCode, plateNo, pageNo, pageSize);
         }
-
+        /// <summary>
+        /// 查询过车记录
+        /// </summary>
+        /// <param name="parkSysCode">停车库唯一标识</param>
+        /// <param name="entranceSysCode">出入口唯一标识</param>
+        /// <param name="plateNo">车牌号</param>
+        /// <param name="startTime">查询开始时间</param>
+        /// <param name="endTime">查询结束时间</param>
+        /// <param name="pageNo">目标页码</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
+        [HttpGet,Route("record/cross")]
+        public async Task<ListBaseResponse<CrossRecordResponse>> GetCrossRecord(string parkSysCode,
+            string entranceSysCode, string plateNo, DateTime? startTime, DateTime? endTime, int pageNo, int pageSize)
+        {
+            return await _parkRecordService.GetCrossRecord(parkSysCode, entranceSysCode, plateNo, startTime, endTime,
+                pageNo, pageSize);
+        }
         #endregion
     }
 }

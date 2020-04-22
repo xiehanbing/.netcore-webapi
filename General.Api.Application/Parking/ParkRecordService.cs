@@ -6,6 +6,7 @@ using General.Api.Application.Parking.Dto.Record;
 using General.Api.Application.Parking.Request.Record;
 using General.Core;
 using General.Core.HttpClient.Extension;
+using HttpUtil;
 using Microsoft.Extensions.Configuration;
 
 namespace General.Api.Application.Parking
@@ -16,16 +17,18 @@ namespace General.Api.Application.Parking
     public class ParkRecordService : IParkRecordService
     {
         private readonly string _parkingApi;
+        private readonly IHikHttpUtillib _hikHttp;
         /// <summary>
         /// construct
         /// </summary>
-        public ParkRecordService(IConfiguration configuration)
+        public ParkRecordService(IConfiguration configuration, IHikHttpUtillib hikHttp)
         {
-            _parkingApi = configuration[HikVisionContext.HikVisionBaseApiName];
-            if (string.IsNullOrEmpty(_parkingApi))
-            {
-                throw new MyException("parkingApi is null");
-            }
+            //_parkingApi = configuration[HikVisionContext.HikVisionBaseApiName];
+            //if (string.IsNullOrEmpty(_parkingApi))
+            //{
+            //    throw new MyException("parkingApi is null");
+            //}
+            _hikHttp = hikHttp;
         }
         /// <summary>
         /// <see cref="IParkRecordService.GetTempRecordList(string,string,int,int)"/>
@@ -61,20 +64,33 @@ namespace General.Api.Application.Parking
         public async Task<ListBaseResponse<CrossRecordResponse>> GetCrossRecord(string parkSysCode, string entranceSysCode, string plateNo, DateTime? startTime, DateTime? endTime,
             int pageNo, int pageSize)
         {
-            var data = await _parkingApi.AppendFormatToHik("/api/pms/v1/crossRecords/page")
-                .SetHiKSecreity()
-                .PostAsync(new
-                {
-                    parkSysCode,
-                    entranceSysCode,
-                    plateNo,
-                    startTime,
-                    endTime,
-                    pageNo,
-                    pageSize
-                })
-                .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<CrossRecordResponse>>>();
-            return data?.Data;
+            //var data = await _parkingApi.AppendFormatToHik("/api/pms/v1/crossRecords/page")
+            //    .SetHiKSecreity()
+            //    .PostAsync(new
+            //    {
+            //        parkSysCode,
+            //        entranceSysCode,
+            //        plateNo,
+            //        startTime,
+            //        endTime,
+            //        pageNo,
+            //        pageSize
+            //    })
+            //    .ReciveJsonResultAsync<HikVisionResponse<ListBaseResponse<CrossRecordResponse>>>();
+
+            var result = await _hikHttp.PostAsync<HikVisionResponse<ListBaseResponse<CrossRecordResponse>>>(
+                "/api/pms/v1/crossRecords/page",
+            new
+            {
+                parkSysCode,
+                entranceSysCode,
+                plateNo,
+                startTime=startTime?.GetDateTimeFormats(),
+                endTime = endTime?.GetDateTimeFormats(),
+                pageNo,
+                pageSize
+            });
+            return result?.Data;
         }
         /// <summary>
         /// <see cref="IParkRecordService.GetCorssVehicleImage(string,string)"/>
