@@ -48,13 +48,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ibms.Core\Resilience\Resilience.csproj" />
     <ProjectReference Include="..\General.Api.Application\General.Api.Application.csproj" />
     <ProjectReference Include="..\General.Api.Core\General.Api.Core.csproj" />
     <ProjectReference Include="..\General.Api.Framework\General.Api.Framework.csproj" />
     <ProjectReference Include="..\General.Core\General.Core.csproj" />
     <ProjectReference Include="..\General.Entity\General.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\General.Log\General.Log.csproj" />
+    <ProjectReference Include="..\Resilience\Resilience.csproj" />
   </ItemGroup>
 
   <ItemGroup>
