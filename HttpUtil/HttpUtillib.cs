@@ -200,10 +200,8 @@ namespace HttpUtil
             req.Timeout = HikSecurityContext.TimeOut * 1000;    // 传入是秒，需要转换成毫秒
             req.Accept = header["Accept"];
             req.ContentType = header["Content-Type"];
-            var headersStr = "";
             foreach (string headerKey in header.Keys)
             {
-                headersStr += headerKey + ":" + header[headerKey] + "  \r\n  ";
                 if (headerKey.Contains("x-ca-"))
                 {
                     req.Headers.Add(headerKey + ":" + header[headerKey]);

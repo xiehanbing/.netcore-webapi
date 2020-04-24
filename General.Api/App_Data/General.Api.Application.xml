@@ -1443,11 +1443,12 @@
             人脸应用
             </summary>
         </member>
-        <member name="M:General.Api.Application.Face.FaceService.#ctor(HttpUtil.IHikHttpUtillib)">
+        <member name="M:General.Api.Application.Face.FaceService.#ctor(HttpUtil.IHikHttpUtillib,General.Api.Application.Hikvision.IHikVisionClient)">
             <summary>
             构造函数 
             </summary>
             <param name="hikHttp"></param>
+            <param name="hikClient"></param>
         </member>
         <member name="M:General.Api.Application.Face.FaceService.GetSearchList(General.Api.Application.Face.FaceSearchRequest)">
             <summary>
@@ -1478,6 +1479,22 @@
             <param name="request">请求参数</param>
             <returns></returns>
         </member>
+        <member name="T:General.Api.Application.Hikvision.HikVisionClient">
+            <summary>
+            海康威视 HTTP 请求 客户端
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Hikvision.HikVisionClient.#ctor(HttpUtil.IHikHttpUtillib)">
+            <summary>
+            construct
+            </summary>
+            <param name="hikHttp"></param>
+        </member>
+        <member name="M:General.Api.Application.Hikvision.HikVisionClient.PostAsync``1(System.String,System.Object)">
+            <summary>
+            <see cref="M:General.Api.Application.Hikvision.IHikVisionClient.PostAsync``1(System.String,System.Object)"/>
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Hikvision.HikVisionContext">
             <summary>
             海康威视 上下文
@@ -1507,6 +1524,20 @@
             <summary>
             HikVisionBaseUrl
             </summary>
+        </member>
+        <member name="T:General.Api.Application.Hikvision.IHikVisionClient">
+            <summary>
+            海康威视 HTTP 请求 客户端
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Hikvision.IHikVisionClient.PostAsync``1(System.String,System.Object)">
+            <summary>
+            获取 post 请求  泛型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="uri">路径</param>
+            <param name="body">参数</param>
+            <returns></returns>
         </member>
         <member name="T:General.Api.Application.Hikvision.ListBaseResponse`1">
             <summary>
