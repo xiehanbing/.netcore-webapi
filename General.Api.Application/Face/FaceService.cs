@@ -12,13 +12,16 @@ namespace General.Api.Application.Face
     public class FaceService : IFaceService
     {
         private readonly IHikHttpUtillib _hikHttp;
+        private readonly IHikVisionClient _hikClient;
         /// <summary>
         /// 构造函数 
         /// </summary>
         /// <param name="hikHttp"></param>
-        public FaceService(IHikHttpUtillib hikHttp)
+        /// <param name="hikClient"></param>
+        public FaceService(IHikHttpUtillib hikHttp, IHikVisionClient hikClient)
         {
             _hikHttp = hikHttp;
+            _hikClient = hikClient;
         }
 
         /// <summary>
@@ -49,7 +52,7 @@ namespace General.Api.Application.Face
         /// </summary>
         public async Task<ListBaseResponse<CaptureSearchResponse>> GetCaptureList(CaptureSearchRequest request)
         {
-            var response = await _hikHttp.PostAsync<HikVisionResponse<ListBaseResponse<CaptureSearchResponse>>>(
+            var response = await _hikClient.PostAsync<ListBaseResponse<CaptureSearchResponse>>(
                 "/api/frs/v1/application/captureSearch", new
                 {
                     pageNo = request.PageNo,
@@ -69,10 +72,6 @@ namespace General.Api.Application.Face
                     isEthnic = request.IsEthnic,
                     age = request.Age
                 });
-            if (!response.Success)
-            {
-                throw new MyException(response.Msg);
-            }
             return response.Data;
         }
     }

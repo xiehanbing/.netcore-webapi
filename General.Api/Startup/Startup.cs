@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using General.Api.Application;
+using General.Api.Application.Hikvision;
 using General.Api.Engine;
 using General.Api.Extension;
 using General.Api.Framework.Filters;
@@ -146,6 +147,8 @@ namespace General.Api
             });
             //注册全局单例 httpclient
             services.AddSingleton<IHttpClient>(sp => sp.GetRequiredService<ResilienceClientFactory>().GetResilientHttpClient());
+            //海康httpClient
+            services.AddScoped(typeof(IHikVisionClient), typeof(HikVisionClient));
         }
         /// <summary>
         /// add use middleware

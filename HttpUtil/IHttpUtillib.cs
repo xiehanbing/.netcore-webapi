@@ -45,5 +45,7 @@ namespace HttpUtil
         /// <param name="body">参数</param>
         /// <returns></returns>
         Task<T> PostAsync<T>(string uri,object body);
+
+
     }
 }
