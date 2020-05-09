@@ -1298,6 +1298,16 @@
             抓拍到人脸的通道的唯一标识
             </summary>
         </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.CameraName">
+            <summary>
+            监控点名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.CaptureSearchResponse.Area">
+            <summary>
+            地点区域
+            </summary>
+        </member>
         <member name="P:General.Api.Application.Face.CaptureSearchResponse.CaptureTime">
             <summary>
             抓拍到人脸的绝对时标，遵守ISO8601标准

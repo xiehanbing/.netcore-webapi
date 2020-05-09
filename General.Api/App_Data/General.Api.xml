@@ -103,6 +103,18 @@
             <param name="request">参数</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.CameraController.GetAllCameras">
+            <summary>
+            获取所有的监控点资源
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.CameraController.GetAllTestCameras">
+            <summary>
+            获取所有的监控点资源
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.DoorControlController">
             <summary>
             门禁点api
@@ -216,11 +228,10 @@
             人脸应用
             </summary>
         </member>
-        <member name="M:General.Api.Controllers.FaceController.#ctor(General.Api.Application.Face.IFaceService)">
+        <member name="M:General.Api.Controllers.FaceController.#ctor(General.Api.Application.Face.IFaceService,General.Api.Application.Video.IVideoService)">
             <summary>
             construct
             </summary>
-            <param name="faceService"></param>
         </member>
         <member name="M:General.Api.Controllers.FaceController.Search(General.Api.Application.Face.FaceSearchRequest)">
             <summary>
@@ -230,6 +241,41 @@
             <returns></returns>
         </member>
         <member name="M:General.Api.Controllers.FaceController.GetCapture(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            以图搜图 搜索抓拍
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.GetCameras(System.String[])">
+            <summary>
+            获取相机信息
+            </summary>
+            <param name="cameraIndexCodes">相机code</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.MapCapture(System.Collections.Generic.List{General.Api.Application.Face.CaptureSearchResponse})">
+            <summary>
+            映射属性
+            </summary>
+            <param name="captureList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.GetAllCapture(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            以图搜图 搜索抓拍
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.GetTestCapture(General.Api.Application.Face.CaptureSearchRequest)">
+            <summary>
+            以图搜图 搜索抓拍
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.GetAllTestCapture(General.Api.Application.Face.CaptureSearchRequest)">
             <summary>
             以图搜图 搜索抓拍
             </summary>

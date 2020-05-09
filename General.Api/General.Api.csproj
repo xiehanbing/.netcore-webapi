@@ -12,12 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App_Data\General.Api.Application.xml" />
     <None Remove="App_Data\General.Api.Framework.xml" />
     <None Remove="App_Data\General.Api.xml" />
     <None Remove="App_Data\General.Core.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="App_Data\General.Api.Application.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\General.Api.Framework.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -55,12 +59,6 @@
     <ProjectReference Include="..\General.Entity\General.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\General.Log\General.Log.csproj" />
     <ProjectReference Include="..\Resilience\Resilience.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="App_Data\General.Api.Application.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" appsettings_1Development_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>

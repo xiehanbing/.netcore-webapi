@@ -33,7 +33,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="request">请求参数</param>
         /// <returns></returns>
-        [HttpPost,Route("preview")]
+        [HttpPost, Route("preview")]
         public async Task<string> GetPreviewUrl(PreviewUrlRequest request)
         {
             return await _videoService.GetPreviewUrl(request.CameraIndexCode, request.StreamType, request.Protocol, request.Transmode, request.Expand);
@@ -91,6 +91,53 @@ namespace General.Api.Controllers
         public async Task<ListBaseResponse<CameraResponse>> GetCamerasByCondition(CameraRequest request)
         {
             return await _videoService.GetCameras(request);
+        }
+        /// <summary>
+        /// 获取所有的监控点资源
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("cameras/all")]
+        public async Task<ListBaseResponse<CameraResponse>> GetAllCameras()
+        {
+            int page = 1;
+            int size = 500;
+            bool hasNext = true;
+            ListBaseResponse<CameraResponse> list = new ListBaseResponse<CameraResponse>();
+            //判断是否还有下一页
+            while (hasNext)
+            {
+                var data = await _videoService.GetCameras(page, size);
+                if (data.List?.Count > 0)
+                {
+                    page++;
+                    list.List.AddRange(data.List);
+                }
+                else
+                {
+                    hasNext = false;
+                }
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// 获取所有的监控点资源
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("cameras/all/test")]
+        public ListBaseResponse<CameraResponse> GetAllTestCameras()
+        {
+            ListBaseResponse<CameraResponse> list = new ListBaseResponse<CameraResponse>();
+            list.List=new List<CameraResponse>();
+            for (int i = 0; i < 50; i++)
+            {
+                list.List.Add(new CameraResponse()
+                {
+                    CameraIndexCode = i.ToString(),
+                    CameraName = i + "相机"
+                });
+            }
+            return list;
         }
     }
 }
