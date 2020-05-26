@@ -38,7 +38,27 @@ namespace General.Api.Controllers
         [HttpPost, Route("search")]
         public async Task<ListBaseResponse<FaceSearchResponse>> Search([FromBody]FaceSearchRequest request)
         {
-            return await _faceService.GetSearchList(request);
+            var data = await _faceService.GetSearchList(request);
+            if (data?.List?.Count > 0)
+            {
+                data.List = await MapCapture(data.List);
+            }
+            return data;
+        }
+        /// <summary>
+        /// 获取检索数据
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private async Task<List<CaptureSearchResponse>> GetSearch(FaceSearchRequest request)
+        {
+            var data = await _faceService.GetSearchList(request);
+            List<CaptureSearchResponse> list = new List<CaptureSearchResponse>();
+            if (data?.List?.Count > 0)
+            {
+                list = await SearchMapCapture(data.List);
+            }
+            return list;
         }
         /// <summary>
         /// 以图搜图 搜索抓拍
@@ -48,12 +68,28 @@ namespace General.Api.Controllers
         [HttpPost, Route("capture")]
         public async Task<ListBaseResponse<CaptureSearchResponse>> GetCapture([FromBody] CaptureSearchRequest request)
         {
-            var data = await _faceService.GetCaptureList(request);
-            if (data?.List?.Count > 0)
+            var response = new ListBaseResponse<CaptureSearchResponse>();
+            if (string.IsNullOrWhiteSpace(request.FacePicUrl) && string.IsNullOrWhiteSpace(request.FacePicBinaryData))
             {
-                data.List = await MapCapture(data.List);
+                response.List = await GetSearch(new FaceSearchRequest()
+                {
+                    AgeGroup = request.AgeGroup,
+                    StartTime = request.StartTime,
+                    EndTime = request.EndTime,
+                    CameraIndexCodes = request.CameraIndexCodes,
+                    Sex = request.Sex,
+                    WithGlass = request.WithGlass,
+                    PageSize = request.PageSize,
+                    PageNo = request.PageNo
+                });
+                return response;
             }
-            return data;
+            response = await _faceService.GetCaptureList(request);
+            if (response?.List?.Count > 0)
+            {
+                response.List = await MapCapture(response.List);
+            }
+            return response;
         }
 
         /// <summary>
@@ -130,6 +166,64 @@ namespace General.Api.Controllers
             return captureList;
         }
         /// <summary>
+        /// 映射属性
+        /// </summary>
+        /// <param name="captureList"></param>
+        /// <returns></returns>
+        private async Task<List<FaceSearchResponse>> MapCapture(List<FaceSearchResponse> captureList)
+        {
+            string[] cameraIndexCodes = captureList.Select(o => o.CameraIndexCode).ToArray();
+            var cameraInfos = await GetCameras(cameraIndexCodes);
+            if (cameraInfos.List?.Count > 0)
+            {
+                var cameraInfoList = cameraInfos.List;
+                foreach (var item in captureList)
+                {
+                    item.CameraName =
+                        cameraInfoList.FirstOrDefault(o => o.CameraIndexCode.Equals(item.CameraIndexCode))
+                            ?.CameraName ?? "";
+                    item.Area = item.CameraName;
+                }
+            }
+
+            return captureList;
+        }
+        /// <summary>
+        /// 转换
+        /// </summary>
+        /// <param name="captureList"></param>
+        /// <returns></returns>
+        private async Task<List<CaptureSearchResponse>> SearchMapCapture(List<FaceSearchResponse> captureList)
+        {
+            string[] cameraIndexCodes = captureList.Select(o => o.CameraIndexCode).ToArray();
+            var cameraInfos = await GetCameras(cameraIndexCodes);
+            var cameraInfoList = cameraInfos?.List;
+            List<CaptureSearchResponse> list = new List<CaptureSearchResponse>();
+            foreach (var face in captureList)
+            {
+                var model = new CaptureSearchResponse()
+                {
+                    AgeGroup = face.AgeGroup,
+                    Area = face.Area,
+                    BkgPicUrl = face.BkgPicUrl,
+                    CameraIndexCode = face.CameraIndexCode,
+                    CameraName = face.CameraName,
+                    CaptureTime = face.EventTime,
+                    FacePicUrl = face.FacePicUrl,
+                    Sex = face.Sex,
+                    Similarity = face.Similarity,
+                    WithGlass = face.WithGlass
+                };
+                model.CameraName = cameraInfoList?.FirstOrDefault(o => o.CameraIndexCode.Equals(model.CameraIndexCode))
+                    ?.CameraName ?? "";
+                model.Area = model.CameraName;
+                list.Add(model);
+            }
+
+
+            return list;
+        }
+        /// <summary>
         /// 以图搜图 搜索抓拍
         /// </summary>
         /// <param name="request">参数</param>
@@ -142,6 +236,43 @@ namespace General.Api.Controllers
             bool hasNext = true;
             request.PageNo = page;
             request.PageSize = size;
+
+
+            //如果是
+            if (string.IsNullOrWhiteSpace(request.FacePicUrl) && string.IsNullOrWhiteSpace(request.FacePicBinaryData))
+            {
+                var response = new ListBaseResponse<CaptureSearchResponse> {List = new List<CaptureSearchResponse>()};
+
+                var searchRequest = new FaceSearchRequest()
+                {
+                    AgeGroup = request.AgeGroup,
+                    StartTime = request.StartTime,
+                    EndTime = request.EndTime,
+                    CameraIndexCodes = request.CameraIndexCodes,
+                    Sex = request.Sex,
+                    WithGlass = request.WithGlass,
+                    PageSize = request.PageSize,
+                    PageNo = request.PageNo
+                };
+                //判断是否还有下一页
+                while (hasNext)
+                {
+                    var data = await GetSearch(searchRequest);
+                    if (data?.Count > 0)
+                    {
+                        page++;
+                        searchRequest.PageNo = page;
+                        var mapList = await MapCapture(data);
+                        response.List.AddRange(mapList);
+                    }
+                    else
+                    {
+                        hasNext = false;
+                    }
+                }
+                return response;
+            }
+
             ListBaseResponse<CaptureSearchResponse> list = new ListBaseResponse<CaptureSearchResponse>();
             //判断是否还有下一页
             while (hasNext)
@@ -240,5 +371,7 @@ namespace General.Api.Controllers
             list.Total = total;
             return list;
         }
+
+        
     }
 }

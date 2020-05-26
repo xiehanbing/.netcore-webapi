@@ -1368,7 +1368,7 @@
             监控点唯一标志集合，若不指定，则查询所有的监控点
             </summary>
         </member>
-        <member name="P:General.Api.Application.Face.FaceSearchRequest.Age">
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.AgeGroup">
              <summary>
              指定查询的年龄段
              UNKNOWN	未知	
@@ -1383,12 +1383,12 @@
             MIDDLEAGED 中老年
              </summary>
         </member>
-        <member name="P:General.Api.Application.Face.FaceSearchRequest.Gender">
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.Sex">
             <summary>
             性别 male-男，female-女
             </summary>
         </member>
-        <member name="P:General.Api.Application.Face.FaceSearchRequest.Glass">
+        <member name="P:General.Api.Application.Face.FaceSearchRequest.WithGlass">
             <summary>
             指定查询是否戴眼镜， yes是， no否
             </summary>
@@ -1446,6 +1446,41 @@
         <member name="P:General.Api.Application.Face.FaceSearchResponse.SnapUrl">
             <summary>
             抓拍小图
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Sex">
+            <summary>
+            性别，male-男，female-女
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.AgeGroup">
+            <summary>
+            抓拍到的人脸年龄段
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.WithGlass">
+            <summary>
+            抓拍到的人脸是否戴眼镜
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Area">
+            <summary>
+            地点区域
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.Similarity">
+            <summary>
+            抓拍到的人脸和上传人脸的相似度
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.FacePicUrl">
+            <summary>
+            抓拍到的人脸的人脸图片
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Face.FaceSearchResponse.BkgPicUrl">
+            <summary>
+            抓拍背景图
             </summary>
         </member>
         <member name="T:General.Api.Application.Face.FaceService">

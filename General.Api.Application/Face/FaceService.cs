@@ -35,11 +35,11 @@ namespace General.Api.Application.Face
                     pageNo = request.PageNo,
                     pageSize = request.PageSize,
                     startTime = request.StartTime.GetTimeIosFormatter(),
-                    endTim = request.EndTime.GetTimeIosFormatter(),
+                    endTime = request.EndTime.GetTimeIosFormatter(),
                     cameraIndexCodes = request.CameraIndexCodes,
-                    age = request.Age,
-                    gender = request.Gender,
-                    glass = request.Glass
+                    age = string.IsNullOrWhiteSpace(request.AgeGroup) ? new string[] { } : new string[] { request.AgeGroup },
+                    gender = request.Sex,
+                    glass = request.WithGlass
                 });
             if (!response.Success)
             {
@@ -58,7 +58,7 @@ namespace General.Api.Application.Face
                     pageNo = request.PageNo,
                     pageSize = request.PageSize,
                     startTime = request.StartTime.GetTimeIosFormatter(),
-                    endTim = request.EndTime.GetTimeIosFormatter(),
+                    endTime = request.EndTime.GetTimeIosFormatter(),
                     cameraIndexCodes = request.CameraIndexCodes,
                     facePicBinaryData = request.FacePicBinaryData,
                     facePicUrl = request.FacePicUrl,

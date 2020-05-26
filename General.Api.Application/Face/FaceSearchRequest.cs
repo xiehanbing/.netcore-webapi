@@ -33,14 +33,14 @@ namespace General.Api.Application.Face
         ///PRIME 壮年
         ///MIDDLEAGED 中老年
         /// </summary>
-        public string[] Age { get; set; }
+        public string AgeGroup { get; set; }
         /// <summary>
         /// 性别 male-男，female-女
         /// </summary>
-        public string Gender { get; set; }
+        public string Sex { get; set; }
         /// <summary>
         /// 指定查询是否戴眼镜， yes是， no否
         /// </summary>
-        public string  Glass { get; set; }
+        public string WithGlass { get; set; }
     }
 }

@@ -240,6 +240,13 @@
             <param name="request">参数</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.FaceController.GetSearch(General.Api.Application.Face.FaceSearchRequest)">
+            <summary>
+            获取检索数据
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:General.Api.Controllers.FaceController.GetCapture(General.Api.Application.Face.CaptureSearchRequest)">
             <summary>
             以图搜图 搜索抓拍
@@ -257,6 +264,20 @@
         <member name="M:General.Api.Controllers.FaceController.MapCapture(System.Collections.Generic.List{General.Api.Application.Face.CaptureSearchResponse})">
             <summary>
             映射属性
+            </summary>
+            <param name="captureList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.MapCapture(System.Collections.Generic.List{General.Api.Application.Face.FaceSearchResponse})">
+            <summary>
+            映射属性
+            </summary>
+            <param name="captureList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.FaceController.SearchMapCapture(System.Collections.Generic.List{General.Api.Application.Face.FaceSearchResponse})">
+            <summary>
+            转换
             </summary>
             <param name="captureList"></param>
             <returns></returns>

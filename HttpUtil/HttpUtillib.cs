@@ -13,6 +13,7 @@ using General.Api.Core.Log;
 using General.Core.Extension;
 using General.EntityFrameworkCore.Log;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace HttpUtil
 {
@@ -169,6 +170,92 @@ namespace HttpUtil
                 return stringData;
             }
             return string.Empty;
+        }
+        /// <summary>
+        /// HTTP Post请求 HttpWebResponse
+        /// </summary>
+        /// <param name="uri">HTTP接口Url，不带协议和端口，如/artemis/api/resource/v1/org/advance/orgList</param>
+        /// <param name="obj">请求参数</param>
+        /// <return>请求结果</return>
+        public async Task<HttpWebResponse> PostHttpWebResponseAsync(string uri, object obj)
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            if (HikSecurityContext.Address.IsNotWhiteSpace())
+            {
+                //sb.Append("/" + HikSecurityContext.Address);
+                uri = "/" + HikSecurityContext.Address + uri;
+            }
+
+            string body = JsonConvert.SerializeObject(obj);
+            // 初始化请求：组装请求头，设置远程证书自动验证通过
+            InitRequest(header, uri, body, HikSecurityContext.IsHttps);
+
+            // build web request object
+            string compluteUrl = (HikSecurityContext.IsHttps ? "https://" : "http://") + (HikSecurityContext.Ip + ":") +
+                                 (HikSecurityContext.Port.ToString()) + uri;
+            StringBuilder sbHeader = new StringBuilder();
+            // 创建POST请求
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(compluteUrl);
+            req.KeepAlive = false;
+            req.ProtocolVersion = HttpVersion.Version11;
+            req.AllowAutoRedirect = false;   // 不允许自动重定向
+            req.Method = "POST";
+            req.Timeout = HikSecurityContext.TimeOut * 1000;    // 传入是秒，需要转换成毫秒
+            req.Accept = header["Accept"];
+            req.ContentType = header["Content-Type"];
+            foreach (string headerKey in header.Keys)
+            {
+                if (headerKey.Contains("x-ca-"))
+                {
+                    req.Headers.Add(headerKey + ":" + header[headerKey]);
+                }
+            }
+
+            foreach (var reqHeader in header)
+            {
+                sbHeader.Append($"{reqHeader.Key}:{reqHeader.Value}  \n  ");
+            }
+            //解决远程证书无效
+            if (HikSecurityContext.IsHttps)
+            {
+                //req.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                ServicePointManager.ServerCertificateValidationCallback =
+                    new RemoteCertificateValidationCallback(CheckValidationResult);
+            }
+
+            if (!string.IsNullOrWhiteSpace(body))
+            {
+                byte[] postBytes = Encoding.UTF8.GetBytes(body);
+                req.ContentLength = postBytes.Length;
+                Stream reqStream = null;
+                reqStream = req.GetRequestStream();
+                reqStream.Write(postBytes, 0, postBytes.Length);
+                reqStream.Close();
+            }
+
+            HttpWebResponse rsp = null;
+            try
+            {
+                rsp = (HttpWebResponse)(await req.GetResponseAsync());
+                if (HttpStatusCode.OK == rsp.StatusCode)
+                {
+                    return rsp;
+                }
+                else if (HttpStatusCode.Found == rsp.StatusCode || HttpStatusCode.Moved == rsp.StatusCode)  // 302/301 redirect
+                {
+                    WriteClientLog(uri, "Post" + compluteUrl, req.GetSerializeObject() + "; header:" + sbHeader + "; body" + body, rsp.GetSerializeObject());
+                }
+
+                rsp.Close();
+            }
+            catch (Exception ex)
+            {
+                WriteClientLog(uri, "Post" + compluteUrl, req.GetSerializeObject() + "; header:" + sbHeader + "; body" + body, ex.GetSerializeObject());
+                throw new MyException("请求外部接口异常");
+            }
+
+
+            return null;
         }
         /// <summary>
         /// HTTP Post请求

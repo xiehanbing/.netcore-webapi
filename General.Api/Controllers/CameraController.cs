@@ -103,6 +103,7 @@ namespace General.Api.Controllers
             int size = 500;
             bool hasNext = true;
             ListBaseResponse<CameraResponse> list = new ListBaseResponse<CameraResponse>();
+            list.List = new List<CameraResponse>();
             //判断是否还有下一页
             while (hasNext)
             {
@@ -128,7 +129,7 @@ namespace General.Api.Controllers
         public ListBaseResponse<CameraResponse> GetAllTestCameras()
         {
             ListBaseResponse<CameraResponse> list = new ListBaseResponse<CameraResponse>();
-            list.List=new List<CameraResponse>();
+            list.List = new List<CameraResponse>();
             for (int i = 0; i < 50; i++)
             {
                 list.List.Add(new CameraResponse()
