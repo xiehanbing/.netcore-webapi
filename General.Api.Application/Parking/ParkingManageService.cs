@@ -6,6 +6,7 @@ using General.Api.Application.Parking.Dto;
 using General.Core;
 using General.Core.Extension;
 using General.Core.HttpClient.Extension;
+using HttpUtil;
 using Microsoft.Extensions.Configuration;
 
 namespace General.Api.Application.Parking
@@ -16,29 +17,28 @@ namespace General.Api.Application.Parking
     public class ParkingManageService : IParkingManageService
     {
         private readonly string _parkingApi;
+        private readonly IHikHttpUtillib _hikHttp;
         /// <summary>
         /// construct
         /// </summary>
-        public ParkingManageService(IConfiguration configuration)
+        public ParkingManageService(IConfiguration configuration, IHikHttpUtillib hikHttp)
         {
-            _parkingApi = configuration[HikVisionContext.HikVisionBaseApiName];
-            if (string.IsNullOrEmpty(_parkingApi))
-            {
-                throw new MyException("parkingApi is null");
-            }
+            _hikHttp = hikHttp;
+            //_parkingApi = configuration[HikVisionContext.HikVisionBaseApiName];
+            //if (string.IsNullOrEmpty(_parkingApi))
+            //{
+            //    throw new MyException("parkingApi is null");
+            //}
         }
         /// <summary>
         /// <see cref="IParkingManageService.GetParkList(List{string})"/>
         /// </summary>
         public async Task<List<ParkInfoListResponse>> GetParkList(List<string> parkIndexCodes)
         {
-            var data = await _parkingApi.AppendFormatToHik("/api/resource/v1/park/parkList")
-                .SetHiKSecreity()
-                .PostAsync(new
-                {
-                    parkIndexCodes = (parkIndexCodes?.Any() ?? false) ? (string.Join(",", parkIndexCodes)) : null
-                })
-                .ReciveJsonResultAsync<HikVisionResponse<List<ParkInfoListResponse>>>();
+            var data = await _hikHttp.PostAsync<HikVisionResponse<List<ParkInfoListResponse>>>("/api/resource/v1/park/parkList", new
+            {
+                parkIndexCodes = (parkIndexCodes?.Any() ?? false) ? (string.Join(",", parkIndexCodes)) : null
+            });
             return data?.Data;
         }
         /// <summary>

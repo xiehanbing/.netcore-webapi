@@ -39,12 +39,12 @@ namespace General.Api.Application.Door.Dto
         /// <summary>
         /// 安装位置
         /// </summary>
-        public InstallLocationType InstallLocation { get; set; }
+        public InstallLocationType? InstallLocation { get; set; }
         /// <summary>
         /// 安装位置描述
         /// </summary>
         public string InstallLocationDesc =>
-            typeof(InstallLocationType).GetEnumDescription(InstallLocation.GetHashCode());
+            typeof(InstallLocationType).GetEnumDescription(InstallLocation?.GetHashCode()??-1);
         /// <summary>
         /// 备注
         /// </summary>

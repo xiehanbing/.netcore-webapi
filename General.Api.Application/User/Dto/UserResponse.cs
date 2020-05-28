@@ -72,7 +72,7 @@ namespace General.Api.Application.User.Dto
         /// <summary>
         /// 头像
         /// </summary>
-        public PersonPhotoResponse PersonPhoto { get; set; }
+        //public PersonPhotoResponse PersonPhoto { get; set; }
         /// <summary>
         /// 学历
         /// </summary>

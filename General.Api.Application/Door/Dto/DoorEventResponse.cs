@@ -16,11 +16,11 @@ namespace General.Api.Application.Door.Dto
         /// <summary>
         /// 事件类型
         /// </summary>
-        public int  EventType { get; set; }
+        public int EventType { get; set; }
         /// <summary>
         /// 事件名称
         /// </summary>
-        public string  EventName { get; set; }
+        public string EventName { get; set; }
         /// <summary>
         /// 事件产生时间
         /// </summary>
@@ -28,7 +28,7 @@ namespace General.Api.Application.Door.Dto
         /// <summary>
         /// 事件产生时间
         /// </summary>
-        public string  PersonId { get; set; }
+        public string PersonId { get; set; }
         /// <summary>
         /// 卡号
         /// </summary>
@@ -36,23 +36,24 @@ namespace General.Api.Application.Door.Dto
         /// <summary>
         /// 人员名称
         /// </summary>
-        public string  PersonName { get; set; }
+        public string PersonName { get; set; }
         /// <summary>
         /// 组织编码
         /// </summary>
-        public string  OrgIndexCode { get; set; }
+        public string OrgIndexCode { get; set; }
+
         /// <summary>
         /// 门禁点名称
         /// </summary>
-        public string  DoorName { get; set; }
+        public string DoorName { get; set; }
         /// <summary>
         /// 门禁点编码
         /// </summary>
-        public string  DoorIndexCode { get; set; }
+        public string DoorIndexCode { get; set; }
         /// <summary>
         /// 门禁点所在区域编码
         /// </summary>
-        public string  DoorRegionIndexCode { get; set; }
+        public string DoorRegionIndexCode { get; set; }
         /// <summary>
         /// 进出类型
         /// </summary>
@@ -64,11 +65,28 @@ namespace General.Api.Application.Door.Dto
         /// <summary>
         /// 抓拍图片地址
         /// </summary>
-        public string  PicUri { get; set; }
+        public string PicUri { get; set; }
         /// <summary>
         /// 图片存储服务的唯一标识
         /// </summary>
-        public string  SvrIndexCode { get; set; }
+        public string SvrIndexCode { get; set; }
+
+        #region 额外参数
+
+        /// <summary>
+        /// 组织名称
+        /// </summary>
+        public string OrgName { get; set; }
+        /// <summary>
+        /// 员工号
+        /// </summary>
+        public string PersonJobNo { get; set; }
+        /// <summary>
+        /// 员工电话
+        /// </summary>
+        public string  PersonPhone { get; set; }
+
+        #endregion
     }
     /// <summary>
     /// 进出类型
@@ -79,17 +97,17 @@ namespace General.Api.Application.Door.Dto
         /// 进
         /// </summary>
         [Description("进")]
-        In=1,
+        In = 1,
         /// <summary>
         /// 出
         /// </summary>
         [Description("出")]
-        Out=0,
+        Out = 0,
         /// <summary>
         /// 未知
         /// </summary>
         [Description("未知")]
-        UnKnow=-1
+        UnKnow = -1
     }
     /// <summary>
     /// 

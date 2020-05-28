@@ -137,6 +137,18 @@
             <param name="regionIndexCode">所属区域唯一标识</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetDoorAll">
+            <summary>
+            获取门禁点所有信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetDoorAllTest">
+            <summary>
+            获取门禁点所有信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:General.Api.Controllers.DoorControlController.GetTaskProgress(System.String)">
             <summary>
             获取门禁点权限的更新进度
@@ -166,6 +178,20 @@
             <param name="pageNo">页码</param>
             <param name="pageSize">页容量</param>
             <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            获取门禁出入列表
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.DoorControlController.GetTestEventList(General.Api.Application.Door.Request.DoorEventQueryRequest)">
+            <summary>
+            获取门禁出入列表
+            </summary>
+            <param name="request">参数</param>
             <returns></returns>
         </member>
         <member name="T:General.Api.Controllers.EventController">
@@ -323,6 +349,13 @@
             <param name="parkIndexCodes">停车库唯一标识集合</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.ParkController.GetParkTestList(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取停车库列表
+            </summary>
+            <param name="parkIndexCodes">停车库唯一标识集合</param>
+            <returns></returns>
+        </member>
         <member name="M:General.Api.Controllers.ParkController.GetEntranceList(System.Collections.Generic.List{System.String})">
             <summary>
             获取出入口
@@ -392,6 +425,32 @@
             <param name="pageSize">每页记录数</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Controllers.ParkController.GetCrossRecordV2(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.ParkController.GetCrossRecordV2Test(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Controllers.SpcmsController">
             <summary>
             入侵报警
@@ -444,6 +503,18 @@
             获取人员列表
             </summary>
             <param name="query">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.GetAll">
+            <summary>
+            获取所有人员列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Controllers.UserController.GetAllTest">
+            <summary>
+            获取所有人员列表
+            </summary>
             <returns></returns>
         </member>
         <member name="T:General.Api.Controllers.ValuesController">

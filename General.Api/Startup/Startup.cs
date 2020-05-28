@@ -198,7 +198,7 @@ namespace General.Api
             //启用中间件服务队swagger-ui 指定swagger json 终结点
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint($"/{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
+                options.SwaggerEndpoint($"{Configuration["swaggerJsonUrl"]}/swagger/{ApiConsts.Version}/swagger.json", $"{ApiConsts.SwaggerTitle} {ApiConsts.Version.ToUpper()}");
                 options.RoutePrefix = "swagger/ui";
             });
 

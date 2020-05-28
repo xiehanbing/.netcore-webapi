@@ -7,6 +7,7 @@ using General.Api.Application.Hikvision;
 using General.Api.Application.Video;
 using General.Api.Application.Video.Dto;
 using General.Api.Application.Video.Request;
+using General.Api.Framework.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -125,7 +126,7 @@ namespace General.Api.Controllers
         /// 获取所有的监控点资源
         /// </summary>
         /// <returns></returns>
-        [HttpGet, Route("cameras/all/test")]
+        [HttpGet, Route("cameras/all/test"), SwaggerIgnore(true)]
         public ListBaseResponse<CameraResponse> GetAllTestCameras()
         {
             ListBaseResponse<CameraResponse> list = new ListBaseResponse<CameraResponse>();

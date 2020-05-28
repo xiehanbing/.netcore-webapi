@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using General.Api.Application.Door;
 using General.Api.Application.Door.Dto;
+using General.Api.Application.Door.Request;
 using General.Api.Application.Hikvision;
 using General.Api.Framework;
 using General.Api.Framework.Filters;
@@ -21,7 +22,7 @@ namespace General.Api.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("application/json"), GeneralAuthorize]
+    [Produces("application/json")]
     public class DoorControlController : ControllerBase
     {
         private readonly IDoorControlService _doorControlService;
@@ -47,7 +48,35 @@ namespace General.Api.Controllers
         public async Task<ListBaseResponse<DoorInfoResponse>> GetDoorList(int pageNo, int pageSize, [FromQuery]List<string> doorIndexCode,
             string doorName, string acsDevIndexCode, string regionIndexCode)
         {
-            return  await _doorControlService.GetDoorList(pageNo, pageSize, doorIndexCode, doorName, acsDevIndexCode, regionIndexCode);
+            return await _doorControlService.GetDoorList(pageNo, pageSize, doorIndexCode, doorName, acsDevIndexCode, regionIndexCode);
+        }
+
+        /// <summary>
+        /// 获取门禁点所有信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("door/all")]
+        public async Task<List<DoorInfoResponse>> GetDoorAll()
+        {
+            return await _doorControlService.GetDoorAll();
+        }
+        /// <summary>
+        /// 获取门禁点所有信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("door/all/test"), SwaggerIgnore(true)]
+        public async Task<List<DoorInfoResponse>> GetDoorAllTest()
+        {
+            List<DoorInfoResponse> list = new List<DoorInfoResponse>();
+            for (int i = 0; i < 50; i++)
+            {
+                list.Add(new DoorInfoResponse()
+                {
+                    DoorName = "测试" + i,
+                    DoorIndexCode = i.ToString()
+                });
+            }
+            return list;
         }
         /// <summary>
         /// 获取门禁点权限的更新进度
@@ -76,7 +105,7 @@ namespace General.Api.Controllers
         /// <param name="controlType">反控操作类型0-常开 1-门闭 2-门开 3-常闭</param>
         /// <returns></returns>
         [Route("door/doControl"), HttpGet]
-        public async Task<List<DoorControlResponse>> DoControl([Required,FromBody]List<string> doorIndexCodeList,
+        public async Task<List<DoorControlResponse>> DoControl([Required, FromBody]List<string> doorIndexCodeList,
             [Required]int controlType)
         {
             if (doorIndexCodeList.Count <= 0) throw new ValidatorException("doorIndexCodeList can't  null");
@@ -89,11 +118,51 @@ namespace General.Api.Controllers
         /// <param name="pageSize">页容量</param>
         /// <param name="treeCode">树编号 树编号（默认0，0代表国标树） 此字段为预留字段，暂时不用。 最大长度：32 </param>
         /// <returns></returns>
-        [Route("door/region/list"),HttpGet]
+        [Route("door/region/list"), HttpGet]
         public async Task<ListBaseResponse<RegionInfoResponse>> GetRegionList(int pageNo, int pageSize,
             string treeCode)
         {
             return await _doorControlService.GetRegionList(pageNo, pageSize, treeCode);
+        }
+        /// <summary>
+        /// 获取门禁出入列表
+        /// </summary>
+        /// <param name="request">参数</param>
+        /// <returns></returns>
+        [HttpPost, Route("door/event")]
+        public async Task<ListBaseResponse<DoorEventQueryResponse>> GetEventList(DoorEventQueryRequest request)
+        {
+            return await _doorControlService.GetEventList(request);
+        }
+
+        /// <summary>
+        /// 获取门禁出入列表
+        /// </summary>
+        /// <param name="request">参数</param>
+        /// <returns></returns>
+        [HttpPost, Route("door/event/test"), SwaggerIgnore(true)]
+        public async Task<ListBaseResponse<DoorEventQueryResponse>> GetTestEventList(DoorEventQueryRequest request)
+        {
+            var list = new ListBaseResponse<DoorEventQueryResponse>();
+            list.List = new List<DoorEventQueryResponse>();
+            list.Total = 100;
+            int start = (request.PageNo - 1) * request.PageSize + 1;
+            int end = request.PageNo * request.PageSize;
+            if (end > list.Total)
+                end = list.Total;
+            for (int index = start; index <= end; index++)
+            {
+                list.List.Add(new DoorEventQueryResponse()
+                {
+                    DoorName = index + "",
+                    PersonName = "张三",
+                    EventTime = DateTime.Now,
+                    OrgName = "技术部",
+                    PersonJobNo = "0000" + index,
+                    PersonPhone = "15538221326"
+                });
+            }
+            return list;
         }
     }
 }

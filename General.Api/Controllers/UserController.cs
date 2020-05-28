@@ -17,7 +17,7 @@ namespace General.Api.Controllers
     /// <summary>
     /// UserController
     /// </summary>
-    [Route("api/[controller]"), GeneralAuthorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -38,6 +38,38 @@ namespace General.Api.Controllers
         public async Task<ListBaseResponse<UserResponse>> GetList(UserQuery query)
         {
             return await _userService.GetUserList(query);
+        }
+
+
+        /// <summary>
+        /// 获取所有人员列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("all")]
+        public async Task<List<UserResponse>> GetAll()
+        {
+            return await _userService.GetAllUser();
+        }
+
+        /// <summary>
+        /// 获取所有人员列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("all/test"), SwaggerIgnore(true)]
+        public async Task<List<UserResponse>> GetAllTest()
+        {
+            var list = new List<UserResponse>();
+            for (int i = 0; i < 50; i++)
+            {
+                list.Add(new UserResponse()
+                {
+                    PersonName = "测试" + i,
+                    JobNo = "123" + i,
+                    PersonId = i.ToString()
+                });
+            }
+
+            return list;
         }
     }
 }

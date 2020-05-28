@@ -75,5 +75,9 @@ namespace General.Api.Application.Parking.Dto.Record
         /// 创建时间
         /// </summary>
         public DateTime? CreateTime { get; set; }
+        /// <summary>
+        /// 总费用
+        /// </summary>
+        public decimal? TotalCost { get; set; }
     }
 }

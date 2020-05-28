@@ -7,6 +7,7 @@ using General.Api.Application.Hikvision;
 using General.Api.Application.Video;
 using General.Api.Application.Video.Dto;
 using General.Api.Application.Video.Request;
+using General.Api.Framework.Filters;
 using General.Core.Extension;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -299,7 +300,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="request">参数</param>
         /// <returns></returns>
-        [HttpPost, Route("capture/test")]
+        [HttpPost, Route("capture/test"), SwaggerIgnore(true)]
         public ListBaseResponse<CaptureSearchResponse> GetTestCapture([FromBody] CaptureSearchRequest request)
         {
             ListBaseResponse<CaptureSearchResponse> list = new ListBaseResponse<CaptureSearchResponse>();
@@ -338,7 +339,7 @@ namespace General.Api.Controllers
         /// </summary>
         /// <param name="request">参数</param>
         /// <returns></returns>
-        [HttpPost, Route("capture/test/all")]
+        [HttpPost, Route("capture/test/all"), SwaggerIgnore(true)]
         public ListBaseResponse<CaptureSearchResponse> GetAllTestCapture([FromBody] CaptureSearchRequest request)
         {
             ListBaseResponse<CaptureSearchResponse> list = new ListBaseResponse<CaptureSearchResponse>();

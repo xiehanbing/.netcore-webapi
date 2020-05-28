@@ -30,7 +30,7 @@
             门禁点控制服务
             </summary>
         </member>
-        <member name="M:General.Api.Application.Door.DoorControlService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Application.Door.DoorControlService.#ctor(HttpUtil.IHikHttpUtillib,General.Api.Application.Organize.IOrganizeService,General.Api.Application.User.IUserService)">
             <summary>
             construct
             </summary>
@@ -43,6 +43,11 @@
         <member name="M:General.Api.Application.Door.DoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
             <summary>
             <see cref="M:General.Api.Application.Door.IDoorControlService.GetDoorList(System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Door.DoorControlService.GetDoorAll">
+            <summary>
+            <see cref="M:General.Api.Application.Door.IDoorControlService.GetDoorAll"/>
             </summary>
         </member>
         <member name="M:General.Api.Application.Door.DoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
@@ -327,6 +332,21 @@
             图片存储服务的唯一标识
             </summary>
         </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.OrgName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonJobNo">
+            <summary>
+            员工号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Door.Dto.DoorEventQueryResponse.PersonPhone">
+            <summary>
+            员工电话
+            </summary>
+        </member>
         <member name="T:General.Api.Application.Door.Dto.InAndOutType">
             <summary>
             进出类型
@@ -597,6 +617,12 @@
             <param name="regionIndexCode">所属区域唯一标识</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Door.IDoorControlService.GetDoorAll">
+            <summary>
+            获取门禁点所有列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:General.Api.Application.Door.IDoorControlService.GetRegionList(System.Int32,System.Int32,System.String)">
             <summary>
             获取区域列表
@@ -648,11 +674,6 @@
         <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EndTime">
             <summary>
             结束时间
-            </summary>
-        </member>
-        <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.EventType">
-            <summary>
-            事件类型
             </summary>
         </member>
         <member name="P:General.Api.Application.Door.Request.DoorEventQueryRequest.PersonName">
@@ -1736,6 +1757,93 @@
             数据
             </summary>
         </member>
+        <member name="T:General.Api.Application.Organize.IOrganizeService">
+            <summary>
+            组织
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Organize.IOrganizeService.GetAll">
+            <summary>
+            获取所有组织列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Organize.IOrganizeService.GetList(General.Api.Application.Organize.OrganizeRequest)">
+            <summary>
+            获取所有组织列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:General.Api.Application.Organize.OrganizeInfoResponse">
+            <summary>
+            组织响应结果
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.OrgIndexCode">
+            <summary>
+            组织唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.OrgName">
+            <summary>
+            组织名称，如默认部门
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.OrgNo">
+            <summary>
+            组织编号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.OrgPath">
+            <summary>
+            组织路径，例如：默认部门/综合安防/开发小组
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.ParentOrgIndexCode">
+            <summary>
+            父组织唯一标识码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.ParentOrgName">
+            <summary>
+            父组织名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeInfoResponse.UpdateTime">
+            <summary>
+            更新时间 要求遵守ISO8601标准，如2018-07-26T21:30:08.000+08:00 表示北京时间2017年7月26日21时30分08秒
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Organize.OrganizeRequest">
+            <summary>
+            查询组织列表请求参数
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeRequest.OrgName">
+            <summary>
+            组织名称，如默认部门
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Organize.OrganizeRequest.OrgIndexCodes">
+            <summary>
+            组织唯一标识码集合
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Organize.OrganizeService">
+            <summary>
+            组织
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Organize.OrganizeService.GetAll">
+            <summary>
+            <see cref="M:General.Api.Application.Organize.IOrganizeService.GetAll"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Organize.OrganizeService.GetList(General.Api.Application.Organize.OrganizeRequest)">
+            <summary>
+            <see cref="M:General.Api.Application.Organize.IOrganizeService.GetList(General.Api.Application.Organize.OrganizeRequest)"/>
+            </summary>
+        </member>
         <member name="T:General.Api.Application.PageRequest">
             <summary>
             页面请求实体
@@ -1874,6 +1982,319 @@
         <member name="P:General.Api.Application.Parking.Dto.AlarmCar.AlarmCarListResponse.EndTime">
             <summary>
             布控结束时间
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse">
+            <summary>
+            缴费账单
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.RecordSysCode">
+            <summary>
+            缴费记录唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ParkSysCode">
+            <summary>
+            停车库唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ParkName">
+            <summary>
+            停车库名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.PlateNo">
+            <summary>
+            车牌号码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.CardNo">
+            <summary>
+            卡号
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeRuleSysCode">
+            <summary>
+            收费规则唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeRuleName">
+            <summary>
+            收费规则名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.SupposeCost">
+            <summary>
+            应收金额
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.DeduceCost">
+            <summary>
+            减免金额
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.Cost">
+            <summary>
+            应收金额
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.TotalCost">
+            <summary>
+            账单总金额
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ExceptionRuleSysCode">
+            <summary>
+            异常收费规则唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ExceptionRuleName">
+            <summary>
+            异常收费规则名称否
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ReductRuleSysCode">
+            <summary>
+            优惠规则唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ReductRuleName">
+            <summary>
+            优惠规则名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ReductType">
+             <summary>
+             优惠类型
+            0：优惠金额
+            1：折扣
+            2：全免
+            4：优惠时长
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ReductTypeName">
+            <summary>
+            优惠类型 名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeSource">
+             <summary>
+             收费来源
+            1：岗亭客户端
+            2：人工客户端
+            3：自助客户端
+            4：收费宝
+            5：第三方
+            6：手机
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeSourceName">
+            <summary>
+            收费来源 名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeType">
+            <summary>
+            收费方式
+            1：现金
+            2：储值账户
+            3：第三方
+            4：支付宝
+            5：微信
+            6：无感支付
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ChargeTypeName">
+            <summary>
+            收费方式 名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.VehicleType">
+             <summary>
+             0：其他车
+            1：小型车
+            2：大型车
+            3：摩托车
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.VehicleTypeName">
+            <summary>
+            车型 名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.InTime">
+             <summary>
+             车辆入场时间，ISO8601格式：
+            yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：
+            2018-07-26T15:00:00+08:00
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.PayTime">
+             <summary>
+             缴费时间，ISO8601格式：
+            yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：
+            2018-07-26T15:00:00+08:00
+             </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.EnRecordSysCode">
+            <summary>
+            车辆入场记录唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ExRecordSysCode">
+            <summary>
+            车辆出场记录唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.DiscountAmount">
+            <summary>
+            本次减免金额,单位：元
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.CouponCode">
+            <summary>
+            优惠券码
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.ParkTime">
+            <summary>
+            停车时长,单位：分钟
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.EntranceSysCode">
+            <summary>
+            出入口唯一标识
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.EnTraceName">
+            <summary>
+            出入口名称
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.ChargeBill.ChargeBillResponse.Operator">
+            <summary>
+            收费员名称
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ChargeBill.ReductTypeEnum">
+            <summary>
+            优惠类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ReductTypeEnum.DiscountAmount">
+            <summary>
+            优惠金额
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ReductTypeEnum.Discount">
+            <summary>
+            折扣
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ReductTypeEnum.Free">
+            <summary>
+            全免
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ReductTypeEnum.DurationOffer">
+            <summary>
+            优惠时长
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum">
+            <summary>
+            收费来源
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.GangWei">
+            <summary>
+            岗亭客户端
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.RenGong">
+            <summary>
+            人工客户端
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.ZiZhu">
+            <summary>
+            自助客户端
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.ShouFeiBao">
+            <summary>
+            收费宝
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.DiSanFang">
+            <summary>
+            第三方
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeSourceEnum.MobilePhone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum">
+            <summary>
+            收费方式
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.Cash">
+            <summary>
+            现金
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.ChuZhiZhangHu">
+            <summary>
+            储值账户
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.DiSanFang">
+            <summary>
+            第三方
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.ZhiFuBao">
+            <summary>
+            支付宝
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.WeiXin">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.ChargeTypeEnum.WuGanZhiFu">
+            <summary>
+            无感支付
+            </summary>
+        </member>
+        <member name="T:General.Api.Application.Parking.Dto.ChargeBill.VehicleTypeEnum">
+            <summary>
+            车辆类型
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.VehicleTypeEnum.Other">
+            <summary>
+            其他车
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.VehicleTypeEnum.Small">
+            <summary>
+            小型车
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.VehicleTypeEnum.Big">
+            <summary>
+            大型车
+            </summary>
+        </member>
+        <member name="F:General.Api.Application.Parking.Dto.ChargeBill.VehicleTypeEnum.MoTuo">
+            <summary>
+            摩托车
             </summary>
         </member>
         <member name="T:General.Api.Application.Parking.Dto.Device.DeviceControlResponse">
@@ -2109,6 +2530,11 @@
         <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.CreateTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:General.Api.Application.Parking.Dto.Record.CrossRecordResponse.TotalCost">
+            <summary>
+            总费用
             </summary>
         </member>
         <member name="T:General.Api.Application.Parking.Dto.Record.ParkRecoreResponse">
@@ -2455,6 +2881,35 @@
             <param name="picUri">图片uri 根据【查询过车记录】、【查询临时车停车信息】或【查询停车账单】接口获取返回参数vehiclePicUri或plateNoPicUri，最大长度：256</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecordV2(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            查询过车记录 带有缴费金额
+            </summary>
+            <param name="parkSysCode">停车库唯一标识</param>
+            <param name="entranceSysCode">出入口唯一标识</param>
+            <param name="plateNo">车牌号</param>
+            <param name="startTime">查询开始时间</param>
+            <param name="endTime">查询结束时间</param>
+            <param name="pageNo">目标页码</param>
+            <param name="pageSize">每页记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.IParkRecordService.GetBillList(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+             <summary>
+             查询缴费列表
+             </summary>
+             <param name="parkSysCode">停车库唯一标识</param>
+             <param name="plateNo">车牌号</param>
+             <param name="starTime">查询开始时间，ISO8601格式：
+            yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：
+            2018-07-26T15:00:00+08:00</param>
+             <param name="endTime">查询结束时间，ISO8601格式：
+            yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：
+            2018-07-26T15:00:00+08:00</param>
+             <param name="pageNo">目标页码</param>
+             <param name="pageSize">每页记录数</param>
+             <returns></returns>
+        </member>
         <member name="T:General.Api.Application.Parking.ParkingDeviceService">
             <summary>
             停车场设备服务
@@ -2480,7 +2935,7 @@
             停车场管理服务
             </summary>
         </member>
-        <member name="M:General.Api.Application.Parking.ParkingManageService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:General.Api.Application.Parking.ParkingManageService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,HttpUtil.IHikHttpUtillib)">
             <summary>
             construct
             </summary>
@@ -2515,7 +2970,7 @@
             停车场记录
             </summary>
         </member>
-        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,HttpUtil.IHikHttpUtillib)">
+        <member name="M:General.Api.Application.Parking.ParkRecordService.#ctor(HttpUtil.IHikHttpUtillib)">
             <summary>
             construct
             </summary>
@@ -2533,6 +2988,26 @@
         <member name="M:General.Api.Application.Parking.ParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
             <summary>
             <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecord(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetCrossRecordV2(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetCrossRecordV2(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetParkAmount(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            获取 停车缴费费用
+            </summary>
+            <param name="parkSysCode">停车库</param>
+            <param name="plateNo">车牌号</param>
+            <param name="starTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.Parking.ParkRecordService.GetBillList(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            <see cref="M:General.Api.Application.Parking.IParkRecordService.GetBillList(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)"/>
             </summary>
         </member>
         <member name="M:General.Api.Application.Parking.ParkRecordService.GetCorssVehicleImage(System.String,System.String)">
@@ -3235,11 +3710,6 @@
             工号
             </summary>
         </member>
-        <member name="P:General.Api.Application.User.Dto.UserResponse.PersonPhoto">
-            <summary>
-            头像
-            </summary>
-        </member>
         <member name="P:General.Api.Application.User.Dto.UserResponse.Education">
             <summary>
             学历
@@ -3663,6 +4133,33 @@
             <param name="query">参数</param>
             <returns></returns>
         </member>
+        <member name="M:General.Api.Application.User.IUserService.GetAllUser">
+            <summary>
+            获取所有人员列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetDetail(System.String)">
+            <summary>
+            获取人员详情
+            </summary>
+            <param name="personId">人员ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetDetail(System.Collections.Generic.List{System.String})">
+            <summary>
+            批量获取人员详情
+            </summary>
+            <param name="personIds">人员ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.IUserService.GetDetailV2(System.Collections.Generic.List{System.String})">
+            <summary>
+            批量获取人员详情
+            </summary>
+            <param name="personIds">人员ID</param>
+            <returns></returns>
+        </member>
         <member name="T:General.Api.Application.User.Request.UserQuery">
             <summary>
             用户查询请求
@@ -3713,7 +4210,7 @@
             人员信息
             </summary>
         </member>
-        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper)">
+        <member name="M:General.Api.Application.User.UserServce.#ctor(General.Api.Core.User.IUserDao,AutoMapper.IMapper,HttpUtil.IHikHttpUtillib)">
             <summary>
             construct
             </summary>
@@ -3727,6 +4224,27 @@
         <member name="M:General.Api.Application.User.UserServce.GetUserList(General.Api.Application.User.Request.UserQuery)">
             <summary>
             <see cref="M:General.Api.Application.User.IUserService.GetUserList(General.Api.Application.User.Request.UserQuery)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetAllUser">
+            <summary>
+            获取所有人员列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetDetail(System.String)">
+            <summary>
+            <see cref="M:General.Api.Application.User.IUserService.GetDetail(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetDetailV2(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.User.IUserService.GetDetailV2(System.Collections.Generic.List{System.String})"/>
+            </summary>
+        </member>
+        <member name="M:General.Api.Application.User.UserServce.GetDetail(System.Collections.Generic.List{System.String})">
+            <summary>
+            <see cref="M:General.Api.Application.User.IUserService.GetDetail(System.Collections.Generic.List{System.String})"/>
             </summary>
         </member>
         <member name="T:General.Api.Application.Video.Dto.CameraResponse">

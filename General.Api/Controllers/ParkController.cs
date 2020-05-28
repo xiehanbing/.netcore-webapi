@@ -56,6 +56,27 @@ namespace General.Api.Controllers
             return await _parkingManageService.GetParkList(parkIndexCodes);
         }
         /// <summary>
+        /// 获取停车库列表
+        /// </summary>
+        /// <param name="parkIndexCodes">停车库唯一标识集合</param>
+        /// <returns></returns>
+        [Route("list/test"), HttpPost, SwaggerIgnore(true)]
+        public async Task<List<ParkInfoListResponse>> GetParkTestList(List<string> parkIndexCodes)
+        {
+            List<ParkInfoListResponse> list = new List<ParkInfoListResponse>();
+            for (int i = 0; i < 50; i++)
+            {
+                list.Add(new ParkInfoListResponse()
+                {
+                    ParkName = "测试" + i,
+                    ParkIndexCode = i.ToString()
+                });
+            }
+
+            return list;
+            // return await _parkingManageService.GetParkList(parkIndexCodes);
+        }
+        /// <summary>
         /// 获取出入口
         /// </summary>
         /// <param name="parkIndexCodes">停车场唯一标识集</param>
@@ -162,12 +183,71 @@ namespace General.Api.Controllers
         /// <param name="pageNo">目标页码</param>
         /// <param name="pageSize">每页记录数</param>
         /// <returns></returns>
-        [HttpGet,Route("record/cross")]
+        [HttpGet, Route("record/cross")]
         public async Task<ListBaseResponse<CrossRecordResponse>> GetCrossRecord(string parkSysCode,
             string entranceSysCode, string plateNo, DateTime? startTime, DateTime? endTime, int pageNo, int pageSize)
         {
             return await _parkRecordService.GetCrossRecord(parkSysCode, entranceSysCode, plateNo, startTime, endTime,
                 pageNo, pageSize);
+        }
+
+
+        /// <summary>
+        /// 查询过车记录
+        /// </summary>
+        /// <param name="parkSysCode">停车库唯一标识</param>
+        /// <param name="entranceSysCode">出入口唯一标识</param>
+        /// <param name="plateNo">车牌号</param>
+        /// <param name="startTime">查询开始时间</param>
+        /// <param name="endTime">查询结束时间</param>
+        /// <param name="pageNo">目标页码</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
+        [HttpGet, Route("record/cross/v2")]
+        public async Task<ListBaseResponse<CrossRecordResponse>> GetCrossRecordV2(string parkSysCode,
+            string entranceSysCode, string plateNo, DateTime? startTime, DateTime? endTime, int pageNo, int pageSize)
+        {
+            return await _parkRecordService.GetCrossRecordV2(parkSysCode, entranceSysCode, plateNo, startTime, endTime,
+                pageNo, pageSize);
+        }
+
+
+        /// <summary>
+        /// 查询过车记录
+        /// </summary>
+        /// <param name="parkSysCode">停车库唯一标识</param>
+        /// <param name="entranceSysCode">出入口唯一标识</param>
+        /// <param name="plateNo">车牌号</param>
+        /// <param name="startTime">查询开始时间</param>
+        /// <param name="endTime">查询结束时间</param>
+        /// <param name="pageNo">目标页码</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
+        [HttpGet, Route("record/cross/v2/test"), SwaggerIgnore(true)]
+        public async Task<ListBaseResponse<CrossRecordResponse>> GetCrossRecordV2Test(string parkSysCode,
+            string entranceSysCode, string plateNo, DateTime? startTime, DateTime? endTime, int pageNo, int pageSize)
+        {
+            Random random = new Random();
+            ListBaseResponse<CrossRecordResponse> list = new ListBaseResponse<CrossRecordResponse>();
+            list.List = new List<CrossRecordResponse>();
+            list.Total = 100;
+            int start = (pageNo - 1) * pageSize + 1;
+            int end = pageNo * pageSize;
+            if (end > list.Total)
+                end = list.Total;
+            for (int index = start; index <= end; index++)
+            {
+                int randomValue = index % 2;
+                list.List.Add(new CrossRecordResponse()
+                {
+                    ParkSysName = "测试" + index,
+                    PlateNo = "浙A1234" + index,
+                    CrossTime = DateTime.Now,
+                    VehicleOut = randomValue,
+                    TotalCost = randomValue > 0 ? random.Next(0, 100) : -1
+                });
+            }
+            return list;
         }
         #endregion
     }

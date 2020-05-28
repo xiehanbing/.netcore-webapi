@@ -14,7 +14,7 @@ namespace General.Core.Extension
         /// <param name="time">时间</param>
         /// <param name="formatter">格式化字符串</param>
         /// <returns></returns>
-        public static string TimeToString(this DateTime time,string formatter="yyyy-MM-dd HH:mm:ss")
+        public static string TimeToString(this DateTime time, string formatter = "yyyy-MM-dd HH:mm:ss")
         {
             return time.ToString(formatter);
         }
@@ -27,6 +27,17 @@ namespace General.Core.Extension
         {
             //var sss = time.ToString("yyyy-MM-ddTHH:mm:ss.fff+8:00",DateTimeFormatInfo.InvariantInfo);
             return time.ToString("yyyy-MM-ddTHH:mm:ss.fff+08:00");
+        }
+
+        /// <summary>
+        /// 开始查询时间（IOS8601格式：yyyy-MM-ddTHH:mm:ss.SSSXXX）
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static string GetTimeIosFormatter(this DateTime? time)
+        {
+            //var sss = time.ToString("yyyy-MM-ddTHH:mm:ss.fff+8:00",DateTimeFormatInfo.InvariantInfo);
+            return time?.ToString("yyyy-MM-ddTHH:mm:ss.fff+08:00");
         }
     }
 }

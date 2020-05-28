@@ -13,15 +13,15 @@ namespace General.Api.Application.Door.Request
         /// <summary>
         /// 开始时间
         /// </summary>
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime EndTime { get; set; }
-        /// <summary>
-        /// 事件类型
-        /// </summary>
-        public int? EventType { get; set; }
+        public DateTime? EndTime { get; set; }
+        ///// <summary>
+        ///// 事件类型
+        ///// </summary>
+        //public int? EventType { get; set; }
         /// <summary>
         /// 人员姓名
         /// </summary>

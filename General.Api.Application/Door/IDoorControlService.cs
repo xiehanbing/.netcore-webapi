@@ -29,6 +29,12 @@ namespace General.Api.Application.Door
         Task<ListBaseResponse<Dto.DoorInfoResponse>> GetDoorList(int pageNo, int pageSize, List<string> doorIndexCode,
             string doorName, string acsDevIndexCode, string regionIndexCode);
         /// <summary>
+        /// 获取门禁点所有列表
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Dto.DoorInfoResponse>> GetDoorAll();
+
+        /// <summary>
         /// 获取区域列表
         /// </summary>
         /// <param name="pageNo">页码</param>

@@ -124,7 +124,7 @@ namespace HttpUtil
             var data = await GetByteAsync(url);
             if (data != null)
             {
-                var stringData = Encoding.Default.GetString(data);
+                var stringData = Encoding.UTF8.GetString(data);
                 return stringData.GetDeserializeObject<T>();
 
             }
@@ -138,7 +138,7 @@ namespace HttpUtil
             var data = await PostByteAsync(url, body.GetSerializeObject());
             if (data != null)
             {
-                var stringData = Encoding.Default.GetString(data);
+                var stringData = Encoding.UTF8.GetString(data);
                 return stringData.GetDeserializeObject<T>();
             }
             return default(T);
@@ -151,7 +151,7 @@ namespace HttpUtil
             var data = await GetByteAsync(uri);
             if (data != null)
             {
-                var stringData = Encoding.Default.GetString(data);
+                var stringData = Encoding.UTF8.GetString(data);
                 return stringData;
 
             }
@@ -166,7 +166,7 @@ namespace HttpUtil
             var data = await PostByteAsync(uri, body.GetSerializeObject());
             if (data != null)
             {
-                var stringData = Encoding.Default.GetString(data);
+                var stringData = Encoding.UTF8.GetString(data);
                 return stringData;
             }
             return string.Empty;
